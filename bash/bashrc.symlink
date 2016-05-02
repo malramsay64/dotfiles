@@ -1,0 +1,55 @@
+# Bash Profile Settings
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+export DOTFILES=$HOME/dotfiles
+export BASH=$DOTFILES/bash
+
+# Source all .sh files inside bash direcotry
+for config in $(ls $BASH/*.sh); do
+    source $config
+done
+
+uname=$(uname)      # Find name of operating system
+sysname=$uname      # Distribution
+hostname=$(hostname) # Hostname
+hostname=${hostname%%.*}
+
+
+if [[ $uname == "Linux" ]]; then
+    if command -v lsb_release -i >/dev/null 2>&1; then
+        sysname=$(lsb_release -i | cut -f2)
+    else
+        sysname=$(cat /etc/redhat-release | cut -d' ' -f1)
+    fi
+fi
+
+DOTFILES="$HOME/dotfiles"
+
+[ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
+export PATH="$PATH:$HOME/dotfiles/bin"
+DISABLE_AUTO_TITLE=true
+
+# Interface {{{
+
+export GREP_COLOR='1;33'
+export CLI_COLOR=1
+#alias ls='ls --color=auto'
+
+
+
+# Base 16 shell theme
+if [ -z "$THEME" ]; then
+    export THEME="base16-solarized"
+fi
+if [ -z "$BACKGROUND" ]; then
+    export BACKGROUND="dark"
+fi
+
+BASE16_SHELL="$DOTFILES/config/base16-shell/$THEME.$BACKGROUND.sh"
+[[ -s "$BASE16_SHELL" ]] && source "$BASE16_SHELL"
+
+#vim:filetype=.bashrc
