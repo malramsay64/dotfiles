@@ -1,0 +1,205 @@
+" Malcolm Ramsay  .vimrc
+"
+"General {{{
+
+set nocompatible        " explicitly get of of vi compatible mode
+
+" Pathogen
+
+"runtime bundle/pathogen/autoload/pathogen.vim
+"execute pathogen#infect()
+
+" Vundle package manager
+
+source $HOME/dotfiles/vim/vundle.vim
+
+"}}}
+"Colours {{{
+
+"set background=$BACKGROUND     " using a dark background
+
+"colorscheme $SCHEME      "Alternatives (desert|solarized|molokai)
+
+syntax enable           "enable syntax processing
+
+"set cursorline          " highlights current line
+
+hi clear CursorLine     " clears highlighting of cursorline
+
+" automatically clears highlighting of cursor line
+augroup CLClear
+    autocmd! ColorScheme * hi clear CursorLine
+augroup END
+
+" Colours line numbers dark grey
+hi LineNr ctermfg=DarkGrey
+
+" Highlights current line number as white
+hi CursorLineNr term=bold ctermfg=White cterm=bold gui=bold guifg=White
+
+" Spell check colours
+hi SpellBad cterm=NONE ctermfg=Red ctermbg=8
+hi SpellCap cterm=NONE ctermfg=Yellow ctermbg=NONE
+hi SpellRare cterm=NONE ctermfg=Blue ctermbg=8
+hi SpellLocal cterm=NONE ctermfg=Green ctermbg=8
+
+" Status line colours
+hi StatusLine cterm=NONE ctermfg=244
+
+"}}}
+"Spaces and Tabs {{{
+
+filetype on             " enable filetype detection
+
+filetype plugin on      " search .vim/ftplugin for filetype
+
+set tabstop=4           " number of visual spaces per TAB
+
+set softtabstop=4       " number of spaces inserted upon TAB
+
+set shiftwidth=4        " autoindent amount when using cindent
+
+set expandtab           " TAB inserts softtabstop spaces
+
+set autoindent          " copy indentation from previous line
+
+set smartindent         " inserts extra indentation in some cases
+
+set list                " we want to show tabs
+
+set listchars=tab:>-,trail:-    " show tabs and trailing whitespace
+
+"}}}
+"UI Config {{{
+
+" The combination of relative number and number gives the absolute line
+" number for the current line and relative numbers for all others
+set relativenumber      " show relative line numbers
+set number              " show line numbers
+
+set scrolloff=5         " 5 lines above and below cursor when scrolling
+
+"set cursorline         "highlight current line
+
+filetype indent on      "load filetype specific indent files
+
+set wildmenu            " visual autocomplete for command
+
+set lazyredraw          " redraw only when need to
+
+set showmatch           " highlight matching parenthesis/bracket/brace
+
+set laststatus=2        " Display statusline
+
+set statusline=%F\ %y\ %=%p%%\ [%l,%v]
+ "              | | | | |  |   |      | |   |    |  |
+ "              | | | | |  |   |      | |   |    |  + current column
+ "              | | | | |  |   |      | |   |    +-- current line
+ "              | | | | |  |   |      | |   +-- current % into file
+ "              | | | | |  |   |      | +-- right align
+ "              | | | | |  |   |      +-- current syntax in square brackets
+ "              | | | | |  |   +-- current fileformat
+ "              | | | | |  +-- number of lines
+ "              | | | | +-- preview flag in square brackets
+ "              +-- full path to file in the buffer
+
+ " common mistypings of exit and save
+cab W w
+cab Q q
+cab Wq wq
+cab WQ wq
+
+" Autocomplete
+let g:SuperTabDefaultCompletionType = "<c-p>"
+
+"}}}
+"Leader Shortcuts {{{
+
+let mapleader=","       "leader is comma
+
+" jk is escape
+inoremap jk <esc>
+
+
+" Create vertical split opening vimrc file
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+
+" Reload vimrc file
+nnoremap <Leader>sv :source $MYVIMRC<cr>
+
+" Create vertical split opening commands file
+nnoremap <Leader>ec :vsplit ~/Setup/commands<cr>
+
+" Go to next split
+nnoremap <Leader>w <c-w>w
+
+"}}}
+"Searching {{{
+
+set incsearch           " search as characters entered
+
+set hlsearch            " highlight matches
+
+set ignorecase          " ignore case when searching
+
+set magic               " regular expressions
+
+" macro to turn off search highlight (,<space>)
+nnoremap <Leader><space> :nohlsearch<CR>
+
+"}}}
+"Folding {{{
+
+set foldenable          " enable folding
+
+set foldlevelstart=5    "have 5 levels open by default
+
+set foldnestmax=1      "10 nested fold max
+
+" space opens or closes folds
+nnoremap <space> za
+
+set foldmethod=indent   " fold based on indent
+
+set modelines=1         " last line of file is checked to run as a command
+
+"}}}
+"Movement {{{
+
+"move verticaly by visual line
+nnoremap j gj
+nnoremap k gk
+
+set backspace=eol,start,indent  " backspace deletes newlines
+
+set whichwrap+=<,>,h,l,[,]      " left right wraps to next/previous lines
+
+" return to last edit position when opening files
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$")|
+    \   exe "normal! g`\"" |
+    \ endif
+
+
+"}}}
+"Backups {{{
+
+set backup          " Performs backups
+set writebackup     " perform backup
+
+" Backup directories
+set backupdir=~/.vim-tmp,~/.tmp,/tmp/vim
+set directory=~/.vim-tmp,~/.tmp,/tmp/vim
+
+
+set undofile        "persistent undo
+set undodir=~/.vim-tmp/undo     "undo directory
+
+"}}}
+"Spelling and Files{{{
+
+set spelllang=en_au             " spelling language is english australian
+set fileformats=unix,mac,dos    " default line ending is unix
+
+"}}}
+" vim:foldmethod=marker:foldlevel=0:filetype=vim
