@@ -15,6 +15,6 @@ for file in $linkables; do
     target="$HOME/$filename"
     if [ -e $target ]; then
         echo "backing up $filename"
-        cp -rL "$target" "$BACKUP_DIR"
+        cp -RL "$target" "$BACKUP_DIR"
     fi
 done

@@ -24,6 +24,7 @@ for file in $linkables; do
                     break
                    ;;
                 n)
+                    link=false
                     break
                     ;;
                 *)
