@@ -16,6 +16,7 @@ Plugin 'chriskempson/base16-vim'
 " Plugins
 Plugin 'tpope/vim-fugitive'         " git integration
 Plugin 'tpope/vim-surround'         " surround text with characters
+Plugin 'scrooloose/nerdtree'          " file management
 
 
 " all plugins must be added before this line

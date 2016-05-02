@@ -133,6 +133,10 @@ nnoremap <Leader>ec :vsplit ~/Setup/commands<cr>
 " Go to next split
 nnoremap <Leader>w <c-w>w
 
+nnoremap <Leader>e :e.
+
+nnoremap <C-n> :NERDTreeToggle<CR>
+
 "}}}
 "Searching {{{
 
