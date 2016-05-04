@@ -16,9 +16,9 @@ source $HOME/dotfiles/vim/vundle.vim
 "}}}
 "Colours {{{
 
-"set background=$BACKGROUND     " using a dark background
-
-"colorscheme $SCHEME      "Alternatives (desert|solarized|molokai)
+let base16colorspace=256
+execute "set background=".$BACKGROUND
+execute "colorscheme ".$THEME
 
 syntax enable           "enable syntax processing
 
@@ -115,27 +115,7 @@ let g:SuperTabDefaultCompletionType = "<c-p>"
 "}}}
 "Leader Shortcuts {{{
 
-let mapleader=","       "leader is comma
-
-" jk is escape
-inoremap jk <esc>
-
-
-" Create vertical split opening vimrc file
-nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
-
-" Reload vimrc file
-nnoremap <Leader>sv :source $MYVIMRC<cr>
-
-" Create vertical split opening commands file
-nnoremap <Leader>ec :vsplit ~/Setup/commands<cr>
-
-" Go to next split
-nnoremap <Leader>w <c-w>w
-
-nnoremap <Leader>e :e.
-
-nnoremap <C-n> :NERDTreeToggle<CR>
+source $DOTFILES/vim/mapping.vim
 
 "}}}
 "Searching {{{
@@ -147,9 +127,6 @@ set hlsearch            " highlight matches
 set ignorecase          " ignore case when searching
 
 set magic               " regular expressions
-
-" macro to turn off search highlight (,<space>)
-nnoremap <Leader><space> :nohlsearch<CR>
 
 "}}}
 "Folding {{{
