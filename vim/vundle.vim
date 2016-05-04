@@ -14,9 +14,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'chriskempson/base16-vim'
 
 " Plugins
-Plugin 'tpope/vim-fugitive'         " git integration
-Plugin 'tpope/vim-surround'         " surround text with characters
-Plugin 'scrooloose/nerdtree'          " file management
+Plugin 'tpope/vim-fugitive'                 " git integration
+Plugin 'tpope/vim-surround'                 " surround text with characters
+Plugin 'tpope/vim-repeat'                   " repeat with plugins
+Plugin 'scrooloose/nerdtree'                " file management
+Plugin 'scrooloose/nerdcommenter'           " commenting code
+Plugin 'octol/vim-cpp-enhanced-highlight'   " better c++ highlighting 
 
 
 " all plugins must be added before this line
