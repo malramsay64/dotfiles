@@ -50,7 +50,8 @@ bind -r L resize-pane -R 10
 bind \ split-window -h
 bind - split-window -v
 
-bind v new-window
+# synchronize all panes in a window
+bind y setw synchronize-panes
 
 #}}}
 
