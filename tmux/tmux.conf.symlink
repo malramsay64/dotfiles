@@ -26,7 +26,7 @@ set-option -g allow-rename off
 
 # Unbind default prefix and set to C-a
 unbind C-b
-set -g prefix C-a
+set -g prefix C-M-a
 bind C-a send-prefix
 
 # Key Bindings {{{
@@ -41,10 +41,10 @@ bind k select-pane -U
 bind l select-pane -R
 
 # pane resize shortcuts
-bind -r H resize-pane -L 10
-bind -r J resize-pane -D 10
-bind -r K resize-pane -U 10
-bind -r L resize-pane -R 10
+bind -r H resize-pane -L 5
+bind -r J resize-pane -D 5
+bind -r K resize-pane -U 5
+bind -r L resize-pane -R 5
 
 # pane splits
 bind \ split-window -h
