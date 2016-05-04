@@ -32,3 +32,8 @@ alias gd='git diff'
 alias ga='git add'
 alias gs='git status'
 
+# PBS aliases
+if hash qstat 2>/dev/null; then
+    alias qstatu='qstat | grep $USER'
+    alias qdelall='qdel $(qstat -u $USER | grep ^[0-9] | cut -d. -f1 | tr "\n" " ")'
+fi
