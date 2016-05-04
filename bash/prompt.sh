@@ -2,6 +2,8 @@
 
 # Bash prompt settings
 
+source $DOTFILES/bash/colours.sh
+
 Time="\A"
 Hostname="\h"
 ShortPath="\W"
