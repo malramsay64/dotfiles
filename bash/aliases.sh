@@ -8,7 +8,14 @@ alias la='ls -a'        # List hidden files
 alias ll='ls -l'        # List in long form
 alias mkdir='mkdir -pv' # Make all folders in path given, lists directories as they are created
 alias ..='cd ..'
-cd() { builtin cd "$@"; [ $? == 0 ] && ls -G ;}
+if [[ $(uname) == "Darwin" ]]; then
+    alias ls='ls -G'
+    cd() { builtin cd "$@"; [ $? == 0 ] && ls -G ;}
+else
+    alias ls='ls --color=auto'
+    cd() { builtin cd "$@"; [ $? == 0 ] && ls --color=auto ;}
+fi
+
 alias c='clear'
 del() { mv "$@" ~/.Trash/ ;}  # Make use of the trash on command line
 alias eject="hdiutil eject"   # will unmount and eject drives. useage eject /Volume/<drive>

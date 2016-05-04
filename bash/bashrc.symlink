@@ -43,14 +43,6 @@ DISABLE_AUTO_TITLE=true
 export GREP_COLOR='1;33'
 export CLI_COLOR=1
 
-if [[ $(uname) == "Darwin" ]]; then
-    alias ls='ls -G'
-else
-    alias ls='ls --color=auto'
-fi
-
-
-
 # Base 16 shell theme
 if [ -z "$THEME" ]; then
     export THEME="base16-solarized"
