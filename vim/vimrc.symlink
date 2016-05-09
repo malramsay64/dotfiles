@@ -46,6 +46,12 @@ hi SpellLocal cterm=NONE ctermfg=Green ctermbg=8
 " Status line colours
 hi StatusLine cterm=NONE ctermfg=244
 
+" Comment Colours
+hi Comment ctermfg=DarkGrey
+
+" Matching parentheses colours
+hi MatchParen cterm=none ctermbg=Cyan
+
 "}}}
 "Spaces and Tabs {{{
 
