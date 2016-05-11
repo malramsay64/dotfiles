@@ -13,6 +13,10 @@ Plugin 'VundleVim/Vundle.vim'
 " Colourschemes
 Plugin 'chriskempson/base16-vim'
 
+" Status bar
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 " Plugins
 Plugin 'tpope/vim-fugitive'                 " git integration
 Plugin 'tpope/vim-surround'                 " surround text with characters
@@ -22,7 +26,6 @@ Plugin 'scrooloose/nerdcommenter'           " commenting code
 Plugin 'scrooloose/syntastic'                " Syntax checking of code
 Plugin 'octol/vim-cpp-enhanced-highlight'   " better c++ highlighting 
 Plugin 'Townk/vim-autoclose'                " autoclose delimeters
-
 
 " all plugins must be added before this line
 call vundle#end()
