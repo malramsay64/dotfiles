@@ -19,6 +19,7 @@ Plugin 'tpope/vim-surround'                 " surround text with characters
 Plugin 'tpope/vim-repeat'                   " repeat with plugins
 Plugin 'scrooloose/nerdtree'                " file management
 Plugin 'scrooloose/nerdcommenter'           " commenting code
+Plugin 'scrooloose/syntastic'                " Syntax checking of code
 Plugin 'octol/vim-cpp-enhanced-highlight'   " better c++ highlighting 
 Plugin 'Townk/vim-autoclose'                " autoclose delimeters
 

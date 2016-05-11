@@ -189,4 +189,23 @@ set spelllang=en_au             " spelling language is english australian
 set fileformats=unix,mac,dos    " default line ending is unix
 
 "}}}
+" Plugin Configuration {{{
+
+""" Syntastic
+" Use error signs
+let g:syntastic_enable_signs = 1
+highlight SyntasticErrorSign ctermfg=LightRed ctermbg=Yellow
+
+" Configure when error checks are run
+" Run on open/save
+let g:syntastic_check_on_open = 1
+" No checks just before quitting
+let g:syntastic_check_on_wq = 0
+
+" Configure location list
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+
+" }}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
