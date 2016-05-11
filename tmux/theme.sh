@@ -13,6 +13,8 @@ tm_active_border_colour=colour39
 tm_colour_host=colour5
 tm_colour_user=colour3
 
+source "host_colour.sh"
+
 set -g status-left-length 32
 set -g status-right-length 150
 set -g status-interval 5
