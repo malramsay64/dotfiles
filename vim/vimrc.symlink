@@ -56,9 +56,11 @@ hi MatchParen cterm=none ctermbg=Cyan
 "}}}
 "Spaces and Tabs {{{
 
-filetype on             " enable filetype detection
+"filetype on             " enable filetype detection
 
-filetype plugin on      " search .vim/ftplugin for filetype
+"filetype plugin on      " search .vim/ftplugin for filetype
+
+filetype plugin indent on      "load filetype specific indent files
 
 set tabstop=4           " number of visual spaces per TAB
 
@@ -88,7 +90,6 @@ set scrolloff=5         " 5 lines above and below cursor when scrolling
 
 "set cursorline         "highlight current line
 
-filetype indent on      "load filetype specific indent files
 
 set wildmenu            " visual autocomplete for command
 
