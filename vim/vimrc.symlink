@@ -78,6 +78,20 @@ set list                " we want to show tabs
 
 set listchars=tab:>-,trail:-    " show tabs and trailing whitespace
 
+" Remove trailing whitespace from file and return cursor to current position
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l,c)
+endfun
+
+" Remove whitespace before writing to files
+augroup StripWhitespaces
+    autocmd!
+    autocmd BufWritePre *.h,*.c,*.cpp :call <SID>StripTrailingWhitespaces()
+augroup END
+
 "}}}
 "UI Config {{{
 
@@ -197,6 +211,9 @@ set fileformats=unix,mac,dos    " default line ending is unix
 " Use error signs
 let g:syntastic_enable_signs = 1
 highlight SyntasticErrorSign ctermfg=LightRed ctermbg=Yellow
+
+" c++11 support
+let g:syntastic_cpp_compiler_options = '-std=c++11 -I$HOME/.local/include'
 
 " Configure when error checks are run
 " Run on open/save
