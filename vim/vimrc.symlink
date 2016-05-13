@@ -51,7 +51,7 @@ hi StatusLine cterm=NONE ctermfg=244
 hi Comment ctermfg=DarkGrey
 
 " Matching parentheses colours
-hi MatchParen cterm=none ctermbg=Cyan
+hi MatchParen cterm=none ctermfg=Cyan ctermbg=none
 
 "}}}
 "Spaces and Tabs {{{
