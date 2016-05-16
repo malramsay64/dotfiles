@@ -33,6 +33,8 @@ DOTFILES="$HOME/dotfiles"
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/dotfiles/bin"
+
+# Prevent retitling of tmux windows
 DISABLE_AUTO_TITLE=true
 
 # Adding home directory lib to ld_library_path
