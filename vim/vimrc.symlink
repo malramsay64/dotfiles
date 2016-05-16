@@ -14,6 +14,10 @@ set nocompatible        " explicitly get of of vi compatible mode
 source $HOME/dotfiles/vim/vundle.vim
 
 set encoding=utf-8
+
+" Vim automatically reads changes to a file
+set autoread
+
 "}}}
 "Colours {{{
 
@@ -137,7 +141,7 @@ let g:SuperTabDefaultCompletionType = "<c-p>"
 "}}}
 "Leader Shortcuts {{{
 
-source $DOTFILES/vim/mapping.vim
+source $HOME/dotfiles/vim/mapping.vim
 
 "}}}
 "Searching {{{
