@@ -5,37 +5,39 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# Source
 export DOTFILES=$HOME/dotfiles
-export BASH=$DOTFILES/bash
+BASH_CONFIG=$DOTFILES/bash
 
 # Source all .sh files inside bash direcotry
-for config in $(ls $BASH/*.sh); do
+for config in $(ls $BASH_CONFIG/*.sh); do
     source $config
 done
 
-uname=$(uname)      # Find name of operating system
-sysname=$uname      # Distribution
-hostname=$(hostname) # Hostname
-hostname=${hostname%%.*}
+# Bash History {{{
+
+# Large Bash History
+# http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+shopt -s histappend                      # append to history, don't overwrite it
+
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 
-if [[ $uname == "Linux" ]]; then
-    if command -v lsb_release -i >/dev/null 2>&1; then
-        sysname=$(lsb_release -i | cut -f2)
-    else
-        sysname=$(cat /etc/redhat-release | cut -d' ' -f1)
-    fi
-fi
+# }}}
 
-DOTFILES="$HOME/dotfiles"
+
+
+# Prevent retitling of tmux windows
+DISABLE_AUTO_TITLE=true
 
 # Adding home directory bin to path
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/dotfiles/bin"
-
-# Prevent retitling of tmux windows
-DISABLE_AUTO_TITLE=true
 
 # Adding home directory lib to ld_library_path
 [ -d "$HOME/.local/lib" ] && export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
@@ -53,7 +55,9 @@ if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
 fi
 
-BASE16_SHELL="$DOTFILES/config/base16-shell/$THEME.$BACKGROUND.sh"
-[[ -s "$BASE16_SHELL" ]] && source "$BASE16_SHELL"
+if [ ! -n "$SSH_CLIENT" ] && [ ! -n "$SSH_TTY" ]; then
+    BASE16_SHELL="$DOTFILES/config/base16-shell/$THEME.$BACKGROUND.sh"
+    [[ -s "$BASE16_SHELL" ]] && source "$BASE16_SHELL"
+fi
 
 #vim:filetype=.bashrc
