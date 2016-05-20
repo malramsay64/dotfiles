@@ -22,8 +22,13 @@ set autoread
 "Colours {{{
 
 let base16colorspace=256
-execute "set background=".$BACKGROUND
-execute "colorscheme ".$THEME
+if $BACKGROUND
+    execute "set background=".$BACKGROUND
+    execute "colorscheme ".$THEME
+else
+    set background=dark
+    colorscheme base16-solarized
+endif
 
 syntax enable           "enable syntax processing
 
