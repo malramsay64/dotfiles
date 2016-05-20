@@ -93,7 +93,7 @@ endfun
 " Remove whitespace before writing to files
 augroup StripWhitespaces
     autocmd!
-    autocmd BufWritePre *.h,*.c,*.cpp :call <SID>StripTrailingWhitespaces()
+    autocmd BufWritePre *.h,*.c,*.cpp,Makefile :call <SID>StripTrailingWhitespaces()
 augroup END
 
 "}}}
