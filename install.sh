@@ -3,7 +3,7 @@
 echo "Installing dotfiles"
 
 #echo "Initialising submodule(s)"
-#git submodule update --init --recursive
+git submodule update --init --recursive
 
 source "install/link.sh"
 
