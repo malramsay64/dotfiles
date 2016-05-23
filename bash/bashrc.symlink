@@ -60,4 +60,8 @@ if [ ! -n "$SSH_CLIENT" ] && [ ! -n "$SSH_TTY" ]; then
     [[ -s "$BASE16_SHELL" ]] && source "$BASE16_SHELL"
 fi
 
+if [ -e ~/.bashrc.local ]; then
+    source ~/.bashrc.local
+fi
+
 #vim:filetype=.bashrc
