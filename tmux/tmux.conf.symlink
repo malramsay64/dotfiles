@@ -27,7 +27,7 @@ set-option -g allow-rename off
 # Unbind default prefix and set to C-a
 unbind C-b
 set -g prefix C-M-a
-bind C-a send-prefix
+bind C-M-a send-prefix
 
 # Key Bindings {{{
 
