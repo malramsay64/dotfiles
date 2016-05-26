@@ -26,9 +26,14 @@ shopt -s histappend                      # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-
 # }}}
 
+# Set editor to vim
+if [[ -e $HOME/.local/bin/vim ]]; then
+    export EDITOR=$HOME/.local/bin/vim
+else
+    export EDITOR=vim
+fi
 
 
 # Prevent retitling of tmux windows
@@ -64,4 +69,4 @@ if [ -e ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi
 
-#vim:filetype=.bashrc
+#vim:filetype=sh
