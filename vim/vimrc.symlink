@@ -98,7 +98,7 @@ endfun
 " Remove whitespace before writing to files
 augroup StripWhitespaces
     autocmd!
-    autocmd BufWritePre *.h,*.c,*.cpp,Makefile :call <SID>StripTrailingWhitespaces()
+    autocmd BufWritePre *.h,*.c,*.cpp,Makefile,*.hoomd,*.py :call <SID>StripTrailingWhitespaces()
 augroup END
 
 "}}}
@@ -170,7 +170,7 @@ set foldnestmax=1      "10 nested fold max
 
 set foldmethod=indent   " fold based on indent
 
-set modelines=1         " last line of file is checked to run as a command
+"set modelines=1         " last line of file is checked to run as a command
 
 "}}}
 "Movement {{{
@@ -262,6 +262,12 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+" Vimwiki
+
+"Use markdown syntax
+let g:vimwiki_list = [{'path': '~/my_site/',
+                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " }}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim

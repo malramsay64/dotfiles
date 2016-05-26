@@ -17,6 +17,9 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 
+" Vim Wiki
+Plugin 'vimwiki/vimwiki'
+
 " Plugins
 Plugin 'tpope/vim-fugitive'                 " git integration
 Plugin 'tpope/vim-surround'                 " surround text with characters
