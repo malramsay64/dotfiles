@@ -224,6 +224,9 @@ let g:syntastic_cpp_compiler_options = '-std=c++11 -I$HOME/.local/include'
 " Python3 syntax checking
 let g:syntastic_python_python_exec = 'python3'
 
+" Latex checking
+let g:syntastic_tex_checkers = ['lacheck']
+
 " Configure when error checks are run
 " Run on open/save
 let g:syntastic_check_on_open = 1
@@ -269,8 +272,14 @@ let g:airline_symbols.linenr = ''
 " Vimwiki
 
 "Use markdown syntax
-let g:vimwiki_list = [{'path': '~/wiki/',
-                       \ 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{  'path':    '~/.wiki/',
+                       \ 'syntax':  'markdown',
+                       \ 'ext':     '.md',
+                       \ 'auto_export': 1,
+                       \ 'auto_toc':    1,
+                       \ 'diary_rel_path': '../.diary',
+                       \ 'path_html': '~/wiki_html'}]
+
 
 " }}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
