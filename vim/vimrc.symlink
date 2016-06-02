@@ -275,7 +275,6 @@ let g:airline_symbols.linenr = ''
 let g:vimwiki_list = [{  'path':    '~/.wiki/',
                        \ 'syntax':  'markdown',
                        \ 'ext':     '.md',
-                       \ 'auto_export': 1,
                        \ 'auto_toc':    1,
                        \ 'diary_rel_path': '../.diary',
                        \ 'path_html': '~/wiki_html'}]
