@@ -122,7 +122,13 @@ set showmatch           " highlight matching parenthesis/bracket/brace
 
 set laststatus=2        " Display statusline
 
-set statusline=%F\ %y\ %=%p%%\ [%l,%v]
+set splitright          "open splits by default to the right
+
+" remap help to open in a vertical split
+abbrev help vert help
+abbrev  h vert h
+
+"set statusline=%F\ %y\ %=%p%%\ [%l,%v]
  "              | | | | |  |   |      | |   |    |  |
  "              | | | | |  |   |      | |   |    |  + current column
  "              | | | | |  |   |      | |   |    +-- current line
@@ -270,6 +276,10 @@ let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
 " Vimwiki
+
+nmap <Leader>w :vsp<CR><Plug>VimwikiIndex
+nmap <Leader>wk <Plug>VimwikiDiaryPrevDay
+nmap <Leader>wj <Plug>VimwikiDiaryNextDay
 
 "Use markdown syntax
 let g:vimwiki_list = [{  'path':    '~/.wiki/',
