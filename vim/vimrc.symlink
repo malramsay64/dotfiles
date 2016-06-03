@@ -21,6 +21,7 @@ set autoread
 "}}}
 "Colours {{{
 
+" Get colours from the terminal
 let base16colorspace=256
 if $BACKGROUND
     execute "set background=".$BACKGROUND
@@ -37,9 +38,9 @@ syntax enable           "enable syntax processing
 hi clear CursorLine     " clears highlighting of cursorline
 
 " automatically clears highlighting of cursor line
-augroup CLClear
-    autocmd! ColorScheme * hi clear CursorLine
-augroup END
+"augroup CLClear
+    "autocmd! ColorScheme * hi clear CursorLine
+"augroup END
 
 " Colours line numbers dark grey
 hi LineNr ctermfg=DarkGrey
@@ -48,13 +49,13 @@ hi LineNr ctermfg=DarkGrey
 hi CursorLineNr term=bold ctermfg=White cterm=bold gui=bold guifg=White
 
 " Spell check colours
-hi SpellBad cterm=NONE ctermfg=Red ctermbg=8
+hi SpellBad cterm=NONE ctermfg=Red ctermbg=NONE
 hi SpellCap cterm=NONE ctermfg=Yellow ctermbg=NONE
-hi SpellRare cterm=NONE ctermfg=Blue ctermbg=8
-hi SpellLocal cterm=NONE ctermfg=Green ctermbg=8
+hi SpellRare cterm=NONE ctermfg=Blue ctermbg=NONE
+hi SpellLocal cterm=NONE ctermfg=Green ctermbg=NONE
 
 " Status line colours
-hi StatusLine cterm=NONE ctermfg=244
+"hi StatusLine cterm=NONE ctermfg=244
 
 " Comment Colours
 hi Comment ctermfg=DarkGrey
