@@ -291,6 +291,9 @@ let g:vimwiki_list = [{  'path':    '~/.wiki/',
                        \ 'diary_rel_path': '../.diary',
                        \ 'path_html': '~/wiki_html'}]
 
+" fugitive
+
+nmap <Leader>gc :Gcommit<CR>
 
 " }}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
