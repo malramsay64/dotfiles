@@ -1,0 +1,32 @@
+[alias]
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ci = commit
+	co = checkout
+	st = status
+	br = branch
+	re = remote
+	gca = gc --aggressive --prune=now
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[core]
+	pager = less -r
+	excludesfile = /home/mram5995/.gitignore_global
+	editor = vim
+[user]
+	name = malramsay64
+	email = malramsay64@gmail.com
+[push]
+	default = current
+[merge "ours"]
+	driver = true
+[merge]
+	tool = diffconflicts
+[mergetool "diffconflicts"]
+	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = true
+[mergetool]
+	keepBackup = false
