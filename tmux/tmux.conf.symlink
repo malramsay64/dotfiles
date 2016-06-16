@@ -3,7 +3,7 @@
 
 
 # Display in 256 colours
-#set -g default-terminal "tmux-256-color-italic"
+set -g default-terminal "screen-256color"
 
 set -g status-utf8 on
 
@@ -60,3 +60,4 @@ bind y setw synchronize-panes
 source "$HOME/dotfiles/tmux/theme.sh"
 
 #}}}
+# vim: ft=conf
