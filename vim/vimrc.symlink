@@ -217,6 +217,8 @@ set undodir=~/.vim-tmp/undo     "undo directory
 set spelllang=en_au             " spelling language is english australian
 set fileformats=unix,mac,dos    " default line ending is unix
 
+autocmd BufNewFile,BufRead *.hoomd set ft=python
+
 "}}}
 " Plugin Configuration {{{
 
