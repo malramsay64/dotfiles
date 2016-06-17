@@ -250,8 +250,11 @@ let g:syntastic_auto_loc_list = 1
 
 """ airline
 
-let g:airline_theme='solarized'
+let g:airline_theme='base16_solarized'
 let g:airline_powerline_fonts = 1
+
+let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
+
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
