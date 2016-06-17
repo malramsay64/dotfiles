@@ -30,8 +30,7 @@ Plugin 'scrooloose/syntastic'               " Syntax checking of code
 Plugin 'octol/vim-cpp-enhanced-highlight'   " better c++ highlighting
 Plugin 'Townk/vim-autoclose'                " autoclose delimeters
 Plugin 'PeterRincker/vim-argumentative'     " manipulating function arguments
-"Plugin 'b4winckler/vim-angry'                          " manipulating function arguments
-"Plugin 'argtextobj.vim'
+Plugin 'airblade/vim-gitgutter'             " git diffs
 
 " all plugins must be added before this line
 call vundle#end()
