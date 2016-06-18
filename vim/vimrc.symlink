@@ -292,7 +292,7 @@ let g:vimwiki_list = [{  'path':    '~/.wiki/',
                        \ 'auto_toc':    1,
                        \ 'auto_export':    1,
                        \ 'diary_rel_path': '../.diary',
-                       \ 'path_html': '~/wiki_html'}]
+                       \ 'path_html': '~/wiki_html/'}]
 
 " fugitive
 
