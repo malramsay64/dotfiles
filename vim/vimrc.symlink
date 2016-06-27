@@ -141,9 +141,6 @@ cab Q q
 cab Wq wq
 cab WQ wq
 
-" Autocomplete
-let g:SuperTabDefaultCompletionType = "<c-p>"
-
 "}}}
 "Leader Shortcuts {{{
 
@@ -212,6 +209,7 @@ set spelllang=en_au             " spelling language is english australian
 set fileformats=unix,mac,dos    " default line ending is unix
 
 autocmd BufNewFile,BufRead *.hoomd set ft=python
+autocmd BufNewFile,BufRead *.md set ft=markdown
 
 "}}}
 " Plugin Configuration {{{
@@ -291,7 +289,7 @@ let g:vimwiki_list = [{  'path':    '~/.wiki/',
                        \ 'ext':     '.wiki',
                        \ 'auto_toc':    1,
                        \ 'auto_export':    1,
-                       \ 'diary_rel_path': '../.diary',
+                       \ 'diary_rel_path': 'diary/',
                        \ 'path_html': '~/wiki_html/'}]
 
 " fugitive
