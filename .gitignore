@@ -1,2 +1,5 @@
 # Vundle managed directory
 vim/vim.symlink/bundle
+
+# Ignore vim spell binary
+*.spl
