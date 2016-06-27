@@ -2,7 +2,7 @@
 
 # Loads the nessecary modules
 
-MODULES="cmake cuda googletest benchmark autossh mpi/mpich-x86_64 lammps gnuplot/5.0.3"
+MODULES="cmake cuda mpi/mpich-x86_64 python"
 
 if  hash module 2>/dev/null ; then
     for M in $MODULES; do
