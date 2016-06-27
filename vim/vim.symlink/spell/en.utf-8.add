@@ -125,3 +125,7 @@ config
 vibrance
 Lightroom
 #houroughly
+setup
+desoldering
+LEDs
+hypervisor
