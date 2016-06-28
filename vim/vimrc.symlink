@@ -4,13 +4,7 @@
 
 set nocompatible        " explicitly get of of vi compatible mode
 
-" Pathogen
-
-"runtime bundle/pathogen/autoload/pathogen.vim
-"execute pathogen#infect()
-
 " Vundle package manager
-
 source $HOME/dotfiles/vim/vundle.vim
 
 set encoding=utf-8
@@ -46,22 +40,22 @@ hi clear CursorLine     " clears highlighting of cursorline
 hi LineNr ctermfg=DarkGrey
 
 " Highlights current line number as white
-hi CursorLineNr term=bold ctermfg=White cterm=bold gui=bold guifg=White
+"hi CursorLineNr term=bold ctermfg=White cterm=bold gui=bold guifg=White
 
 " Spell check colours
-hi SpellBad cterm=NONE ctermfg=Red ctermbg=NONE
-hi SpellCap cterm=NONE ctermfg=Yellow ctermbg=NONE
-hi SpellRare cterm=NONE ctermfg=Blue ctermbg=NONE
-hi SpellLocal cterm=NONE ctermfg=Green ctermbg=NONE
+"hi SpellBad cterm=NONE ctermfg=Red ctermbg=NONE
+"hi SpellCap cterm=NONE ctermfg=Yellow ctermbg=NONE
+"hi SpellRare cterm=NONE ctermfg=Blue ctermbg=NONE
+"hi SpellLocal cterm=NONE ctermfg=Green ctermbg=NONE
 
 " Status line colours
 "hi StatusLine cterm=NONE ctermfg=244
 
 " Comment Colours
-hi Comment ctermfg=DarkGrey
+"hi Comment ctermfg=DarkGrey
 
 " Matching parentheses colours
-hi MatchParen cterm=none ctermfg=Cyan ctermbg=none
+hi MatchParen ctermbg=none ctermfg=LightBlue
 
 "}}}
 "Spaces and Tabs {{{
@@ -80,9 +74,9 @@ set shiftwidth=4        " autoindent amount when using cindent
 
 set expandtab           " TAB inserts softtabstop spaces
 
-set autoindent          " copy indentation from previous line
+"set autoindent          " copy indentation from previous line
 
-set smartindent         " inserts extra indentation in some cases
+"set smartindent         " inserts extra indentation in some cases
 
 set list                " we want to show tabs
 
@@ -147,9 +141,6 @@ cab Q q
 cab Wq wq
 cab WQ wq
 
-" Autocomplete
-let g:SuperTabDefaultCompletionType = "<c-p>"
-
 "}}}
 "Leader Shortcuts {{{
 
@@ -183,8 +174,8 @@ set foldmethod=indent   " fold based on indent
 "Movement {{{
 
 "move verticaly by visual line
-nnoremap j gj
-nnoremap k gk
+"nnoremap j gj
+"nnoremap k gk
 
 set backspace=eol,start,indent  " backspace deletes newlines
 
@@ -217,6 +208,9 @@ set undodir=~/.vim-tmp/undo     "undo directory
 set spelllang=en_au             " spelling language is english australian
 set fileformats=unix,mac,dos    " default line ending is unix
 
+autocmd BufNewFile,BufRead *.hoomd set ft=python
+autocmd BufNewFile,BufRead *.md set ft=markdown
+
 "}}}
 " Plugin Configuration {{{
 
@@ -229,11 +223,15 @@ highlight SyntasticErrorSign ctermfg=LightRed ctermbg=Yellow
 let g:syntastic_cpp_compiler_options = '-std=c++11 -I$HOME/.local/include'
 
 " Python3 syntax checking
-let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_python_exec = 'python'
+let g:syntastic_python_checkers = ['pylint', 'python']
 
 " Latex checking
 let g:syntastic_tex_checkers = ['lacheck']
 
+" Bash linting
+let g:syntastic_sh_checkers = ['shellcheck', 'sh']
+"
 " Configure when error checks are run
 " Run on open/save
 let g:syntastic_check_on_open = 1
@@ -246,8 +244,11 @@ let g:syntastic_auto_loc_list = 1
 
 """ airline
 
-let g:airline_theme='solarized'
+let g:airline_theme='base16_solarized'
 let g:airline_powerline_fonts = 1
+
+let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
+
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -278,7 +279,7 @@ let g:airline_symbols.linenr = ''
 
 " Vimwiki
 
-nmap <Leader>w :vsp<CR><Plug>VimwikiIndex
+"nmap <Leader>w :vsp<CR><Plug>VimwikiIndex
 nmap <Leader>wk <Plug>VimwikiDiaryPrevDay
 nmap <Leader>wj <Plug>VimwikiDiaryNextDay
 
@@ -288,8 +289,8 @@ let g:vimwiki_list = [{  'path':    '~/.wiki/',
                        \ 'ext':     '.wiki',
                        \ 'auto_toc':    1,
                        \ 'auto_export':    1,
-                       \ 'diary_rel_path': '../.diary',
-                       \ 'path_html': '~/wiki_html'}]
+                       \ 'diary_rel_path': 'diary/',
+                       \ 'path_html': '~/wiki_html/'}]
 
 " fugitive
 

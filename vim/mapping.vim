@@ -21,10 +21,21 @@ nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>h :nohlsearch<CR>
 
 " Reload vimrc
-nnoremap <Leader>r :source ~/.vimrc<CR>
+nnoremap <Leader>r :source $MYVIMRC<CR>
+" Edit vimrc
+nnoremap <Leader>er :e $MYVIMRC<CR>
+" Edit vim folder
+nnoremap <Leader>ef :e $HOME/dotfiles/vim<CR>
 
 " space opens or closes folds
 nnoremap <leader><space> za
+
+" next and previous in location list
+nnoremap <leader>o :lnext<CR>
+nnoremap <leader>p :lprev<CR>
+
+" Quick spell fix
+nnoremap <leader>s 1z=
 
 
 "}}}
