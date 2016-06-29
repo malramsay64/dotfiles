@@ -1,2 +1,5 @@
-# Vundle managed directory
-vim/vim.symlink/bundle
+# Plug managed directory
+vim/vim.symlink/plugged
+
+# Ignoring most spell files
+vim/vim.symlink/spell

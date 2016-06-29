@@ -4,8 +4,8 @@
 
 set nocompatible        " explicitly get of of vi compatible mode
 
-" Vundle package manager
-source $HOME/dotfiles/vim/vundle.vim
+" load plugins
+source $HOME/dotfiles/vim/plugins.vim
 
 set encoding=utf-8
 
@@ -247,7 +247,12 @@ let g:syntastic_auto_loc_list = 1
 let g:airline_theme='base16_solarized'
 let g:airline_powerline_fonts = 1
 
+" Only check for indent and mixed-indent whitespace errors
 let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
+
+" Have a wordcount in the following files
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#wordcount#filetypes = '\vhelp|vimwiki|markdown|rst|org|text|asciidoc'
 
 
 if !exists('g:airline_symbols')
