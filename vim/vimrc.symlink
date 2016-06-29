@@ -2,12 +2,14 @@
 "
 "General {{{
 
-set nocompatible        " explicitly get of of vi compatible mode
+if !has('nvim')
+    set nocompatible        " explicitly get of of vi compatible mode
+    set encoding=utf-8
+endif
 
 " load plugins
 source $HOME/dotfiles/vim/plugins.vim
 
-set encoding=utf-8
 
 " Vim automatically reads changes to a file
 set autoread
@@ -214,7 +216,7 @@ autocmd BufNewFile,BufRead *.md set ft=markdown
 "}}}
 " Plugin Configuration {{{
 
-""" Syntastic
+" Syntastic {{{
 " Use error signs
 let g:syntastic_enable_signs = 1
 highlight SyntasticErrorSign ctermfg=LightRed ctermbg=Yellow
@@ -241,8 +243,8 @@ let g:syntastic_check_on_wq = 0
 " Configure location list
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-
-""" airline
+"}}}
+" airline {{{
 
 let g:airline_theme='base16_solarized'
 let g:airline_powerline_fonts = 1
@@ -282,7 +284,8 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" Vimwiki
+"}}}
+" Vimwiki {{{
 
 "nmap <Leader>w :vsp<CR><Plug>VimwikiIndex
 nmap <Leader>wk <Plug>VimwikiDiaryPrevDay
@@ -293,13 +296,30 @@ let g:vimwiki_list = [{  'path':    '~/.wiki/',
                        \ 'syntax':  'default',
                        \ 'ext':     '.wiki',
                        \ 'auto_toc':    1,
-                       \ 'auto_export':    1,
+                       \ 'auto_export':    0,
                        \ 'diary_rel_path': 'diary/',
                        \ 'path_html': '~/wiki_html/'}]
 
-" fugitive
+"}}}
+" fugitive {{{
 
 nmap <Leader>gc :Gcommit<CR>
 
+" }}}
+" neomake {{{
+
+" open loclist quickfix list if errors
+let g:neomake_open_list = 1
+
+" run neomake on write
+autocmd! BufWritePost * Neomake
+
+" Change colour of warning signs
+augroup my_error_signs
+    au!
+    autocmd ColorScheme * hi NeomakeErrorSign ctermfg=red
+    autocmd ColorScheme * hi NeomakeWarningSign ctermfg=yellow
+augroup END
+" }}}
 " }}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
