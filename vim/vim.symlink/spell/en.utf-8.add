@@ -125,6 +125,10 @@ config
 vibrance
 Lightroom
 #houroughly
+setup
+desoldering
+LEDs
+hypervisor
 lifecycle
 Preprocessing
 reStructuredText

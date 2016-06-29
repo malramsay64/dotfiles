@@ -5,7 +5,8 @@
 # Display in 256 colours
 set -g default-terminal "screen-256color"
 
-set -g status-utf8 on
+if-shell " [[ $(tmux -V | cut -d' ' -f2 -ge 2.2 ]]" \
+    'set -g status-utf8 on'
 
 set -g history-limit 20000
 
