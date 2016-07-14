@@ -25,7 +25,7 @@ if $BACKGROUND
     execute "colorscheme ".$THEME
 else
     set background=dark
-    colorscheme base16-solarized
+    colorscheme base16-solarized-dark
 endif
 
 syntax enable           "enable syntax processing
@@ -138,8 +138,12 @@ nnoremap <Leader>r :source $MYVIMRC<CR>
 " Edit vimrc
 nnoremap <Leader>er :edit $MYVIMRC<CR>
 
+" Edit plugins
+nnoremap <Leader>ep :edit $DOTFILES/vim/plugins.vim<CR>
+
 " Quick spell fix
 nnoremap <Leader>s 1z=
+
 
 "}}}
 "Searching {{{
@@ -317,5 +321,16 @@ augroup my_error_signs
 augroup END
 
 " }}}
+" vim-taskwarrior {{{
+
+" Highlighting field
+let g:task_highlight_field = 0
+
+" Long descriptions
+let g:task_rc_override = 'rc.defaultwidth=0'
+
+
+" }}}
+
 " }}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim

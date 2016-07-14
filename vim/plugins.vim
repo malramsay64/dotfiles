@@ -11,6 +11,10 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
 Plug 'vimwiki/vimwiki'
+"Plug 'tbabej/taskwiki'
+
+" Task warrior
+Plug 'blindFS/vim-taskwarrior'
 
 " Syntax checking
 "Plug 'scrooloose/syntastic'               " Syntax checking of code
