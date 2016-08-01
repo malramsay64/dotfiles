@@ -4,3 +4,6 @@ vim/vim.symlink/plugged
 # Ignoring most spell files
 vim/vim.symlink/spell
 *.spl
+
+# Ignoring vim files
+.netrwhist

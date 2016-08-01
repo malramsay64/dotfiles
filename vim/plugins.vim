@@ -32,14 +32,14 @@ Plug 'vimwiki/vimwiki'
 "Plug 'tbabej/taskwiki'
 
 " Task warrior
-Plug 'blindFS/vim-taskwarrior'
+Plug 'blindFS/vim-taskwarrior', Cond(has('task'))
 
 " Syntax checking
 "Plug 'scrooloose/syntastic'
 Plug 'neomake/neomake', { 'on': 'Neomake' }
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': function('DoRemote') })
+Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))
 
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters
