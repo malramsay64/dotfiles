@@ -2,15 +2,18 @@
 "
 "General {{{
 
-set nocompatible        " explicitly get of of vi compatible mode
+if !has('nvim')
+    set nocompatible        " explicitly get of of vi compatible mode
+    set encoding=utf-8
+endif
 
-" Vundle package manager
-source $HOME/dotfiles/vim/vundle.vim
-
-set encoding=utf-8
+" load plugins
+source $HOME/dotfiles/vim/plugins.vim
 
 " Vim automatically reads changes to a file
 set autoread
+
+filetype plugin indent on      "load filetype specific indent and plugin files
 
 "}}}
 "Colours {{{
@@ -22,24 +25,17 @@ if $BACKGROUND
     execute "colorscheme ".$THEME
 else
     set background=dark
-    colorscheme base16-solarized
+    colorscheme base16-solarized-dark
 endif
 
 syntax enable           "enable syntax processing
 
-"set cursorline          " highlights current line
-
 hi clear CursorLine     " clears highlighting of cursorline
 
-" automatically clears highlighting of cursor line
-"augroup CLClear
-    "autocmd! ColorScheme * hi clear CursorLine
-"augroup END
-
-" Colours line numbers dark grey
+" Colour line numbers dark grey
 hi LineNr ctermfg=DarkGrey
 
-" Highlights current line number as white
+" current line number as white
 "hi CursorLineNr term=bold ctermfg=White cterm=bold gui=bold guifg=White
 
 " Spell check colours
@@ -47,9 +43,6 @@ hi LineNr ctermfg=DarkGrey
 "hi SpellCap cterm=NONE ctermfg=Yellow ctermbg=NONE
 "hi SpellRare cterm=NONE ctermfg=Blue ctermbg=NONE
 "hi SpellLocal cterm=NONE ctermfg=Green ctermbg=NONE
-
-" Status line colours
-"hi StatusLine cterm=NONE ctermfg=244
 
 " Comment Colours
 "hi Comment ctermfg=DarkGrey
@@ -60,12 +53,6 @@ hi MatchParen ctermbg=none ctermfg=LightBlue
 "}}}
 "Spaces and Tabs {{{
 
-"filetype on             " enable filetype detection
-
-"filetype plugin on      " search .vim/ftplugin for filetype
-
-filetype plugin indent on      "load filetype specific indent files
-
 set tabstop=4           " number of visual spaces per TAB
 
 set softtabstop=4       " number of spaces inserted upon TAB
@@ -74,9 +61,9 @@ set shiftwidth=4        " autoindent amount when using cindent
 
 set expandtab           " TAB inserts softtabstop spaces
 
-"set autoindent          " copy indentation from previous line
+set autoindent          " copy indentation from previous line
 
-"set smartindent         " inserts extra indentation in some cases
+set smartindent         " inserts extra indentation in some cases
 
 set list                " we want to show tabs
 
@@ -102,12 +89,10 @@ augroup END
 " The combination of relative number and number gives the absolute line
 " number for the current line and relative numbers for all others
 set relativenumber      " show relative line numbers
+
 set number              " show line numbers
 
 set scrolloff=5         " 5 lines above and below cursor when scrolling
-
-"set cursorline         "highlight current line
-
 
 set wildmenu            " visual autocomplete for command
 
@@ -120,55 +105,69 @@ set laststatus=2        " Display statusline
 set splitright          "open splits by default to the right
 
 " remap help to open in a vertical split
-abbrev help vert help
-abbrev  h vert h
+cabbrev help vert help
+cabbrev  h vert h
 
-"set statusline=%F\ %y\ %=%p%%\ [%l,%v]
- "              | | | | |  |   |      | |   |    |  |
- "              | | | | |  |   |      | |   |    |  + current column
- "              | | | | |  |   |      | |   |    +-- current line
- "              | | | | |  |   |      | |   +-- current % into file
- "              | | | | |  |   |      | +-- right align
- "              | | | | |  |   |      +-- current syntax in square brackets
- "              | | | | |  |   +-- current fileformat
- "              | | | | |  +-- number of lines
- "              | | | | +-- preview flag in square brackets
- "              +-- full path to file in the buffer
-
- " common mistypings of exit and save
-cab W w
-cab Q q
-cab Wq wq
-cab WQ wq
+" common mistypings of exit and save
+cabbrev W w
+cabbrev Q q
+cabbrev Wq wq
+cabbrev WQ wq
 
 "}}}
-"Leader Shortcuts {{{
+" Custom Shortcuts {{{
 
-source $HOME/dotfiles/vim/mapping.vim
+" jk is escape
+inoremap jk <esc>
+
+" leader is <space>
+let mapleader="\<space>"
+
+" go to next split
+nnoremap <Leader>w <c-w>w
+
+" Open explorer to current directory
+nnoremap <Leader>n :20Lexplore<CR>
+
+" Turn off search highlighting
+nnoremap <Leader>h :nohlsearch<CR>
+
+" Reload vimrc
+nnoremap <Leader>r :source $MYVIMRC<CR>
+
+" Edit vimrc
+nnoremap <Leader>er :edit $MYVIMRC<CR>
+
+" Edit plugins
+nnoremap <Leader>ep :edit $DOTFILES/vim/plugins.vim<CR>
+
+" Quick spell fix
+nnoremap <Leader>s 1z=
+
 
 "}}}
 "Searching {{{
 
-set incsearch           " search as characters entered
+set incsearch " search as characters entered
 
-set hlsearch            " highlight matches
+set hlsearch  " highlight matches
 
-set ignorecase          " ignore case when searching
+set smartcase " ignore case when searching
 
-set magic               " regular expressions
+set magic     " regular expressions
 
 "}}}
 "Folding {{{
 
-set foldenable          " enable folding
+set foldenable        " enable folding
 
-set foldlevelstart=5    "have 5 levels open by default
+set foldlevelstart=5  " have 5 levels open by default
 
-set foldnestmax=1      "10 nested fold max
+set foldnestmax=6     " 6 nested folds max
 
-set foldmethod=indent   " fold based on indent
+set foldmethod=indent " fold based on indent
 
-"set modelines=1         " last line of file is checked to run as a command
+" set modelines=1       " last line of file is checked to run as a command
 
 "}}}
 "Movement {{{
@@ -208,16 +207,18 @@ set undodir=~/.vim-tmp/undo     "undo directory
 set spelllang=en_au             " spelling language is english australian
 set fileformats=unix,mac,dos    " default line ending is unix
 
-autocmd BufNewFile,BufRead *.hoomd set ft=python
-autocmd BufNewFile,BufRead *.md set ft=markdown
+" set filetype defaults
+autocmd! BufNewFile,BufRead *.hoomd set ft=python
+autocmd! BufNewFile,BufRead *.md set ft=markdown
 
 "}}}
 " Plugin Configuration {{{
 
-""" Syntastic
+" Syntastic {{{
+
 " Use error signs
 let g:syntastic_enable_signs = 1
-highlight SyntasticErrorSign ctermfg=LightRed ctermbg=Yellow
+highlight SyntasticErrorSign ctermfg=LightRed
 
 " c++11 support
 let g:syntastic_cpp_compiler_options = '-std=c++11 -I$HOME/.local/include'
@@ -241,14 +242,18 @@ let g:syntastic_check_on_wq = 0
 " Configure location list
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-
-""" airline
+"}}}
+" airline {{{
 
 let g:airline_theme='base16_solarized'
 let g:airline_powerline_fonts = 1
 
+" Only check for indent and mixed-indent whitespace errors
 let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
 
+" Have a wordcount in the following files (search regex)
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#wordcount#filetypes = '\vhelp|vimwiki|markdown|rst|org|text|asciidoc'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -277,24 +282,55 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-" Vimwiki
+"}}}
+" Vimwiki {{{
 
 "nmap <Leader>w :vsp<CR><Plug>VimwikiIndex
 nmap <Leader>wk <Plug>VimwikiDiaryPrevDay
 nmap <Leader>wj <Plug>VimwikiDiaryNextDay
 
-"Use markdown syntax
+"Vimwiki settings
 let g:vimwiki_list = [{  'path':    '~/.wiki/',
                        \ 'syntax':  'default',
                        \ 'ext':     '.wiki',
                        \ 'auto_toc':    1,
-                       \ 'auto_export':    1,
+                       \ 'auto_export':    0,
                        \ 'diary_rel_path': 'diary/',
                        \ 'path_html': '~/wiki_html/'}]
 
-" fugitive
+"}}}
+" fugitive {{{
 
 nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gs :Gstatus<CR>
+
+" }}}
+" neomake {{{
+
+" open loclist quickfix list if errors
+let g:neomake_open_list = 1
+
+" run neomake on write
+autocmd! BufWritePost * Neomake
+
+" Change colour of warning signs
+augroup my_error_signs
+    autocmd!
+    autocmd ColorScheme * hi NeomakeErrorSign ctermfg=red
+    autocmd ColorScheme * hi NeomakeWarningSign ctermfg=yellow
+augroup END
+
+" }}}
+" vim-taskwarrior {{{
+
+" Highlighting field
+let g:task_highlight_field = 0
+
+" Long descriptions
+let g:task_rc_override = 'rc.defaultwidth=0'
+
+
+" }}}
 
 " }}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim

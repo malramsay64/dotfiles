@@ -1,2 +1,7 @@
 highlight ColumnLimit ctermbg=08
-match ColumnLimit /\%81v./
+augroup LongLines
+    autocmd!
+    autocmd FileType * match none
+    autocmd FileType python match ColumnLimit /\%80v.\+/
+augroup END
+
