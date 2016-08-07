@@ -32,7 +32,7 @@ Plug 'vimwiki/vimwiki'
 "Plug 'tbabej/taskwiki'
 
 " Task warrior
-Plug 'blindFS/vim-taskwarrior', Cond(has('task'))
+Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
 
 " Syntax checking
 "Plug 'scrooloose/syntastic'
