@@ -17,6 +17,7 @@ set -g renumber-windows on
 
 # make pane index start from 1
 set -g base-index 1
+setw -g pane-base-index 1
 
 # use window titles
 set-option -g set-titles on
