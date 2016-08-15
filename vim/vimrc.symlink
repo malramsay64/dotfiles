@@ -331,6 +331,9 @@ let g:task_rc_override = 'rc.defaultwidth=0'
 
 
 " }}}
+" deoplete {{{
+let g:deoplete#enable_at_startup = 1
+"}}}
 
 " }}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
