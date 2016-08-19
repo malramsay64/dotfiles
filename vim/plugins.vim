@@ -52,6 +52,7 @@ Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ hi
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'            " git diffs
 Plug 'godlygeek/tabular', { 'on': 'Tabuarize'} " align text
+Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for python files
 
 " all plugins must be added before this line
 call plug#end()
