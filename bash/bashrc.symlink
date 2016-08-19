@@ -10,8 +10,8 @@ export DOTFILES=$HOME/dotfiles
 BASH_CONFIG=$DOTFILES/bash
 
 # Source all .sh files inside bash direcotry
-for config in $(ls $BASH_CONFIG/*.sh); do
-    source $config
+for config in "$BASH_CONFIG"/*.bash; do
+    source "$config"
 done
 
 # Bash History {{{
@@ -29,7 +29,9 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # }}}
 
 # Set editor to vim
-if [[ -e $HOME/.local/bin/vim ]]; then
+if [[ $(hash nvim && echo 1) ]]; then
+    export EDITOR=nvim
+elif [[ -e $HOME/.local/bin/vim ]]; then
     export EDITOR=$HOME/.local/bin/vim
 else
     export EDITOR=vim
@@ -37,7 +39,7 @@ fi
 
 
 # Prevent retitling of tmux windows
-DISABLE_AUTO_TITLE=true
+#DISABLE_AUTO_TITLE=true
 
 # Adding home directory bin to path
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
