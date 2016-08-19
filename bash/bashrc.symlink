@@ -1,8 +1,9 @@
+#!/bin/bash
 # Bash Profile Settings
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
+    source /etc/bashrc
 fi
 
 # Source
