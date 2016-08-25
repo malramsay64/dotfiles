@@ -24,6 +24,9 @@ set-option -g set-titles on
 set-option -g set-titles-string "#T - #W"
 set-option -g allow-rename off
 
+# Resize to current not smalest display
+setw -g aggressive-resize on
+
 #}}}
 # Key Bindings {{{
 
