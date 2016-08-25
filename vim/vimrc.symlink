@@ -213,7 +213,14 @@ autocmd! BufNewFile,BufRead *.md set ft=markdown
 
 "}}}
 " Plugin Configuration {{{
+"
+" netrw {{{
 
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_liststyle = 3
+
+" }}}
 " Syntastic {{{
 
 " Use error signs
@@ -334,6 +341,5 @@ let g:task_rc_override = 'rc.defaultwidth=0'
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
 "}}}
-
-" }}}
+"j}}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
