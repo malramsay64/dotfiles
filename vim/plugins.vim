@@ -22,6 +22,7 @@ call plug#begin()
 
 " Colourschemes
 Plug 'chriskempson/base16-vim'
+Plug 'rakr/vim-one'
 
 " Status bar
 Plug 'vim-airline/vim-airline'
@@ -41,11 +42,15 @@ Plug 'neomake/neomake', { 'on': 'Neomake' }
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))
 
+" Additional text-objects
+Plug 'kana/vim-textobj-user'
+Plug 'bps/vim-textobj-python'
+
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentatry mappings
-"Plug 'scrooloose/nerdtree'              " file management
+Plug 'scrooloose/nerdtree'              " file management
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
 "Plug 'Townk/vim-autoclose'              " autoclose delimeters
@@ -54,6 +59,7 @@ Plug 'airblade/vim-gitgutter'            " git diffs
 Plug 'godlygeek/tabular', { 'on': 'Tabuarize'} " align text
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for python files
 Plug 'szw/vim-tags'                      " ctag support
+Plug 'kien/ctrlp.vim'                   " fuzzy file finder
 
 " all plugins must be added before this line
 call plug#end()

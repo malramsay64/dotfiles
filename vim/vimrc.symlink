@@ -18,22 +18,40 @@ filetype plugin indent on      "load filetype specific indent and plugin files
 "}}}
 "Colours {{{
 
-" Get colours from the terminal
-let base16colorspace=256
-if $BACKGROUND
-    execute "set background=".$BACKGROUND
-    execute "colorscheme ".$THEME
-else
-    set background=dark
-    colorscheme base16-solarized-dark
+"" Get colours from the terminal
+"let base16colorspace=256
+"if $BACKGROUND
+    "execute "set background=".$BACKGROU
+    "execute "colorscheme ".$THEME
+"else
+    "set background=dark
+    "colorscheme base16-solarized-dark
+"endif
+syntax enable           " enable syntax processing
+
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
 endif
 
-syntax enable           "enable syntax processing
 
-hi clear CursorLine     " clears highlighting of cursorline
+set background=dark " for the dark version
+" set background=light " for the light version
+colorscheme one
+
+
+"hi clear CursorLine     " clears highlighting of cursorline
 
 " Colour line numbers dark grey
-hi LineNr ctermfg=DarkGrey
+"hi LineNr ctermfg=DarkGrey
 
 " current line number as white
 "hi CursorLineNr term=bold ctermfg=White cterm=bold gui=bold guifg=White
@@ -48,7 +66,7 @@ hi LineNr ctermfg=DarkGrey
 "hi Comment ctermfg=DarkGrey
 
 " Matching parentheses colours
-hi MatchParen ctermbg=none ctermfg=LightBlue
+"hi MatchParen ctermbg=none ctermfg=LightBlue
 
 "}}}
 "Spaces and Tabs {{{
@@ -126,8 +144,6 @@ let mapleader="\<space>"
 " go to next split
 nnoremap <Leader>w <c-w>w
 
-" Open explorer to current directory
-nnoremap <Leader>n :20Lexplore<CR>
 
 " Turn off search highlighting
 nnoremap <Leader>h :nohlsearch<CR>
@@ -144,6 +160,9 @@ nnoremap <Leader>ep :edit $DOTFILES/vim/plugins.vim<CR>
 " Quick spell fix
 nnoremap <Leader>s 1z=
 
+" Shortcut for saving as root
+cmap w!! w !sudo tee > /dev/null %
+
 
 "}}}
 "Searching {{{
@@ -152,7 +171,9 @@ set incsearch " search as characters entered
 
 set hlsearch  " highlight matches
 
-set smartcase " ignore case when searching
+set ignorecase " ignore case when seraching
+
+set smartcase " overrides ignorecase if uppercase characters in search query
 
 set magic     " regular expressions
 
@@ -216,9 +237,20 @@ autocmd! BufNewFile,BufRead *.md set ft=markdown
 "
 " netrw {{{
 
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_liststyle = 3
+" Open explorer to current directory
+"nnoremap <Leader>n :20Lexplore<CR>
+
+"let g:netrw_browse_split = 4
+"let g:netrw_preview = 1
+"let g:netrw_altv = 1
+"let g:netrw_liststyle = 3
+"let g:netrw_keepdir = 0
+
+" }}}
+" nerdtree {{{
+
+" Open explorer to current directory
+nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " }}}
 " Syntastic {{{
@@ -336,10 +368,19 @@ let g:task_highlight_field = 0
 " Long descriptions
 let g:task_rc_override = 'rc.defaultwidth=0'
 
+" Allow changes to data
+let g:task_readonly = 0
+
+" Change default fields
+let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due']
+
 
 " }}}
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
 "}}}
-"j}}}
+" vim-mundo {{{
+nnoremap <F5> :MundoToggle<CR>
+" }}}
+"}}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
