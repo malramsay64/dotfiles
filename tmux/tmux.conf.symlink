@@ -3,7 +3,9 @@
 
 
 # Display in 256 colours
-set -g default-terminal "screen-256color"
+#set -g default-terminal "screen-256color"
+# True colour
+set-option -ga terminal-overrides ",xterm-256color:Tc"
 
 if-shell " [[ $(tmux -V | cut -d' ' -f2 -ge 2.2 ]]" \
     'set -g status-utf8 on'
