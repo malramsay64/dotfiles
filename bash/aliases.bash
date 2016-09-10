@@ -19,7 +19,6 @@ fi
 alias c='clear'
 del() { mv "$@" ~/.Trash/ ;}  # Make use of the trash on command line
 alias eject="hdiutil eject"   # will unmount and eject drives. useage eject /Volume/<drive>
-ip() { ipconfig getifaddr "$@" ;} # Get IP address
 alias rd='pushd +1'
 alias ravp='rsync -av --progress'
 alias grep='grep --color=AUTO'
