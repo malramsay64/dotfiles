@@ -27,3 +27,6 @@ cmake_install.cmake
 
 # CLion IDE Files
 .idea
+
+# Key files
+*.pem

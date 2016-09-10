@@ -42,4 +42,37 @@ for file in $linkables; do
     fi
 done
 
-
+linkconfig=$( find -H "$DOTFILES" -name '*.configlink' )
+for file in $linkconfig; do
+    link=false
+    target="$HOME/.config/$(basename $file '.configlink' )"
+    if [ -e $target ]; then
+        echo -n "~${target#$HOME} already exists... Replace {y/n}: "
+        read replace
+        loop=0
+        while [ $loop -lt 3 ]; do
+            loop=$[$loop+1]
+            case $replace in
+                y)
+                    link=true
+                    rm -r $target
+                    break
+                    ;;
+                n)
+                    link=flase
+                    break
+                    ;;
+                *)
+                    echo -e "\nReplace {y/n}: "
+                    read replace
+                    ;;
+            esac
+        done
+    else
+        link=true
+    fi
+    if [ $link ]; then
+        echo "Creating symlink for $file"
+        ln -s $file $target
+    fi
+done

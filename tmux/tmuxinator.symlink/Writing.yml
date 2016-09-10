@@ -34,7 +34,7 @@ windows:
         - nvim +"TW -Home due.before:2w"
         - task sync
         - nvim +"TW +Home"
-  - Diary: nvim +"VimwikiDiaryIndex"
+  - Diary: nvim +VimwikiDiaryIndex
   - dotfiles: 
     - cd ~/dotfiles
     - nvim .

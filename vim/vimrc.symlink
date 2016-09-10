@@ -18,37 +18,14 @@ filetype plugin indent on      "load filetype specific indent and plugin files
 "}}}
 "Colours {{{
 
-" Get colours from the terminal
-let base16colorspace=256
-if $BACKGROUND
-    execute "set background=".$BACKGROUND
-    execute "colorscheme ".$THEME
-else
-    set background=dark
-    colorscheme base16-solarized-dark
-endif
+syntax enable           " enable syntax processing
 
-syntax enable           "enable syntax processing
+" Enable truecolour support
+set termguicolors
 
-hi clear CursorLine     " clears highlighting of cursorline
-
-" Colour line numbers dark grey
-hi LineNr ctermfg=DarkGrey
-
-" current line number as white
-"hi CursorLineNr term=bold ctermfg=White cterm=bold gui=bold guifg=White
-
-" Spell check colours
-"hi SpellBad cterm=NONE ctermfg=Red ctermbg=NONE
-"hi SpellCap cterm=NONE ctermfg=Yellow ctermbg=NONE
-"hi SpellRare cterm=NONE ctermfg=Blue ctermbg=NONE
-"hi SpellLocal cterm=NONE ctermfg=Green ctermbg=NONE
-
-" Comment Colours
-"hi Comment ctermfg=DarkGrey
-
-" Matching parentheses colours
-hi MatchParen ctermbg=none ctermfg=LightBlue
+" Set colourshecme
+set background=dark " for the dark version
+colorscheme one
 
 "}}}
 "Spaces and Tabs {{{
@@ -126,8 +103,6 @@ let mapleader="\<space>"
 " go to next split
 nnoremap <Leader>w <c-w>w
 
-" Open explorer to current directory
-nnoremap <Leader>n :20Lexplore<CR>
 
 " Turn off search highlighting
 nnoremap <Leader>h :nohlsearch<CR>
@@ -144,6 +119,9 @@ nnoremap <Leader>ep :edit $DOTFILES/vim/plugins.vim<CR>
 " Quick spell fix
 nnoremap <Leader>s 1z=
 
+" Shortcut for saving as root
+cmap w!! w !sudo tee > /dev/null %
+
 
 "}}}
 "Searching {{{
@@ -152,7 +130,9 @@ set incsearch " search as characters entered
 
 set hlsearch  " highlight matches
 
-set smartcase " ignore case when searching
+set ignorecase " ignore case when seraching
+
+set smartcase " overrides ignorecase if uppercase characters in search query
 
 set magic     " regular expressions
 
@@ -213,7 +193,25 @@ autocmd! BufNewFile,BufRead *.md set ft=markdown
 
 "}}}
 " Plugin Configuration {{{
+"
+" netrw {{{
 
+" Open explorer to current directory
+"nnoremap <Leader>n :20Lexplore<CR>
+
+"let g:netrw_browse_split = 4
+"let g:netrw_preview = 1
+"let g:netrw_altv = 1
+"let g:netrw_liststyle = 3
+"let g:netrw_keepdir = 0
+
+" }}}
+" nerdtree {{{
+
+" Open explorer to current directory
+nnoremap <Leader>n :NERDTreeToggle<CR>
+
+" }}}
 " Syntastic {{{
 
 " Use error signs
@@ -329,11 +327,19 @@ let g:task_highlight_field = 0
 " Long descriptions
 let g:task_rc_override = 'rc.defaultwidth=0'
 
+" Allow changes to data
+let g:task_readonly = 0
+
+" Change default fields
+let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due']
+
 
 " }}}
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
 "}}}
-
+" vim-mundo {{{
+nnoremap <F5> :MundoToggle<CR>
 " }}}
+"}}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
