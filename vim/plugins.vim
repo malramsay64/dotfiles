@@ -39,6 +39,11 @@ Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
 "Plug 'scrooloose/syntastic'
 Plug 'neomake/neomake', { 'on': 'Neomake' }
 
+" Filetype specific plugins
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
+Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for python files
+Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
+
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))
 
@@ -52,14 +57,13 @@ Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentatry mappings
 Plug 'scrooloose/nerdtree'              " file management
 Plug 'scrooloose/nerdcommenter'         " commenting code
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
 "Plug 'Townk/vim-autoclose'              " autoclose delimeters
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'            " git diffs
 Plug 'godlygeek/tabular', { 'on': 'Tabuarize'} " align text
-Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for python files
 Plug 'szw/vim-tags'                      " ctag support
 Plug 'kien/ctrlp.vim'                   " fuzzy file finder
+
 
 " all plugins must be added before this line
 call plug#end()
