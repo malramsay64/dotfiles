@@ -243,7 +243,7 @@ let g:syntastic_auto_loc_list = 1
 "}}}
 " airline {{{
 
-let g:airline_theme='base16_solarized'
+let g:airline_theme='one'
 let g:airline_powerline_fonts = 1
 
 " Only check for indent and mixed-indent whitespace errors
@@ -338,8 +338,5 @@ let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due'
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
 "}}}
-" vim-mundo {{{
-nnoremap <F5> :MundoToggle<CR>
-" }}}
 "}}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
