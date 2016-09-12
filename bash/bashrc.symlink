@@ -30,7 +30,7 @@ shopt -s histappend                      # append to history, don't overwrite it
 # }}}
 
 # Set editor to vim
-if [[ $(hash nvim && echo 1) ]]; then
+if [[ $(hash nvim 2>/dev/null && echo 1) ]]; then
     export EDITOR=nvim
 elif [[ -e $HOME/.local/bin/vim ]]; then
     export EDITOR=$HOME/.local/bin/vim
