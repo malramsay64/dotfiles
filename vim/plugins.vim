@@ -30,7 +30,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
 Plug 'vimwiki/vimwiki'
-"Plug 'tbabej/taskwiki'
+Plug 'tbabej/taskwiki'
 
 " Task warrior
 Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
@@ -45,7 +45,7 @@ Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for py
 Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', Cond(has('nvim'))
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins<CR>'}
 
 " Additional text-objects
 Plug 'kana/vim-textobj-user'
