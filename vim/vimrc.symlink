@@ -15,6 +15,11 @@ set autoread
 
 filetype plugin indent on      "load filetype specific indent and plugin files
 
+" Python support
+let g:python2_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/local/conda/3.5.1/bin/python'
+"let g:python_host_prog = '/usr/local/conda/3.5.1/bin/python'
+
 "}}}
 "Colours {{{
 
@@ -98,6 +103,9 @@ cabbrev W w
 cabbrev Q q
 cabbrev Wq wq
 cabbrev WQ wq
+
+" Disable mouse 
+set mouse=
 
 "}}}
 " Custom Shortcuts {{{
@@ -305,6 +313,13 @@ let g:vimwiki_list = [{  'path':    '~/.wiki/',
                        \ 'path_html': '~/wiki_html/'}]
 
 "}}}
+" TaskWiki {{{
+
+let g:taskwiki_sort_order='urgency+,due+,project+'
+
+autocmd! BufReadPost,BufNewFile * set filetype=taskedit
+
+" }}}
 " fugitive {{{
 
 nmap <Leader>gc :Gcommit<CR>
