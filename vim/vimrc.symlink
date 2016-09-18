@@ -16,8 +16,8 @@ set autoread
 filetype plugin indent on      "load filetype specific indent and plugin files
 
 " Python support
-let g:python2_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/local/conda/3.5.1/bin/python'
+let g:python2_host_prog = 'python2'
+let g:python3_host_prog = 'python3'
 "let g:python_host_prog = '/usr/local/conda/3.5.1/bin/python'
 
 "}}}
@@ -304,20 +304,27 @@ nmap <Leader>wk <Plug>VimwikiDiaryPrevDay
 nmap <Leader>wj <Plug>VimwikiDiaryNextDay
 
 "Vimwiki settings
-let g:vimwiki_list = [{  'path':    '~/.wiki/',
-                       \ 'syntax':  'default',
-                       \ 'ext':     '.wiki',
-                       \ 'auto_toc':    1,
-                       \ 'auto_export':    0,
-                       \ 'diary_rel_path': 'diary/',
-                       \ 'path_html': '~/wiki_html/'}]
+let g:vimwiki_list = [
+    \{  'path':    '~/.wiki/',
+    \ 'syntax':  'default',
+    \ 'ext':     '.wiki',
+    \ 'auto_toc':    1,
+    \ 'auto_export':    0,
+    \ 'diary_rel_path': 'diary/',
+    \ 'path_html': '~/wiki_html/'},
+    \{ 'path': '~/.taskwiki',
+                \ 'syntax': 'default',
+                \'ext': '.wiki',
+                \'auto_toc': 0,
+                \'auto_export': 0,
+    \}]
 
 "}}}
 " TaskWiki {{{
 
 let g:taskwiki_sort_order='urgency+,due+,project+'
 
-autocmd! BufReadPost,BufNewFile * set filetype=taskedit
+"autocmd! BufReadPost,BufNewFile * set filetype=taskedit
 
 " }}}
 " fugitive {{{
