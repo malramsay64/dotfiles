@@ -1,0 +1,20 @@
+# [Created by task 2.5.1 7/28/2016 14:17:39]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+taskd.server=task.malramsay.com:53589
+taskd.credentials=Personal\/Malcolm Ramsay\/5bb98c3b-3218-48ab-b0e3-4440c0450c0f
+taskd.certificate=\/home\/malcolm\/.task\/malcolm_ramsay.cert.pem
+taskd.key=\/home\/malcolm\/.task\/malcolm_ramsay.key.pem
+taskd.ca=\/home\/malcolm\/.task\/ca.cert.pem
