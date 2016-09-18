@@ -1,0 +1,8 @@
+# taskrc.local 
+# Local taskrc configuration file for <hostname>
+
+taskd.server=
+taskd.credentials=
+taskd.certificate=
+taskd.key=
+taskd.ca=

@@ -7,3 +7,9 @@ vim/vim.symlink/spell
 
 # Ignoring vim files
 .netrwhist
+
+# Ignoring taskwarrior config and data files
+task/task.symlink/*.pem
+task/task.symlink/*.data
+task/task.symlink/taskrc.local
+
