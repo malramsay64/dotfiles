@@ -45,24 +45,31 @@ Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for py
 Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins<CR>'}
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 
 " Additional text-objects
 Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python'
 
+" File management
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentatry mappings
-Plug 'scrooloose/nerdtree'              " file management
 Plug 'scrooloose/nerdcommenter'         " commenting code
 "Plug 'Townk/vim-autoclose'              " autoclose delimeters
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'            " git diffs
-Plug 'godlygeek/tabular', { 'on': 'Tabuarize'} " align text
+"Plug 'godlygeek/tabular', { 'on': 'Tabuarize'} " align text
 Plug 'szw/vim-tags'                      " ctag support
 Plug 'kien/ctrlp.vim'                   " fuzzy file finder
+Plug 'mbbill/undotree'                  " undo
 
 
 " all plugins must be added before this line
