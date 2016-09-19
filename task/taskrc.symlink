@@ -13,8 +13,4 @@
 # Files
 data.location=~/.task
 
-taskd.server=task.malramsay.com:53589
-taskd.credentials=Personal\/Malcolm Ramsay\/5bb98c3b-3218-48ab-b0e3-4440c0450c0f
-taskd.certificate=\/home\/malcolm\/.task\/malcolm_ramsay.cert.pem
-taskd.key=\/home\/malcolm\/.task\/malcolm_ramsay.key.pem
-taskd.ca=\/home\/malcolm\/.task\/ca.cert.pem
+include ~/.task/taskrc.local
