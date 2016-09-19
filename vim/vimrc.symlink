@@ -368,5 +368,20 @@ let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due'
 " deoplete {{{
 let g:deoplete#enable_at_startup = 1
 "}}}
+" vimtex {{{
+
+" enable vimtex
+let g:vimtex_enabled = 1
+
+" Folding options
+let g:vimtex_fold_enabled = 1
+let g:vimtex_fold_manual = 1
+
+" latexmk options
+
+let g:vimtex_latexmk_enabled = 1
+let g:vimtek_latexmk_build_dir = '.output'
+
+" }}}
 "}}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
