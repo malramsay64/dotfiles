@@ -37,7 +37,7 @@ Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
 
 " Syntax checking
 "Plug 'scrooloose/syntastic'
-Plug 'neomake/neomake', { 'on': 'Neomake' }
+Plug 'neomake/neomake'
 
 " Filetype specific plugins
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
