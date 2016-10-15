@@ -366,7 +366,21 @@ let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due'
 
 " }}}
 " deoplete {{{
-let g:deoplete#enable_at_startup = 1
+if has('python3')
+    let g:deoplete#enable_at_startup = 1
+endif
+
+let g:deoplete#max_list=7
+
+" <C-h>: close popup
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+
+" <CR> gives newline
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+endfunction
+
 "}}}
 " vimtex {{{
 
