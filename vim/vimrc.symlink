@@ -267,7 +267,7 @@ let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
 
 " Have a wordcount in the following files (search regex)
 let g:airline#extensions#wordcount#enabled = 1
-let g:airline#extensions#wordcount#filetypes = '\vhelp|vimwiki|markdown|rst|org|text|asciidoc'
+let g:airline#extensions#wordcount#filetypes = '\vhelp|vimwiki|markdown|rst|org|text|asciidoc|tex'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -336,7 +336,7 @@ nmap <Leader>gs :Gstatus<CR>
 " neomake {{{
 
 " open loclist quickfix list if errors
-let g:neomake_open_list = 1
+let g:neomake_open_list = 0
 
 " run neomake on write
 autocmd! BufWritePost * Neomake
@@ -423,7 +423,7 @@ let g:vimtex_fold_manual = 1
 " latexmk options
 
 let g:vimtex_latexmk_enabled = 1
-let g:vimtek_latexmk_build_dir = '.output'
+let g:vimtex_latexmk_build_dir = '.output'
 
 " }}}
 "}}}
