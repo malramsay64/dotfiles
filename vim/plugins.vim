@@ -46,8 +46,10 @@ Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+"Plug 'Shougo/neosnippet.vim'
+"Plug 'Shougo/neosnippet-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 
 " Additional text-objects

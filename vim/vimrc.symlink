@@ -384,12 +384,33 @@ endfunction
 "}}}
 "neosnippet {{{
 
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+"" Plugin key-mappings.
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+"" Add vim-snippets to path
+"let g:neosnippet#enable_snipmate_compatibility = 1
+"let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 
 "}}}
+" ultisnips {{{
+
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+
+let g:UltiSnipsEditSplit="horizontal"
+
+" Set the documentation style for the snippets
+let g:ultisnips_python_style="google"
+
+" Configuration settings
+let g:snips_author = "Malcolm Ramsay"
+let g:snips_email = "malramsay64@gmail.com"
+let g:snips_github = "https://github.com/malramsay64"
+
+" }}}
 " vimtex {{{
 
 " enable vimtex
