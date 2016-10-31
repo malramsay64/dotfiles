@@ -132,6 +132,12 @@ nnoremap <Leader>er :edit $MYVIMRC<CR>
 " Edit plugins
 nnoremap <Leader>ep :edit $DOTFILES/vim/plugins.vim<CR>
 
+" Edit UnltiSnips
+nnoremap <Leader>es :UltiSnipsEdit<CR>
+
+" Edit in ftplugin directory
+nnoremap <Leader>ef :edit $HOME/.vim/ftplugin
+
 " Quick spell fix
 nnoremap <Leader>s 1z=
 
@@ -368,18 +374,19 @@ let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due'
 " deoplete {{{
 if has('python3')
     let g:deoplete#enable_at_startup = 1
+
+    let g:deoplete#max_list=7
+
+    " <C-h>: close popup
+    inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+
+    " <CR> gives newline
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function() abort
+        return deoplete#close_popup() . "\<CR>"
+    endfunction
+
 endif
-
-let g:deoplete#max_list=7
-
-" <C-h>: close popup
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-
-" <CR> gives newline
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-    return deoplete#close_popup() . "\<CR>"
-endfunction
 
 "}}}
 "neosnippet {{{
@@ -410,8 +417,13 @@ let g:snips_author = "Malcolm Ramsay"
 let g:snips_email = "malramsay64@gmail.com"
 let g:snips_github = "https://github.com/malramsay64"
 
+" Directories
+let g:UltiSnipsSnippetsDir = "$HOME/.vim/UltiSnips"
+
 " }}}
 " vimtex {{{
+
+let g:tex_flavor='latex'
 
 " enable vimtex
 let g:vimtex_enabled = 1
@@ -423,7 +435,7 @@ let g:vimtex_fold_manual = 1
 " latexmk options
 
 let g:vimtex_latexmk_enabled = 1
-let g:vimtex_latexmk_build_dir = '.output'
+let g:vimtex_latexmk_build_dir = 'output'
 
 " }}}
 "}}}

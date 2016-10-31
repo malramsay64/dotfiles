@@ -43,6 +43,7 @@ Plug 'neomake/neomake'
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for python files
 Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
+Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -51,6 +52,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
 
 " Additional text-objects
 Plug 'kana/vim-textobj-user'
