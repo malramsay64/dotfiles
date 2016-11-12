@@ -52,7 +52,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
+Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
+"Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
 
 " Additional text-objects
 Plug 'kana/vim-textobj-user'
@@ -74,6 +75,7 @@ Plug 'airblade/vim-gitgutter'            " git diffs
 Plug 'szw/vim-tags'                      " ctag support
 Plug 'kien/ctrlp.vim'                   " fuzzy file finder
 Plug 'mbbill/undotree'                  " undo
+Plug 'nixon/vim-vmath'                  " math on visual selections
 
 
 " all plugins must be added before this line

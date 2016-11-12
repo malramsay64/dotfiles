@@ -136,7 +136,7 @@ nnoremap <Leader>ep :edit $DOTFILES/vim/plugins.vim<CR>
 nnoremap <Leader>es :UltiSnipsEdit<CR>
 
 " Edit in ftplugin directory
-nnoremap <Leader>ef :edit $HOME/.vim/ftplugin
+nnoremap <Leader>ef :edit ~/.vim/ftplugin<CR>
 
 " Quick spell fix
 nnoremap <Leader>s 1z=
@@ -241,7 +241,7 @@ let g:syntastic_enable_signs = 1
 highlight SyntasticErrorSign ctermfg=LightRed
 
 " c++11 support
-let g:syntastic_cpp_compiler_options = '-std=c++11 -I$HOME/.local/include'
+let g:syntastic_cpp_compiler_options = '-std=c++11 -I~/.local/include'
 
 " Python3 syntax checking
 let g:syntastic_python_python_exec = 'python'
@@ -386,6 +386,14 @@ if has('python3')
         return deoplete#close_popup() . "\<CR>"
     endfunction
 
+    " c++ support
+    let g:deoplete#sources#clang_path="/usr/local/llvm/3.9.0/lib/libclang.so"
+    let g:deoplete#sources#clang_header="/usr/local/llvm/3.9.0/include/clang/"
+    "let g:deoplete#sources#clang#debug = 1
+    "if get(g:, 'deoplete#sources#clang#debug', 0)
+        "autocmd! InsertEnter *
+          "\ call deoplete#enable_logging('DEBUG', 'deoplete.log')
+    "endif
 endif
 
 "}}}
@@ -418,7 +426,7 @@ let g:snips_email = "malramsay64@gmail.com"
 let g:snips_github = "https://github.com/malramsay64"
 
 " Directories
-let g:UltiSnipsSnippetsDir = "$HOME/.vim/UltiSnips"
+let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
 
 " }}}
 " vimtex {{{
@@ -437,6 +445,10 @@ let g:vimtex_fold_manual = 1
 let g:vimtex_latexmk_enabled = 1
 let g:vimtex_latexmk_build_dir = 'output'
 
+" }}}
+" vmath {{{
+vmap <expr> ++ VMATH_YankAndAnalyse()
+nmap ++ vip++
 " }}}
 "}}}
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
