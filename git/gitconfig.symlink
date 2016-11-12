@@ -15,7 +15,6 @@
 [core]
 	pager = less -r
 	excludesfile = /home/mram5995/.gitignore_global
-	editor = nvim
 [user]
 	name = malramsay64
 	email = malramsay64@gmail.com
