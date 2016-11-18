@@ -138,6 +138,8 @@ nnoremap <Leader>es :UltiSnipsEdit<CR>
 " Edit in ftplugin directory
 nnoremap <Leader>ef :edit ~/.vim/ftplugin<CR>
 
+nnoremap <Leader>eb :edit ~/.bashrc<CR>
+
 " Quick spell fix
 nnoremap <Leader>s 1z=
 
@@ -163,7 +165,7 @@ set magic     " regular expressions
 
 set foldenable        " enable folding
 
-set foldlevelstart=5  " have 5 levels open by default
+set foldlevelstart=999  " have all levels open by default
 
 set foldnestmax=6     " 6 nested folds max
 

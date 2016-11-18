@@ -21,6 +21,7 @@ del() { mv "$@" ~/.Trash/ ;}  # Make use of the trash on command line
 alias eject="hdiutil eject"   # will unmount and eject drives. useage eject /Volume/<drive>
 alias rd='pushd +1'
 alias ravp='rsync -av --progress'
+alias rsync-ex='rsync -rltDvP'
 alias grep='grep --color=AUTO'
 
 # Git aliases
