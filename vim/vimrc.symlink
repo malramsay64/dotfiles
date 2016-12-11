@@ -313,19 +313,19 @@ nmap <Leader>wj <Plug>VimwikiDiaryNextDay
 
 "Vimwiki settings
 let g:vimwiki_list = [
-    \{  'path':    '~/.wiki/',
-    \ 'syntax':  'default',
-    \ 'ext':     '.wiki',
-    \ 'auto_toc':    1,
-    \ 'auto_export':    0,
-    \ 'diary_rel_path': 'diary/',
-    \ 'path_html': '~/wiki_html/'},
-    \{ 'path': '~/.taskwiki',
-                \ 'syntax': 'default',
-                \'ext': '.wiki',
-                \'auto_toc': 0,
-                \'auto_export': 0,
-    \}]
+            \{  'path':    '~/.wiki/',
+            \ 'syntax':  'default',
+            \ 'ext':     '.wiki',
+            \ 'auto_toc':    1,
+            \ 'auto_export':    0,
+            \ 'diary_rel_path': 'diary/',
+            \ 'path_html': '~/wiki_html/'},
+            \{ 'path': '~/Documents/notes/',
+            \ 'syntax': 'default',
+            \'ext': '.wiki',
+            \'auto_toc': 0,
+            \'auto_export': 0,
+            \}]
 
 "}}}
 " TaskWiki {{{
