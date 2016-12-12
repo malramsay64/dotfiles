@@ -146,6 +146,8 @@ nnoremap <Leader>s 1z=
 " Shortcut for saving as root
 cmap w!! w !sudo tee > /dev/null %
 
+iabbrev teh the
+
 
 "}}}
 "Searching {{{
