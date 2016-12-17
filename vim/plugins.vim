@@ -63,12 +63,16 @@ Plug 'bps/vim-textobj-python'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 
+
+" Writing plugins
+Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
+Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text'] }
+
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentatry mappings
 Plug 'scrooloose/nerdcommenter'         " commenting code
-"Plug 'Townk/vim-autoclose'              " autoclose delimeters
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'            " git diffs
 "Plug 'godlygeek/tabular', { 'on': 'Tabuarize'} " align text
