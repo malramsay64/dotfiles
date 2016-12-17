@@ -7,13 +7,15 @@ alias mv='mv -iv'       # Confirm overwrite of file, list files on moving
 alias la='ls -a'        # List hidden files
 alias ll='ls -l'        # List in long form
 alias mkdir='mkdir -pv' # Make all folders in path given, lists directories as they are created
-alias ..='cd ..'
+if [[ -n "$BASH_VERSION" ]]; then
+    alias ..='cd ..'
+fi
 if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -G'
-    cd() { builtin cd "$@"; [ $? == 0 ] && ls -G ;}
+    cd() { builtin cd "$@"; [[ $? == 0 ]] && ls -G ;}
 else
     alias ls='ls --color=auto'
-    cd() { builtin cd "$@"; [ $? == 0 ] && ls --color=auto ;}
+    cd() { builtin cd "$@"; [[ $? == 0 ]] && ls --color=auto ;}
 fi
 
 alias c='clear'

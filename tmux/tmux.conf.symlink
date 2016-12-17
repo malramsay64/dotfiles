@@ -1,5 +1,5 @@
 # Set tmux shell to the login shell
-#set -g default-command "login-shell"
+set -g default-command "login-shell"
 
 
 # True colour
