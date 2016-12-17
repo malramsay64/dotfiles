@@ -1,0 +1,45 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' max-errors 2
+zstyle :compinstall filename '/Users/malcolm/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt appendhistory autocd extendedglob
+unsetopt beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+export DOTFILES=$HOME/dotfiles
+source $DOTFILES/bash/aliases.bash
+source $DOTFILES/bash/environment.bash
+
+source $DOTFILES/zsh/prompt.zsh
+
+#zplug 'dracula/zsh', as:theme
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "Tarrasch/zsh-colors"
+zplug "Tarrasch/zsh-autoenv"
+zplug "arzzen/calc.plugin.zsh"
+zplug "horosgrisa/autoenv"
+zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh"
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+fi
+
+zplug load
