@@ -315,13 +315,13 @@ nmap <Leader>wj <Plug>VimwikiDiaryNextDay
 
 "Vimwiki settings
 let g:vimwiki_list = [
-            \{  'path':    '~/.wiki/',
+            \{  'path':    '~/Documents/wiki/',
             \ 'syntax':  'default',
             \ 'ext':     '.wiki',
             \ 'auto_toc':    1,
             \ 'auto_export':    0,
             \ 'diary_rel_path': 'diary/',
-            \ 'path_html': '~/wiki_html/'},
+            \ 'path_html': '~/Documents/wiki/html/'},
             \{ 'path': '~/Documents/notes/',
             \ 'syntax': 'default',
             \'ext': '.wiki',
@@ -387,7 +387,7 @@ if has('python3')
     " <CR> gives newline
     inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
     function! s:my_cr_function() abort
-        return deoplete#close_popup() . "\<CR>"
+        return deoplete#smart_close_popup() . "\<CR>"
     endfunction
 
     " c++ support
