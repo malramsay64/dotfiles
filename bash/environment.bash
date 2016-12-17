@@ -1,4 +1,6 @@
 
+# For homebrew
+export PATH=/usr/local/bin:$PATH
 
 # Setting editor to nvim if present
 if [[ $(hash nvim 2>/dev/null && echo 1) ]]; then
@@ -14,5 +16,3 @@ fi
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/dotfiles/bin"
 
-# For homebrew
-export PATH=/usr/local/bin:$PATH
