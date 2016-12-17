@@ -32,6 +32,12 @@ alias gd='git diff'
 alias ga='git add'
 alias gs='git status'
 
+# Function to revert all files to default permissions
+defmod() {
+    find "$1" -type d -exec chmod 755 {} \;
+    find "$1" -type f -exec chmod 644 {} \;
+}
+
 # PBS aliases
 if hash qstat 2>/dev/null; then
     alias qstatu='qstat | grep $USER'
