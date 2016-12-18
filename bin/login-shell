@@ -4,8 +4,8 @@
 shell=$(basename "$SHELL")
 
 # check if reattach-to-user-namespace is available
-if [ -n "$(command -v reattach-to-user-namespace)" ]; then
-    reattach-to-user-namespace -l "$shell"
+if [[ -n "$(command -v reattach-to-user-namespace)" ]]; then
+    reattach-to-user-namespace -l $(basename "$shell")
 else
-    exec "$SHELL -l"
+    exec "$shell" -l
 fi

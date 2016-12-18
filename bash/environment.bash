@@ -16,3 +16,7 @@ fi
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$HOME/dotfiles/bin"
 
+if [[ $(hash pyenv 2>/dev/null && echo 1) ]]; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi

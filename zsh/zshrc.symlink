@@ -25,6 +25,8 @@ source $DOTFILES/bash/environment.bash
 
 source $DOTFILES/zsh/prompt.zsh
 
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 #zplug 'dracula/zsh', as:theme
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-colors"
@@ -42,4 +44,4 @@ if ! zplug check --verbose; then
     fi
 fi
 
-zplug load
+zplug load >/dev/null
