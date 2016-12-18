@@ -81,6 +81,7 @@ Plug 'szw/vim-tags'                      " ctag support
 Plug 'kien/ctrlp.vim'                   " fuzzy file finder
 Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
+Plug 'haya14busa/incsearch.vim'
 
 
 " all plugins must be added before this line

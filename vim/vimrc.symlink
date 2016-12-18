@@ -143,6 +143,10 @@ nnoremap <Leader>eb :edit ~/.bashrc<CR>
 " Quick spell fix
 nnoremap <Leader>s 1z=
 
+" <C-s> will correct previous spelling misake and set undo point
+nnoremap <C-s> [s1z=<c-o>
+inoremap <C-s> <c-g>u<Esc>[s1z=`]A<c-g>u
+
 " Shortcut for saving as root
 cmap w!! w !sudo tee > /dev/null %
 
@@ -219,7 +223,6 @@ autocmd! BufNewFile,BufRead *.md set ft=markdown
 
 "}}}
 " Plugin Configuration {{{
-"
 " netrw {{{
 
 " Open explorer to current directory
@@ -454,5 +457,24 @@ let g:vimtex_latexmk_build_dir = 'output'
 vmap <expr> ++ VMATH_YankAndAnalyse()
 nmap ++ vip++
 " }}}
+" litecorrect {{{
+augroup litecorrect
+    autocmd!
+    autocmd FileType markdown,mkd call litecorrect#init()
+    autocmd FileType text call litecorrect#init()
+    autocmd FileType vimwiki call litecorrect#init()
+augroup END
+" }}}
+" incsearch {{{
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+" }}}
 "}}}
+"
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
