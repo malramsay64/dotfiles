@@ -47,8 +47,8 @@ set-option -g display-panes-colour $tm_colour_inactive
 # clock
 set-window-option -g clock-mode-colour $tm_colour_active
 
-tm_tunes="#[fg=$tm_colour_music]#(osascript ~/Setup/Scripts/spotify.scpt)"
-#tm_battery="#(~/.dotfiles/bin/battery_indicator.sh)"
+tm_tunes="#[fg=$tm_colour_music]#(osascript ~/dotfiles/tmux/spotify.scpt)"
+tm_battery="#(battery -t)"
 
 tm_date="#[fg=$tm_colour_inactive] %R %d %b"
 tm_host="#[fg=$tm_colour_host,bold]#h"
@@ -57,7 +57,7 @@ tm_session_name="#[fg=$tm_colour_feature,bold] #S"
 tm_nocolour="#[fg=default]"
 
 set -g status-left $tm_session_name' '
-set -g status-right $tm_tunes' '$tm_date' '$tm_user$tm_nocolour' @ '$tm_host
+set -g status-right $tm_tunes' '$tm_battery' '$tm_date' '$tm_user$tm_nocolour' @ '$tm_host
 
 #}}}
 
