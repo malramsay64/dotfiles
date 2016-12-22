@@ -23,17 +23,23 @@ export DOTFILES=$HOME/dotfiles
 source $DOTFILES/bash/aliases.bash
 source $DOTFILES/bash/environment.bash
 
-source $DOTFILES/zsh/prompt.zsh
+. $(brew --prefix)/etc/profile.d/z.sh
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-#zplug 'dracula/zsh', as:theme
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-colors"
 zplug "Tarrasch/zsh-autoenv"
 zplug "arzzen/calc.plugin.zsh"
 zplug "horosgrisa/autoenv"
+zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]", as:plugin
+zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+zplug "plugins/git", from:oh-my-zsh, as:plugin
+zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh"
+zplug "tonyseek/oh-my-zsh-virtualenv-prompt"
+zplug "srijanshetty/zsh-pip-completion"
+
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -45,3 +51,5 @@ if ! zplug check --verbose; then
 fi
 
 zplug load >/dev/null
+
+source $DOTFILES/zsh/prompt.zsh
