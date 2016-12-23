@@ -138,6 +138,9 @@ nnoremap <Leader>es :UltiSnipsEdit<CR>
 " Edit in ftplugin directory
 nnoremap <Leader>ef :edit ~/.vim/ftplugin<CR>
 
+" Edit in tmux config
+nnoremap <Leader>et :edit ~/.tmux.conf<CR>
+
 " Edit bashrc
 nnoremap <Leader>eb :edit ~/.bashrc<CR>
 

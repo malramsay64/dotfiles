@@ -44,7 +44,8 @@ Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ hi
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for python files
 Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
 Plug 'lumiliet/vim-twig', { 'for': 'twig' }
-Plug 'saltstack/salt-vim'
+Plug 'saltstack/salt-vim', { 'for': 'saltstack' }
+Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
