@@ -1,5 +1,5 @@
 #!/bin/env zsh
-#
+
 autoload -U colors && colors
 
 function python_version() { 
@@ -24,6 +24,6 @@ function _virtualenv_prompt_info {
 
 
 RPS1='$(git_super_status) $(_virtualenv_prompt_info) $(vi_mode_prompt_info)'
-PROMPT='%T %{$fg[magenta]%}%m %{$fg[green]%}%3~ %{$reset_color%}%(!.#.$) '
+PROMPT='%D{%H:%M} %{$fg[magenta]%}%m %{$fg[green]%}%3~ %{$reset_color%}%(!.#.$) '
 
 
