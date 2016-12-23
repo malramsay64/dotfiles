@@ -27,6 +27,7 @@ source $DOTFILES/bash/environment.bash
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-colors"
 zplug "Tarrasch/zsh-autoenv"
