@@ -16,7 +16,11 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-export ZPLUG_HOME=/usr/local/opt/zplug
+if [[ $(uname) == "Darwin" ]]; then
+    export ZPLUG_HOME=/usr/local/opt/zplug
+else 
+    export ZPLUG_HOME=$HOME/.zplug
+fi
 source $ZPLUG_HOME/init.zsh
 
 export DOTFILES=$HOME/dotfiles
