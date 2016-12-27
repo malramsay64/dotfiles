@@ -138,7 +138,14 @@ nnoremap <Leader>es :UltiSnipsEdit<CR>
 " Edit in ftplugin directory
 nnoremap <Leader>ef :edit ~/.vim/ftplugin<CR>
 
+" Edit in tmux config
+nnoremap <Leader>et :edit ~/.tmux.conf<CR>
+
+" Edit bashrc
 nnoremap <Leader>eb :edit ~/.bashrc<CR>
+
+" Edit zshrc
+nnoremap <Leader>ez :edit ~/.zshrc<CR>
 
 " Quick spell fix
 nnoremap <Leader>s 1z=
