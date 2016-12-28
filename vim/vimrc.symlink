@@ -40,6 +40,9 @@ endif
 set background=dark " for the dark version
 colorscheme one
 
+"highlight Comment cterm=italic
+
+
 "}}}
 "Spaces and Tabs {{{
 
@@ -182,7 +185,7 @@ set foldlevelstart=999  " have all levels open by default
 
 set foldnestmax=6     " 6 nested folds max
 
-set foldmethod=indent " fold based on indent
+"set foldmethod=indent " fold based on indent
 
 " set modelines=1       " last line of file is checked to run as a command
 
@@ -401,8 +404,9 @@ if has('python3')
     endfunction
 
     " c++ support
-    let g:deoplete#sources#clang_path="/usr/local/llvm/3.9.0/lib/libclang.so"
-    let g:deoplete#sources#clang_header="/usr/local/llvm/3.9.0/include/clang/"
+    let g:deoplete#sources#clang_path="/usr/local/opt/llvm/lib/libclang.dylib"
+    let g:deoplete#sources#clang_header="/usr/local/opt/llvm/include/clang/"
+    let g:clang_library_path="/usr/local/opt/llvm/lib/libclang.dylib"
     "let g:deoplete#sources#clang#debug = 1
     "if get(g:, 'deoplete#sources#clang#debug', 0)
         "autocmd! InsertEnter *

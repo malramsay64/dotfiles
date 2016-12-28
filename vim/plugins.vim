@@ -30,13 +30,11 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
 Plug 'vimwiki/vimwiki'
-Plug 'tbabej/taskwiki'
 
 " Task warrior
 Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
 
 " Syntax checking
-"Plug 'scrooloose/syntastic'
 Plug 'neomake/neomake'
 
 " Filetype specific plugins
@@ -49,13 +47,10 @@ Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'Shougo/neosnippet.vim'
-"Plug 'Shougo/neosnippet-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
-"Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
 
 " Additional text-objects
 Plug 'kana/vim-textobj-user'
@@ -77,7 +72,6 @@ Plug 'tpope/vim-unimpaired'             " complimentatry mappings
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'            " git diffs
-"Plug 'godlygeek/tabular', { 'on': 'Tabuarize'} " align text
 Plug 'szw/vim-tags'                      " ctag support
 Plug 'kien/ctrlp.vim'                   " fuzzy file finder
 Plug 'mbbill/undotree'                  " undo
