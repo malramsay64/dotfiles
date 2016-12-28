@@ -2,7 +2,7 @@
 set -g default-command "login-shell"
 
 # True colour
-set-option -ga terminal-overrides ",xterm-256color:Tc"
+set-option -ga terminal-overrides ",xterm*:Tc"
 # Display in 256 colours
 set -g default-terminal "screen-256color"
 

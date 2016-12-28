@@ -31,11 +31,11 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-colors"
 zplug "Tarrasch/zsh-autoenv"
-zplug "arzzen/calc.plugin.zsh"
-zplug "horosgrisa/autoenv"
-zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]", as:plugin
+#zplug "arzzen/calc.plugin.zsh"
+#zplug "horosgrisa/autoenv"
+zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
-zplug "plugins/git", from:oh-my-zsh, as:plugin
+zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh"
 zplug "tonyseek/oh-my-zsh-virtualenv-prompt"
@@ -51,6 +51,6 @@ if ! zplug check --verbose; then
     fi
 fi
 
-zplug load >/dev/null
+zplug load 
 
 source $DOTFILES/zsh/prompt.zsh
