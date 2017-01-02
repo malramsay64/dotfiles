@@ -21,6 +21,9 @@ if [[ $(uname) == "Darwin" ]]; then
 else 
     export ZPLUG_HOME=$HOME/.zplug
 fi
+if [[ ! -e $ZPLUG_HOME/init.zsh ]]; then
+    curl -sL zplug.sh/installer | zsh
+fi
 source $ZPLUG_HOME/init.zsh
 
 export DOTFILES=$HOME/dotfiles
@@ -56,5 +59,8 @@ if ! zplug check --verbose; then
 fi
 
 zplug load 
+
+autoload -U zmv
+alias mmv='noglob zmv -W'
 
 source $DOTFILES/zsh/prompt.zsh
