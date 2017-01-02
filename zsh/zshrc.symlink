@@ -18,6 +18,7 @@ bindkey -v
 
 if [[ $(uname) == "Darwin" ]]; then
     export ZPLUG_HOME=/usr/local/opt/zplug
+    . $(brew --prefix)/etc/profile.d/z.sh
 else 
     export ZPLUG_HOME=$HOME/.zplug
 fi
@@ -29,8 +30,6 @@ source $ZPLUG_HOME/init.zsh
 export DOTFILES=$HOME/dotfiles
 source $DOTFILES/bash/aliases.bash
 source $DOTFILES/bash/environment.bash
-
-. $(brew --prefix)/etc/profile.d/z.sh
 
 fpath=(/usr/local/share/zsh-completions $fpath)
 
