@@ -39,7 +39,7 @@ endif
 set background=dark " for the dark version
 colorscheme one
 
-"highlight Comment cterm=italic
+highlight Comment cterm=italic gui=italic
 
 
 "}}}
