@@ -17,7 +17,7 @@ filetype plugin indent on      "load filetype specific indent and plugin files
 
 " Python support
 let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
-let g:python2_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
 
 "}}}
 "Colours {{{
@@ -391,7 +391,7 @@ let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due'
 if has('python3')
     let g:deoplete#enable_at_startup = 1
 
-    let g:deoplete#max_list=10
+    let g:deoplete#max_list=15
     let g:deoplete#auto_complete_delay = 100
 
     " <C-h>: close popup
@@ -402,6 +402,14 @@ if has('python3')
     function! s:my_cr_function() abort
         return deoplete#smart_close_popup() . "\<CR>"
     endfunction
+
+    " Enable echodoc to show function variables in command bar
+    set noshowmode
+    let g:echodoc_enable_at_startup = 1
+
+    " Remove preview window 
+    set completeopt-=preview
+    "autocmd CompleteDone * pclose!
 
     " c++ support
     "let g:deoplete#sources#clang_path="/usr/local/opt/llvm/lib/libclang.dylib"
