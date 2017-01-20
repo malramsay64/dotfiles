@@ -14,8 +14,9 @@
 	status = auto
 [core]
 	pager = less -r
+	excludesfile = ~/.gitignore_global
 [user]
-	name = malramsay64
+	name = Malcolm Ramsay
 	email = malramsay64@gmail.com
 [push]
 	default = current
