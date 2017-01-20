@@ -21,8 +21,8 @@ endfunction
 call plug#begin()
 
 " Colourschemes
-Plug 'chriskempson/base16-vim'
 Plug 'rakr/vim-one'
+Plug 'gerw/vim-HiLinkTracel', { 'on': ['HLT', HLT!] } " Examing syntax highlighting rules
 
 " Status bar
 Plug 'vim-airline/vim-airline'
@@ -52,6 +52,7 @@ Plug 'honza/vim-snippets'
 Plug 'davidhalter/jedi', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
+Plug 'Shougo/echodoc.vim'
 
 " Additional text-objects
 Plug 'kana/vim-textobj-user'
