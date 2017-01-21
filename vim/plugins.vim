@@ -22,7 +22,7 @@ call plug#begin()
 
 " Colourschemes
 Plug 'rakr/vim-one'
-Plug 'gerw/vim-HiLinkTracel', { 'on': ['HLT', HLT!] } " Examing syntax highlighting rules
+Plug 'gerw/vim-HiLinkTracel', { 'on': ['HLT', 'HLT!'] } " Examing syntax highlighting rules
 
 " Status bar
 Plug 'vim-airline/vim-airline'
