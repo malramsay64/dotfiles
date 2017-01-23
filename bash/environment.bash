@@ -3,9 +3,9 @@
 export PATH=/usr/local/bin:$PATH
 
 # Setting editor to nvim if present
-if [[ $(hash nvim 2>/dev/null && echo 1) ]]; then
+if [ $(hash nvim 2>/dev/null && echo 1) ]; then
     export EDITOR=nvim
-elif [[ -e $HOME/.local/bin/vim ]]; then
+elif [ -e $HOME/.local/bin/vim ]; then
     export EDITOR=$HOME/.local/bin/vim
 else
     export EDITOR=vim
@@ -18,7 +18,7 @@ export PATH="$PATH:$HOME/dotfiles/bin"
 
 # Adding pyenv
 export PATH="$PATH:$HOME/.pyenv/bin"
-if [[ $(hash pyenv 2>/dev/null && echo 1) ]]; then
+if [ $(hash pyenv 2>/dev/null && echo 1) ]; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
