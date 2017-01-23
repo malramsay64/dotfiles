@@ -63,3 +63,4 @@ autoload -U zmv
 alias mmv='noglob zmv -W'
 
 source $DOTFILES/zsh/prompt.zsh
+source $HOME/.bashrc.local
