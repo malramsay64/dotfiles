@@ -35,6 +35,8 @@ if !has("nvim")
     set t_8f=[38;2;%lu;%lu;%lum
 endif
 
+let g:one_allow_italics = 1
+
 " Set colourshecme
 set background=dark " for the dark version
 "let g:neodark#background = 'gray'
@@ -305,21 +307,21 @@ let g:vimwiki_folding = 'syntax'
 let wiki_default = {}
 let wiki_default.auto_export = 0
 let wiki_default.auto_toc = 0
-let wiki_default.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+let wiki_default.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh'}
 
-let home_wiki = wiki_default
+let home_wiki = copy(wiki_default)
 let home_wiki.path = '~/Documents/notes/personal/'
 let home_wiki.diary_rel_path = 'diary/'
 let home_wiki.path_html = '~/Documents/notes/html/personal/'
 
-let flurosat_wiki = wiki_default
+let flurosat_wiki = copy(wiki_default)
 let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
 
-let phd_wiki = wiki_default
+let phd_wiki = copy(wiki_default)
 let phd_wiki.path = '~/Documents/notes/PhD/'
 let phd_wiki.diary_rel_path = 'logbook/'
 
-let g:vimwiki_list = [home_wiki, flurosat_wiki, phd_wiki]
+let g:vimwiki_list = [home_wiki, flurosat_wiki]
 
 "}}}
 " TaskWiki {{{
