@@ -37,6 +37,7 @@ endif
 
 " Set colourshecme
 set background=dark " for the dark version
+"let g:neodark#background = 'gray'
 colorscheme one
 
 highlight Comment cterm=italic gui=italic
@@ -97,8 +98,8 @@ set laststatus=2        " Display statusline
 set splitright          "open splits by default to the right
 
 " remap help to open in a vertical split
-cabbrev help vert help
-cabbrev  h vert h
+"cabbrev help vert help
+"cabbrev  h vert h
 
 " common mistypings of exit and save
 cabbrev W w
@@ -281,7 +282,7 @@ let g:syntastic_auto_loc_list = 1
 "}}}
 " airline {{{
 
-let g:airline_theme='one'
+"let g:airline_theme='one'
 let g:airline_powerline_fonts = 1
 
 " Only check for indent and mixed-indent whitespace errors
@@ -296,27 +297,27 @@ if !exists('g:airline_symbols')
 endif
 
 " unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.whitespace = 'Ξ'
 
 " airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
 
 "}}}
 " Vimwiki {{{
@@ -325,21 +326,27 @@ let g:airline_symbols.linenr = ''
 nmap <Leader>wk <Plug>VimwikiDiaryPrevDay
 nmap <Leader>wj <Plug>VimwikiDiaryNextDay
 
-"Vimwiki settings
-let g:vimwiki_list = [
-            \{  'path':    '~/Documents/wiki/',
-            \ 'syntax':  'default',
-            \ 'ext':     '.wiki',
-            \ 'auto_toc':    1,
-            \ 'auto_export':    0,
-            \ 'diary_rel_path': 'diary/',
-            \ 'path_html': '~/Documents/wiki/html/'},
-            \{ 'path': '~/Documents/notes/',
-            \ 'syntax': 'default',
-            \'ext': '.wiki',
-            \'auto_toc': 0,
-            \'auto_export': 0,
-            \}]
+let g:vimwiki_folding = 'syntax'
+
+" Wiki settings
+let wiki_default = {}
+let wiki_default.auto_export = 0
+let wiki_default.auto_toc = 0
+let wiki_default.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+
+let home_wiki = wiki_default
+let home_wiki.path = '~/Documents/notes/personal/'
+let home_wiki.diary_rel_path = 'diary/'
+let home_wiki.path_html = '~/Documents/notes/html/personal/'
+
+let flurosat_wiki = wiki_default
+let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
+
+let phd_wiki = wiki_default
+let phd_wiki.path = '~/Documents/notes/PhD/'
+let phd_wiki.diary_rel_path = 'logbook/'
+
+let g:vimwiki_list = [home_wiki, flurosat_wiki, phd_wiki]
 
 "}}}
 " TaskWiki {{{
@@ -369,6 +376,8 @@ augroup my_error_signs
     autocmd ColorScheme * hi NeomakeErrorSign ctermfg=red
     autocmd ColorScheme * hi NeomakeWarningSign ctermfg=yellow
 augroup END
+
+"let g:neomake_python_pylint_exe="python /usr/local/bin/pylint"
 
 " }}}
 " vim-taskwarrior {{{
@@ -417,8 +426,8 @@ if has('python3')
     let g:clang_library_path="/usr/local/opt/llvm/lib/libclang.dylib"
     "let g:deoplete#sources#clang#debug = 1
     "if get(g:, 'deoplete#sources#clang#debug', 0)
-        "autocmd! InsertEnter *
-          "\ call deoplete#enable_logging('DEBUG', 'deoplete.log')
+    "autocmd! InsertEnter *
+    "\ call deoplete#enable_logging('DEBUG', 'deoplete.log')
     "endif
 endif
 
