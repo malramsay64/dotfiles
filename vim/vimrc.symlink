@@ -39,11 +39,9 @@ let g:one_allow_italics = 1
 
 " Set colourshecme
 set background=dark " for the dark version
-"let g:neodark#background = 'gray'
-colorscheme one
+colorscheme onedark
 
 highlight Comment cterm=italic gui=italic
-
 
 "}}}
 "Spaces and Tabs {{{
@@ -493,6 +491,25 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+" }}}
+" Python-mode {{{
+
+let g:pymode = 1
+let g:pymode_python = 'python3'
+let g:pymode_trim_whitespaces = 1
+let g:pymode_options = 0
+let g:pymode_options_colorcolumn = 1
+let g:pymode_indent = 1
+let g:pymode_folding = 1
+let g:pymode_motion = 1
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K'
+let g:pymode_run_bind = '<leader>rr'
+let g:pymode_lint = 0
+let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
+let g:pymode_syntax_all = 1
+
 " }}}
 "}}}
 "

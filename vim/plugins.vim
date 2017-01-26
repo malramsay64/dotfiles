@@ -22,7 +22,8 @@ call plug#begin()
 
 " Colourschemes
 Plug 'rakr/vim-one'
-Plug 'gerw/vim-HiLinkTracel', { 'on': ['HLT', 'HLT!'] } " Examing syntax highlighting rules
+Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] } " Examing syntax highlighting rules
+Plug 'joshdick/onedark.vim'
 
 " Status bar
 Plug 'vim-airline/vim-airline'
@@ -39,7 +40,9 @@ Plug 'neomake/neomake'
 
 " Filetype specific plugins
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
+Plug 'python-mode/python-mode', { 'for': 'python' }
 Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for python files
+Plug 'hdima/python-syntax', { 'for': 'python' }
 Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
 Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
