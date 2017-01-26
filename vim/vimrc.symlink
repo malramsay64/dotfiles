@@ -39,14 +39,9 @@ let g:one_allow_italics = 1
 
 " Set colourshecme
 set background=dark " for the dark version
-"let g:neodark#background = 'gray'
-colorscheme one
-
-
-let g:airline_theme='one'
+colorscheme onedark
 
 highlight Comment cterm=italic gui=italic
-
 
 "}}}
 "Spaces and Tabs {{{
