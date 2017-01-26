@@ -321,7 +321,7 @@ let phd_wiki = copy(wiki_default)
 let phd_wiki.path = '~/Documents/notes/PhD/'
 let phd_wiki.diary_rel_path = 'logbook/'
 
-let g:vimwiki_list = [home_wiki, flurosat_wiki]
+let g:vimwiki_list = [home_wiki, flurosat_wiki, phd_wiki]
 
 "}}}
 " TaskWiki {{{
@@ -357,6 +357,7 @@ augroup END
 " }}}
 " vim-taskwarrior {{{
 
+
 " Highlighting field
 let g:task_highlight_field = 0
 
@@ -369,6 +370,7 @@ let g:task_readonly = 0
 " Change default fields
 let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due']
 
+"let g:task_gui_term = 0
 
 " }}}
 " deoplete {{{
