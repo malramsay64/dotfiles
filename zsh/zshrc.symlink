@@ -16,7 +16,24 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-if [[ $(uname) == "Darwin" ]]; then
+
+export DOTFILES=$HOME/dotfiles
+source $DOTFILES/bash/aliases.bash
+source $DOTFILES/bash/environment.bash
+
+{ infocmp -1 xterm-256color ; echo -e "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > ~/dotfiles/resources/xterm-256color.terminfo
+tic ~/dotfiles/resources/xterm-256color.terminfo
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+#[ -e "$HOME/.ssh/config" ] && c ccpleter -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# Add tab completion for many zsh commands
+if which brew &> /dev/null && [ -d "$(brew --prefix)/share/zsh-completions" ]; then
+    fpath=("$(brew --prefix)/share/zsh-completions" $fpath)
+fi;
+
+# Install and manage zplug
+if which brew &> /dev/null && [ -d "$(brew --prefix)/opt/zplug" ]; then
     export ZPLUG_HOME=/usr/local/opt/zplug
     . $(brew --prefix)/etc/profile.d/z.sh
 else 
@@ -27,20 +44,15 @@ if [[ ! -e $ZPLUG_HOME/init.zsh ]]; then
 fi
 source $ZPLUG_HOME/init.zsh
 
-export DOTFILES=$HOME/dotfiles
-source $DOTFILES/bash/aliases.bash
-source $DOTFILES/bash/environment.bash
-
-fpath=(/usr/local/share/zsh-completions $fpath)
+if which brew &> /dev/null; then 
+    zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+    zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+fi
 
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-colors"
 zplug "Tarrasch/zsh-autoenv"
-#zplug "arzzen/calc.plugin.zsh"
-#zplug "horosgrisa/autoenv"
-zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
-zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh"
@@ -63,4 +75,7 @@ autoload -U zmv
 alias mmv='noglob zmv -W'
 
 source $DOTFILES/zsh/prompt.zsh
-source $HOME/.bashrc.local
+
+if [[ ! -e $HOME/.bashrc.local ]]; then
+    source $HOME/.bashrc.local
+fi

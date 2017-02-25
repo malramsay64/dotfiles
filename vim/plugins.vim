@@ -44,12 +44,16 @@ Plug 'neomake/neomake'
 " Filetype specific plugins
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
 Plug 'python-mode/python-mode', { 'for': 'python' }
-Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " pep8 indenting for python files
-Plug 'hdima/python-syntax', { 'for': 'python' }
 Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
 Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
 Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
+Plug 'bps/vim-textobj-python', { 'for': 'python' }
+Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
+
+" Denite
+Plug 'Shougo/denite.nvim'
+Plug 'rafaqz/citation.vim'
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -62,7 +66,6 @@ Plug 'Shougo/echodoc.vim'
 
 " Additional text-objects
 Plug 'kana/vim-textobj-user'
-Plug 'bps/vim-textobj-python'
 
 " File management
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
@@ -72,6 +75,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 " Writing plugins
 Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text'] }
+Plug 'rhysd/vim-grammarous'
 
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters

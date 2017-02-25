@@ -1,3 +1,6 @@
 [submodule "task/task.symlink/hooks/default-time"]
 	path = task/task.symlink/hooks/default-time
 	url = https://github.com/tbabej/taskwarrior-default-date-time-hook.git
+[submodule "task/task.symlink/trellowarrior"]
+	path = task/task.symlink/trellowarrior
+	url = https://github.com/ogarcia/trellowarrior
