@@ -24,6 +24,9 @@ call plug#begin()
 Plug 'rakr/vim-one'
 Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] } " Examing syntax highlighting rules
 Plug 'joshdick/onedark.vim'
+Plug 'monkoose/boa.vim'
+Plug 'dikiaap/minimalist'
+Plug 'chriskempson/base16-vim'
 
 " Status bar
 Plug 'vim-airline/vim-airline'
