@@ -44,14 +44,15 @@ if [[ ! -e $ZPLUG_HOME/init.zsh ]]; then
 fi
 source $ZPLUG_HOME/init.zsh
 
+if which brew &> /dev/null; then 
+    zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+    zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+fi
+
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-colors"
 zplug "Tarrasch/zsh-autoenv"
-#zplug "arzzen/calc.plugin.zsh"
-#zplug "horosgrisa/autoenv"
-zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
-zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh"
@@ -74,4 +75,7 @@ autoload -U zmv
 alias mmv='noglob zmv -W'
 
 source $DOTFILES/zsh/prompt.zsh
-source $HOME/.bashrc.local
+
+if [[ ! -e $HOME/.bashrc.local ]]; then
+    source $HOME/.bashrc.local
+fi
