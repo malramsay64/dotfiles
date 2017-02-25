@@ -9,14 +9,31 @@ compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000000
-SAVEHIST=1000000
-setopt appendhistory autocd extendedglob
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt appendhistory sharehistory incappendhistory autocd extendedglob
 unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-if [[ $(uname) == "Darwin" ]]; then
+
+export DOTFILES=$HOME/dotfiles
+source $DOTFILES/bash/aliases.bash
+source $DOTFILES/bash/environment.bash
+
+{ infocmp -1 xterm-256color ; echo -e "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > ~/dotfiles/resources/xterm-256color.terminfo
+tic ~/dotfiles/resources/xterm-256color.terminfo
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+#[ -e "$HOME/.ssh/config" ] && c ccpleter -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# Add tab completion for many zsh commands
+if which brew &> /dev/null && [ -d "$(brew --prefix)/share/zsh-completions" ]; then
+    fpath=("$(brew --prefix)/share/zsh-completions" $fpath)
+fi;
+
+# Install and manage zplug
+if which brew &> /dev/null && [ -d "$(brew --prefix)/opt/zplug" ]; then
     export ZPLUG_HOME=/usr/local/opt/zplug
     . $(brew --prefix)/etc/profile.d/z.sh
 else 
@@ -26,12 +43,6 @@ if [[ ! -e $ZPLUG_HOME/init.zsh ]]; then
     curl -sL zplug.sh/installer | zsh
 fi
 source $ZPLUG_HOME/init.zsh
-
-export DOTFILES=$HOME/dotfiles
-source $DOTFILES/bash/aliases.bash
-source $DOTFILES/bash/environment.bash
-
-fpath=(/usr/local/share/zsh-completions $fpath)
 
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
