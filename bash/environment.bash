@@ -17,10 +17,10 @@ fi
 export PATH="$PATH:$HOME/dotfiles/bin"
 
 # Adding pyenv
-export PATH="$PATH:$HOME/.pyenv/bin"
-if [ $(hash pyenv 2>/dev/null && echo 1) ]; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
+#export PATH="$PATH:$HOME/.pyenv/bin"
+#if [ $(hash pyenv 2>/dev/null && echo 1) ]; then
+    #eval "$(pyenv init -)"
+    #eval "$(pyenv virtualenv-init -)"
+#fi
 
 stty -ixon

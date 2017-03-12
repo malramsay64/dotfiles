@@ -16,8 +16,13 @@ set autoread
 filetype plugin indent on      "load filetype specific indent and plugin files
 
 " Python support
-let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
-let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+if isdirectory($HOME."/.miniconda3")
+    let g:python3_host_prog = $HOME.'/.miniconda3/envs/neovim3/bin/python'
+    let g:python_host_prog = $HOME.'/.miniconda3/envs/neovim2/bin/python'
+elseif isdirectory($HOME."/.pyenv")
+    let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+    let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+endif
 
 "}}}
 "Colours {{{
@@ -382,7 +387,7 @@ if has('python3')
     inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 
     " <CR> gives newline
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    "/inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
     function! s:my_cr_function() abort
         return deoplete#smart_close_popup() . "\<CR>"
     endfunction
