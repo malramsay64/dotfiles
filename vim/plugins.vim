@@ -56,7 +56,8 @@ Plug 'Shougo/denite.nvim'
 Plug 'rafaqz/citation.vim'
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
+Plug 'maralla/completor.vim', Cond(!has('nvim'))
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'davidhalter/jedi', { 'for': 'python' }

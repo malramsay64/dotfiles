@@ -412,6 +412,11 @@ if has('python3')
 endif
 
 "}}}
+" completer {{{
+
+let g:completor_python_binary = $HOME.'.miniconda3/envs/neovim3'
+"
+" }}}
 " clang_complete {{{
 let g:clang_use_library = 1
 let g:clang_library_path='/usr/local/opt/llvm/lib'
