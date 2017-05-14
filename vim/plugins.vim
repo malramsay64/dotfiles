@@ -44,12 +44,14 @@ Plug 'neomake/neomake'
 " Filetype specific plugins
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
 Plug 'python-mode/python-mode', { 'for': 'python' }
+Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
 Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
 Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
 Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 " Denite
 Plug 'Shougo/denite.nvim'
@@ -90,6 +92,7 @@ Plug 'kien/ctrlp.vim'                   " fuzzy file finder
 Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
 Plug 'haya14busa/incsearch.vim'
+Plug 'aperezdc/vim-template'
 
 
 " all plugins must be added before this line

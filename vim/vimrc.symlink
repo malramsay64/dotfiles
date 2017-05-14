@@ -24,6 +24,9 @@ elseif isdirectory($HOME."/.pyenv")
     let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
 endif
 
+let g:email = "malramsay64@gmail.com"
+let g:username = "Malcolm Ramsay"
+
 "}}}
 "Colours {{{
 
@@ -126,47 +129,32 @@ let mapleader="\<space>"
 
 " go to next split
 nnoremap <Leader>w <c-w>w
-
-
 " Turn off search highlighting
 nnoremap <Leader>h :nohlsearch<CR>
-
 " Reload vimrc
 nnoremap <Leader>r :source $MYVIMRC<CR>
-
 " Edit vimrc
 nnoremap <Leader>er :edit $MYVIMRC<CR>
-
 " Edit plugins
 nnoremap <Leader>ep :edit $DOTFILES/vim/plugins.vim<CR>
-
 " Edit UnltiSnips
 nnoremap <Leader>es :UltiSnipsEdit<CR>
-
 " Edit in ftplugin directory
 nnoremap <Leader>ef :edit ~/.vim/ftplugin<CR>
-
 " Edit in tmux config
 nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-
 " Edit bashrc
 nnoremap <Leader>eb :edit ~/.bashrc<CR>
-
 " Edit zshrc
 nnoremap <Leader>ez :edit ~/.zshrc<CR>
-
-" Quick spell fix
-nnoremap <Leader>s 1z=
-
+" Edit vim direcotry
+nnoremap <Leader>ed :edit $DOTFILES/vim/<CR>
 " <C-s> will correct previous spelling misake and set undo point
 nnoremap <C-s> [s1z=<c-o>
 inoremap <C-s> <c-g>u<Esc>[s1z=`]A<c-g>u
 
 " Shortcut for saving as root
 cmap w!! w !sudo tee > /dev/null %
-
-iabbrev teh the
-
 
 "}}}
 "Searching {{{
@@ -238,6 +226,8 @@ autocmd! BufNewFile,BufRead *.md set ft=markdown
 
 "}}}
 " Plugin Configuration {{{
+"source $DOTFILES/vim/denite.vim
+
 " netrw {{{
 
 " Open explorer to current directory
@@ -256,35 +246,6 @@ autocmd! BufNewFile,BufRead *.md set ft=markdown
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " }}}
-" Syntastic {{{
-
-" Use error signs
-let g:syntastic_enable_signs = 1
-highlight SyntasticErrorSign ctermfg=LightRed
-
-" c++11 support
-let g:syntastic_cpp_compiler_options = '-std=c++11 -I~/.local/include'
-
-" Python3 syntax checking
-let g:syntastic_python_python_exec = 'python'
-let g:syntastic_python_checkers = ['pylint', 'python']
-
-" Latex checking
-let g:syntastic_tex_checkers = ['lacheck']
-
-" Bash linting
-let g:syntastic_sh_checkers = ['shellcheck', 'sh']
-"
-" Configure when error checks are run
-" Run on open/save
-let g:syntastic_check_on_open = 1
-" No checks just before quitting
-let g:syntastic_check_on_wq = 0
-
-" Configure location list
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-"}}}
 " airline {{{
 
 "let g:airline_theme='one'
@@ -530,6 +491,8 @@ let g:grammarous#move_to_first_error = 0
 let g:grammarous#default_lang = "en_au"
 
 " }}}
+" isort {{{
+let g:vim_isort_python_version = 'python3'
+"let g:vim_isort_python_version = $HOME.'.miniconda3/envs/neovim3/bin/python'
 "}}}
-"
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
