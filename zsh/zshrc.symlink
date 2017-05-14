@@ -54,10 +54,13 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-colors"
 zplug "Tarrasch/zsh-autoenv"
 zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/taskwarrior", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh"
 zplug "tonyseek/oh-my-zsh-virtualenv-prompt"
 zplug "srijanshetty/zsh-pip-completion"
+zplug "larkery/zsh-histdb"
+
 
 
 if ! zplug check --verbose; then
@@ -73,6 +76,16 @@ zplug load
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
+
+# histdb timer
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec _start_timer
+add-zsh-hook precmd  _stop_timer
+
+# aliases for gpg-agent
+alias ssh='gpg-connect-agent updatestartuptty /bye >/dev/null; ssh'
+alias scp='gpg-connect-agent updatestartuptty /bye >/dev/null; scp'
+alias rsync='gpg-connect-agent updatestartuptty /bye >/dev/null; rsync'
 
 source $DOTFILES/zsh/prompt.zsh
 
