@@ -19,11 +19,4 @@ pomodoro.default.sort=urgency-,project+
 pomodoro.defaultFilter=due.before:1w
 pomodoro.displayCount=true
 
-# UDAs for Trellowarrior
-# https://github.com/ogarcia/trellowarrior
-uda.trelloid.type=string
-uda.trelloid.label=Trello ID
-uda.trellolistname.type=string
-uda.trellolistname.label=Trello List Name
-
 include ~/.task/taskrc.local
