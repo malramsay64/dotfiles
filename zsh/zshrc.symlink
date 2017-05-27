@@ -62,7 +62,7 @@ zplug "srijanshetty/zsh-pip-completion"
 zplug "larkery/zsh-histdb"
 
 
-
+# Check all plugins are installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -89,6 +89,20 @@ alias rsync='gpg-connect-agent updatestartuptty /bye >/dev/null; rsync'
 
 source $DOTFILES/zsh/prompt.zsh
 
+# use vim as manpager
+if hash nvim 2>/dev/null; then
+    export MANPAGER="nvim +'set ft:man' -"
+else
+    export MANPAGER="vim +'set ft:man' -"
+fi
+
+
+if [[ -e $HOME/.bin ]]; then
+    export PATH=$HOME/.bin:$PATH
+fi
+if [[ -e $HOME/.local/bin ]]; then
+    export PATH=$HOME/.local/bin:$PATH
+fi
 if [[ -e $HOME/.bashrc.local ]]; then
     source $HOME/.bashrc.local
 fi
