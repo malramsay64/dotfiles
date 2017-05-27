@@ -121,6 +121,14 @@ set mouse=
 "}}}
 " Custom Shortcuts {{{
 
+" Neovim terminal mappings
+if has('nvim')
+    tnoremap <C-w>h <C-\><C-N><C-w>h
+    tnoremap <C-w>j <C-\><C-N><C-w>j
+    tnoremap <C-w>k <C-\><C-N><C-w>k
+    tnoremap <C-w>l <C-\><C-N><C-w>l
+endif
+
 " jk is escape
 inoremap jk <esc>
 
@@ -226,8 +234,7 @@ autocmd! BufNewFile,BufRead *.md set ft=markdown
 
 "}}}
 " Plugin Configuration {{{
-"source $DOTFILES/vim/denite.vim
-
+source $DOTFILES/vim/denite.vim
 " netrw {{{
 
 " Open explorer to current directory
@@ -495,4 +502,20 @@ let g:grammarous#default_lang = "en_au"
 let g:vim_isort_python_version = 'python3'
 "let g:vim_isort_python_version = $HOME.'.miniconda3/envs/neovim3/bin/python'
 "}}}
-" vim:foldmethod=marker:foldlevel=0:filetype=vim
+" ctrlspace {{{
+
+" Required for ctrlspace to work
+set hidden
+" neovim workaround
+let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+
+" }}}
+" split-term {{{
+let g:split_term_vertical = 1
+set splitright
+
+let g:disable_key_mappings = 1
+
+"}}}
+" }}}
+" vim:foldmethod=marker:foldlevel=1:filetype=vim

@@ -18,6 +18,18 @@ function! DoRemote()
     UpdateRemotePlugins
 endfunction
 
+" Build markdown composer plugin
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release
+    else
+      !cargo build --release --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+
+
 call plug#begin()
 
 " Colourschemes
@@ -36,7 +48,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
 
 " Task warrior
-Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
+"Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
+Plug '~/Documents/Vim/vim-taskwarrior'
 
 " Syntax checking
 Plug 'neomake/neomake'
@@ -53,13 +66,16 @@ Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
+" Ipython
+Plug 'wilywampa/vim-ipython', { 'for': 'python' }
+
 " Denite
 Plug 'Shougo/denite.nvim'
 Plug 'rafaqz/citation.vim'
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
-Plug 'maralla/completor.vim', Cond(!has('nvim'))
+"Plug 'maralla/completor.vim', Cond(!has('nvim'))
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'davidhalter/jedi', { 'for': 'python' }
@@ -73,12 +89,13 @@ Plug 'kana/vim-textobj-user'
 " File management
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-
+Plug 'vim-ctrlspace/vim-ctrlspace'
 
 " Writing plugins
 Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'rhysd/vim-grammarous'
+Plug 'euclio/vim-markdown-composer', { 'for': 'markdown', 'do': function('BuildComposer') }
 
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters
@@ -88,11 +105,11 @@ Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'            " git diffs
 Plug 'szw/vim-tags'                      " ctag support
-Plug 'kien/ctrlp.vim'                   " fuzzy file finder
 Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
 Plug 'haya14busa/incsearch.vim'
 Plug 'aperezdc/vim-template'
+Plug 'mklabs/split-term.vim'
 
 
 " all plugins must be added before this line
