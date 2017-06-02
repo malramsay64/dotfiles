@@ -48,8 +48,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
 
 " Task warrior
-"Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
-Plug '~/Documents/Vim/vim-taskwarrior'
+Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
 
 " Syntax checking
 Plug 'neomake/neomake'
