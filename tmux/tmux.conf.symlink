@@ -28,6 +28,9 @@ set-option -g allow-rename off
 # Resize to current not smalest display
 setw -g aggressive-resize on
 
+# Set escape send to a short time
+set escape-time 10
+
 #}}}
 # Key Bindings {{{
 
