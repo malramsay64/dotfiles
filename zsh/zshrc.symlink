@@ -60,6 +60,8 @@ zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh"
 zplug "tonyseek/oh-my-zsh-virtualenv-prompt"
 zplug "srijanshetty/zsh-pip-completion"
 zplug "larkery/zsh-histdb"
+zplug "Tarrasch/zsh-autoenv"
+
 
 
 # Check all plugins are installed
