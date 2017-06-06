@@ -30,3 +30,10 @@ cmake_install.cmake
 
 # Key files
 *.pem
+
+# python
+.ipynb_checkpoints
+.python-version
+.autoenv.zsh
+.autoenv_leave.zsh
+.cache
