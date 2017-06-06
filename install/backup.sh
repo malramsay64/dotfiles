@@ -8,13 +8,13 @@ DOTFILES="$HOME/dotfiles"
 echo "Creating backup directory at $BACKUP_DIR"
 mkdir -p "$BACKUP_DIR"
 
-linkables=$( find -H "$DOTFILES" -name '*.symlink' )
+linkables=$( find -H "$DOTFILES" -name '*.symlink' -not -regex ".*\.git.*")
 
 for file in $linkables; do
     filename=".$(basename $file '.symlink' )"
     target="$HOME/$filename"
     if [ -e $target ]; then
         echo "backing up $filename"
-        cp -RL "$target" "$BACKUP_DIR"
+        cp -pRLf "$target" "$BACKUP_DIR/$(basename $file '.symlink' )"
     fi
 done

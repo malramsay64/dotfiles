@@ -7,7 +7,7 @@ source "$DOTFILES/install/backup.sh"
 
 echo "Creating symlinks"
 
-linkables=$( find -H "$DOTFILES" -name '*.symlink' )
+linkables=$( find -H "$DOTFILES" -name '*.symlink' -not -regex ".*\.git.*")
 for file in $linkables; do
     link=false
     target="$HOME/.$(basename $file '.symlink')"
@@ -36,13 +36,13 @@ for file in $linkables; do
     else
         link=true
     fi
-    if [ $link ]; then
+    if [ $link == true ]; then
         echo "Creating symlink for $file"
         ln -s $file $target
     fi
 done
 
-linkconfig=$( find -H "$DOTFILES" -name '*.configlink' )
+linkconfig=$( find -H "$DOTFILES" -name '*.configlink' -not -regex ".*\.git.*")
 for file in $linkconfig; do
     link=false
     target="$HOME/.config/$(basename $file '.configlink' )"
