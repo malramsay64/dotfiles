@@ -21,29 +21,24 @@ export DOTFILES=$HOME/dotfiles
 source $DOTFILES/bash/aliases.bash
 source $DOTFILES/bash/environment.bash
 
-{ infocmp -1 xterm-256color ; echo -e "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > ~/dotfiles/resources/xterm-256color.terminfo
-tic ~/dotfiles/resources/xterm-256color.terminfo
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-#[ -e "$HOME/.ssh/config" ] && c ccpleter -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+[ -e "$HOME/.ssh/config" ] && c ccpleter -o "default" -o "nospace" -W "$(grep "^Host " ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
 # Add tab completion for many zsh commands
-if which brew &> /dev/null && [ -d "$(brew --prefix)/share/zsh-completions" ]; then
+if hash brew &> /dev/null && [ -d "$(brew --prefix)/share/zsh-completions" ]; then
     fpath=("$(brew --prefix)/share/zsh-completions" $fpath)
 fi;
 
 # Install and manage zplug
 export ZPLUG_HOME=$HOME/.zplug
 if [[ ! (-a $ZPLUG_HOME/init.zsh) ]]; then
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 fi
 source $ZPLUG_HOME/init.zsh
 
-if which brew &> /dev/null; then 
-    zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
-    zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
-fi
-
+zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-colors"
@@ -72,17 +67,17 @@ zplug load
 autoload -U zmv
 alias mmv='noglob zmv -W'
 
-# histdb timer
+# Use histdb timer
 autoload -Uz add-zsh-hook
 add-zsh-hook preexec _start_timer
 add-zsh-hook precmd  _stop_timer
 
-# aliases for gpg-agent
-alias ssh='gpg-connect-agent updatestartuptty /bye >/dev/null; ssh'
-alias scp='gpg-connect-agent updatestartuptty /bye >/dev/null; scp'
-alias rsync='gpg-connect-agent updatestartuptty /bye >/dev/null; rsync'
-
-source $DOTFILES/zsh/prompt.zsh
+# aliases for gpg-agent if running, this ensures the correct tty is used
+if gpg-connect-agent 2>/dev/null; then
+    alias ssh='gpg-connect-agent updatestartuptty /bye >/dev/null; ssh'
+    alias scp='gpg-connect-agent updatestartuptty /bye >/dev/null; scp'
+    alias rsync='gpg-connect-agent updatestartuptty /bye >/dev/null; rsync'
+fi
 
 # use vim as manpager
 if hash nvim 2>/dev/null; then
@@ -91,13 +86,8 @@ else
     export MANPAGER="vim +'set ft:man' -"
 fi
 
+# setup prompt
+source $DOTFILES/zsh/prompt.zsh
 
-if [[ -e $HOME/.bin ]]; then
-    export PATH=$HOME/.bin:$PATH
-fi
-if [[ -e $HOME/.local/bin ]]; then
-    export PATH=$HOME/.local/bin:$PATH
-fi
-if [[ -e $HOME/.bashrc.local ]]; then
-    source $HOME/.bashrc.local
-fi
+# Source local changes
+[ -e $HOME/.bashrc.local ] && source $HOME/.bashrc.local
