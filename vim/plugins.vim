@@ -45,7 +45,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
 " Task warrior
 Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
@@ -55,7 +55,7 @@ Plug 'neomake/neomake'
 
 " Filetype specific plugins
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
-Plug 'python-mode/python-mode', { 'for': 'python' }
+Plug 'python-mode/python-mode', { 'for': 'python' , 'branch': 'develop' }
 Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
 Plug 'lumiliet/vim-twig', { 'for': 'twig' }
@@ -66,7 +66,7 @@ Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 " Ipython
-Plug 'wilywampa/vim-ipython', { 'for': 'python' }
+Plug 'wilywampa/vim-ipython', Cond(has('nvim'), { 'for': 'python' })
 
 " Denite
 Plug 'Shougo/denite.nvim'
