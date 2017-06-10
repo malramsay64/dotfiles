@@ -1,8 +1,10 @@
 # A series of environment settings that should be present in whichever shell is being used
 
-# Add italics to the current term
-{ infocmp -1 $TERM ; echo -e "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > ~/dotfiles/resources/$TERM.terminfo
-tic ~/dotfiles/resources/$TERM.terminfo
+# Add italics t xterm
+if [[ "$TERM" == xterm* ]]; then 
+    { infocmp -1 $TERM ; echo -e "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > ~/dotfiles/resources/$TERM.terminfo
+    tic ~/dotfiles/resources/$TERM.terminfo
+fi
 
 # For homebrew
 export PATH=/usr/local/bin:$PATH

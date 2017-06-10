@@ -4,7 +4,7 @@ set -g default-command "login-shell"
 # True colour
 set-option -ga terminal-overrides ",xterm*:Tc"
 # Display in 256 colours
-set -g default-terminal "xterm-256color"
+set -g default-terminal "tmux-256color"
 
 if-shell " [[ $(tmux -V | cut -d' ' -f2 -ge 2.2 ]]" \
     'set -g status-utf8 on'

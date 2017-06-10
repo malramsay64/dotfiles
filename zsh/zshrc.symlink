@@ -44,7 +44,6 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "Tarrasch/zsh-colors"
 zplug "Tarrasch/zsh-autoenv"
 zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/taskwarrior", from:oh-my-zsh
 zplug "plugins/vi-mode", from:oh-my-zsh
 zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh"
 zplug "tonyseek/oh-my-zsh-virtualenv-prompt"
@@ -73,7 +72,7 @@ add-zsh-hook preexec _start_timer
 add-zsh-hook precmd  _stop_timer
 
 # aliases for gpg-agent if running, this ensures the correct tty is used
-if gpg-connect-agent 2>/dev/null; then
+if gpg-connect-agent /bye 2>/dev/null; then
     alias ssh='gpg-connect-agent updatestartuptty /bye >/dev/null; ssh'
     alias scp='gpg-connect-agent updatestartuptty /bye >/dev/null; scp'
     alias rsync='gpg-connect-agent updatestartuptty /bye >/dev/null; rsync'
