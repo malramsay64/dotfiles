@@ -10,6 +10,7 @@ vim/vim.symlink/spell
 # Ignoring vim files
 .netrwhist
 vim/vim.symlink/view
+vim/vim.symlink/bundle
 
 # Ignoring taskwarrior config and data files
 task/task.symlink/*.pem
@@ -17,3 +18,6 @@ task/task.symlink/*.data
 task/task.symlink/taskrc.local
 task/task.symlink/.*
 
+# Ignore tmux plugins
+tmux/tmux.symlink/plugins
+tmux/tmux.symlink/resurrect
