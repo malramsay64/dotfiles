@@ -19,6 +19,7 @@
 
 # OS Generated files
 .DS_Store
+Icon?
 
 # cmake files
 CMakeFiles
