@@ -20,6 +20,12 @@ else
     export EDITOR=vim
 fi
 
+# Have consistent location for forwarded ssh authentication socket
+if [[ $SSH_AUTH_SOCK == /tmp/* ]]; then
+    ln -sf $SSH_AUTH_SOCK $HOME/.ssh/ssh-agent-sock
+    export SSH_AUTH_SOCK=$HOME/.ssh/.ssh-agent-sock
+fi
+
 # Adding home directory bin to path
 [ -d "$HOME/dotfiles/bin" ] && export PATH="$PATH:$HOME/dotfiles/bin"
 [ -d "$HOME/.bin" ] && export PATH="$HOME/.bin:$PATH"
