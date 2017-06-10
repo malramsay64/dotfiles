@@ -517,5 +517,8 @@ set splitbelow
 let g:disable_key_mappings = 1
 
 "}}}
+" markdown composer {{{
+let g:markdown_composer_refresh_rate=5000
+" }}}
 " }}}
 " vim:foldmethod=marker:foldlevel=1:filetype=vim
