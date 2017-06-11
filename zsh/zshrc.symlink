@@ -30,35 +30,13 @@ if hash brew &> /dev/null && [ -d "$(brew --prefix)/share/zsh-completions" ]; th
     fpath=("$(brew --prefix)/share/zsh-completions" $fpath)
 fi;
 
-# Install and manage zplug
-export ZPLUG_HOME=$HOME/.zplug
-if [[ ! (-a $ZPLUG_HOME/init.zsh) ]]; then
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+# Install and manage antibody
+if ! hash antibody; then
+    curl -sL https://git.io/antibody | sed 's/sudo //' | sed 's|/usr/local|$HOME/.local' | bash -s
 fi
-source $ZPLUG_HOME/init.zsh
-
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-completions"
-zplug "Tarrasch/zsh-colors"
-zplug "Tarrasch/zsh-autoenv"
-zplug "olivierverdier/zsh-git-prompt", use:"zshrc.sh"
-zplug "srijanshetty/zsh-pip-completion"
-zplug "felixr/docker-zsh-completion"
-zplug "larkery/zsh-histdb"
-zplug "Tarrasch/zsh-autoenv"
-
-# Check all plugins are installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    else
-        echo
-    fi
-fi
-
-zplug load 
+source <(antibody init)
+antibody bundle < $DOTFILES/zsh/plugins.txt > $DOTFILES/zsh/sourceables.sh
+source $DOTFILES/zsh/sourceables.sh
 
 autoload -U zmv
 alias mmv='noglob zmv -W'

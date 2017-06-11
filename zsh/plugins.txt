@@ -1,0 +1,10 @@
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions
+Tarrasch/zsh-colors
+Tarrasch/zsh-autoenv
+olivierverdier/zsh-git-prompt
+srijanshetty/zsh-pip-completion
+felixr/docker-zsh-completion
+larkery/zsh-histdb
+Tarrasch/zsh-autoenv
