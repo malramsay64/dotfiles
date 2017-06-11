@@ -31,8 +31,8 @@ if hash brew &> /dev/null && [ -d "$(brew --prefix)/share/zsh-completions" ]; th
 fi;
 
 # Install and manage antibody
-if ! hash antibody; then
-    curl -sL https://git.io/antibody | sed 's/sudo //' | sed 's|/usr/local|$HOME/.local' | bash -s
+if ! hash antibody &>/dev/null; then
+    curl -sL https://git.io/antibody | sed 's/sudo //' | sed 's|/usr/local|$HOME/.local|' | bash -s
 fi
 source <(antibody init)
 antibody bundle < $DOTFILES/zsh/plugins.txt > $DOTFILES/zsh/sourceables.sh
@@ -47,14 +47,14 @@ add-zsh-hook preexec _start_timer
 add-zsh-hook precmd  _stop_timer
 
 # aliases for gpg-agent if running, this ensures the correct tty is used
-if gpg-connect-agent /bye 2>/dev/null; then
+if gpg-connect-agent /bye &>/dev/null; then
     alias ssh='gpg-connect-agent updatestartuptty /bye >/dev/null; ssh'
     alias scp='gpg-connect-agent updatestartuptty /bye >/dev/null; scp'
     alias rsync='gpg-connect-agent updatestartuptty /bye >/dev/null; rsync'
 fi
 
 # use vim as manpager
-if hash nvim 2>/dev/null; then
+if hash nvim &>/dev/null; then
     export MANPAGER="nvim +'set ft:man' -"
 else
     export MANPAGER="vim +'set ft:man' -"

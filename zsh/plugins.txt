@@ -7,4 +7,3 @@ olivierverdier/zsh-git-prompt
 srijanshetty/zsh-pip-completion
 felixr/docker-zsh-completion
 larkery/zsh-histdb
-Tarrasch/zsh-autoenv
