@@ -45,10 +45,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug 'malramsay64/vimwiki', { 'branch': 'dev' }
 
 " Task warrior
-Plug 'blindFS/vim-taskwarrior', Cond(system('hash task && echo 1'))
+Plug 'malramsay64/vim-taskwarrior', Cond(system('hash task && echo 1'))
 
 " Syntax checking
 Plug 'neomake/neomake'
