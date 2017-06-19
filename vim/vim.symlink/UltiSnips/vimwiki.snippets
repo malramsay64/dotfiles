@@ -1,3 +1,23 @@
-snippet link "Create a link" b
+
+snippet simdoc "Framework for documenting simulation"
+Simulation Parameters:
+	- host: ${1:hostname}
+	- temps: ${2:temperatures}
+	- steps: ${3:num_steps} million
+	- iters: ${4:num_iterations}
+	- output: `date +%Y-%m-%d`-${5:output dir}
+	- hash: ${6:git_hash}
+endsnippet
+
+snippet file "Include a file in PhD logbook"
+{{file:images/`date +%Y-%m-%d`-${1}|${2:Description}}}
+$0
+endsnippet
+
+snippet seminar "Create a file for a seminar" b
+- [[Seminars/`date +%Y-%m-%d`|${1:Speaker}]]$0
+endsnippet
+
+snippet link "Create a link"
 [[${1:link}|${2:description}]]$0
 endsnippet
