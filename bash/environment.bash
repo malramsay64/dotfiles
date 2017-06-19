@@ -32,6 +32,7 @@ fi
 [ -d "$HOME/dotfiles/bin" ] && export PATH="$PATH:$HOME/dotfiles/bin"
 [ -d "$HOME/.bin" ] && export PATH="$HOME/.bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.miniconda3/bin" ] && export PATH="$HOME/.miniconda3/bin:$PATH"
 
 # Test interactive shell
 [[ $- == *i* ]] && stty -ixon
