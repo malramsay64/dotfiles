@@ -12,6 +12,8 @@ source $HOME/dotfiles/vim/plugins.vim
 
 " Vim automatically reads changes to a file
 set autoread
+" Reload changes on FocusGained
+autocmd! FocusGained * :echotime
 
 filetype plugin indent on      "load filetype specific indent and plugin files
 
@@ -116,7 +118,7 @@ cabbrev Wq wq
 cabbrev WQ wq
 
 " Disable mouse 
-set mouse=
+"set mouse=
 
 "}}}
 " Custom Shortcuts {{{
@@ -160,6 +162,9 @@ nnoremap <Leader>ed :edit $DOTFILES/vim/<CR>
 " <C-s> will correct previous spelling misake and set undo point
 nnoremap <C-s> [s1z=<c-o>
 inoremap <C-s> <c-g>u<Esc>[s1z=`]A<c-g>u
+" navigate between tabs
+nnoremap ]w :tabnext<CR>
+nnoremap [w :tabprev<CR>
 
 " Shortcut for saving as root
 cmap w!! w !sudo tee > /dev/null %
@@ -268,8 +273,8 @@ let g:airline#extensions#wordcount#filetypes = '\vhelp|vimwiki|markdown|rst|org|
 " Vimwiki {{{
 
 "nmap <Leader>w :vsp<CR><Plug>VimwikiIndex
-nmap <Leader>wk <Plug>VimwikiDiaryPrevDay
-nmap <Leader>wj <Plug>VimwikiDiaryNextDay
+nmap <Leader>wj <Plug>VimwikiDiaryPrevDay
+nmap <Leader>wk <Plug>VimwikiDiaryNextDay
 
 let g:vimwiki_folding = 'syntax'
 
@@ -284,14 +289,16 @@ let home_wiki.path = '~/Documents/notes/personal/'
 let home_wiki.diary_rel_path = 'diary/'
 let home_wiki.path_html = '~/Documents/notes/html/personal/'
 
-let flurosat_wiki = copy(wiki_default)
-let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
-
 let phd_wiki = copy(wiki_default)
 let phd_wiki.path = '~/Documents/notes/PhD/'
 let phd_wiki.diary_rel_path = 'logbook/'
 
-let g:vimwiki_list = [home_wiki, flurosat_wiki, phd_wiki]
+let flurosat_wiki = copy(wiki_default)
+let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
+
+let g:vimwiki_list = [home_wiki, phd_wiki, flurosat_wiki]
+nmap <Leader>wp :2VimwikiMakeDiaryNote<CR>
+nmap <Leader>wo 2<Plug>VimwikiDiaryIndex
 
 "}}}
 " TaskWiki {{{
@@ -310,7 +317,7 @@ nmap <Leader>gs :Gstatus<CR>
 " neomake {{{
 
 " open loclist quickfix list if errors
-let g:neomake_open_list = 0
+let g:neomake_open_list = 2
 
 " run neomake on write
 autocmd! BufWritePost * Neomake
@@ -322,7 +329,11 @@ augroup my_error_signs
     autocmd ColorScheme * hi NeomakeWarningSign ctermfg=yellow
 augroup END
 
-"let g:neomake_python_pylint_exe="python /usr/local/bin/pylint"
+let g:neomake_python_enabled_makers = ['pydocstyle', 'pycodestyle', 'pylint']
+let g:neomake_python_pylint_exe = 'python'
+let g:neomake_python_pylint_args = ['-m pylint']
+
+"let g:neomake_python_pylint_exe="python -m pylint"
 
 " }}}
 " vim-taskwarrior {{{
