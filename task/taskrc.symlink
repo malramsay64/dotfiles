@@ -12,10 +12,16 @@
 
 # Files
 data.location=~/.task
+ 
+# Personalise coefficients
+urgency.blocking.coefficient = 3.0
+urgency.user.project.Molecules.coefficient = 2.0
+urgency.user.project.Ising.coefficient = -4.0
+urgency.age.coefficient = 1.0
 
 # Taskwarrrior Pomodoro settings
 # https://github.com/coddingtonbear/taskwarrior-pomodoro
-pomodoro.default.sort=urgency-,project+
+pomodoro.default.sort=project+,urgency-
 pomodoro.defaultFilter=due.before:1w
 pomodoro.displayCount=true
 
