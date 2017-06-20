@@ -13,16 +13,16 @@ source $HOME/dotfiles/vim/plugins.vim
 " Vim automatically reads changes to a file
 set autoread
 " Reload changes on FocusGained
-autocmd! FocusGained * :echotime
+autocmd! FocusGained * :checktime
 
 filetype plugin indent on      "load filetype specific indent and plugin files
 
 " Python support
 if isdirectory($HOME."/.miniconda3")
-    let g:python3_host_prog = $HOME.'/.miniconda3/envs/neovim3/bin/python'
+    "let g:python3_host_prog = $HOME.'/.miniconda3/envs/neovim3/bin/python'
     let g:python_host_prog = $HOME.'/.miniconda3/envs/neovim2/bin/python'
 elseif isdirectory($HOME."/.pyenv")
-    let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+    "let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
     let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
 endif
 
@@ -133,6 +133,9 @@ endif
 
 " jk is escape
 inoremap jk <esc>
+inoremap jK <esc>
+inoremap JK <esc>
+inoremap Jk <esc>
 
 " leader is <space>
 let mapleader="\<space>"
@@ -330,8 +333,9 @@ augroup my_error_signs
 augroup END
 
 let g:neomake_python_enabled_makers = ['pydocstyle', 'pycodestyle', 'pylint']
-let g:neomake_python_pylint_exe = 'python'
-let g:neomake_python_pylint_args = ['-m pylint']
+let g:neomake_python_pycodesyle_args = ['--ignore=E123']
+"let g:neomake_python_pylint_exe = 'python'
+"let g:neomake_python_pylint_args = ['-m pylint']
 
 "let g:neomake_python_pylint_exe="python -m pylint"
 
@@ -487,6 +491,7 @@ map g# <Plug>(incsearch-nohl-g#)
 let g:pymode = 1
 let g:pymode_python = 'python3'
 let g:pymode_trim_whitespaces = 1
+let g:pymode_options_max_line_length = 79
 let g:pymode_options = 1
 let g:pymode_options_colorcolumn = 1
 let g:pymode_indent = 1
@@ -530,6 +535,15 @@ let g:disable_key_mappings = 1
 "}}}
 " markdown composer {{{
 let g:markdown_composer_refresh_rate=5000
+" }}}
+" jedi-vim {{{
+let g:jedi#completions_command=''
+let g:jedi#rename_command = '<leader>jr'
+let g:jedi#usages_command = '<leader>jn'
+
+let g:jedi#completions_enabled = 0
+let g:jedi#popup_on_dot = 0
+
 " }}}
 " }}}
 " vim:foldmethod=marker:foldlevel=1:filetype=vim

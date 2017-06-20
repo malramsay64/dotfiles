@@ -54,19 +54,22 @@ Plug 'malramsay64/vim-taskwarrior', Cond(system('hash task && echo 1'))
 Plug 'neomake/neomake'
 
 " Filetype specific plugins
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
-Plug 'python-mode/python-mode', { 'for': 'python' , 'branch': 'develop' }
 Plug 'fisadev/vim-isort', { 'for': 'python' }
+Plug 'bps/vim-textobj-python', { 'for': 'python' }
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+Plug 'wilywampa/vim-ipython', Cond(has('nvim'), { 'for': 'python' })
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'cjrh/vim-conda'
+
+
+Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
+
 Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
+Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
 Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
-Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
-Plug 'bps/vim-textobj-python', { 'for': 'python' }
-Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-
-" Ipython
-Plug 'wilywampa/vim-ipython', Cond(has('nvim'), { 'for': 'python' })
 
 " Denite
 Plug 'Shougo/denite.nvim'
@@ -74,10 +77,8 @@ Plug 'rafaqz/citation.vim'
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
-"Plug 'maralla/completor.vim', Cond(!has('nvim'))
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'davidhalter/jedi', { 'for': 'python' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
 Plug 'Shougo/echodoc.vim'
