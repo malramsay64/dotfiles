@@ -300,7 +300,7 @@ let flurosat_wiki = copy(wiki_default)
 let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
 
 let g:vimwiki_list = [home_wiki, phd_wiki, flurosat_wiki]
-nmap <Leader>wp :2VimwikiMakeDiaryNote<CR>
+nmap <Leader>wp 2<Leader>ww<Leader>w<Leader>w
 nmap <Leader>wo 2<Plug>VimwikiDiaryIndex
 
 "}}}
@@ -334,10 +334,6 @@ augroup END
 
 let g:neomake_python_enabled_makers = ['pydocstyle', 'pycodestyle', 'pylint']
 let g:neomake_python_pycodesyle_args = ['--ignore=E123']
-"let g:neomake_python_pylint_exe = 'python'
-"let g:neomake_python_pylint_args = ['-m pylint']
-
-"let g:neomake_python_pylint_exe="python -m pylint"
 
 " }}}
 " vim-taskwarrior {{{
@@ -508,6 +504,13 @@ let g:pymode_syntax_all = 1
 " }}}
 " grammarous {{{
 
+"augroup grammarous
+    "autocmd!
+    "autocmd FileType markdown :GrammarousCheck
+    "autocmd FileType vimwiki :GrammarousCheck
+    "autocmd FileType text :GrammarousCheck
+"augroup END
+
 let g:grammarous#use_vim_spelllang = 1
 let g:grammarous#move_to_first_error = 0
 let g:grammarous#default_lang = "en_au"
@@ -515,7 +518,6 @@ let g:grammarous#default_lang = "en_au"
 " }}}
 " isort {{{
 let g:vim_isort_python_version = 'python3'
-"let g:vim_isort_python_version = $HOME.'.miniconda3/envs/neovim3/bin/python'
 "}}}
 " ctrlspace {{{
 
@@ -527,8 +529,6 @@ let g:CtrlSpaceDefaultMappingKey = "<C-space> "
 " }}}
 " split-term {{{
 "let g:split_term_vertical = 0
-set splitright
-set splitbelow
 
 let g:disable_key_mappings = 1
 
@@ -537,6 +537,7 @@ let g:disable_key_mappings = 1
 let g:markdown_composer_refresh_rate=5000
 " }}}
 " jedi-vim {{{
+
 let g:jedi#completions_command=''
 let g:jedi#rename_command = '<leader>jr'
 let g:jedi#usages_command = '<leader>jn'

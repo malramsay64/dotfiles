@@ -38,6 +38,8 @@ source <(antibody init)
 antibody bundle < $DOTFILES/zsh/plugins.txt > $DOTFILES/zsh/sourceables.sh
 source $DOTFILES/zsh/sourceables.sh
 
+source $DOTFILES/zsh/vi-mode.zsh
+
 autoload -U zmv
 alias mmv='noglob zmv -W'
 
