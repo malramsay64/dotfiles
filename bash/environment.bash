@@ -2,30 +2,30 @@
 
 # Add italics t xterm
 if [[ "$TERM" == xterm* ]]; then 
-    { infocmp -1 $TERM ; echo -e "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > ~/dotfiles/resources/$TERM.terminfo
-    tic ~/dotfiles/resources/$TERM.terminfo
+    { infocmp -1 "$TERM" ; echo -e "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > "$HOME/dotfiles/resources/$TERM.terminfo"
+    tic "~/dotfiles/resources/$TERM.terminfo"
 fi
 
 # For homebrew
-export PATH=/usr/local/bin:$PATH
+export PATH="/usr/local/bin:$PATH"
 
 # Change settings for z
-export _Z_DATA=$HOME/.z/z
-source $HOME/dotfiles/bash/z/z.sh
+export _Z_DATA="$HOME/.z/z"
+source "$HOME/dotfiles/bash/z/z.sh"
 
 # Setting editor to nvim if present
-if [ $(hash nvim 2>/dev/null && echo 1) ]; then
+if [ "$(hash nvim 2>/dev/null && echo 1)" ]; then
     export EDITOR=nvim
-elif [ -e $HOME/.local/bin/vim ]; then
+elif [ -e "$HOME/.local/bin/vim" ]; then
     export EDITOR=$HOME/.local/bin/vim
 else
     export EDITOR=vim
 fi
 
 # Have consistent location for forwarded ssh authentication socket
-if [[ $SSH_AUTH_SOCK == /tmp/* ]]; then
-    ln -sf $SSH_AUTH_SOCK $HOME/.ssh/ssh-agent-sock
-    export SSH_AUTH_SOCK=$HOME/.ssh/.ssh-agent-sock
+if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
+    ln -sf "$SSH_AUTH_SOCK $HOME/.ssh/ssh-agent-sock"
+    export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
 fi
 
 # Adding home directory bin to path
