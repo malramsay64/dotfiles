@@ -45,13 +45,23 @@ if !has("nvim")
     set t_8f=[38;2;%lu;%lu;%lum
 endif
 
+" Allow italics in terminal
 let g:one_allow_italics = 1
+
+augroup colours
+    autocmd!
+    let s:colours = onedark#GetColors()
+    let s:self_color = s:colours.comment_grey
+    autocmd ColorScheme * call onedark#set_highlight("pythonSelf", { "fg": s:self_color, "gui": "italic", "cterm": "italic" }) 
+    autocmd ColorScheme * call onedark#set_highlight("overLength", { "bg": s:colours.special_grey}) 
+augroup END
 
 " Set colourshecme
 set background=dark " for the dark version
 colorscheme onedark
 
 highlight Comment cterm=italic gui=italic
+highlight pythonSelf cterm=italic gui=italic
 
 "}}}
 "Spaces and Tabs {{{

@@ -3,7 +3,7 @@
 # Add italics t xterm
 if [[ "$TERM" == xterm* ]]; then 
     { infocmp -1 "$TERM" ; echo -e "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > "$HOME/dotfiles/resources/$TERM.terminfo"
-    tic "~/dotfiles/resources/$TERM.terminfo"
+    tic "$HOME/dotfiles/resources/$TERM.terminfo"
 fi
 
 # For homebrew

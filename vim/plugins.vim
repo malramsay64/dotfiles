@@ -57,10 +57,11 @@ Plug 'neomake/neomake'
 Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'wilywampa/vim-ipython', Cond(has('nvim'), { 'for': 'python' })
+"Plug 'wilywampa/vim-ipython', Cond(has('nvim'), { 'for': 'python' })
+Plug 'bfredl/nvim-ipy', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'cjrh/vim-conda'
-
+"Plug 'cjrh/vim-conda'
+Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
 
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
