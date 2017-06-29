@@ -247,8 +247,11 @@ set spelllang=en_au             " spelling language is english australian
 set fileformats=unix,mac,dos    " default line ending is unix
 
 " set filetype defaults
-autocmd! BufNewFile,BufRead *.hoomd set ft=python
-autocmd! BufNewFile,BufRead *.md set ft=markdown
+augroup filetypes
+    autocmd!
+    autocmd BufNewFile,BufRead *.md set ft=markdown
+    autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
 
 "}}}
 " Plugin Configuration {{{
