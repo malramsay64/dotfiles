@@ -30,3 +30,8 @@ $0
 
 ----
 endsnippet
+
+snippet task "Create a task entry" b
+* [ ] ${1:Description} -- project:${2:Molecules} tags:'${3:PhD}' due:${4:`date -v +2w +%Y-%m-%d`} priority:${5:M}
+$0
+endsnippet
