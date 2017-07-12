@@ -49,18 +49,21 @@ let s:menus.ssh.file_candidates = [
     \]
 
 call denite#custom#var('menu', 'menus', s:menus)
+"call denite#custom#var('menu', 'buffer_name', 'menu')
+call denite#custom#option('default', {'mode': 'normal', 'auto_resize': 1})
+nnoremap <Leader>e :<C-u>Denite menu <CR>
 
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
     \ ['git', 'ls-files', '-co', '--exclude-standard'])
-nnoremap <silent> <C-p> :<C-u>Denite
-    \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'` -auto-resize<CR>
+nnoremap <silent> <C-p> :<C-u>Denite file_rec/git -auto-resize<CR>
 
+call denite#custom#option('_', 'highlight_mode_insert', 'None')
+"call denite#custom#option('_', 'highlight_matched_range', 'Underlined')
+call denite#custom#option('_', 'highlight_matched_char', 'Search')
 
 "nnoremap <C-p> :<C-u>Denite file_rec -auto-resize<CR>
-nnoremap <Leader>e :<C-u>Denite menu -mode=normal -auto-resize<CR>
 nnoremap <Leader>d :<C-u>DeniteBufferDir file_rec -auto-resize<CR>
-"nnoremap <Leader>c :<C-u>Unite citation/combined -buffer-name=citation -highlight-mode-insert='None'<CR>
 
 " git {{{
 
@@ -76,6 +79,8 @@ nnoremap <leader>gs :<C-u>Denite gitstatus -path=%:h -buffer-name=git<CR>
 " }}}
 
 " citation {{{
+"
+"nnoremap <Leader>c :<C-u>Unite citation/combined -buffer-name=citation -highlight-mode-insert='None'<CR>
 nnoremap <silent><Leader>c :<C-u>Denite -buffer-name=citation -start-insert -default-action=append Unite:citation/key<cr>
 nnoremap <silent><Leader>co :<C-u>Unite -input=<C-R><C-W> -default-action=start -force-immediately citation/file<cr>
 nnoremap <silent><Leader>ct :<C-u>Denite -buffer-name=citation -default-action=append unite:citation/key<cr>
