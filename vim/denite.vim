@@ -43,7 +43,7 @@ let s:menus.Vim.file_candidates = [
     \]
 let s:menus.ssh = { 'description': 'Edit ssh configuration' }
 let s:menus.ssh.file_candidates = [ 
-        \ ['~/ssh/config','~/ssh/config'],
+        \ ['~/.ssh/config','~/.ssh/config'],
         \ ['~/.ssh/known_hosts','~/.ssh/known_hosts'],
         \ ['~/.ssh/authorized_keys','~/.ssh/authorized_keys'],
     \]
