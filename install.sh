@@ -5,6 +5,9 @@ echo "Installing dotfiles"
 echo "Initialising submodule(s)"
 git submodule update --init --recursive
 
+echo "Make local directories"
+mkdir -p "$HOME/.local/bin"
+
 source "install/link.sh"
 
 echo "Creating vim directories"

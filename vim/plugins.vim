@@ -45,10 +45,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
-Plug 'malramsay64/vimwiki', { 'branch': 'dev' }
+"Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug '~/Documents/Programming/vimwiki'
+Plug 'tbabej/taskwiki'
 
 " Task warrior
 Plug 'malramsay64/vim-taskwarrior', Cond(system('hash task && echo 1'))
+"Plug '~/Documents/Programming/vim-taskwarrior', Cond(system('hash task && echo 1'))
 
 " Syntax checking
 Plug 'neomake/neomake'
@@ -57,10 +60,9 @@ Plug 'neomake/neomake'
 Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-"Plug 'wilywampa/vim-ipython', Cond(has('nvim'), { 'for': 'python' })
-Plug 'bfredl/nvim-ipy', { 'for': 'python' }
+"Plug 'wilywampa/vim-ipython'
+"Plug 'bfredl/nvim-ipy'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-"Plug 'cjrh/vim-conda'
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
 
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
@@ -74,7 +76,10 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 
 " Denite
 Plug 'Shougo/denite.nvim'
+Plug 'Shougo/unite.vim'
 Plug 'rafaqz/citation.vim'
+Plug 'chemzqm/vim-easygit'
+Plug 'chemzqm/denite-git'
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
@@ -102,6 +107,7 @@ Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentatry mappings
+Plug 'tpope/vim-speeddating'            " incr/decr dates
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'            " git diffs

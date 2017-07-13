@@ -13,7 +13,7 @@ source $HOME/dotfiles/vim/plugins.vim
 " Vim automatically reads changes to a file
 set autoread
 " Reload changes on FocusGained
-autocmd! FocusGained * :checktime
+autocmd! BufEnter * :checktime
 
 filetype plugin indent on      "load filetype specific indent and plugin files
 
@@ -52,14 +52,17 @@ augroup colours
     autocmd!
     let s:colours = onedark#GetColors()
     let s:self_color = s:colours.comment_grey
-    autocmd ColorScheme * call onedark#set_highlight("pythonSelf", { "fg": s:self_color, "gui": "italic", "cterm": "italic" }) 
+    autocmd ColorScheme * call onedark#set_highlight("pythonSelf", { "fg": s:self_color, "gui": "italic", "cterm": "italic" })
     autocmd ColorScheme * call onedark#set_highlight("overLength", { "bg": s:colours.special_grey}) 
+    autocmd FileType * match none
+    autocmd FileType python match overLength /\%>80v.\+/
 augroup END
 
 " Set colourshecme
 set background=dark " for the dark version
 colorscheme onedark
 
+" Colourscheme override
 highlight Comment cterm=italic gui=italic
 highlight pythonSelf cterm=italic gui=italic
 
@@ -171,7 +174,9 @@ nnoremap <Leader>eb :edit ~/.bashrc<CR>
 " Edit zshrc
 nnoremap <Leader>ez :edit ~/.zshrc<CR>
 " Edit vim direcotry
-nnoremap <Leader>ed :edit $DOTFILES/vim/<CR>
+"nnoremap <Leader>ed :edit $DOTFILES/vim/<CR>
+" Edit denite config
+nnoremap <Leader>ed :edit $DOTFILES/vim/denite.vim<CR>
 " <C-s> will correct previous spelling misake and set undo point
 nnoremap <C-s> [s1z=<c-o>
 inoremap <C-s> <c-g>u<Esc>[s1z=`]A<c-g>u
@@ -250,11 +255,15 @@ set fileformats=unix,mac,dos    " default line ending is unix
 augroup filetypes
     autocmd!
     autocmd BufNewFile,BufRead *.md set ft=markdown
-    autocmd TermOpen * setlocal nonumber norelativenumber
+    if has('nvim')
+        autocmd TermOpen * setlocal nonumber norelativenumber
+    endif
 augroup END
 
 "}}}
 " Plugin Configuration {{{
+source $DOTFILES/vim/denite.vim
+
 " netrw {{{
 
 " Open explorer to current directory
@@ -308,13 +317,15 @@ let home_wiki.path_html = '~/Documents/notes/html/personal/'
 let phd_wiki = copy(wiki_default)
 let phd_wiki.path = '~/Documents/notes/PhD/'
 let phd_wiki.diary_rel_path = 'logbook/'
+let phd_wiki.diary_header = 'PhD Logbook'
 
 let flurosat_wiki = copy(wiki_default)
 let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
 
 let g:vimwiki_list = [home_wiki, phd_wiki, flurosat_wiki]
-nmap <Leader>wp 2<Leader>ww<Leader>w<Leader>w
-nmap <Leader>wo 2<Plug>VimwikiDiaryIndex
+"nmap <Leader>wp 2<Leader>ww<Leader>w<Leader>w
+"nmap <Leader>ww <count>
+"nmap <Leader>wo :2VimwikiDiaryIndex<CR>
 
 "}}}
 " TaskWiki {{{
@@ -326,8 +337,8 @@ let g:taskwiki_sort_order='urgency+,due+,project+'
 " }}}
 " fugitive {{{
 
-nmap <Leader>gc :Gcommit<CR>
-nmap <Leader>gs :Gstatus<CR>
+"nmap <Leader>gc :Gcommit<CR>
+"nmap <Leader>gs :Gstatus<CR>
 
 " }}}
 " neomake {{{
@@ -559,5 +570,25 @@ let g:jedi#completions_enabled = 0
 let g:jedi#popup_on_dot = 0
 
 " }}}
+" vim-template {{{
+let g:templates_directory = [$DOTFILES.'/vim/templates']
+
+" }}}
+" citation {{{
+
+
+let g:citation_vim_bibtex_file='~/Documents/PhD/bibtex/library.bib'
+let g:citation_vim_mode='bibtex'
+let g:citation_vim_cache_path='~/.vim/citation_cache'
+let g:citation_vim_et_al_limit=5
+
+let g:citation_vim_description_format = "{} ‴{}‴ \˝{}\˝ ‹{}› ₋{}₋ ₍{}₎"
+let g:citation_vim_description_fields = ["key", "title", "journal", "doi", "author", "year"]
+" }}}
+" easygit {{{ 
+
+"let g:easygit_enable_command = 1
+"let g:easygit_auto_lcd = 1
+
 " }}}
 " vim:foldmethod=marker:foldlevel=1:filetype=vim

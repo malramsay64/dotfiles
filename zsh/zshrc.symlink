@@ -48,6 +48,9 @@ autoload -Uz add-zsh-hook
 add-zsh-hook preexec _start_timer
 add-zsh-hook precmd  _stop_timer
 
+# histdb alias
+alias histdb='histdb --host'
+
 # aliases for gpg-agent if running, this ensures the correct tty is used
 if gpg-connect-agent /bye &>/dev/null; then
     alias ssh='gpg-connect-agent updatestartuptty /bye >/dev/null; ssh'

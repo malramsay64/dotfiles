@@ -24,7 +24,7 @@ fi
 
 # Have consistent location for forwarded ssh authentication socket
 if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
-    ln -sf "$SSH_AUTH_SOCK $HOME/.ssh/ssh-agent-sock"
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-agent-sock"
     export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
 fi
 
