@@ -26,6 +26,10 @@ alias ravp='rsync -av --progress'
 alias rsync-ex='rsync -rltDvP'
 alias grep='grep --color=AUTO'
 
+# Conda aliases
+alias sact='source activate'
+alias sd='source deactivate'
+
 # Git aliases
 alias go='git checkout'
 alias gc='git commit'

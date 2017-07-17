@@ -12,4 +12,4 @@
 	url = https://github.com/mafredri/z
 [submodule "python/utils"]
 	path = python/utils
-	url = git@github.com:malramsy64/python-utils.git
+	url = https://github.com/malramsy64/python-utils.git
