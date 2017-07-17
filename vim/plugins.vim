@@ -45,8 +45,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
-"Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug '~/Documents/Programming/vimwiki'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+"Plug '~/Documents/Programming/vimwiki'
 Plug 'tbabej/taskwiki'
 
 " Task warrior
@@ -62,6 +62,7 @@ Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 "Plug 'wilywampa/vim-ipython'
 "Plug 'bfredl/nvim-ipy'
+Plug 'kassio/neoterm'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
 
@@ -73,6 +74,8 @@ Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
 Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'cespare/vim-toml'
+Plug 'robertbasic/vim-hugo-helper'
 
 " Denite
 Plug 'Shougo/denite.nvim'
