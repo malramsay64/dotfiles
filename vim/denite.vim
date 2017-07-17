@@ -1,14 +1,4 @@
 
-" Setup ripgrep for file_rec command
-call denite#custom#var('file_rec', 'command',
-    \ ['rg', '--files', '--glob', '!.git', ''])
-call denite#custom#var('grep', 'command', ['rg'])
-call denite#custom#var('grep', 'default_opts',
-    \ ['--hidden', '--vimgrep', '--no-heading', '-S'])
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
 
 " Setup mapping of commands
 call denite#custom#map('insert', '<Esc>', '<denite:enter_mode:normal>', 'noremap')
@@ -21,6 +11,39 @@ call denite#custom#map('normal', '<C-j>', '<denite:move_to_next_line>', 'noremap
 call denite#custom#map('normal', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map('normal', 'a', '<denite:do_action:add>', 'noremap')
+call denite#custom#map('normal', 'd','<denite:do_action:delete>','noremap')
+call denite#custom#map('normal', 'r', '<denite:do_action:reset>', 'noremap')
+call denite#custom#map('normal', 'cc', '<denite:do_action:commit>', 'noremap')
+
+
+call denite#custom#option('_', 'highlight_mode_insert', 'None')
+call denite#custom#option('_', 'highlight_matched_range', 'Underlined')
+call denite#custom#option('_', 'highlight_matched_char', 'Search')
+call denite#custom#option('default', {'mode': 'normal', 'auto_resize': 1})
+
+
+
+" File rec {{{
+" Setup ripgrep for file_rec command
+
+call denite#custom#var('file_rec', 'command',
+    \ ['rg', '--files', '--glob', '!.git', ''])
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default_opts',
+    \ ['--hidden', '--vimgrep', '--no-heading', '-S'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+
+
+nnoremap <Leader>d :<C-u>DeniteBufferDir file_rec -mode=insert<CR>
+nnoremap <leader>b :<C-U>Denite buffer<CR>
+
+" }}}
+" Menus {{{
 
 let s:menus = {}
 let s:menus.Shell = { 'description': 'Edit shell commands'}
@@ -50,34 +73,22 @@ let s:menus.ssh.file_candidates = [
 
 call denite#custom#var('menu', 'menus', s:menus)
 "call denite#custom#var('menu', 'buffer_name', 'menu')
-call denite#custom#option('default', {'mode': 'normal', 'auto_resize': 1})
 nnoremap <Leader>e :<C-u>Denite menu <CR>
 
+" }}}
+" git {{{
+"
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
     \ ['git', 'ls-files', '-co', '--exclude-standard'])
-nnoremap <silent> <C-p> :<C-u>Denite file_rec/git -auto-resize<CR>
-
-call denite#custom#option('_', 'highlight_mode_insert', 'None')
-"call denite#custom#option('_', 'highlight_matched_range', 'Underlined')
-call denite#custom#option('_', 'highlight_matched_char', 'Search')
-
-"nnoremap <C-p> :<C-u>Denite file_rec -auto-resize<CR>
-nnoremap <Leader>d :<C-u>DeniteBufferDir file_rec -auto-resize<CR>
-
-" git {{{
+nnoremap <silent> <C-p> :<C-u>Denite file_rec/git -mode=insert<CR>
 
 call denite#custom#option('git', {'mode': 'normal', 'auto_resize': 1})
 
-call denite#custom#map('normal', 'a', '<denite:do_action:add>', 'noremap')
-call denite#custom#map('normal', 'd','<denite:do_action:delete>','noremap')
-call denite#custom#map('normal', 'r', '<denite:do_action:reset>', 'noremap')
-call denite#custom#map('normal', 'cc', '<denite:do_action:commit>', 'noremap')
-
 nnoremap <leader>gs :<C-u>Denite gitstatus -path=%:h -buffer-name=git<CR>
+nnoremap <leader>gc :Gcommit<CR>
 
 " }}}
-
 " citation {{{
 "
 "nnoremap <Leader>c :<C-u>Unite citation/combined -buffer-name=citation -highlight-mode-insert='None'<CR>
