@@ -2,7 +2,6 @@
 
 # Compiled Source
 *.o
-*.pyc
 
 # Packages #
 ############
@@ -39,3 +38,6 @@ cmake_install.cmake
 .autoenv_leave.zsh
 .cache
 .mypy_cache
+*.egg-info
+*.pyc
+*.eggs
