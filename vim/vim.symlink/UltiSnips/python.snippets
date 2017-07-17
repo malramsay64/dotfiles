@@ -1,3 +1,11 @@
 snippet pdb "Import pdb and set_trace"
 import ipdb; ipdb.set_trace()
 endsnippet
+
+snippet logging "Import and setup logging"
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logging.basicConfig(level=logging.WARNING)
+endsnippet
