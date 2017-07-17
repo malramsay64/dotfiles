@@ -21,3 +21,6 @@ task/task.symlink/.*
 # Ignore tmux plugins
 tmux/tmux.symlink/plugins
 tmux/tmux.symlink/resurrect
+
+# zsh files
+zsh/sourceables.sh
