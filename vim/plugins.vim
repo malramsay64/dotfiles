@@ -34,11 +34,14 @@ call plug#begin()
 
 " Colourschemes
 Plug 'rakr/vim-one'
-Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] } " Examing syntax highlighting rules
 Plug 'joshdick/onedark.vim'
 Plug 'monkoose/boa.vim'
 Plug 'dikiaap/minimalist'
 Plug 'chriskempson/base16-vim'
+Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'KeitaNakamura/neodark.vim'
+
+Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] } " Examing syntax highlighting rules
 
 " Status bar
 Plug 'vim-airline/vim-airline'
@@ -55,13 +58,13 @@ Plug 'malramsay64/vim-taskwarrior', Cond(system('hash task && echo 1'))
 
 " Syntax checking
 Plug 'neomake/neomake'
+Plug 'janko-m/vim-test'
 
 " Filetype specific plugins
 Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 "Plug 'wilywampa/vim-ipython'
-"Plug 'bfredl/nvim-ipy'
 Plug 'kassio/neoterm'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
@@ -96,15 +99,20 @@ Plug 'Shougo/echodoc.vim'
 Plug 'kana/vim-textobj-user'
 
 " File management
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-"Plug 'vim-ctrlspace/vim-ctrlspace'
+"Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+"Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+"Plug 'airodactyl/neovim-ranger'
+Plug 'rafaqz/ranger.vim'
+"Plug 'tpope/vim-vinegar'
+
 
 " Writing plugins
 Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'rhysd/vim-grammarous'
 Plug 'euclio/vim-markdown-composer', { 'for': 'markdown', 'do': function('BuildComposer') }
+Plug 'beloglazov/vim-online-thesaurus'
+Plug 'junegunn/goyo.vim', { 'on': [ 'Goyo' ] }
 
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters

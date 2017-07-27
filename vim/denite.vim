@@ -15,6 +15,7 @@ call denite#custom#map('normal', 'a', '<denite:do_action:add>', 'noremap')
 call denite#custom#map('normal', 'd','<denite:do_action:delete>','noremap')
 call denite#custom#map('normal', 'r', '<denite:do_action:reset>', 'noremap')
 call denite#custom#map('normal', 'cc', '<denite:do_action:commit>', 'noremap')
+call denite#custom#map('normal', 'v', '<denite:do_action:vsplit>', 'noremap')
 
 
 call denite#custom#option('_', 'highlight_mode_insert', 'None')
@@ -37,9 +38,10 @@ call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
+call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
 
 
-nnoremap <Leader>d :<C-u>DeniteBufferDir file_rec -mode=insert<CR>
+nnoremap <Leader>n :<C-u>Denite file_rec -mode=insert<CR>
 nnoremap <leader>b :<C-U>Denite buffer<CR>
 
 " }}}
