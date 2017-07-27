@@ -29,6 +29,10 @@ endif
 let g:email = "malramsay64@gmail.com"
 let g:username = "Malcolm Ramsay"
 
+if has('nvim')
+  let $VISUAL = 'nvr -cc split --remote-wait'
+endif
+
 "}}}
 "Colours {{{
 
@@ -322,7 +326,16 @@ let phd_wiki.diary_header = 'PhD Logbook'
 let flurosat_wiki = copy(wiki_default)
 let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
 
-let g:vimwiki_list = [home_wiki, phd_wiki, flurosat_wiki]
+let md_phd_wiki = copy(wiki_default)
+let md_phd_wiki.path = '~/Documents/notes/PhDmd/'
+let md_phd_wiki.syntax = 'markdown'
+let md_phd_wiki.ext = '.mkd'
+let md_phd_wiki.diary_rel_path = 'logbook/'
+let md_phd_wiki.diary_header = 'PhD Logbook'
+
+let g:vimwiki_ext2syntax = {'.mkd': 'markdown'}
+
+let g:vimwiki_list = [home_wiki, phd_wiki, flurosat_wiki, md_phd_wiki]
 "nmap <Leader>wp 2<Leader>ww<Leader>w<Leader>w
 "nmap <Leader>ww <count>
 "nmap <Leader>wo :2VimwikiDiaryIndex<CR>
