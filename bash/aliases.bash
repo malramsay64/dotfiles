@@ -38,6 +38,9 @@ alias gd='git diff'
 alias ga='git add'
 alias gs='git status'
 
+# Editor aliases
+alias v=$EDITOR
+
 # Function to revert all files to default permissions
 defmod() {
     find "$1" -type d -exec chmod 755 {} \;
@@ -48,9 +51,4 @@ defmod() {
 if hash qstat 2>/dev/null; then
     alias qstatu='qstat | grep $USER'
     alias qdelall='qdel $(qstat -u $USER | grep ^[0-9] | cut -d. -f1 | tr "\n" " ")'
-fi
-
-# Linux only aliases
-if [[ uname == "Linux" ]]; then
-    alias open='xdg-open'
 fi
