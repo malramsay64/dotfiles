@@ -65,6 +65,10 @@ else
     export MANPAGER="vim +'set ft:man' -"
 fi
 
+function mman(){
+    man $1 || $1 --help | nvim +'set ft=man' -
+}
+
 # setup prompt
 source $DOTFILES/zsh/prompt.zsh
 
