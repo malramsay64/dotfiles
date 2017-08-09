@@ -17,18 +17,12 @@ autocmd! BufEnter * :checktime
 
 filetype plugin indent on      "load filetype specific indent and plugin files
 
-set hidden
-
 " Python support
 if isdirectory($HOME."/.miniconda3")
-    if !has('python3')
-        let g:python3_host_prog = $HOME.'/.miniconda3/envs/neovim3/bin/python'
-    endif
+    "let g:python3_host_prog = $HOME.'/.miniconda3/envs/neovim3/bin/python'
     let g:python_host_prog = $HOME.'/.miniconda3/envs/neovim2/bin/python'
 elseif isdirectory($HOME."/.pyenv")
-    if !has('python3')
-        let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
-    endif
+    "let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
     let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
 endif
 
@@ -265,9 +259,9 @@ set whichwrap+=<,>,h,l,[,]      " left right wraps to next/previous lines
 
 " return to last edit position when opening files
 autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$")|
-    \   exe "normal! g`\"" |
-    \ endif
+            \ if line("'\"") > 0 && line("'\"") <= line("$")|
+            \   exe "normal! g`\"" |
+            \ endif
 
 
 "}}}
@@ -455,27 +449,6 @@ if has('python3')
 endif
 
 "}}}
-" completor {{{
-
-let g:completor_python_binary = $HOME.'.miniconda3/envs/neovim3'
-let g:completor_clang_binary = '/usr/local/opt/llvm/bin/clang'
-
-"
-" }}}
-" clang_complete {{{
-let g:clang_use_library = 1
-let g:clang_library_path='/usr/local/opt/llvm/lib'
-
-let g:clang_user_options = '-std=c+=11'
-let g:clang_complete_auto = 1
-let g:clang_hl_errors = 1
-let g:clang_snippets = 1
-let g:clang_snippets_engine = 'ultisnips'
-let g:clang_close_preview = 1
-let g:clang_auto_select = 1
-let g:clang_omnicppcomplete_compliance = 0
-let g:clang_make_default_keymappings = 0
-" }}}
 " ultisnips {{{
 
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -581,29 +554,38 @@ let g:jedi#completions_enabled = 0
 let g:jedi#popup_on_dot = 0
 
 " }}}
-" vim-template {{{
+" Goyo {{{
+
+function! s:goyo_enter()
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+    set noshowmode
+    set noshowcmd
+    set scrolloff=999
+    call deoplete#disable()
+endfunction
+
+function! s:goyo_leave()
+    silent !tmux set status on
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+    set showmode
+    set showcmd
+    set scrolloff=5
+    call deoplete#enable()
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+nnoremap <leader>eg :Goyo<CR>
+"
+" }}}
+" template {{{
+
 let g:templates_directory = [$DOTFILES.'/vim/templates']
 
 " }}}
-" citation {{{
-
-let g:citation_vim_bibtex_file='~/Documents/PhD/bibtex/library.bib'
-let g:citation_vim_mode='bibtex'
-let g:citation_vim_cache_path='~/.vim/citation_cache'
-let g:citation_vim_et_al_limit=5
-
-let g:citation_vim_description_format = "{} ‴{}‴ \˝{}\˝ ‹{}› ₋{}₋ ₍{}₎"
-let g:citation_vim_description_fields = ["key", "title", "journal", "doi", "author", "year"]
-
-" }}}
-" easygit {{{ 
-
-"let g:easygit_enable_command = 1
-"let g:easygit_auto_lcd = 1
-
-" }}}
 " ranger {{{
-
 map <leader>rr :RangerEdit<cr>
 map <leader>rv :RangerVSplit<cr>
 map <leader>rs :RangerSplit<cr>
@@ -615,33 +597,6 @@ map <leader>rR :set operatorfunc=RangerBrowseEdit<cr>g@
 map <leader>rT :set operatorfunc=RangerBrowseTab<cr>g@
 map <leader>rS :set operatorfunc=RangerBrowseSplit<cr>g@
 map <leader>rV :set operatorfunc=RangerBrowseVSplit<cr>g@
-
-" }}}
-" Goyo {{{
-
-let g:goyo_width = 120
-
-function! s:goyo_enter()
-  silent !tmux set status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-  call deoplete#disable()
-endfunction
-
-function! s:goyo_leave()
-  silent !tmux set status on
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-  set showmode
-  set showcmd
-  set scrolloff=5
-  call deoplete#enable()
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
 " }}}
 " neoterm {{{
 let g:neoterm_position = 'horizontal'
@@ -661,5 +616,6 @@ nnoremap <silent> <leader>tc :call neoterm#kill()<cr>
 
 " Git commands
 command! -nargs=+ Tg :T git <args>
+" }}}
 " }}}
 " vim:foldmethod=marker:foldlevel=1:filetype=vim
