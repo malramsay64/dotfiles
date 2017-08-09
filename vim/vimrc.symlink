@@ -41,7 +41,7 @@ syntax enable           " enable syntax processing
 
 " Enable truecolour support in neovim >= 0.1.5 || vim >= 7.4.1799
 if has("termguicolors")
-    "set termguicolors
+    set termguicolors
 endif
 
 " Load colourscheme in vim with tmux
@@ -372,7 +372,7 @@ let g:taskwiki_sort_order='urgency+,due+,project+'
 " }}}
 " fugitive {{{
 
-"nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gc :Gcommit<CR>
 "nmap <Leader>gs :Gstatus<CR>
 
 " }}}
@@ -394,9 +394,12 @@ augroup END
 let g:neomake_python_enabled_makers = ['pydocstyle', 'pycodestyle', 'pylint', 'mypy']
 let g:neomake_python_pycodesyle_args = ['--ignore=E123']
 
+nmap <leader>nd :NeomakeDisable<CR>
+nmap <leader>nt :NeomakeToggle<CR>
+nmap <leader>ne :NeomakeEnable<CR>
+
 " }}}
 " vim-taskwarrior {{{
-
 
 " Highlighting field
 let g:task_highlight_field = 0
@@ -449,6 +452,20 @@ if has('python3')
 endif
 
 "}}}
+" clang_complete {{{
+let g:clang_use_library = 1
+let g:clang_library_path='/usr/local/opt/llvm/lib'
+
+let g:clang_user_options = '-std=c+=11'
+let g:clang_complete_auto = 1
+let g:clang_hl_errors = 1
+let g:clang_snippets = 1
+let g:clang_snippets_engine = 'ultisnips'
+let g:clang_close_preview = 1
+let g:clang_auto_select = 1
+let g:clang_omnicppcomplete_compliance = 0
+let g:clang_make_default_keymappings = 0
+" }}}
 " ultisnips {{{
 
 let g:UltiSnipsExpandTrigger="<c-k>"
