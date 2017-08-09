@@ -37,7 +37,7 @@ Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
 Plug 'monkoose/boa.vim'
 Plug 'dikiaap/minimalist'
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'KeitaNakamura/neodark.vim'
 
@@ -68,6 +68,7 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'kassio/neoterm'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
+Plug 'fs111/pydoc.vim', { 'on': 'Pydoc' }
 
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
@@ -79,6 +80,7 @@ Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'cespare/vim-toml'
 Plug 'robertbasic/vim-hugo-helper'
+Plug 'rust-lang/rust.vim'
 
 " Denite
 Plug 'Shougo/denite.nvim'
@@ -99,10 +101,10 @@ Plug 'Shougo/echodoc.vim'
 Plug 'kana/vim-textobj-user'
 
 " File management
-"Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-"Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 "Plug 'airodactyl/neovim-ranger'
-Plug 'rafaqz/ranger.vim'
+"Plug 'rafaqz/ranger.vim'
 "Plug 'tpope/vim-vinegar'
 
 
@@ -127,7 +129,7 @@ Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
 Plug 'haya14busa/incsearch.vim'
 Plug 'aperezdc/vim-template'
-Plug 'mklabs/split-term.vim'
+Plug 'kassio/neoterm'
 
 
 " all plugins must be added before this line

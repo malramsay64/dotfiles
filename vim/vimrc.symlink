@@ -50,8 +50,6 @@ if has("termguicolors")
     "set termguicolors
 endif
 
-
-
 " Load colourscheme in vim with tmux
 if !has("nvim")
     set t_8b=[48;2;%lu;%lu;%lum
@@ -60,8 +58,6 @@ endif
 
 " Allow italics in terminal
 let g:one_allow_italics = 1
-" Revert to 16 colours of terminal when no truecolour support
-let g:onedark_termcolors=16
 
 augroup colours
     autocmd!
@@ -111,7 +107,7 @@ endfun
 " Remove whitespace before writing to files
 augroup StripWhitespaces
     autocmd!
-    autocmd BufWritePre *.h,*.c,*.cpp,Makefile,*.hoomd,*.py :call <SID>StripTrailingWhitespaces()
+    autocmd BufWritePre *.h,*.c,*.cpp,Makefile,*.hoomd,*.py,*.rst :call <SID>StripTrailingWhitespaces()
 augroup END
 
 "}}}
@@ -141,6 +137,34 @@ set splitright          "open splits by default to the right
 
 " common mistypings of exit and save
 cabbrev W w
+cabbrev Q q
+cabbrev Wq wq
+cabbrev WQ wq
+
+" Disable mouse 
+"set mouse=
+
+"}}}
+" Custom Shortcuts {{{
+
+" Neovim terminal mappings
+if has('nvim')
+    tnoremap <C-w>h <C-\><C-N><C-w>h
+    tnoremap <C-w>j <C-\><C-N><C-w>j
+    tnoremap <C-w>k <C-\><C-N><C-w>k
+    tnoremap <C-w>l <C-\><C-N><C-w>l
+endif
+
+" jk is escape
+inoremap jk <esc>
+inoremap jK <esc>
+inoremap JK <esc>
+inoremap Jk <esc>
+
+" leader is <space>
+let mapleader="\<space>"
+
+" go to next split
 cabbrev Q q
 cabbrev Wq wq
 cabbrev WQ wq
@@ -332,23 +356,17 @@ let phd_wiki = copy(wiki_default)
 let phd_wiki.path = '~/Documents/notes/PhD/'
 let phd_wiki.diary_rel_path = 'logbook/'
 let phd_wiki.diary_header = 'PhD Logbook'
+let phd_wiki.path_html = '~/Documents/notes/html/PhD/'
+let phd_wiki.auto_export = 1
+let phd_wiki.html_template = '~/Documents/notes/template.html'
+let phd_wiki.template_path = '~/Documents/notes/'
+let phd_wiki.template_default = 'template'
+let phd_wiki.template_ext = '.html'
 
 let flurosat_wiki = copy(wiki_default)
 let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
 
-let md_phd_wiki = copy(wiki_default)
-let md_phd_wiki.path = '~/Documents/notes/PhDmd/'
-let md_phd_wiki.syntax = 'markdown'
-let md_phd_wiki.ext = '.mkd'
-let md_phd_wiki.diary_rel_path = 'logbook/'
-let md_phd_wiki.diary_header = 'PhD Logbook'
-
-let g:vimwiki_ext2syntax = {'.mkd': 'markdown'}
-
-let g:vimwiki_list = [home_wiki, phd_wiki, flurosat_wiki, md_phd_wiki]
-"nmap <Leader>wp 2<Leader>ww<Leader>w<Leader>w
-"nmap <Leader>ww <count>
-"nmap <Leader>wo :2VimwikiDiaryIndex<CR>
+let g:vimwiki_list = [home_wiki, phd_wiki, flurosat_wiki]
 
 "}}}
 " TaskWiki {{{
@@ -519,16 +537,19 @@ map g# <Plug>(incsearch-nohl-g#)
 " }}}
 " grammarous {{{
 
-augroup grammarous
-    autocmd!
-    autocmd BufWritePost *.md,*.mkd GrammarousCheck
-    autocmd BufWritePost *.wiki GrammarousCheck
-    "autocmd FileType text :GrammarousCheck
-augroup END
+"augroup grammarous
+"autocmd!
+"autocmd FileType markdown :GrammarousCheck
+"autocmd FileType vimwiki :GrammarousCheck
+"autocmd FileType text :GrammarousCheck
+"augroup END
 
 let g:grammarous#use_vim_spelllang = 1
 let g:grammarous#move_to_first_error = 0
 let g:grammarous#default_lang = "en_au"
+
+nnoremap <leader>gg :GrammarousCheck<CR>
+nnoremap <leader>gr :GrammarousReset<CR>
 
 " }}}
 " isort {{{
@@ -621,5 +642,24 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+" }}}
+" neoterm {{{
+let g:neoterm_position = 'horizontal'
+let g:neoterm_automap_keys = '<leader>tt'
+
+nnoremap <silent> <f10> :TREPLSendFile<cr>
+nnoremap <silent> <f9> :TREPLSendLine<cr>
+vnoremap <silent> <f9> :TREPLSendSelection<cr>
+
+" Useful maps
+" hide/close terminal
+nnoremap <silent> <leader>th :call neoterm#close()<cr>
+" clear terminal
+nnoremap <silent> <leader>tl :call neoterm#clear()<cr>
+" kills the current job (send a <c-c>)
+nnoremap <silent> <leader>tc :call neoterm#kill()<cr>
+
+" Git commands
+command! -nargs=+ Tg :T git <args>
 " }}}
 " vim:foldmethod=marker:foldlevel=1:filetype=vim
