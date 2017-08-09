@@ -38,9 +38,6 @@ alias gd='git diff'
 alias ga='git add'
 alias gs='git status'
 
-# Editor aliases
-alias v=$EDITOR
-
 # Function to revert all files to default permissions
 defmod() {
     find "$1" -type d -exec chmod 755 {} \;

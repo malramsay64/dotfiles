@@ -14,19 +14,31 @@ export _Z_DATA="$HOME/.z/z"
 source "$HOME/dotfiles/bash/z/z.sh"
 
 # Setting editor to nvim if present
-if [ "$(hash nvim 2>/dev/null && echo 1)" ]; then
+if [ "$(hash nvr 2>/dev/null && echo 1)" ]; then
+    export EDITOR="nvr --remote-silent"
+elif [ "$(hash nvim 2>/dev/null && echo 1)" ]; then
     export EDITOR=nvim
 elif [ -e "$HOME/.local/bin/vim" ]; then
     export EDITOR=$HOME/.local/bin/vim
 else
     export EDITOR=vim
 fi
+# Editor aliases
+alias v=$EDITOR
 
 # Have consistent location for forwarded ssh authentication socket
 if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
     ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-agent-sock"
     export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
 fi
+
+# pyenv
+#if [ ! -d "$HOME/.pyenv" ]; then
+    #curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+#fi
+#export PATH="/Users/malcolm/.pyenv/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 # Adding home directory bin to path
 [ -d "$HOME/dotfiles/bin" ] && export PATH="$PATH:$HOME/dotfiles/bin"
