@@ -58,6 +58,7 @@ let s:menus.Shell.file_candidates = [
         \ ['~/dotfiles/bash/environment.bash', '~/dotfiles/bash/environment.bash'], 
         \ ['~/dotfiles/bash/prompt.bash', '~/dotfiles/bash/prompt.bash'], 
         \ ['~/.bashrc', '~/.bashrc'], 
+        \ ['alacritty', '~/.config/alacritty/alacritty.yml'],
     \]
 let s:menus.Vim = { 'description': 'Edit Vim setup' }
 let s:menus.Vim.file_candidates = [
@@ -71,6 +72,11 @@ let s:menus.ssh.file_candidates = [
         \ ['~/.ssh/config','~/.ssh/config'],
         \ ['~/.ssh/known_hosts','~/.ssh/known_hosts'],
         \ ['~/.ssh/authorized_keys','~/.ssh/authorized_keys'],
+    \]
+let s:menus.tmux = { 'description': 'Edit tmux configuration' }
+let s:menus.tmux.file_candidates = [ 
+        \ ['~/.tmux.conf','~/dotfiles/tmux/tmux.conf.symlink'],
+        \ ['tmux theme','~/dotfiles/tmux/theme.sh'],
     \]
 
 call denite#custom#var('menu', 'menus', s:menus)
