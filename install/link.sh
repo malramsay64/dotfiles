@@ -42,10 +42,10 @@ for file in $linkables; do
     fi
 done
 
-linkconfig=$( find -H "$DOTFILES" -name '*.configlink' -not -regex ".*\.git.*")
+linkconfig=$(ls "$DOTFILES/config")
 for file in $linkconfig; do
     link=false
-    target="$HOME/.config/$(basename $file '.configlink' )"
+    target="$HOME/.config/$file"
     if [ -e $target ]; then
         echo -n "~${target#$HOME} already exists... Replace {y/n}: "
         read replace
@@ -73,6 +73,6 @@ for file in $linkconfig; do
     fi
     if [ $link ]; then
         echo "Creating symlink for $file"
-        ln -s $file $target
+        ln -s "$DOTFILES/config/$file/" "$target"
     fi
 done

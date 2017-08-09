@@ -1,0 +1,31 @@
+search jedi
+search jedi-vim
+cd .
+cd simulation
+rename 2017-06-22-gamma_msd.pdf
+open_with la
+find h
+cd 
+rename 2017-06-23-motion.png
+rename 
+rename 2017-06-23-motion_gamma_max.png
+set colorscheme jungle
+open_with h
+search config
+search confi
+open_with vim
+jkh
+Term
+open_with
+shell cphd --date yesterday %s
+
+shell 
+delete
+q
+open_with jk
+search iris
+open_with preview
+open_with /Applications/preview.app
+open_with 
+rename _images
+rename assets

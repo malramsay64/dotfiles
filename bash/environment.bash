@@ -33,18 +33,20 @@ if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
 fi
 
 # pyenv
-#if [ ! -d "$HOME/.pyenv" ]; then
-    #curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-#fi
-#export PATH="/Users/malcolm/.pyenv/bin:$PATH"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+if [ ! -d "$HOME/.pyenv" ]; then
+    curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+fi
+export PATH="/Users/malcolm/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+CFLAGS+=" -I$(brew --prefix openssl)/include" 
+LDFLAGS+=" -L$(brew --prefix openssl)/lib"
 
 # Adding home directory bin to path
 [ -d "$HOME/dotfiles/bin" ] && export PATH="$PATH:$HOME/dotfiles/bin"
 [ -d "$HOME/.bin" ] && export PATH="$HOME/.bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
-[ -d "$HOME/.miniconda3/bin" ] && export PATH="$HOME/.miniconda3/bin:$PATH"
+#[ -d "$HOME/.miniconda3/bin" ] && export PATH="$HOME/.miniconda3/bin:$PATH"
 
 # Test interactive shell
 [[ $- == *i* ]] && stty -ixon
