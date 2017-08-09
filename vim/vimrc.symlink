@@ -47,7 +47,7 @@ syntax enable           " enable syntax processing
 
 " Enable truecolour support in neovim >= 0.1.5 || vim >= 7.4.1799
 if has("termguicolors")
-    "set termguicolors
+    set termguicolors
 endif
 
 
@@ -60,8 +60,6 @@ endif
 
 " Allow italics in terminal
 let g:one_allow_italics = 1
-" Revert to 16 colours of terminal when no truecolour support
-let g:onedark_termcolors=16
 
 augroup colours
     autocmd!
@@ -360,7 +358,7 @@ let g:taskwiki_sort_order='urgency+,due+,project+'
 " }}}
 " fugitive {{{
 
-"nmap <Leader>gc :Gcommit<CR>
+nmap <Leader>gc :Gcommit<CR>
 "nmap <Leader>gs :Gstatus<CR>
 
 " }}}
@@ -382,9 +380,12 @@ augroup END
 let g:neomake_python_enabled_makers = ['pydocstyle', 'pycodestyle', 'pylint', 'mypy']
 let g:neomake_python_pycodesyle_args = ['--ignore=E123']
 
+nmap <leader>nd :NeomakeDisable<CR>
+nmap <leader>nt :NeomakeToggle<CR>
+nmap <leader>ne :NeomakeEnable<CR>
+
 " }}}
 " vim-taskwarrior {{{
-
 
 " Highlighting field
 let g:task_highlight_field = 0
@@ -437,13 +438,6 @@ if has('python3')
 endif
 
 "}}}
-" completor {{{
-
-let g:completor_python_binary = $HOME.'.miniconda3/envs/neovim3'
-let g:completor_clang_binary = '/usr/local/opt/llvm/bin/clang'
-
-"
-" }}}
 " clang_complete {{{
 let g:clang_use_library = 1
 let g:clang_library_path='/usr/local/opt/llvm/lib'

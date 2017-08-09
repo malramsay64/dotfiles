@@ -99,10 +99,10 @@ Plug 'Shougo/echodoc.vim'
 Plug 'kana/vim-textobj-user'
 
 " File management
-"Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-"Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 "Plug 'airodactyl/neovim-ranger'
-Plug 'rafaqz/ranger.vim'
+"Plug 'rafaqz/ranger.vim'
 "Plug 'tpope/vim-vinegar'
 
 

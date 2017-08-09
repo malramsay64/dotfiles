@@ -100,7 +100,7 @@ nnoremap <leader>gc :Gcommit<CR>
 " citation {{{
 "
 "nnoremap <Leader>c :<C-u>Unite citation/combined -buffer-name=citation -highlight-mode-insert='None'<CR>
-nnoremap <silent><Leader>c :<C-u>Denite -buffer-name=citation -start-insert -default-action=append Unite:citation/key<cr>
+nnoremap <silent><Leader>c :<C-u>Denite -buffer-name=citation -mode=insert -default-action=append Unite:citation/key<cr>
 nnoremap <silent><Leader>co :<C-u>Unite -input=<C-R><C-W> -default-action=start -force-immediately citation/file<cr>
 nnoremap <silent><Leader>ct :<C-u>Denite -buffer-name=citation -default-action=append unite:citation/key<cr>
 
