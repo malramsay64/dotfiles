@@ -9,8 +9,8 @@ compinit
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt appendhistory sharehistory incappendhistory autocd extendedglob
 unsetopt beep
 bindkey -v
@@ -69,8 +69,23 @@ function mman(){
     man $1 || $1 --help | nvim +'set ft=man' -
 }
 
+# Setup pyenv
+export PATH="/Users/malcolm/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+#if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
+  #source "${VIRTUAL_ENV}/bin/activate"
+#fi
+
 # setup prompt
 source $DOTFILES/zsh/prompt.zsh
 
 # Source local changes
 [ -e $HOME/.bashrc.local ] && source $HOME/.bashrc.local
+
+
+PATH="/Users/malcolm/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/malcolm/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/malcolm/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/malcolm/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/malcolm/perl5"; export PERL_MM_OPT;

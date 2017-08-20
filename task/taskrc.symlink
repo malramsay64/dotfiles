@@ -12,12 +12,24 @@
 
 # Files
 data.location=~/.task
- 
+
+# Colourscheme
+include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
+rule.color.merge=no
+color.blocked=color15 on color10
+color.blocking=color0 on color10
+color.vit.selection=color0 on color4
+
 # Personalise coefficients
-urgency.blocking.coefficient = 3.0
+urgency.blocking.coefficient = 2.0
 urgency.user.project.Molecules.coefficient = 2.0
 urgency.user.project.Ising.coefficient = -4.0
-urgency.age.coefficient = 1.0
+urgency.age.coefficient = 0.8
+urgency.due.coefficient = 15.0
+
+# Contexts
+context.PhD=+PhD
+context.home=-PhD
 
 # Taskwarrrior Pomodoro settings
 # https://github.com/coddingtonbear/taskwarrior-pomodoro
@@ -26,3 +38,9 @@ pomodoro.defaultFilter=due.before:1w
 pomodoro.displayCount=true
 
 include ~/.task/taskrc.local
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-1week ) and ( +PENDING or +WAITING )
