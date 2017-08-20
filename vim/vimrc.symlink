@@ -18,12 +18,12 @@ autocmd! BufEnter * :checktime
 filetype plugin indent on      "load filetype specific indent and plugin files
 
 " Python support
-if isdirectory($HOME."/.miniconda3")
+let g:loaded_python_provider = 1
+if isdirectory($HOME."/.pyenv")
+    let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+elseif isdirectory($HOME."/.miniconda3")
     "let g:python3_host_prog = $HOME.'/.miniconda3/envs/neovim3/bin/python'
-    let g:python_host_prog = $HOME.'/.miniconda3/envs/neovim2/bin/python'
-elseif isdirectory($HOME."/.pyenv")
-    "let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
-    let g:python_host_prog = $HOME.'/.pyenv/versions/neovim2/bin/python'
+    "let g:python_host_prog = $HOME.'/.miniconda3/envs/neovim2/bin/python'
 endif
 
 let g:email = "malramsay64@gmail.com"
@@ -159,34 +159,6 @@ inoremap Jk <esc>
 let mapleader="\<space>"
 
 " go to next split
-cabbrev Q q
-cabbrev Wq wq
-cabbrev WQ wq
-
-" Disable mouse 
-"set mouse=
-
-"}}}
-" Custom Shortcuts {{{
-
-" Neovim terminal mappings
-if has('nvim')
-    tnoremap <C-w>h <C-\><C-N><C-w>h
-    tnoremap <C-w>j <C-\><C-N><C-w>j
-    tnoremap <C-w>k <C-\><C-N><C-w>k
-    tnoremap <C-w>l <C-\><C-N><C-w>l
-endif
-
-" jk is escape
-inoremap jk <esc>
-inoremap jK <esc>
-inoremap JK <esc>
-inoremap Jk <esc>
-
-" leader is <space>
-let mapleader="\<space>"
-
-" go to next split
 nnoremap <Leader>w <c-w>w
 " Turn off search highlighting
 nnoremap <Leader>h :nohlsearch<CR>
@@ -233,6 +205,12 @@ set smartcase " overrides ignorecase if uppercase characters in search query
 
 set magic     " regular expressions
 
+" Use ripgrep for search if available
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
 "}}}
 "Folding {{{
 
@@ -244,7 +222,7 @@ set foldnestmax=6     " 6 nested folds max
 
 "set foldmethod=indent " fold based on indent
 
-" set modelines=1       " last line of file is checked to run as a command
+set modelines=1       " last line of file is checked to run as a command
 
 "}}}
 "Movement {{{
@@ -312,7 +290,7 @@ source $DOTFILES/vim/denite.vim
 " nerdtree {{{
 
 " Open explorer to current directory
-"nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " }}}
 " airline {{{
@@ -326,6 +304,7 @@ let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
 let g:airline#extensions#wordcount#enabled = 1
 let g:airline#extensions#wordcount#filetypes = '\vhelp|vimwiki|markdown|rst|org|text|asciidoc|tex'
 
+let g:airline#extensions#virtualenv#enabled = 1
 "}}}
 " Vimwiki {{{
 
@@ -394,9 +373,9 @@ augroup END
 let g:neomake_python_enabled_makers = ['pydocstyle', 'pycodestyle', 'pylint', 'mypy']
 let g:neomake_python_pycodesyle_args = ['--ignore=E123']
 
-nmap <leader>nd :NeomakeDisable<CR>
-nmap <leader>nt :NeomakeToggle<CR>
-nmap <leader>ne :NeomakeEnable<CR>
+nmap <leader>md :NeomakeDisable<CR>
+nmap <leader>mt :NeomakeToggle<CR>
+nmap <leader>me :NeomakeEnable<CR>
 
 " }}}
 " vim-taskwarrior {{{

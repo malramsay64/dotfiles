@@ -41,7 +41,7 @@ call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
 
 
-nnoremap <Leader>n :<C-u>Denite file_rec -mode=insert<CR>
+"nnoremap <Leader>n :<C-u>Denite file_rec -mode=insert<CR>
 nnoremap <leader>b :<C-U>Denite buffer<CR>
 
 " }}}

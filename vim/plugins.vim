@@ -50,10 +50,10 @@ Plug 'vim-airline/vim-airline-themes'
 " Vim Wiki
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 "Plug '~/Documents/Programming/vimwiki'
-Plug 'tbabej/taskwiki'
+"Plug 'tbabej/taskwiki'
 
 " Task warrior
-Plug 'malramsay64/vim-taskwarrior', Cond(system('hash task && echo 1'))
+Plug 'malramsay64/vim-taskwarrior', Cond(system('hash task && echo 1'), { 'on': 'TW' })
 "Plug '~/Documents/Programming/vim-taskwarrior', Cond(system('hash task && echo 1'))
 
 " Syntax checking
@@ -68,7 +68,7 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'kassio/neoterm'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
-Plug 'fs111/pydoc.vim', { 'on': 'Pydoc' }
+Plug 'fs111/pydoc.vim'
 
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
