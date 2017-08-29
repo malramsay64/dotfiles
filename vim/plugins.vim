@@ -49,12 +49,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-"Plug '~/Documents/Programming/vimwiki'
 "Plug 'tbabej/taskwiki'
-
-" Task warrior
-Plug 'malramsay64/vim-taskwarrior', Cond(system('hash task && echo 1'), { 'on': 'TW' })
-"Plug '~/Documents/Programming/vim-taskwarrior', Cond(system('hash task && echo 1'))
 
 " Syntax checking
 Plug 'neomake/neomake'
@@ -64,8 +59,8 @@ Plug 'janko-m/vim-test'
 Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-"Plug 'wilywampa/vim-ipython'
-Plug 'kassio/neoterm'
+Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
+Plug 'mklabs/split-term.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
 Plug 'fs111/pydoc.vim'
@@ -87,7 +82,7 @@ Plug 'Shougo/denite.nvim'
 Plug 'Shougo/unite.vim'
 Plug 'rafaqz/citation.vim'
 Plug 'chemzqm/vim-easygit'
-Plug 'chemzqm/denite-git'
+Plug 'malramsay64/denite-git'
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
@@ -112,7 +107,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'rhysd/vim-grammarous'
-Plug 'euclio/vim-markdown-composer', { 'for': 'markdown', 'do': function('BuildComposer') }
+Plug 'euclio/vim-markdown-composer', Cond(executable('cargo'), { 'for': 'markdown', 'do': function('BuildComposer') })
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'junegunn/goyo.vim', { 'on': [ 'Goyo' ] }
 

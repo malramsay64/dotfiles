@@ -10,12 +10,14 @@ Simulation Parameters:
 endsnippet
 
 snippet simdoc "Framework for documenting simulation"
+<div class='simdoc'>
 Simulation Parameters:
 	- host: ${1:hostname}
 	- temps: ${2:temperatures}
 	- steps: ${3:num_steps} million
 	- output: `date +%Y-%m-%d`-${5:output dir}
 	- version: ${6:git_hash}
+</div>
 endsnippet
 
 snippet file "Include a file in PhD logbook"

@@ -328,6 +328,7 @@ let home_wiki.path_html = '~/Documents/notes/html/personal/'
 let phd_wiki = copy(wiki_default)
 let phd_wiki.path = '~/Documents/notes/PhD/'
 let phd_wiki.diary_rel_path = 'logbook/'
+let phd_wiki.diary_index = 'index'
 let phd_wiki.diary_header = 'PhD Logbook'
 let phd_wiki.path_html = '~/Documents/notes/html/PhD/'
 let phd_wiki.auto_export = 1
@@ -340,6 +341,49 @@ let flurosat_wiki = copy(wiki_default)
 let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
 
 let g:vimwiki_list = [home_wiki, phd_wiki, flurosat_wiki]
+
+" Custom image handler for html
+function! VimwikiWikiIncludeHandler(value)
+    let str = a:value
+
+    " complete URL
+    let url_0 = matchstr(str, g:vimwiki_rxWikiInclMatchUrl)
+    " URL parts
+    let link_infos = vimwiki#base#resolve_link(url_0)
+    let descr = matchstr(str, vimwiki#html#incl_match_arg(1))
+    let verbatim_str = matchstr(str, vimwiki#html#incl_match_arg(2))
+
+    let link_infos = vimwiki#base#resolve_link(url_0)
+
+    let url = link_infos.filename
+
+    if link_infos.scheme =~# '\mlocal\|wiki\d\+\|diary'
+        "letlink_infos.filename
+        "let url = vimwiki#path#relpath(VimwikiGet('path'),
+                    "\ link_infos.filename)
+        "if link_infos.scheme =~# '\mwiki\d\+\|diary'
+        "let url = fnamemodify(url, ':r')
+    endif
+    "endif 
+
+    let url = escape(url, '#')
+
+    if fnamemodify(url, ':e') =~ 'pdf'
+        let line = '<figure>'.
+                    \ "<object data=".url." type='application/pdf' height=100% width=100%></object>".
+                    \'<figcaption>Fig: '.descr.'</figcaption>'.
+                    \'</figure>'
+    else
+        let line = '<figure>'.
+                    \ vimwiki#html#linkify_image(url, descr, verbatim_str).
+                    \'<figcaption>Fig: '.descr.'</figcaption>'.
+                    \'</figure>'
+    endif
+
+    " Return the empty string when unable to process link
+    return line
+endfunction
+
 
 "}}}
 " TaskWiki {{{
@@ -612,6 +656,17 @@ nnoremap <silent> <leader>tc :call neoterm#kill()<cr>
 
 " Git commands
 command! -nargs=+ Tg :T git <args>
+" }}}
+" iron.nvim {{{
+
+let g:iron_map_defaults = 0
+let g:iron_new_python_REPL_hooks = ['import numpy as np']
+
+nmap <leader>t <Plug>(iron-send-motion)
+vmap <leader>t <Plug>(iron-send-motion)
+nmap <leader>p <Plug>(iron-repeat-cmd)
+
+
 " }}}
 " }}}
 " vim:foldmethod=marker:foldlevel=1:filetype=vim

@@ -45,7 +45,7 @@ call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
 nnoremap <leader>b :<C-U>Denite buffer<CR>
 
 " }}}
-" Menus {{{
+" Menus code{{{
 
 let s:menus = {}
 let s:menus.Shell = { 'description': 'Edit shell commands'}
@@ -93,7 +93,7 @@ nnoremap <silent> <C-p> :<C-u>Denite file_rec/git -mode=insert<CR>
 
 call denite#custom#option('git', {'mode': 'normal', 'auto_resize': 1})
 
-nnoremap <leader>gs :<C-u>Denite gitstatus -path=%:h -buffer-name=git<CR>
+nnoremap <leader>gs :<C-u>DeniteBufferDir gitstatus -buffer-name=git<CR>
 nnoremap <leader>gc :Gcommit<CR>
 
 " }}}
