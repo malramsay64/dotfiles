@@ -23,7 +23,15 @@ source $DOTFILES/bash/environment.bash
 
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && c ccpleter -o "default" -o "nospace" -W "$(grep "^Host " ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+_ssh_hosts=()
+if [ -e "$HOME/.ssh/config" ]; then
+    _ssh_hosts=($(grep "^Host " ~/.ssh/config | grep -v "[?*]" | cut -d ' ' -f2- | tr '\n' ' '))
+fi
+if [ $#_ssh_hosts -gt 0 ]; then
+    zstyle ':completion:*:ssh:*' hosts $_ssh_hosts
+    zstyle ':completion:*:scp:*' hosts $_ssh_hosts
+    zstyle ':completion:*:rsync:*' hosts $_ssh_hosts
+fi
 
 # Add tab completion for many zsh commands
 if hash brew &> /dev/null && [ -d "$(brew --prefix)/share/zsh-completions" ]; then
@@ -49,7 +57,10 @@ add-zsh-hook preexec _start_timer
 add-zsh-hook precmd  _stop_timer
 
 # histdb alias
-alias histdb='histdb --host'
+#alias histdb='histdb'
+function hist {
+    histdb $1 --host
+}
 
 # aliases for gpg-agent if running, this ensures the correct tty is used
 if gpg-connect-agent /bye &>/dev/null; then
@@ -73,9 +84,6 @@ function mman(){
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
-#if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-  #source "${VIRTUAL_ENV}/bin/activate"
-#fi
 
 # setup prompt
 source $DOTFILES/zsh/prompt.zsh
