@@ -192,6 +192,12 @@ nnoremap [w :tabprev<CR>
 " Shortcut for saving as root
 cmap w!! w !sudo tee > /dev/null %
 
+" Faster window resizing
+nnoremap <C-w>- :5wincmd -<CR>
+nnoremap <C-w>= :5wincmd +<CR>
+nmap <leader>vj :5wincmd +<CR>
+nmap <leader>vk :5wincmd -<CR>
+
 "}}}
 "Searching {{{
 
@@ -402,7 +408,7 @@ nmap <Leader>gc :Gcommit<CR>
 " neomake {{{
 
 " open loclist quickfix list if errors
-let g:neomake_open_list = 2
+let g:neomake_open_list = 0
 
 " run neomake on write
 autocmd! BufWritePost * Neomake

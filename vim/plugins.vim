@@ -82,7 +82,7 @@ Plug 'Shougo/denite.nvim'
 Plug 'Shougo/unite.vim'
 Plug 'rafaqz/citation.vim'
 Plug 'chemzqm/vim-easygit'
-Plug 'malramsay64/denite-git'
+Plug 'chemzqm/denite-git'
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
@@ -124,7 +124,6 @@ Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
 Plug 'haya14busa/incsearch.vim'
 Plug 'aperezdc/vim-template'
-Plug 'kassio/neoterm'
 
 
 " all plugins must be added before this line
