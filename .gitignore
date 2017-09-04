@@ -24,3 +24,7 @@ tmux/tmux.symlink/resurrect
 
 # zsh files
 zsh/sourceables.sh
+
+# Ranger bookmarks
+config/ranger/bookmarks
+config/ranger/history
