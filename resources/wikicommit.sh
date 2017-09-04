@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 #
 # wikicommit.sh
 # Copyright (C) 2017 Malcolm Ramsay <malramsay64@gmail.com>
@@ -8,7 +8,7 @@
 
 (
 
-today = $(date +%Y-%m-%d)
+today=$(date +%Y-%m-%d)
 
 cd "$HOME/Documents/notes"
 git add PhD; git commit -m "PhD update $today"
