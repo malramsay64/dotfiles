@@ -36,11 +36,7 @@ endfunction
 call plug#begin()
 
 " Colourschemes
-Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
-Plug 'monkoose/boa.vim'
-Plug 'dikiaap/minimalist'
-"Plug 'chriskempson/base16-vim'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'KeitaNakamura/neodark.vim'
 
@@ -62,11 +58,9 @@ Plug 'janko-m/vim-test'
 Plug 'fisadev/vim-isort', { 'for': 'python' }
 Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
-Plug 'mklabs/split-term.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
-Plug 'fs111/pydoc.vim'
+Plug 'fs111/pydoc.vim', { 'on': ['Pydoc', 'PydocSearch'] }
 
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
@@ -77,15 +71,19 @@ Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'cespare/vim-toml'
-Plug 'robertbasic/vim-hugo-helper'
-Plug 'rust-lang/rust.vim'
+Plug 'robertbasic/vim-hugo-helper', { 'for': 'markdown' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+" Terminal
+Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
+Plug 'mklabs/split-term.vim'
 
 " Denite
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/unite.vim'
-Plug 'rafaqz/citation.vim'
-Plug 'chemzqm/vim-easygit'
-Plug 'chemzqm/denite-git'
+Plug 'Shougo/denite.nvim', { 'on', ['Denite', 'DeniteBuffer'] }
+Plug 'Shougo/unite.vim', { 'on', ['Denite', 'DeniteBuffer'] }
+Plug 'rafaqz/citation.vim', { 'on', ['Denite', 'DeniteBuffer'] }
+Plug 'chemzqm/vim-easygit', { 'on', ['Denite', 'DeniteBuffer'] }
+Plug 'chemzqm/denite-git', { 'on', ['Denite', 'DeniteBuffer'] }
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
@@ -109,7 +107,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 " Writing plugins
 Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text'] }
-Plug 'rhysd/vim-grammarous'
+Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'euclio/vim-markdown-composer', Cond(executable('cargo'), { 'for': 'markdown', 'do': function('BuildComposer') })
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'junegunn/goyo.vim', { 'on': [ 'Goyo' ] }
@@ -121,8 +119,8 @@ Plug 'tpope/vim-unimpaired'             " complimentatry mappings
 Plug 'tpope/vim-speeddating'            " incr/decr dates
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
-Plug 'airblade/vim-gitgutter'            " git diffs
-Plug 'szw/vim-tags'                      " ctag support
+Plug 'airblade/vim-gitgutter'           " git diffs
+Plug 'szw/vim-tags'                     " ctag support
 Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
 Plug 'haya14busa/incsearch.vim'
