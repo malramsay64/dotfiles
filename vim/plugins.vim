@@ -4,13 +4,16 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
+  augroup pluginstall
+      augroup!
+      autocmd VimEnter * PlugInstall | source $MYVIMRC
+  augroup END
 endif
 
 " Helper function for neovim only plugins
 function! Cond(cond, ...)
-  let opts = get(a:000, 0, {})
-  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+  let l:opts = get(a:000, 0, {})
+  return a:cond ? l:opts : extend(l:opts, { 'on': [], 'for': [] })
 endfunction
 
 " Function to update remote plugins
@@ -20,7 +23,7 @@ endfunction
 
 " Build markdown composer plugin
 function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
+  if a:info.status !=# 'unchanged' || a:info.force
     if has('nvim')
       !cargo build --release
     else
@@ -124,6 +127,7 @@ Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
 Plug 'haya14busa/incsearch.vim'
 Plug 'aperezdc/vim-template'
+Plug 'farmergreg/vim-lastplace'
 
 
 " all plugins must be added before this line

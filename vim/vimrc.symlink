@@ -1,9 +1,9 @@
 " Malcolm Ramsay  .vimrc
 "
+"
 "General {{{
 
 if !has('nvim')
-    set nocompatible        " explicitly get of of vi compatible mode
     set encoding=utf-8
 endif
 
@@ -13,21 +13,22 @@ source $HOME/dotfiles/vim/plugins.vim
 " Vim automatically reads changes to a file
 set autoread
 " Reload changes on FocusGained
-autocmd! BufEnter * :checktime
+augroup vimrc
+    autocmd!
+    autocmd BufEnter * :checktime
+augroup END
 
 filetype plugin indent on      "load filetype specific indent and plugin files
 
 " Python support
 let g:loaded_python_provider = 1
-if isdirectory($HOME."/.pyenv")
+
+if isdirectory($HOME.'/.pyenv')
     let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
-elseif isdirectory($HOME."/.miniconda3")
-    "let g:python3_host_prog = $HOME.'/.miniconda3/envs/neovim3/bin/python'
-    "let g:python_host_prog = $HOME.'/.miniconda3/envs/neovim2/bin/python'
 endif
 
-let g:email = "malramsay64@gmail.com"
-let g:username = "Malcolm Ramsay"
+let g:email = 'malramsay64@gmail.com'
+let g:username = 'Malcolm Ramsay'
 
 " Use existing neovim session if opening from terminal
 if has('nvim') && executable('nvr')
@@ -40,14 +41,12 @@ endif
 syntax enable           " enable syntax processing
 
 " Enable truecolour support in neovim >= 0.1.5 || vim >= 7.4.1799
-if has("termguicolors")
+if has('termguicolors')
     set termguicolors
 endif
 
 " Load colourscheme in vim with tmux
-if !has("nvim")
-    set t_8b=[48;2;%lu;%lu;%lum
-    set t_8f=[38;2;%lu;%lu;%lum
+if !has('nvim')
 endif
 
 " Allow italics in terminal
@@ -57,10 +56,10 @@ augroup colours
     autocmd!
     let s:colours = onedark#GetColors()
     let s:self_color = s:colours.comment_grey
-    autocmd ColorScheme * call onedark#set_highlight("pythonSelf", { "fg": s:self_color, "gui": "italic", "cterm": "italic" })
-    autocmd ColorScheme * call onedark#set_highlight("overLength", { "bg": s:colours.special_grey}) 
-    autocmd FileType * match none
-    autocmd FileType python match overLength /\%>80v.\+/
+    autocmd ColorScheme * call onedark#set_highlight('pythonSelf', { 'fg': s:self_color, 'gui': 'italic', 'cterm': 'italic' })
+    autocmd ColorScheme * call onedark#set_highlight('overLength', { 'bg': s:colours.special_grey})
+    autocmd BufReadPost * match none
+    autocmd BufReadPost *.py match overLength /\%>80v.\+/
 augroup END
 
 " Set colourshecme
@@ -92,10 +91,10 @@ set listchars=tab:>-,trail:-    " show tabs and trailing whitespace
 
 " Remove trailing whitespace from file and return cursor to current position
 function! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l,c)
+    let l:l = line('.')
+    let l:c = col('.')
+    execute('%s/\s\+$//e')
+    call cursor(l:l,l:c)
 endfun
 
 " Remove whitespace before writing to files
@@ -156,7 +155,7 @@ inoremap JK <esc>
 inoremap Jk <esc>
 
 " leader is <space>
-let mapleader="\<space>"
+let g:mapleader='\<space>'
 
 " go to next split
 nnoremap <Leader>w <c-w>w
@@ -188,6 +187,8 @@ inoremap <C-s> <c-g>u<Esc>[s1z=`]A<c-g>u
 " navigate between tabs
 nnoremap ]w :tabnext<CR>
 nnoremap [w :tabprev<CR>
+" Remap for digraphs
+inoremap <C-y> <C-k>
 
 " Shortcut for saving as root
 cmap w!! w !sudo tee > /dev/null %
@@ -212,7 +213,7 @@ set smartcase " overrides ignorecase if uppercase characters in search query
 set magic     " regular expressions
 
 " Use ripgrep for search if available
-if executable("rg")
+if executable('rg')
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
@@ -240,13 +241,6 @@ set modelines=1       " last line of file is checked to run as a command
 set backspace=eol,start,indent  " backspace deletes newlines
 
 set whichwrap+=<,>,h,l,[,]      " left right wraps to next/previous lines
-
-" return to last edit position when opening files
-autocmd BufReadPost *
-            \ if line("'\"") > 0 && line("'\"") <= line("$")|
-            \   exe "normal! g`\"" |
-            \ endif
-
 
 "}}}
 "Backups {{{
@@ -321,73 +315,64 @@ nmap <Leader>wk <Plug>VimwikiDiaryNextDay
 let g:vimwiki_folding = 'syntax'
 
 " Wiki settings
-let wiki_default = {}
-let wiki_default.auto_export = 0
-let wiki_default.auto_toc = 0
-let wiki_default.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh'}
+let s:wiki_default = {}
+let s:wiki_default.auto_export = 0
+let s:wiki_default.auto_toc = 0
+let s:wiki_default.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh'}
 
-let home_wiki = copy(wiki_default)
-let home_wiki.path = '~/Documents/notes/personal/'
-let home_wiki.diary_rel_path = 'diary/'
-let home_wiki.path_html = '~/Documents/notes/html/personal/'
+let s:home_wiki = copy(s:wiki_default)
+let s:home_wiki.path = '~/Documents/notes/personal/'
+let s:home_wiki.diary_rel_path = 'diary/'
+let s:home_wiki.path_html = '~/Documents/notes/html/personal/'
 
-let phd_wiki = copy(wiki_default)
-let phd_wiki.path = '~/Documents/notes/PhD/'
-let phd_wiki.diary_rel_path = 'logbook/'
-let phd_wiki.diary_index = 'index'
-let phd_wiki.diary_header = 'PhD Logbook'
-let phd_wiki.path_html = '~/Documents/notes/html/PhD/'
-let phd_wiki.auto_export = 1
-let phd_wiki.html_template = '~/Documents/notes/template.html'
-let phd_wiki.template_path = '~/Documents/notes/'
-let phd_wiki.template_default = 'template'
-let phd_wiki.template_ext = '.html'
+let s:phd_wiki = copy(s:wiki_default)
+let s:phd_wiki.path = '~/Documents/notes/PhD/'
+let s:phd_wiki.diary_rel_path = 'logbook/'
+let s:phd_wiki.diary_index = 'index'
+let s:phd_wiki.diary_header = 'PhD Logbook'
+let s:phd_wiki.path_html = '~/Documents/notes/html/PhD/'
+let s:phd_wiki.auto_export = 1
+let s:phd_wiki.html_template = '~/Documents/notes/template.html'
+let s:phd_wiki.template_path = '~/Documents/notes/'
+let s:phd_wiki.template_default = 'template'
+let s:phd_wiki.template_ext = '.html'
 
-let flurosat_wiki = copy(wiki_default)
-let flurosat_wiki.path = '~/Documents/notes/FluroSat/'
+let s:flurosat_wiki = copy(s:wiki_default)
+let s:flurosat_wiki.path = '~/Documents/notes/FluroSat/'
 
-let g:vimwiki_list = [home_wiki, phd_wiki, flurosat_wiki]
+let g:vimwiki_list = [s:home_wiki, s:phd_wiki, s:flurosat_wiki]
 
 " Custom image handler for html
 function! VimwikiWikiIncludeHandler(value)
-    let str = a:value
+    let l:str = a:value
 
     " complete URL
-    let url_0 = matchstr(str, g:vimwiki_rxWikiInclMatchUrl)
+    let l:url_0 = matchstr(l:str, g:vimwiki_rxWikiInclMatchUrl)
     " URL parts
-    let link_infos = vimwiki#base#resolve_link(url_0)
-    let descr = matchstr(str, vimwiki#html#incl_match_arg(1))
-    let verbatim_str = matchstr(str, vimwiki#html#incl_match_arg(2))
+    let l:link_infos = vimwiki#base#resolve_link(l:url_0)
+    let l:descr = matchstr(l:str, vimwiki#html#incl_match_arg(1))
+    let l:verbatim_str = matchstr(l:str, vimwiki#html#incl_match_arg(2))
 
-    let link_infos = vimwiki#base#resolve_link(url_0)
+    let l:link_infos = vimwiki#base#resolve_link(l:url_0)
 
-    let url = link_infos.filename
+    let l:url = l:link_infos.filename
 
-    if link_infos.scheme =~# '\mlocal\|wiki\d\+\|diary'
-        "letlink_infos.filename
-        "let url = vimwiki#path#relpath(VimwikiGet('path'),
-                    "\ link_infos.filename)
-        "if link_infos.scheme =~# '\mwiki\d\+\|diary'
-        "let url = fnamemodify(url, ':r')
-    endif
-    "endif 
+    let l:url = escape(l:url, '#')
 
-    let url = escape(url, '#')
-
-    if fnamemodify(url, ':e') =~ 'pdf'
-        let line = '<figure>'.
-                    \ "<object data=".url." type='application/pdf' height=100% width=100%></object>".
-                    \'<figcaption>Fig: '.descr.'</figcaption>'.
+    if fnamemodify(l:url, ':e') =~? 'pdf'
+        let l:line = '<figure>'.
+                    \ '<object data='.l:url." type='application/pdf' height=100% width=100%></object>".
+                    \'<figcaption>Fig: '.l:descr.'</figcaption>'.
                     \'</figure>'
     else
-        let line = '<figure>'.
-                    \ vimwiki#html#linkify_image(url, descr, verbatim_str).
-                    \'<figcaption>Fig: '.descr.'</figcaption>'.
+        let l:line = '<figure>'.
+                    \ vimwiki#html#linkify_image(l:url, l:descr, l:verbatim_str).
+                    \'<figcaption>Fig: '.l:descr.'</figcaption>'.
                     \'</figure>'
     endif
 
     " Return the empty string when unable to process link
-    return line
+    return l:line
 endfunction
 
 
@@ -408,14 +393,14 @@ nmap <Leader>gc :Gcommit<CR>
 " neomake {{{
 
 " open loclist quickfix list if errors
-let g:neomake_open_list = 0
+let g:neomake_open_list = 1
 
 " run neomake on write
-autocmd! BufWritePost * Neomake
 
 " Change colour of warning signs
-augroup my_error_signs
+augroup neomake
     autocmd!
+    autocmd BufWritePost * Neomake
     autocmd ColorScheme * hi NeomakeErrorSign ctermfg=red
     autocmd ColorScheme * hi NeomakeWarningSign ctermfg=yellow
 augroup END
@@ -497,22 +482,22 @@ let g:clang_make_default_keymappings = 0
 " }}}
 " ultisnips {{{
 
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+let g:UltiSnipsExpandTrigger='<C-k>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<S-tab>'
 
-let g:UltiSnipsEditSplit="horizontal"
+let g:UltiSnipsEditSplit='horizontal'
 
 " Set the documentation style for the snippets
-let g:ultisnips_python_style="google"
+let g:ultisnips_python_style='google'
 
 " Configuration settings
-let g:snips_author = "Malcolm Ramsay"
-let g:snips_email = "malramsay64@gmail.com"
-let g:snips_github = "https://github.com/malramsay64"
+let g:snips_author = 'Malcolm Ramsay'
+let g:snips_email = 'malramsay64@gmail.com'
+let g:snips_github = 'https://github.com/malramsay64'
 
 " Directories
-let g:UltiSnipsSnippetsDir = "~/.vim/UltiSnips"
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
 
 " }}}
 " vimtex {{{
@@ -565,7 +550,7 @@ map g# <Plug>(incsearch-nohl-g#)
 
 let g:grammarous#use_vim_spelllang = 1
 let g:grammarous#move_to_first_error = 0
-let g:grammarous#default_lang = "en_au"
+let g:grammarous#default_lang = 'en_au'
 
 nnoremap <leader>gg :GrammarousCheck<CR>
 nnoremap <leader>gr :GrammarousReset<CR>
@@ -620,8 +605,11 @@ function! s:goyo_leave()
     call deoplete#enable()
 endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup goyo
+    autocmd!
+    autocmd User GoyoEnter nested call <SID>goyo_enter()
+    autocmd User GoyoLeave nested call <SID>goyo_leave()
+augroup END
 
 nnoremap <leader>eg :Goyo<CR>
 "
