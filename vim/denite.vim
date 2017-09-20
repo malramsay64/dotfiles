@@ -40,8 +40,7 @@ call denite#custom#var('grep', 'final_opts', [])
 
 call denite#custom#source('file_rec', 'sorters', ['sorter_sublime'])
 
-
-"nnoremap <Leader>n :<C-u>Denite file_rec -mode=insert<CR>
+nnoremap <Leader>d :<C-u>DeniteBufferDir file_rec -mode=insert<CR>
 nnoremap <leader>b :<C-U>Denite buffer<CR>
 
 " }}}
@@ -89,6 +88,7 @@ nnoremap <Leader>e :<C-u>Denite menu <CR>
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
     \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
 nnoremap <silent> <C-p> :<C-u>Denite file_rec/git -mode=insert<CR>
 
 call denite#custom#option('git', {'mode': 'normal', 'auto_resize': 1})
