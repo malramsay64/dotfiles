@@ -402,6 +402,15 @@ nmap <Leader>gc :Gcommit<CR>
 let g:neomake_open_list = 1
 
 " run neomake on write
+function! MyOnBattery()
+  return system("pmset -g batt | head -1 | grep 'AC Power' -c")
+endfunction
+
+if MyOnBattery()
+  call neomake#configure#automake('w')
+else
+  call neomake#configure#automake('nw', 1000)
+endif
 
 " Change colour of warning signs
 augroup neomake
@@ -413,6 +422,16 @@ augroup END
 
 let g:neomake_python_enabled_makers = ['pydocstyle', 'pycodestyle', 'pylint', 'mypy']
 let g:neomake_python_pycodesyle_args = ['--ignore=E123']
+
+" Makers for vimwiki filetype
+if executable('proselint')
+    let g:neomake_vimwiki_proselint_maker = {
+                \ 'exe': 'proselint',
+                \ 'errorformat': '%W%f:%l:%c: %m',
+                \ 'postprocess': function('neomake#postprocess#GenericLengthPostprocess'),
+                \}
+    let g:neomake_vimwiki_enabled_makers = ['proselint']
+endif
 
 nmap <leader>md :NeomakeDisable<CR>
 nmap <leader>mt :NeomakeToggle<CR>
