@@ -161,7 +161,7 @@ inoremap JK <esc>
 inoremap Jk <esc>
 
 " leader is <space>
-let g:mapleader='\<space>'
+let g:mapleader="\<space>"
 
 " go to next split
 nnoremap <Leader>w <c-w>w
