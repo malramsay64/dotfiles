@@ -79,11 +79,11 @@ Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 Plug 'mklabs/split-term.vim'
 
 " Denite
-Plug 'Shougo/denite.nvim', { 'on', ['Denite', 'DeniteBuffer'] }
-Plug 'Shougo/unite.vim', { 'on', ['Denite', 'DeniteBuffer'] }
-Plug 'rafaqz/citation.vim', { 'on', ['Denite', 'DeniteBuffer'] }
-Plug 'chemzqm/vim-easygit', { 'on', ['Denite', 'DeniteBuffer'] }
-Plug 'chemzqm/denite-git', { 'on', ['Denite', 'DeniteBuffer'] }
+Plug 'Shougo/denite.nvim'
+Plug 'Shougo/unite.vim'
+Plug 'rafaqz/citation.vim'
+Plug 'chemzqm/vim-easygit'
+Plug 'chemzqm/denite-git'
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
