@@ -51,24 +51,30 @@ endif
 
 " Allow italics in terminal
 let g:one_allow_italics = 1
+let g:quantum_italics=1
+let g:airline_theme='quantum'
 
-augroup colours
-    autocmd!
-    let s:colours = onedark#GetColors()
-    let s:self_color = s:colours.comment_grey
-    autocmd ColorScheme * call onedark#set_highlight('pythonSelf', { 'fg': s:self_color, 'gui': 'italic', 'cterm': 'italic' })
-    autocmd ColorScheme * call onedark#set_highlight('overLength', { 'bg': s:colours.special_grey})
-    autocmd BufReadPost * match none
-    autocmd BufReadPost *.py match overLength /\%>80v.\+/
-augroup END
+if get(g:, 'colors_name', 'default') ==# 'onedark'
+    augroup colours
+        autocmd!
+        let s:colours = onedark#GetColors()
+        let s:self_color = s:colours.comment_grey
+        autocmd ColorScheme * call onedark#set_highlight('pythonSelf', { 'fg': s:self_color, 'gui': 'italic', 'cterm': 'italic' })
+        autocmd ColorScheme * call onedark#set_highlight('overLength', { 'bg': s:colours.special_grey})
+        autocmd BufReadPre * match none
+        autocmd BufReadPost *.py match overLength /\%>80v.\+/
+    augroup END
+endif
 
 " Set colourshecme
 set background=dark " for the dark version
-colorscheme onedark
+"colorscheme onedark
+colorscheme quantum
 
 " Colourscheme override
-highlight Comment cterm=italic gui=italic
+"highlight Comment cterm=italic gui=italic
 highlight pythonSelf cterm=italic gui=italic
+highlight Search guibg='#D6B86F'
 
 "}}}
 "Spaces and Tabs {{{
