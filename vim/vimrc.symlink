@@ -399,7 +399,7 @@ nmap <Leader>gc :Gcommit<CR>
 " neomake {{{
 
 " open loclist quickfix list if errors
-let g:neomake_open_list = 1
+let g:neomake_open_list = 0
 
 " run neomake on write
 function! MyOnBattery()
@@ -422,6 +422,7 @@ augroup END
 
 let g:neomake_python_enabled_makers = ['pydocstyle', 'pycodestyle', 'pylint', 'mypy']
 let g:neomake_python_pycodesyle_args = ['--ignore=E123']
+let g:neomake_python_pydocsyle_args = ['--ignore=D105,D203,D213,D205,D213']
 
 " Makers for vimwiki filetype
 if executable('proselint')
