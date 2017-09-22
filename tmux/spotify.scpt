@@ -6,9 +6,9 @@ if application "Spotify" is running then
         set theAlbum to album of the current track
         set theState to player state as string
         if theState is "playing" then
-            set stateSym to " "
+            set stateSym to " "
         else
-            set stateSym to " "
+            set stateSym to " "
         end if 
         try
             return " ♫  " & stateSym & " " & theName & " - " & theArtist
