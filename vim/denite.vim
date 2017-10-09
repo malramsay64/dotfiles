@@ -49,14 +49,14 @@ nnoremap <leader>b :<C-U>Denite buffer<CR>
 let s:menus = {}
 let s:menus.Shell = { 'description': 'Edit shell commands'}
 let s:menus.Shell.file_candidates = [
-        \ ['~/.zshrc', '~/.zshrc'], 
-        \ ['~/.zshenv', '~/.zshenv'], 
-        \ ['~/dotfiles/zsh/prompt.zsh', '~/dotfiles/zsh/prompt.zsh'], 
-        \ ['~/.bashrc.local', '~/.bashrc.local'], 
-        \ ['~/dotfiles/bash/aliases.bash', '~/dotfiles/bash/aliases.bash'], 
-        \ ['~/dotfiles/bash/environment.bash', '~/dotfiles/bash/environment.bash'], 
-        \ ['~/dotfiles/bash/prompt.bash', '~/dotfiles/bash/prompt.bash'], 
-        \ ['~/.bashrc', '~/.bashrc'], 
+        \ ['~/.zshrc', '~/.zshrc'],
+        \ ['~/.zshenv', '~/.zshenv'],
+        \ ['~/dotfiles/zsh/prompt.zsh', '~/dotfiles/zsh/prompt.zsh'],
+        \ ['~/.bashrc.local', '~/.bashrc.local'],
+        \ ['~/dotfiles/bash/aliases.bash', '~/dotfiles/bash/aliases.bash'],
+        \ ['~/dotfiles/bash/environment.bash', '~/dotfiles/bash/environment.bash'],
+        \ ['~/dotfiles/bash/prompt.bash', '~/dotfiles/bash/prompt.bash'],
+        \ ['~/.bashrc', '~/.bashrc'],
         \ ['alacritty', '~/.config/alacritty/alacritty.yml'],
     \]
 let s:menus.Vim = { 'description': 'Edit Vim setup' }
@@ -65,15 +65,16 @@ let s:menus.Vim.file_candidates = [
         \ ['~/dotfiles/vim/plugins.vim','~/dotfiles/vim/plugins.vim'],
         \ ['~/dotfiles/vim/denite.vim','~/dotfiles/vim/denite.vim'],
         \ ['~/dotfiles/vim/vim.symlink/plugged','~/dotfiles/vim/vim.symlink/plugged'],
+        \ ['ftplugin','~/dotfiles/vim/vim.symlink/ftplugin'],
     \]
 let s:menus.ssh = { 'description': 'Edit ssh configuration' }
-let s:menus.ssh.file_candidates = [ 
+let s:menus.ssh.file_candidates = [
         \ ['~/.ssh/config','~/.ssh/config'],
         \ ['~/.ssh/known_hosts','~/.ssh/known_hosts'],
         \ ['~/.ssh/authorized_keys','~/.ssh/authorized_keys'],
     \]
 let s:menus.tmux = { 'description': 'Edit tmux configuration' }
-let s:menus.tmux.file_candidates = [ 
+let s:menus.tmux.file_candidates = [
         \ ['~/.tmux.conf','~/dotfiles/tmux/tmux.conf.symlink'],
         \ ['tmux theme','~/dotfiles/tmux/theme.sh'],
     \]

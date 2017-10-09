@@ -47,7 +47,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
-Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+"Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+Plug '~/Documents/Programming/vimwiki'
 "Plug 'tbabej/taskwiki'
 
 " Syntax checking
@@ -56,11 +57,11 @@ Plug 'janko-m/vim-test'
 
 " Filetype specific plugins
 Plug 'fisadev/vim-isort', { 'for': 'python' }
-Plug 'bps/vim-textobj-python', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
 Plug 'fs111/pydoc.vim', { 'on': ['Pydoc', 'PydocSearch'] }
+Plug 'lambdalisue/vim-cython-syntax'
 
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
@@ -95,13 +96,14 @@ Plug 'Shougo/echodoc.vim'
 
 " Additional text-objects
 Plug 'kana/vim-textobj-user'
+Plug 'bps/vim-textobj-python'
 
 " File management
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 "Plug 'airodactyl/neovim-ranger'
 "Plug 'rafaqz/ranger.vim'
-"Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-vinegar'
 
 
 " Writing plugins

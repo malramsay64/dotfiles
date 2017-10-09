@@ -46,3 +46,21 @@ snippet task "Create a task entry" b
 * [ ] ${1:Description} -- project:${2:Molecules} +${3:PhD} due:${4:`date -v +2w +%Y-%m-%d`} priority:${5:M}
 $0
 endsnippet
+
+snippet present "A structure for a presentation" b
+== ${1:Title} ==
+
+Opening
+- Atention Getter -> $2
+- Need -> $3
+- Task -> $4
+- Main Message -> $5
+- Preview -> $6
+
+Body
+$0
+
+Conclusion
+- Interpretation -> $7
+- Close -> $8
+endsnippet

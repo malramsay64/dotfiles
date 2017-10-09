@@ -106,7 +106,7 @@ endfun
 " Remove whitespace before writing to files
 augroup StripWhitespaces
     autocmd!
-    autocmd BufWritePre *.h,*.c,*.cpp,Makefile,*.hoomd,*.py,*.rst :call <SID>StripTrailingWhitespaces()
+    autocmd BufWritePre *.h,*.c,*.cpp,Makefile,*.hoomd,*.py,*.rst,*.md,*.wiki,* :call <SID>StripTrailingWhitespaces()
 augroup END
 
 "}}}
@@ -140,7 +140,7 @@ cabbrev Q q
 cabbrev Wq wq
 cabbrev WQ wq
 
-" Disable mouse 
+" Disable mouse
 "set mouse=
 
 "}}}
@@ -286,10 +286,11 @@ source $DOTFILES/vim/denite.vim
 " Open explorer to current directory
 "nnoremap <Leader>n :20Lexplore<CR>
 
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
 "let g:netrw_browse_split = 4
 "let g:netrw_preview = 1
 "let g:netrw_altv = 1
-"let g:netrw_liststyle = 3
 "let g:netrw_keepdir = 0
 
 " }}}
@@ -353,7 +354,7 @@ function! VimwikiWikiIncludeHandler(value)
     let l:str = a:value
 
     " complete URL
-    let l:url_0 = matchstr(l:str, g:vimwiki_rxWikiInclMatchUrl)
+    let url_0 = matchstr(l:str, vimwiki#vars#get_global('rxWikiInclMatchUrl'))
     " URL parts
     let l:link_infos = vimwiki#base#resolve_link(l:url_0)
     let l:descr = matchstr(l:str, vimwiki#html#incl_match_arg(1))
@@ -476,7 +477,7 @@ if has('python3')
     set noshowmode
     let g:echodoc_enable_at_startup = 1
 
-    " Remove preview window 
+    " Remove preview window
     set completeopt-=preview
     "autocmd CompleteDone * pclose!
 
