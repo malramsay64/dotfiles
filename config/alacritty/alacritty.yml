@@ -26,37 +26,31 @@ padding:
   x: 2
   y: 2
 
-# The FreeType rasterizer needs to know the device DPI for best results
-# (changes require restart)
-dpi:
-  x: 255
-  y: 255
-
 # Display tabs using this many cells (changes require restart)
 tabspaces: 4
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
 font:
   # The normal (roman) font face to use.
   normal:
-    family: Iosevka
+    family: Iosevka Nerd Font
     # Style can be specified to pick a specific face.
     style: Regular
 
   # The bold font face
   bold:
-    family: Iosevka
+    family: Iosevka Nerd Font
     # Style can be specified to pick a specific face.
-    style: Bold
+    # style: Bold
 
   # The italic font face
   italic:
-    family: Iosevka
+    family: Iosevka Nerd Font
     # Style can be specified to pick a specific face.
-    style: Italic
+    # style: Italic
 
   # Point size of the font
   size: 14.0
@@ -72,12 +66,12 @@ font:
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
     x: 0.0
-    y: 1.95
+    y: 0.0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
   # false.
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # Should display the render timer
 render_timer: false
@@ -145,6 +139,9 @@ visual_bell:
   animation: EaseOutExpo
   duration: 0
 
+# Background opacity
+background_opacity: 1.0
+
 # Key bindings
 #
 # Each binding is defined as an object with some properties. Most of the
@@ -169,19 +166,26 @@ visual_bell:
 # capitalization must match exactly, and piped items must not have whitespace
 # around them.
 #
-# Either an `action` or `chars` field must be present. `chars` writes the
-# specified string every time that binding is activated. These should generally
-# be escape sequences, but they can be configured to send arbitrary strings of
-# bytes. Possible values of `action` include `Paste` and `PasteSelection`.
+# Either an `action`, `chars`, or `command` field must be present.
+#   `action` must be one of `Paste`, `PasteSelection`, `Copy`, or `Quit`.
+#   `chars` writes the specified string every time that binding is activated.
+#     These should generally be escape sequences, but they can be configured to
+#     send arbitrary strings of bytes.
+#   `command` must be a map containing a `program` string, and `args` array of
+#     strings. For example:
+#     - { ... , command: { program: "alacritty", args: ["-e", "vttest"] } }
 key_bindings:
   - { key: V,        mods: Command, action: Paste                        }
   - { key: C,        mods: Command, action: Copy                         }
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: W,        mods: Command, action: Quit                         }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
-  - { key: Home,                    chars: "\x1b[1~",  mode: ~AppCursor  }
+  - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
-  - { key: End,                     chars: "\x1b[4~",  mode: ~AppCursor  }
+  - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
+  - { key: Key0,     mods: Command, action: ResetFontSize                }
+  - { key: Equals,   mods: Command, action: IncreaseFontSize             }
+  - { key: Minus,    mods: Command, action: DecreaseFontSize             }
   - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
   - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
   - { key: PageUp,                  chars: "\x1b[5~"                     }
@@ -225,10 +229,6 @@ key_bindings:
   - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    }
   - { key: Insert,                  chars: "\x1b[2~"                     }
   - { key: Delete,                  chars: "\x1b[3~"                     }
-  #- { key: Subtract, mods: Control, action: DecreaseFontSize             }
-  #- { key: Minus, mods: Control, action: DecreaseFontSize             }
-  #- { key: Add, mods: Control, action: IncreaseFontSize             }
-  #- { key: Equals, mods: Control, action: IncreaseFontSize             }
 
 # Mouse bindings
 #
@@ -257,12 +257,15 @@ selection:
 
 hide_cursor_when_typing: false
 
+# Live config reload (changes require restart)
+live_config_reload: true
+
 # Shell
 #
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
 # Entries in shell.args are passed unmodified as arguments to the shell.
 #
 #shell:
-program: /bin/zsh
+#  program: /bin/bash
 #  args:
 #    - --login
