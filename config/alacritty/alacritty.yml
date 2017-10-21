@@ -86,69 +86,38 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-# Colors (One Dark)
+# Colors (Quantum)
 colors:
   # Default colors
   primary:
-    background: '0x282C34'
-    foreground: '0xabb2bf'
+    background: '0x212121'
+    foreground: '0xbcbec0'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0xbcbec0'
+    cursor: '0xd0d2d3'
 
   # Normal colors
   normal:
-    black:   '0x1e2127'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0xabb2bf'
+    black:   '0x474646'
+    red:     '0xdd7186'
+    green:   '0x87bb7c'
+    yellow:  '0xd5b875'
+    blue:    '0x70ace5'
+    magenta: '0xa48add'
+    cyan:    '0x69c5ce'
+    white:   '0xbcbec0'
 
   # Bright colors
   bright:
-    black:   '0x444951'
-    red:     '0xe06c75'
-    green:   '0x98c379'
-    yellow:  '0xd19a66'
-    blue:    '0x61afef'
-    magenta: '0xc678dd'
-    cyan:    '0x56b6c2'
-    white:   '0x545555'
-
-
-# colors (one dark)
-#colors:
-  ## default colors
-  #primary:
-    #background: '0x1e2127'
-    #foreground: '0xabb2bf'
-
-  ## Colors the cursor will use if `custom_cursor_colors` is true
-  #cursor:
-    #text: '0xbac1ce'
-    #cursor: '0xffffff'
-
-  ## Normal colors
-  #normal:
-    #black:   '0x1e2127'
-    #red:     '0xe0535e'
-    #green:   '0x8ac362'
-    #yellow:  '0xc18750'
-    #blue:    '0x4aa5ef'
-    #magenta: '0xbf57dd'
-    #cyan:    '0x56b6c2'
-    #white:   '0xABB2BF'
-
-  ## Bright colors
-  #bright:
-    #black:   '0x444951'
-    #red:     '0xe02634'
-    #green:   '0x9fc384'
-    #yellow:  '0xd19a66'
-    #blue:    '0x6ebbf1'
-    #magenta: '0xc678dd'
-    #cyan:    '0x56b6c2'
-    #white:   '0x545555'
+    black:   '0x6a6c6c'
+    red:     '0xed8499'
+    green:   '0x97d589'
+    yellow:  '0xe9cb88'
+    blue:    '0x87bff5'
+    magenta: '0xb9a0ef'
+    cyan:    '0x7bdbe4'
 
 # Visual Bell
 #
