@@ -258,9 +258,10 @@ set writebackup     " perform backup
 set backupdir=~/.vim-tmp,~/.tmp,/tmp/vim
 set directory=~/.vim-tmp,~/.tmp,/tmp/vim
 
-
-set undofile        "persistent undo
-set undodir=~/.vim-tmp/undo     "undo directory
+if has('persistent_undo')
+    set undodir=~/.vim-tmp/undo     "undo directory
+    set undofile
+endif
 
 "}}}
 "Spelling and Files{{{
@@ -688,6 +689,14 @@ vmap <leader>t <Plug>(iron-send-motion)
 nmap <leader>p <Plug>(iron-repeat-cmd)
 
 
+" }}}
+" vim-online-thesaurus {{{
+let g:online_thesaurus_map_keys = 0
+
+nnoremap <leader>t :OnlineThesaurusCurrentWord<CR>
+" }}}
+" undotree {{{
+nmap <Leader>u :UndotreeToggle<CR>
 " }}}
 " }}}
 " vim:foldmethod=marker:foldlevel=1:filetype=vim

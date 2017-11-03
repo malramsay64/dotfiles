@@ -56,9 +56,9 @@ Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
 
 " Filetype specific plugins
-Plug 'fisadev/vim-isort', { 'for': 'python' }
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'fisadev/vim-isort', { 'for': ['python', 'cython'] }
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python', 'cython'] }
+Plug 'davidhalter/jedi-vim', { 'for': ['python', 'cython'] }
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
 Plug 'fs111/pydoc.vim', { 'on': ['Pydoc', 'PydocSearch'] }
 Plug 'lambdalisue/vim-cython-syntax'
@@ -90,21 +90,18 @@ Plug 'chemzqm/denite-git'
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+Plug 'zchee/deoplete-jedi', { 'for': ['python', 'cython'] }
 Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
 Plug 'Shougo/echodoc.vim'
 
 " Additional text-objects
 Plug 'kana/vim-textobj-user'
-Plug 'bps/vim-textobj-python'
+Plug 'bps/vim-textobj-python', {'for': ['python', 'cython'] }
 
 " File management
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-"Plug 'airodactyl/neovim-ranger'
-"Plug 'rafaqz/ranger.vim'
 Plug 'tpope/vim-vinegar'
-
 
 " Writing plugins
 Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
@@ -114,6 +111,7 @@ Plug 'euclio/vim-markdown-composer', Cond(executable('cargo'), { 'for': 'markdow
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'junegunn/goyo.vim', { 'on': [ 'Goyo' ] }
 
+" General Plugins
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
