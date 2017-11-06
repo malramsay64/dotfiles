@@ -1,11 +1,5 @@
 # A series of environment settings that should be present in whichever shell is being used
 
-# Add italics to xterm
-#if [ "$TERM" == xterm* ] && [ $(infocmp -1 "$TERM" | grep 'sitm') -ne "" ] ; then 
-    #{ infocmp -1 "$TERM" ; echo -e "\tsitm=\\E[3m,\n\tritm=\\E[23m,"; } > "$HOME/dotfiles/resources/$TERM.terminfo"
-    #tic "$HOME/dotfiles/resources/$TERM.terminfo"
-#fi
-
 # For homebrew
 export PATH="/usr/local/bin:$PATH"
 
@@ -13,9 +7,14 @@ export PATH="/usr/local/bin:$PATH"
 export _Z_DATA="$HOME/.z/z"
 source "$HOME/dotfiles/bash/z/z.sh"
 
+# histdb alias
+function hist {
+    histdb $1 --host
+}
+
 # Setting editor to nvim if present
 if [ "$(hash nvr 2>/dev/null && echo 1)" ]; then
-    export EDITOR="nvr --remote-silent"
+    export EDITOR="$(which nvr) --remote-silent"
 elif [ "$(hash nvim 2>/dev/null && echo 1)" ]; then
     export EDITOR=nvim
 elif [ -e "$HOME/.local/bin/vim" ]; then
@@ -32,17 +31,29 @@ if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
     export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
 fi
 
-# pyenv
+# Install pyenv if not already installed
 if [ ! -d "$HOME/.pyenv" ]; then
     curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 fi
-export PATH="/Users/malcolm/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# use neovim/vim as manpager
+if hash nvim &>/dev/null; then
+    export MANPAGER="nvim +'set ft:man' -"
+else
+    export MANPAGER="vim +'set ft:man' -"
+fi
 
 # Adding home directory bin to path
 [ -d "$HOME/dotfiles/bin" ] && export PATH="$PATH:$HOME/dotfiles/bin"
 [ -d "$HOME/.bin" ] && export PATH="$HOME/.bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+
+# added by travis gem
+[ -f /Users/malcolm/.travis/travis.sh ] && source /Users/malcolm/.travis/travis.sh
 
 # Test interactive shell
 [[ $- == *i* ]] && stty -ixon

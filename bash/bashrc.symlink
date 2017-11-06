@@ -29,11 +29,6 @@ shopt -s histappend                      # append to history, don't overwrite it
 
 # }}}
 
-
-# Prevent retitling of tmux windows
-#DISABLE_AUTO_TITLE=true
-
-
 # Adding home directory lib to ld_library_path
 [ -d "$HOME/.local/lib" ] && export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
@@ -60,3 +55,4 @@ if [ -e ~/.bashrc.local ]; then
 fi
 
 #vim:filetype=sh
+
