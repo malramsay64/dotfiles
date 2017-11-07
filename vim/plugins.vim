@@ -49,7 +49,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Vim Wiki
 "Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 Plug '~/Documents/Programming/vimwiki'
-"Plug 'tbabej/taskwiki'
 
 " Syntax checking
 Plug 'neomake/neomake'
@@ -99,8 +98,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'bps/vim-textobj-python', {'for': ['python', 'cython'] }
 
 " File management
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
 Plug 'tpope/vim-vinegar'
 
 " Writing plugins
