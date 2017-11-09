@@ -556,7 +556,7 @@ nnoremap <leader>gr :GrammarousReset<CR>
 
 augroup isort
     autocmd!
-    autocmd BufWritePre *.py *.pyx Isort
+    autocmd BufWritePre *.py,*.pyx Isort
 augroup END
 
 let g:vim_isort_python_version = 'python3'
