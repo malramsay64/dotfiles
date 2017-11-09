@@ -41,3 +41,5 @@ cmake_install.cmake
 *.egg-info
 *.pyc
 *.eggs
+.coverage
+htmlcov/*

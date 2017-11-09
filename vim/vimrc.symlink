@@ -20,9 +20,6 @@ augroup END
 
 filetype plugin indent on      "load filetype specific indent and plugin files
 
-" Always have spellcheck enabled
-set spell
-
 " Python support
 let g:loaded_python_provider = 1
 
@@ -390,7 +387,7 @@ let g:taskwiki_sort_order='urgency+,due+,project+'
 " }}}
 " fugitive {{{
 
-nmap <Leader>gc :Gstatus<CR>
+nnoremap <Leader>gc :Gstatus<CR>
 
 " }}}
 " neomake {{{
