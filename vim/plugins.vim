@@ -40,7 +40,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'KeitaNakamura/neodark.vim'
 
-Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] } " Examing syntax highlighting rules
+" Examine syntax highlighting rules
+Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
 
 " Status bar
 Plug 'vim-airline/vim-airline'
@@ -55,6 +56,7 @@ Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
 
 " Filetype specific plugins
+" Python
 Plug 'fisadev/vim-isort', { 'for': ['python', 'cython'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python', 'cython'] }
 Plug 'davidhalter/jedi-vim', { 'for': ['python', 'cython'] }
@@ -62,10 +64,10 @@ Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
 Plug 'fs111/pydoc.vim', { 'on': ['Pydoc', 'PydocSearch'] }
 Plug 'lambdalisue/vim-cython-syntax'
 
+" Other Languages
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] } " better c++ highlighting
-
-Plug 'lervag/vimtex', { 'for': 'tex' }  " Plugin for latex
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] }
+Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
 Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
@@ -74,7 +76,7 @@ Plug 'cespare/vim-toml'
 Plug 'robertbasic/vim-hugo-helper', { 'for': 'markdown' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
-" Terminal
+" Terminal/REPL
 Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 Plug 'mklabs/split-term.vim'
 
@@ -112,7 +114,7 @@ Plug 'junegunn/goyo.vim', { 'on': [ 'Goyo' ] }
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
-Plug 'tpope/vim-unimpaired'             " complimentatry mappings
+Plug 'tpope/vim-unimpaired'             " complimentary mappings
 Plug 'tpope/vim-speeddating'            " incr/decr dates
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
@@ -120,9 +122,10 @@ Plug 'airblade/vim-gitgutter'           " git diffs
 Plug 'szw/vim-tags'                     " ctag support
 Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
-Plug 'haya14busa/incsearch.vim'
-Plug 'aperezdc/vim-template'
-Plug 'farmergreg/vim-lastplace'
+Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
+Plug 'aperezdc/vim-template'            " Create templates for new files
+Plug 'farmergreg/vim-lastplace'         " Remember last location in files
+Plug 'godlygeek/tabular'                " Align bits of text
 
 
 " all plugins must be added before this line

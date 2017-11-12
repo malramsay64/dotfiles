@@ -1,26 +1,24 @@
 " Malcolm Ramsay  .vimrc
 "
-"
 "General {{{
 
 if !has('nvim')
     set encoding=utf-8
 endif
 
-" load plugins
-source $HOME/dotfiles/vim/plugins.vim
+source $HOME/dotfiles/vim/plugins.vim   " load plugins
 
-" Vim automatically reads changes to a file
-set autoread
-" Reload changes on FocusGained
+
+set autoread                            " Vim automatically reads changes to a file
+
 augroup vimrc
     autocmd!
-    autocmd BufEnter * :checktime
+    autocmd BufEnter * :checktime       " Reload changes on FocusGained
 augroup END
 
-filetype plugin indent on      "load filetype specific indent and plugin files
+filetype plugin indent on               " load filetype specific indent and plugin files
 
-" Python support
+""" Python configuration
 let g:loaded_python_provider = 1
 
 if isdirectory($HOME.'/.pyenv')
@@ -35,10 +33,15 @@ if has('nvim') && executable('nvr')
   let $VISUAL = 'nvr -cc split --remote-wait'
 endif
 
+if exists('&belloff')
+    set belloff=all                     " Turn off all bells
+endif
+
+
 "}}}
 "Colours {{{
 
-syntax enable           " enable syntax processing
+syntax enable                           " enable syntax processing
 
 " Enable truecolour support in neovim >= 0.1.5 || vim >= 7.4.1799
 if has('termguicolors')
@@ -47,11 +50,16 @@ endif
 
 " Load colourscheme in vim with tmux
 if !has('nvim')
+    set t_8b=[48;2;%lu;%lu;%lum
+    set t_8f=[38;2;%lu;%lu;%lum
 endif
 
-" Allow italics in terminal
+
+""" Configure Colourschems
+
 let g:one_allow_italics = 1
 let g:quantum_italics=1
+
 let g:airline_theme='quantum'
 
 if get(g:, 'colors_name', 'default') ==# 'onedark'
@@ -72,9 +80,21 @@ set background=dark " for the dark version
 colorscheme quantum
 
 " Colourscheme override
-"highlight Comment cterm=italic gui=italic
 highlight pythonSelf cterm=italic gui=italic
-highlight Search guibg='#D6B86F'
+"highlight Search guibg='#D6B86F'
+"
+
+" Make current window more obvious
+if exists('+colorcolumn')
+  " Highlight up to 255 columns (this is the current Vim max) beyond 'textwidth'
+  autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn='+' . join(range(0, 254), ',+')
+  autocmd FocusLost,WinLeave * let &l:colorcolumn=join(range(1, 255), ',')
+endif
+
+
+set highlight+=@:ColorColumn          " ~/@ at end of window, 'showbreak'
+set laststatus=2                      " always show status line
+
 
 "}}}
 "Spaces and Tabs {{{
@@ -91,9 +111,6 @@ set autoindent          " copy indentation from previous line
 
 set smartindent         " inserts extra indentation in some cases
 
-set list                " we want to show tabs
-
-set listchars=tab:>-,trail:-    " show tabs and trailing whitespace
 
 " Remove trailing whitespace from file and return cursor to current position
 function! <SID>StripTrailingWhitespaces()
@@ -114,25 +131,33 @@ augroup END
 
 " The combination of relative number and number gives the absolute line
 " number for the current line and relative numbers for all others
-set relativenumber      " show relative line numbers
+set relativenumber             " show relative line numbers
 
-set number              " show line numbers
+set number                     " show line numbers
 
-set scrolloff=5         " 5 lines above and below cursor when scrolling
+set scrolloff=5                " 5 lines above and below cursor when scrolling
 
-set wildmenu            " visual autocomplete for command
+set wildmenu                   " visual autocomplete for command
 
-set lazyredraw          " redraw only when need to
+set wildmode=longest:full,full " Complete to longest matching text then first match. Like shell completion
 
-set showmatch           " highlight matching parenthesis/bracket/brace
+set lazyredraw                 " redraw only when need to
 
-set laststatus=2        " Display statusline
+set hidden                     " allows you to hide buffers with unsaved changes without being prompted
 
-set splitright          "open splits by default to the right
+set noshowmatch                " highlight matching parenthesis/bracket/brace
 
-" remap help to open in a vertical split
-"cabbrev help vert help
-"cabbrev  h vert h
+set laststatus=2               " Display statusline
+
+set splitright                 " open splits by default to the right
+
+set formatoptions+=n           " smart auto-indenting inside numbered lists
+
+set formatoptions+=j           " smart comment joining
+
+set nojoinspaces               " don't autoinsert two spaces after '.', '?', '!' for join command
+
+set textwidth=100               " Textwidth is 100 columns
 
 " common mistypings of exit and save
 cabbrev W w
@@ -140,8 +165,23 @@ cabbrev Q q
 cabbrev Wq wq
 cabbrev WQ wq
 
-" Disable mouse
-"set mouse=
+" Unicode UI elements
+if has('linebreak')
+  let &showbreak='⤷ '          " ARROW POINTING DOWNWARDS THEN CURVING RIGHTWARDS (U+2937, UTF-8: E2 A4 B7)
+endif
+set fillchars=vert:│           " BOX DRAWINGS LIGHT VERTICAL (U+2502, UTF-8: E2 94 82)
+
+set list                       " we want to show whitespace elements
+set listchars=tab:▶‒
+set listchars+=nbsp:␣
+set listchars+=extends:»       " RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
+set listchars+=precedes:«      " LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
+set listchars+=trail:•         " BULLET (U+2022, UTF-8: E2 80 A2)
+
+"" Movement
+set backspace=eol,start,indent  " backspace deletes newlines
+
+set whichwrap+=<,>,h,l,[,]      " left right wraps to next/previous lines
 
 "}}}
 " Custom Shortcuts {{{
@@ -196,15 +236,19 @@ nnoremap [w :tabprev<CR>
 " Remap for digraphs
 inoremap <C-y> <C-k>
 
+" Swap semicolon and colon for easier commands
 nnoremap ; :
-nnoremap : j
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
-" Shortcut for saving as root
+" Shortcut for saving file as root
 cmap w!! w !sudo tee > /dev/null %
 
 " Faster window resizing
 nnoremap <C-w>- :5wincmd -<CR>
 nnoremap <C-w>= :5wincmd +<CR>
+nnoremap <C-w>+ :wincmd =<CR>
 nmap <leader>vj :5wincmd +<CR>
 nmap <leader>vk :5wincmd -<CR>
 
@@ -230,40 +274,41 @@ endif
 "}}}
 "Folding {{{
 
-set foldenable        " enable folding
+set foldenable         " enable folding
 
-set foldlevelstart=999  " have all levels open by default
+set foldlevelstart=999 " have all levels open by default
 
-set foldnestmax=6     " 6 nested folds max
+set foldnestmax=6      " 6 nested folds max
 
-"set foldmethod=indent " fold based on indent
+set foldmethod=syntax  " fold based on indent
 
-set modelines=1       " last line of file is checked to run as a command
-
-"}}}
-"Movement {{{
-
-"move verticaly by visual line
-"nnoremap j gj
-"nnoremap k gk
-
-set backspace=eol,start,indent  " backspace deletes newlines
-
-set whichwrap+=<,>,h,l,[,]      " left right wraps to next/previous lines
+set modelines=1        " last line of file is checked to run as a command
 
 "}}}
 "Backups {{{
 
-set backup          " Performs backups
-set writebackup     " perform backup
+if exists('$SUDO_USER')
+    set nobackup        " Don't write backups for root files
+    set nowritebackup   " No backups when root user
 
-" Backup directories
-set backupdir=~/.vim-tmp,~/.tmp,/tmp/vim
-set directory=~/.vim-tmp,~/.tmp,/tmp/vim
+    set noswapfile      " no swap files for root user
 
-if has('persistent_undo')
-    set undodir=~/.vim-tmp/undo     "undo directory
-    set undofile
+    if has('persistent_undo')
+        set noundofile  " no undo for root user
+    endif
+else
+    set backup          " Performs backups
+    set writebackup     " perform backup
+    set backupdir=~/.vim-tmp,~/.tmp,. " Backup directories
+
+    set directory=~/.vim-tmp/swap//,~/.tmp/swap//,. " Directories for swap files
+
+    if has('persistent_undo')
+        set undofile
+        set undodir=~/.vim-tmp/undo     "undo directory
+        set undodir+=~/.tmp/undo
+        set undodir+=.
+    endif
 endif
 
 "}}}
@@ -309,6 +354,7 @@ let g:airline#extensions#wordcount#enabled = 1
 let g:airline#extensions#wordcount#filetypes = '\vhelp|vimwiki|markdown|rst|org|text|asciidoc|tex'
 
 let g:airline#extensions#virtualenv#enabled = 1
+
 "}}}
 " Vimwiki {{{
 
@@ -627,12 +673,17 @@ nmap <leader>p <Plug>(iron-repeat-cmd)
 
 " }}}
 " vim-online-thesaurus {{{
+
 let g:online_thesaurus_map_keys = 0
 
 nnoremap <leader>t :OnlineThesaurusCurrentWord<CR>
+
 " }}}
 " undotree {{{
+
 noremap <leader>u :UndotreeToggle<CR>
+
 " }}}
 " }}}
-" vim:foldmethod=marker:foldlevel=1:filetype=vim
+"
+" vim:foldmethod=marker:foldlevel=0:filetype=vim
