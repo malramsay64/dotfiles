@@ -86,15 +86,19 @@ highlight pythonSelf cterm=italic gui=italic
 
 " Make current window more obvious
 if exists('+colorcolumn')
-  " Highlight up to 255 columns (this is the current Vim max) beyond 'textwidth'
-  autocmd BufEnter,FocusGained,VimEnter,WinEnter * let &l:colorcolumn='+' . join(range(0, 254), ',+')
-  autocmd FocusLost,WinLeave * let &l:colorcolumn=join(range(1, 255), ',')
-endif
+  let g:colourColumnBlacklist = ['diff', 'undotree', 'denite', 'qf']
 
+  function! Should_colorcolumn() abort
+      return index(g:colourColumnBlacklist, &filetype) == -1
+  endfunction
+
+  " Highlight up to 255 columns (this is the current Vim max) beyond 'textwidth'
+  autocmd BufEnter,FocusGained,VimEnter,WinEnter * if Should_colorcolumn() | let &l:colorcolumn='+' . join(range(1, 254), ',+') | endif
+  autocmd FocusLost,WinLeave * if Should_colorcolumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
+endif
 
 set highlight+=@:ColorColumn          " ~/@ at end of window, 'showbreak'
 set laststatus=2                      " always show status line
-
 
 "}}}
 "Spaces and Tabs {{{
