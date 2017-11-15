@@ -3,6 +3,8 @@ zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-completions
 Tarrasch/zsh-colors
 Tarrasch/zsh-autoenv
+mafredri/zsh-async
+sindresorhus/pure
 olivierverdier/zsh-git-prompt
 srijanshetty/zsh-pip-completion
 felixr/docker-zsh-completion

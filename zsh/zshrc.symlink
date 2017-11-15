@@ -64,7 +64,13 @@ if gpg-connect-agent /bye &>/dev/null; then
 fi
 
 # setup prompt
-source $DOTFILES/zsh/prompt.zsh
+#source $DOTFILES/zsh/prompt.zsh
+# .zshrc
+autoload -U promptinit; promptinit
+
+# optionally define some options
+PURE_CMD_MAX_EXEC_TIME=10
+PURE_PROMPT_SYMBOL=〉
 
 # Source local changes
 [ -e $HOME/.bashrc.local ] && source $HOME/.bashrc.local
