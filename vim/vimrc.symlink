@@ -6,8 +6,9 @@ if !has('nvim')
     set encoding=utf-8
 endif
 
-source $HOME/dotfiles/vim/plugins.vim   " load plugins
+scriptencoding utf-8
 
+source $HOME/dotfiles/vim/plugins.vim   " load plugins
 
 set autoread                            " Vim automatically reads changes to a file
 
@@ -62,6 +63,12 @@ let g:quantum_italics=1
 
 let g:airline_theme='quantum'
 
+let g:quantum_grey1 = '#263238'
+let g:quantum_grey2 = '#2c3a41'
+let g:quantum_grey3 = '#425762'
+let g:quantum_grey4 = '#658494'
+let g:quantum_grey5 = '#aebbc5'
+
 if get(g:, 'colors_name', 'default') ==# 'onedark'
     augroup colours
         autocmd!
@@ -92,15 +99,26 @@ if exists('+colorcolumn')
       return index(g:colourColumnBlacklist, &filetype) == -1
   endfunction
 
+
   " Highlight up to 255 columns (this is the current Vim max) beyond 'textwidth'
-  autocmd BufEnter,FocusGained,VimEnter,WinEnter * if Should_colorcolumn() | let &l:colorcolumn='+' . join(range(1, 254), ',+') | endif
-  autocmd FocusLost,WinLeave * if Should_colorcolumn() | let &l:colorcolumn=join(range(1, 255), ',') | endif
+  autocmd BufEnter,FocusGained,VimEnter,WinEnter * if Should_colorcolumn() |
+            \ let &l:colorcolumn='+' . join(range(1, 254), ',+') |
+            \ endif
+  autocmd FocusLost,WinLeave * if Should_colorcolumn() |
+              \ let &l:colorcolumn=join(range(1, 255), ',') |
+              \ endif
+
+  exec 'hi ColorColumn guibg='.g:quantum_grey2
+  exec 'hi SignColumn guibg='.g:quantum_grey2
+  exec 'hi LineNr guibg='.g:quantum_grey2
+  exec 'hi GitGutterAdd guibg='.g:quantum_grey2
+  exec 'hi GitGutterChange guibg='.g:quantum_grey2
+  exec 'hi GitGutterDelete guibg='.g:quantum_grey2
+  exec 'hi GitGutterChangeDelete guibg='.g:quantum_grey2
+  exec 'hi Conceal guibg=None guifg=None'
+
 endif
 
-set highlight+=@:ColorColumn          " ~/@ at end of window, 'showbreak'
-set laststatus=2                      " always show status line
-
-"}}}
 "Spaces and Tabs {{{
 
 set tabstop=4           " number of visual spaces per TAB
@@ -400,7 +418,7 @@ function! VimwikiWikiIncludeHandler(value)
     let l:str = a:value
 
     " complete URL
-    let url_0 = matchstr(l:str, vimwiki#vars#get_global('rxWikiInclMatchUrl'))
+    let l:url_0 = matchstr(l:str, vimwiki#vars#get_global('rxWikiInclMatchUrl'))
     " URL parts
     let l:link_infos = vimwiki#base#resolve_link(l:url_0)
     let l:descr = matchstr(l:str, vimwiki#html#incl_match_arg(1))
@@ -612,6 +630,9 @@ augroup END
 let g:vim_isort_python_version = 'python3'
 
 "}}}
+" split-term {{{
+"let g:split_term_vertical = 0
+
 " split-term {{{
 "let g:split_term_vertical = 0
 
