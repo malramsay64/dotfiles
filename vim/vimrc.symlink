@@ -258,6 +258,9 @@ nnoremap [w :tabprev<CR>
 " Remap for digraphs
 inoremap <C-y> <C-k>
 
+" Open last buffer
+nnoremap <leader><leader> <C-^>
+
 " Swap semicolon and colon for easier commands
 nnoremap ; :
 nnoremap : ;
@@ -354,14 +357,8 @@ source $DOTFILES/vim/denite.vim
 
 " netrw {{{
 
-nnoremap <Leader>n :Sexplore<CR>
-
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_preview = 1
-"let g:netrw_altv = 1
-"let g:netrw_keepdir = 0
 
 " }}}
 " airline {{{
@@ -709,6 +706,38 @@ nnoremap <leader>t :OnlineThesaurusCurrentWord<CR>
 noremap <leader>u :UndotreeToggle<CR>
 
 " }}}
+" }}}
+" projectionist {{{
+let g:projectionist_heuristics = {
+      \   '*': {
+      \     '*.c': {
+      \       'alternate': '{}.h',
+      \       'type': 'source'
+      \     },
+      \     '*.h': {
+      \       'alternate': '{}.c',
+      \       'type': 'header'
+      \     },
+      \
+      \     '*.pyx': {
+      \       'alternate': '{}.pxd',
+      \       'type': 'source'
+      \     },
+      \     '*.pxd': {
+      \       'alternate': '{}.pyx',
+      \       'type': 'header'
+      \     },
+      \
+      \     '*.py': {
+      \       'alternate': 'test/{basename}_test.py',
+      \       'type': 'source'
+      \     },
+      \     'test/*_test.py': {
+      \       'type': 'test'
+      \     }
+      \   }
+      \ }
+
 " }}}
 "
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
