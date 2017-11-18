@@ -88,8 +88,6 @@ colorscheme quantum
 
 " Colourscheme override
 highlight pythonSelf cterm=italic gui=italic
-"highlight Search guibg='#D6B86F'
-"
 
 " Make current window more obvious
 if exists('+colorcolumn')
@@ -530,21 +528,15 @@ if has('python3')
     set completeopt-=preview
     "autocmd CompleteDone * pclose!
 
-    " c++ support
-    "let g:deoplete#sources#clang_path="/usr/local/opt/llvm/lib/libclang.dylib"
-    "let g:deoplete#sources#clang_header="/usr/local/opt/llvm/include/clang/"
-    "let g:clang_library_path="/usr/local/opt/llvm/lib/libclang.dylib"
-    "let g:deoplete#sources#clang#debug = 1
-    "if get(g:, 'deoplete#sources#clang#debug', 0)
-    "autocmd! InsertEnter *
-    "\ call deoplete#enable_logging('DEBUG', 'deoplete.log')
-    "endif
 endif
 
 "}}}
 " clang_complete {{{
 let g:clang_use_library = 1
-let g:clang_library_path='/usr/local/opt/llvm/lib'
+
+if !isdirectory("/usr/local/opt/llvm/lib")
+    let g:clang_library_path='/usr/local/opt/llvm/lib'
+endif
 
 let g:clang_user_options = '-std=c+=11'
 let g:clang_complete_auto = 1
@@ -555,6 +547,7 @@ let g:clang_close_preview = 1
 let g:clang_auto_select = 1
 let g:clang_omnicppcomplete_compliance = 0
 let g:clang_make_default_keymappings = 0
+
 " }}}
 " ultisnips {{{
 
