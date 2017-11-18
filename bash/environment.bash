@@ -47,6 +47,10 @@ else
     export MANPAGER="vim +'set ft:man' -"
 fi
 
+if hash hub &>/dev/null; then
+    eval "$(hub alias -s)"
+fi
+
 # Adding home directory bin to path
 [ -d "$HOME/dotfiles/bin" ] && export PATH="$PATH:$HOME/dotfiles/bin"
 [ -d "$HOME/.bin" ] && export PATH="$HOME/.bin:$PATH"
