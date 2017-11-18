@@ -14,7 +14,7 @@
 data.location=~/.task
 
 # Colourscheme
-include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-dark-256.theme
+include ~/.task/solarized-dark-256.theme
 rule.color.merge=no
 color.blocked=color15 on color10
 color.blocking=color0 on color10
