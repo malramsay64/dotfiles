@@ -173,6 +173,8 @@ set laststatus=2               " Display statusline
 
 set splitright                 " open splits by default to the right
 
+set splitbelow                 " open splits below current
+
 set formatoptions+=n           " smart auto-indenting inside numbered lists
 
 set formatoptions+=j           " smart comment joining
@@ -204,6 +206,12 @@ set listchars+=trail:•         " BULLET (U+2022, UTF-8: E2 80 A2)
 set backspace=eol,start,indent  " backspace deletes newlines
 
 set whichwrap+=<,>,h,l,[,]      " left right wraps to next/previous lines
+
+" Movement between splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 "}}}
 " Custom Shortcuts {{{
