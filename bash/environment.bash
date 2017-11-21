@@ -59,5 +59,10 @@ fi
 # added by travis gem
 [ -f /Users/malcolm/.travis/travis.sh ] && source /Users/malcolm/.travis/travis.sh
 
+# Alias hub if present
+if hash hub 2>/dev/null; then
+    eval "$(hub alias -s)"
+fi
+
 # Test interactive shell
 [[ $- == *i* ]] && stty -ixon
