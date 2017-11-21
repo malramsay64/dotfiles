@@ -55,6 +55,10 @@ Plug '~/Documents/Programming/vimwiki'
 Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
 
+" fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " Filetype specific plugins
 " Python
 Plug 'fisadev/vim-isort', { 'for': ['python', 'cython'] }

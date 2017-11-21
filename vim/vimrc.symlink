@@ -360,6 +360,7 @@ augroup END
 "}}}
 " Plugin Configuration {{{
 source $DOTFILES/vim/denite.vim
+source $DOTFILES/vim/fzf.vim
 
 " netrw {{{
 

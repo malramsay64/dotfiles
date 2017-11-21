@@ -64,13 +64,19 @@ if gpg-connect-agent /bye &>/dev/null; then
 fi
 
 # setup prompt
-#source $DOTFILES/zsh/prompt.zsh
-# .zshrc
 autoload -U promptinit; promptinit
 
 # optionally define some options
 PURE_CMD_MAX_EXEC_TIME=10
 PURE_PROMPT_SYMBOL=〉
 
+# fzf configuratioin
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_DEFAULT_COMMAND="nvim $(fzf)"
+
+
 # Source local changes
 [ -e $HOME/.bashrc.local ] && source $HOME/.bashrc.local
+
