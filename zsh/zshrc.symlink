@@ -1,11 +1,27 @@
-# The following lines were added by compinstall
+#
+#
+# Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
+PROFILE_STARTUP=false
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    zmodload zsh/zprof # Output load-time statistics
+    # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
+    PS4=$'%D{%M%S%.} %N:%i> '
+    exec 2>"${XDG_CACHE_HOME:-$HOME/tmp}/zsh_statup.$$"
+    setopt xtrace prompt_subst
+fi
 
+# The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' max-errors 2
 zstyle :compinstall filename '/Users/malcolm/.zshrc'
 
 autoload -Uz compinit
-compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
+
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -21,7 +37,6 @@ export DOTFILES=$HOME/dotfiles
 source $DOTFILES/bash/aliases.bash
 source $DOTFILES/bash/environment.bash
 
-
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 _ssh_hosts=()
 if [ -e "$HOME/.ssh/config" ]; then
@@ -33,17 +48,11 @@ if [ $#_ssh_hosts -gt 0 ]; then
     zstyle ':completion:*:rsync:*' hosts $_ssh_hosts
 fi
 
-# Add tab completion for many zsh commands
-if hash brew &> /dev/null && [ -d "$(brew --prefix)/share/zsh-completions" ]; then
-    fpath=("$(brew --prefix)/share/zsh-completions" $fpath)
-fi;
+antibody() {
+  eval "$(command antibody init -)"
+  antibody "$@"
+}
 
-# Install and manage antibody
-if ! hash antibody &>/dev/null; then
-    curl -sL https://git.io/antibody | sed 's/sudo //' | sed 's|/usr/local|$HOME/.local|' | bash -s
-fi
-source <(antibody init)
-antibody bundle < $DOTFILES/zsh/plugins.txt > $DOTFILES/zsh/sourceables.sh
 source $DOTFILES/zsh/sourceables.sh
 
 source $DOTFILES/zsh/vi-mode.zsh
@@ -80,3 +89,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Source local changes
 [ -e $HOME/.bashrc.local ] && source $HOME/.bashrc.local
 
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    zprof
+    unsetopt xtrace
+    exec 2>&-
+fi

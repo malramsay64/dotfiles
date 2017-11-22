@@ -32,13 +32,23 @@ if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
 fi
 
 # Install pyenv if not already installed
-if [ ! -d "$HOME/.pyenv" ]; then
-    curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-fi
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+
+__pyenv_started=0
+
+__pyenv_init() {
+    test $__pyenv_started = 0 && {
+        eval "$(command pyenv init -)"
+        eval "$(command pyenv virtualenv init -)"
+    __pyenv_started=1
+}
+}
+
+pyenv() {
+    __pyenv_init
+    command pyenv "$@"
+}
 
 # use neovim/vim as manpager
 if hash nvim &>/dev/null; then
@@ -47,6 +57,7 @@ else
     export MANPAGER="vim +'set ft:man' -"
 fi
 
+# Alias hub if present
 if hash hub &>/dev/null; then
     eval "$(hub alias -s)"
 fi
@@ -58,11 +69,6 @@ fi
 
 # added by travis gem
 [ -f /Users/malcolm/.travis/travis.sh ] && source /Users/malcolm/.travis/travis.sh
-
-# Alias hub if present
-if hash hub 2>/dev/null; then
-    eval "$(hub alias -s)"
-fi
 
 # Test interactive shell
 [[ $- == *i* ]] && stty -ixon
