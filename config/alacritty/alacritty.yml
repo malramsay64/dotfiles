@@ -84,7 +84,8 @@ custom_cursor_colors: false
 colors:
   # Default colors
   primary:
-    background: '0x212121'
+
+    background: '0x263238'
     foreground: '0xbcbec0'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
@@ -112,6 +113,7 @@ colors:
     blue:    '0x87bff5'
     magenta: '0xb9a0ef'
     cyan:    '0x7bdbe4'
+    white:   '0xbcbec0'
 
 # Visual Bell
 #
