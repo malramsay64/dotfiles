@@ -16,11 +16,7 @@ zstyle ':completion:*' max-errors 2
 zstyle :compinstall filename '/Users/malcolm/.zshrc'
 
 autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
-fi
+compinit
 
 # End of lines added by compinstall
 # Lines configured by zsh-newuser-install
@@ -65,12 +61,12 @@ autoload -Uz add-zsh-hook
 add-zsh-hook preexec _start_timer
 add-zsh-hook precmd  _stop_timer
 
-# aliases for gpg-agent if running, this ensures the correct tty is used
-if gpg-connect-agent /bye &>/dev/null; then
-    alias ssh='gpg-connect-agent updatestartuptty /bye >/dev/null; ssh'
-    alias scp='gpg-connect-agent updatestartuptty /bye >/dev/null; scp'
-    alias rsync='gpg-connect-agent updatestartuptty /bye >/dev/null; rsync'
-fi
+## aliases for gpg-agent if running, this ensures the correct tty is used
+#if gpg-connect-agent /bye &>/dev/null; then
+    #alias ssh='gpg-connect-agent updatestartuptty /bye >/dev/null; ssh'
+    #alias scp='gpg-connect-agent updatestartuptty /bye >/dev/null; scp'
+    #alias rsync='gpg-connect-agent updatestartuptty /bye >/dev/null; rsync'
+#fi
 
 # setup prompt
 autoload -U promptinit; promptinit
