@@ -35,21 +35,6 @@ fi
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-__pyenv_started=0
-
-__pyenv_init() {
-    test $__pyenv_started = 0 && {
-        eval "$(command pyenv init -)"
-        eval "$(command pyenv virtualenv init -)"
-    __pyenv_started=1
-}
-}
-
-pyenv() {
-    __pyenv_init
-    command pyenv "$@"
-}
-
 # use neovim/vim as manpager
 if hash nvim &>/dev/null; then
     export MANPAGER="nvim +'set ft:man' -"
