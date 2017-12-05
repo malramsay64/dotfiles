@@ -741,5 +741,22 @@ let g:projectionist_heuristics = {
       \ }
 
 " }}}
+" vim-taskwarrior {{{
+
+" Highlighting field
+let g:task_highlight_field = 0
+
+" Long descriptions
+let g:task_rc_override = 'rc.defaultwidth=0'
+
+" Allow changes to data
+let g:task_readonly = 0
+
+" Change default fields
+let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due']
+
+"let g:task_gui_term = 0
+
+" }}}
 "
 " vim:foldmethod=marker:foldlevel=0:filetype=vim

@@ -131,6 +131,8 @@ Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
 Plug 'aperezdc/vim-template'            " Create templates for new files
 Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'godlygeek/tabular'                " Align bits of text
+Plug 'blindFS/vim-taskwarrior'
+
 
 
 " all plugins must be added before this line
