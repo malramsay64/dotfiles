@@ -19,11 +19,17 @@ vim +PlugUpdate +qall
 echo "Installing zsh config"
 # Install and manage antibody
 curl -sL https://git.io/antibody | sed 's/sudo //' | sed 's|/usr/local|$HOME/.local|' | bash -s
-antibody bundle <"$DOTFILES/antibody/bundles.txt" >"$DOTFILES/zsh/sourceables.sh"
+antibody bundle <"$DOTFILES/zsh/plugins.txt" >"$DOTFILES/zsh/sourceables.sh"
 antibody update
 
-echo "Installing pyenv"
-if [ ! -d "$HOME/.pyenv" ]; then
-    curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+echo "Installing conda"
+if [ ! -d $HOME/.miniconda ]; then
+    if [ $(uname -s) == 'Darwin' ]; then
+        curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o ~/Downloads/miniconda.sh;
+    else
+        curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o ~/Downloads/miniconda.sh;
+    fi
+    bash ~/Downloads/miniconda.sh -b -u -p $HOME/.miniconda
 fi
+
 echo "Done!"

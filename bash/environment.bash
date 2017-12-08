@@ -31,10 +31,6 @@ if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
     export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
 fi
 
-# Install pyenv if not already installed
-export PATH="$HOME/.pyenv/bin:$PATH"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-
 # use neovim/vim as manpager
 if hash nvim &>/dev/null; then
     export MANPAGER="nvim +'set ft:man' -"
@@ -47,13 +43,13 @@ if hash hub &>/dev/null; then
     eval "$(hub alias -s)"
 fi
 
+# Add conda to path
+export PATH=$HOME/.miniconda/bin:$PATH
+
 # Adding home directory bin to path
 [ -d "$HOME/dotfiles/bin" ] && export PATH="$PATH:$HOME/dotfiles/bin"
 [ -d "$HOME/.bin" ] && export PATH="$HOME/.bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
-
-# added by travis gem
-[ -f /Users/malcolm/.travis/travis.sh ] && source /Users/malcolm/.travis/travis.sh
 
 # Test interactive shell
 [[ $- == *i* ]] && stty -ixon

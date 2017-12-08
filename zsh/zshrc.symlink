@@ -44,9 +44,6 @@ if [ $#_ssh_hosts -gt 0 ]; then
     zstyle ':completion:*:rsync:*' hosts $_ssh_hosts
 fi
 
-eval "$(pyenv init - --no-rehash)"
-eval "$(pyenv virtualenv-init -)"
-
 antibody() {
   eval "$(command antibody init -)"
   antibody "$@"

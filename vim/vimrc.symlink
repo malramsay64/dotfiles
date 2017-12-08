@@ -23,7 +23,7 @@ filetype plugin indent on               " load filetype specific indent and plug
 let g:loaded_python_provider = 1
 
 if isdirectory($HOME.'/.pyenv')
-    let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim3/bin/python'
+    let g:python3_host_prog = $HOME.'/.miniconda/envs/neovim3/bin/python'
 endif
 
 let g:email = 'malramsay64@gmail.com'
@@ -31,7 +31,7 @@ let g:username = 'Malcolm Ramsay'
 
 " Use existing neovim session if opening from terminal
 if has('nvim') && executable('nvr')
-  let $VISUAL = 'nvr -cc split --remote-wait'
+  let $VISUAL = $HOME.'/.miniconda/envs/neovim3/bin/nvr -cc split --remote-wait'
 endif
 
 if exists('&belloff')
