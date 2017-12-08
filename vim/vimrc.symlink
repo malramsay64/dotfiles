@@ -724,5 +724,11 @@ let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due'
 "let g:task_gui_term = 0
 
 " }}}
+"  vimterm {{{
+
+nnoremap <leader>vo :call vimterm#toggle() <CR>
+tnoremap <leader>vo <C-\><C-n>:call vimterm#toggle() <CR>
+
+"  }}}
 "
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
