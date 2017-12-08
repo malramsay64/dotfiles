@@ -482,6 +482,18 @@ if has('python3')
     set completeopt-=preview
     "autocmd CompleteDone * pclose!
 
+    if !exists('g:deoplete#omni_patterns')
+        let g:deoplete#omni_patterns = {}
+    endif
+    let g:deoplete#omni_patterns.tex =
+                \ '\v\\%('
+                \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+                \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+                \ . '|hyperref\s*\[[^]]*'
+                \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+                \ . '|%(include%(only)?|input)\s*\{[^}]*'
+                \ . ')\m'
+
 endif
 
 "}}}
@@ -532,7 +544,8 @@ let g:vimtex_enabled = 1
 
 " Folding options
 let g:vimtex_fold_enabled = 1
-let g:vimtex_fold_manual = 1
+let g:vimtex_fold_env_whitelist = ['figure', 'table']
+"let g:vimtex_fold_manual = 1
 
 " latexmk options
 
