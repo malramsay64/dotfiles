@@ -45,7 +45,7 @@ Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
 
 " Status bar
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
 "Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
@@ -84,13 +84,6 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 Plug 'mklabs/split-term.vim'
 
-" Denite
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/unite.vim'
-Plug 'rafaqz/citation.vim'
-Plug 'chemzqm/vim-easygit'
-Plug 'chemzqm/denite-git'
-
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 Plug 'SirVer/ultisnips'
@@ -110,7 +103,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
-Plug 'euclio/vim-markdown-composer', Cond(executable('cargo'), { 'for': 'markdown', 'do': function('BuildComposer') })
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'junegunn/goyo.vim', { 'on': [ 'Goyo' ] }
 
@@ -132,11 +124,9 @@ Plug 'aperezdc/vim-template'            " Create templates for new files
 Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'godlygeek/tabular'                " Align bits of text
 Plug 'malramsay64/vim-taskwarrior'
+Plug 'rafi/vim-denite-task'
 Plug 'wvffle/vimterm'
 Plug 'majutsushi/tagbar'
-
-
-
 
 " all plugins must be added before this line
 call plug#end()

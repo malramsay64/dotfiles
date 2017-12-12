@@ -69,6 +69,7 @@ colorscheme quantum
 
 " Colourscheme override
 highlight pythonSelf cterm=italic gui=italic
+highlight Conceal guibg= ctermbg=
 " }}}
 "Spaces and Tabs {{{
 
@@ -124,7 +125,7 @@ set laststatus=2               " Display statusline
 
 set splitright                 " open splits by default to the right
 
-set splitbelow                 " open splits below current
+set nosplitbelow               " open splits above current
 
 set formatoptions+=n           " smart auto-indenting inside numbered lists
 
@@ -312,7 +313,6 @@ augroup END
 
 "}}}
 " Plugin Configuration {{{
-source $DOTFILES/vim/denite.vim
 source $DOTFILES/vim/fzf.vim
 
 " netrw {{{
@@ -412,7 +412,8 @@ let g:taskwiki_sort_order='urgency+,due+,project+'
 " }}}
 " fugitive {{{
 
-nnoremap <Leader>gc :Gstatus<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gc :Gcommit<CR>
 
 " }}}
 " neomake {{{
