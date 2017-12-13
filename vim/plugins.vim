@@ -45,7 +45,6 @@ Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
 
 " Status bar
 Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 
 " Vim Wiki
 "Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
@@ -124,7 +123,6 @@ Plug 'aperezdc/vim-template'            " Create templates for new files
 Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'godlygeek/tabular'                " Align bits of text
 Plug 'malramsay64/vim-taskwarrior'
-Plug 'rafi/vim-denite-task'
 Plug 'wvffle/vimterm'
 Plug 'majutsushi/tagbar'
 

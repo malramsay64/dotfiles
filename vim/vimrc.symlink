@@ -657,8 +657,8 @@ let g:templates_directory = [$DOTFILES.'/vim/templates']
 let g:iron_map_defaults = 0
 let g:iron_new_python_REPL_hooks = ['import numpy as np']
 
-nmap <leader>t <Plug>(iron-send-motion)
-vmap <leader>t <Plug>(iron-send-motion)
+nmap <leader>i <Plug>(iron-send-motion)
+vmap <leader>i <Plug>(iron-send-motion)
 nmap <leader>p <Plug>(iron-repeat-cmd)
 
 
@@ -725,15 +725,6 @@ let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due'
 "let g:task_gui_term = 0
 
 " }}}
-"  denite-task {{{
-
-call denite#custom#var('task', 'taskrc', '~/.taskrc')
-call denite#custom#var('task', 'data_dir', '~/.task')
-call denite#custom#var('task', 'format', '{id:3.3} | {priority:1.1} | {project:15.15} | {description:40.40} | {entry} | {due}')
-call denite#custom#var('task', 'date_format', '%y-%m-%d %H:%M')
-call denite#custom#var('task', 'label_width', 17)
-
-"  }}}
 "  vimterm {{{
 
 nnoremap <leader>vo :call vimterm#toggle() <CR>
