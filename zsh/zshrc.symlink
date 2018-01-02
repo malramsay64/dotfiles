@@ -86,3 +86,15 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
     unsetopt xtrace
     exec 2>&-
 fi
+
+# Have consistent location for forwarded ssh authentication socket
+if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-agent-sock"
+    export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
+elif [[ "$SSH_AUTH_SOCK" == /run/* ]]; then
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-agent-sock"
+    export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
+fi
+
+# added by travis gem
+[ -f /home/malcolm/.travis/travis.sh ] && source /home/malcolm/.travis/travis.sh

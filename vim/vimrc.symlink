@@ -434,6 +434,7 @@ nmap <leader>me :NeomakeEnable<CR>
 " deoplete {{{
 if has('python3')
     let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_smart_case = 1
 
     let g:deoplete#max_list=15
     let g:deoplete#auto_complete_delay = 100
@@ -442,10 +443,10 @@ if has('python3')
     inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 
     " <CR> gives newline
-    "inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    "function! s:my_cr_function() abort
-        "return deoplete#smart_close_popup() . "\<CR>"
-    "endfunction
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function() abort
+        return deoplete#close_popup() . "\<CR>"
+    endfunction
 
     " Enable echodoc to show function variables in command bar
     set noshowmode

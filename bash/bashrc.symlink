@@ -58,3 +58,6 @@ fi
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# added by travis gem
+[ -f /home/malcolm/.travis/travis.sh ] && source /home/malcolm/.travis/travis.sh

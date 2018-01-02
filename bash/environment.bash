@@ -29,6 +29,9 @@ alias v=$EDITOR
 if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
     ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-agent-sock"
     export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
+elif [[ "$SSH_AUTH_SOCK" == /run/* ]]; then
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-agent-sock"
+    export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
 fi
 
 # use neovim/vim as manpager

@@ -30,6 +30,7 @@ if [ ! -d $HOME/.miniconda ]; then
         curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o ~/Downloads/miniconda.sh;
     fi
     bash ~/Downloads/miniconda.sh -b -u -p $HOME/.miniconda
+    $HOME/.miniconda/bin/conda env create -f $DOTFILES/python/environment.yml
 fi
 
 echo "Done!"
