@@ -16,6 +16,9 @@ set -g history-limit 20000
 # Enable mouse interaction with tmux
 setw -g mouse on
 
+# Copy to system clipboard from copy mode
+bind -T copy-mode-vi y send-keys -X copy-pipe 'xclip -in -selection clipboard'
+
 # Indexing and Labelling  {{{
 
 # make pane index start from 1
@@ -78,8 +81,6 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-yank'
-
-
 
 run '~/.tmux/plugins/tpm/tpm'
 # }}}
