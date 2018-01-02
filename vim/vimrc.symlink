@@ -236,8 +236,8 @@ endif
 "Folding {{{
 
 set foldenable         " enable folding
-set foldlevelstart=999 " have all levels open by default
-set foldnestmax=6      " 6 nested folds max
+set foldlevelstart=5   " have all levels open by default
+set foldnestmax=2      " Maximum number of nested folds
 set foldmethod=syntax  " fold based on indent
 
 set modelines=1        " last line of file is checked to run as a command
@@ -565,18 +565,6 @@ let g:vim_isort_map  = '<leader>i'
 let g:vim_isort_python_version = 'python3'
 
 "}}}
-" split-term {{{
-"let g:split_term_vertical = 0
-
-" split-term {{{
-"let g:split_term_vertical = 0
-
-let g:disable_key_mappings = 1
-
-"}}}
-" markdown composer {{{
-let g:markdown_composer_refresh_rate=5000
-" }}}
 " jedi-vim {{{
 
 let g:jedi#completions_command=''
@@ -614,7 +602,7 @@ augroup goyo
 augroup END
 
 nnoremap <leader>eg :Goyo<CR>
-"
+
 " }}}
 " template {{{
 
@@ -636,7 +624,7 @@ nmap <leader>p <Plug>(iron-repeat-cmd)
 
 let g:online_thesaurus_map_keys = 0
 
-nnoremap <leader>t :OnlineThesaurusCurrentWord<CR>
+nnoremap <leader>y :OnlineThesaurusCurrentWord<CR>
 
 " }}}
 " undotree {{{
@@ -644,43 +632,6 @@ nnoremap <leader>t :OnlineThesaurusCurrentWord<CR>
 noremap <leader>u :UndotreeToggle<CR>
 
 " }}}
-" }}}
-" projectionist {{{
-let g:projectionist_heuristics = {
-      \     'src/*.c': {
-      \       'alternate': 'src/{}.h',
-      \       'type': 'source'
-      \     },
-      \     '*.h': {
-      \       'alternate': '{}.c',
-      \       'type': 'header'
-      \     },
-      \     'src/*.cc': {
-      \       'alternate': 'src/{}.hh',
-      \       'type': 'source'
-      \     },
-      \     '*.hh': {
-      \       'alternate': '{}.cc',
-      \       'type': 'header'
-      \     },
-      \     '*.pyx': {
-      \       'alternate': '{}.pxd',
-      \       'type': 'source'
-      \     },
-      \     '*.pxd': {
-      \       'alternate': '{}.pyx',
-      \       'type': 'header'
-      \     },
-      \     '*.py': {
-      \       'alternate': 'test/{basename}_test.py',
-      \       'type': 'source'
-      \     },
-      \     'test/*_test.py': {
-      \       'alternate': 'src/**/{}.py',
-      \       'type': 'test'
-      \     }
-      \ }
-
 " }}}
 " vim-taskwarrior {{{
 
@@ -710,6 +661,12 @@ tnoremap <leader>vo <C-\><C-n>:call vimterm#toggle() <CR>
 nmap <Leader>s <Plug>(Scalpel)
 
 "  }}}
+" Tagbar {{{
+
+nnoremap <Leader>t :TagbarToggle<CR>
+
+" }}}
+
 "  }}}
 "
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
