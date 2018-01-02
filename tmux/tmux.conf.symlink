@@ -9,7 +9,15 @@ set -g default-terminal "tmux-256color"
 if-shell " [[ $(tmux -V | cut -d' ' -f2 -ge 2.2 ]]" \
     'set -g status-utf8 on'
 
+
+# Configturation {{{
 set -g history-limit 20000
+
+# Enable mouse interaction with tmux
+setw  -g mode-mouse on
+set -g mouse-select-pane on
+get -g mouse-resize-pane on
+get -g mouse-select-window on
 
 # Indexing and Labelling  {{{
 
