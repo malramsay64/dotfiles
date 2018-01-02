@@ -21,24 +21,10 @@ function! DoRemote()
     UpdateRemotePlugins
 endfunction
 
-" Build markdown composer plugin
-function! BuildComposer(info)
-  if a:info.status !=# 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release
-    else
-      !cargo build --release --no-default-features --features json-rpc
-    endif
-  endif
-endfunction
-
-
 call plug#begin()
 
 " Colourschemes
-Plug 'joshdick/onedark.vim'
-Plug 'tyrannicaltoucan/vim-quantum'
-Plug 'KeitaNakamura/neodark.vim'
+Plug 'malramsay64/vim-quantum'
 
 " Examine syntax highlighting rules
 Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
@@ -81,7 +67,6 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Terminal/REPL
 Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
-Plug 'mklabs/split-term.vim'
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
@@ -92,11 +77,8 @@ Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
 Plug 'Shougo/echodoc.vim'
 
 " Additional text-objects
-Plug 'kana/vim-textobj-user'
-Plug 'bps/vim-textobj-python', {'for': ['python', 'cython'] }
-
-" File management
-Plug 'tpope/vim-vinegar'
+Plug 'wellle/targets.vim'
+Plug 'wvffle/vimterm'
 
 " Writing plugins
 Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
@@ -105,25 +87,28 @@ Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'junegunn/goyo.vim', { 'on': [ 'Goyo' ] }
 
+" Search and replace
+Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
+Plug 'wincent/loupe'
+Plug 'wincent/scalpel'
+
 " General Plugins
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentary mappings
 Plug 'tpope/vim-speeddating'            " incr/decr dates
-Plug 'tpope/vim-projectionist'          " Move between matched files
+Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'           " git diffs
 Plug 'szw/vim-tags'                     " ctag support
 Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
-Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
 Plug 'aperezdc/vim-template'            " Create templates for new files
 Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'godlygeek/tabular'                " Align bits of text
 Plug 'malramsay64/vim-taskwarrior'
-Plug 'wvffle/vimterm'
 Plug 'majutsushi/tagbar'
 
 " all plugins must be added before this line

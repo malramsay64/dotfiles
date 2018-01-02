@@ -1,6 +1,6 @@
 zsh-users/zsh-autosuggestions
-zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-completions
+zdharma/fast-syntax-highlighting
 Tarrasch/zsh-colors
 Tarrasch/zsh-autoenv
 mafredri/zsh-async
