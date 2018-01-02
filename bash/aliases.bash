@@ -31,7 +31,7 @@ alias sact='source activate'
 alias sd='source deactivate'
 
 # Git aliases
-alias go='git checkout'
+#alias go='git checkout' # this collides with the golang command
 alias gc='git commit'
 alias gb='git branch'
 alias gd='git diff'

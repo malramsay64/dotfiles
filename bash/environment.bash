@@ -13,9 +13,9 @@ function hist {
 }
 
 # Setting editor to nvim if present
-if [ "$(hash nvr 2>/dev/null && echo 1)" ]; then
+if hash nvr 2>/dev/null; then
     export EDITOR="$(which nvr) --remote-silent"
-elif [ "$(hash nvim 2>/dev/null && echo 1)" ]; then
+elif hash nvim 2>/dev/null; then
     export EDITOR=nvim
 elif [ -e "$HOME/.local/bin/vim" ]; then
     export EDITOR=$HOME/.local/bin/vim
@@ -50,9 +50,16 @@ fi
 export PATH=$HOME/.miniconda/bin:$PATH
 
 # Adding home directory bin to path
+[ -d "$HOME/go/bin" ] && export PATH="$HOME/go/bin:$PATH"
+[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
 [ -d "$HOME/dotfiles/bin" ] && export PATH="$PATH:$HOME/dotfiles/bin"
 [ -d "$HOME/.bin" ] && export PATH="$HOME/.bin:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+
+# Alias gopass, which provides nicer features to pass
+if hash gopass 2> /dev/null; then
+    alias pass="gopass"
+fi
 
 # Test interactive shell
 [[ $- == *i* ]] && stty -ixon
