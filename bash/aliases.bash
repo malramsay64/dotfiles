@@ -31,12 +31,13 @@ alias sact='source activate'
 alias sd='source deactivate'
 
 # Git aliases
+alias g='git'
 #alias go='git checkout' # this collides with the golang command
-alias gc='git commit'
-alias gb='git branch'
-alias gd='git diff'
-alias ga='git add'
-alias gs='git status'
+#alias gc='git commit'
+#alias gb='git branch'
+#alias gd='git diff'
+#alias ga='git add'
+alias gs='git status' # This is so I don't keep starting ghostscript
 
 # Function to revert all files to default permissions
 defmod() {
