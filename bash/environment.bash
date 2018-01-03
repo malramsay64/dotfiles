@@ -46,8 +46,8 @@ if hash hub &>/dev/null; then
     eval "$(hub alias -s)"
 fi
 
-# Add conda to path
-export PATH=$HOME/.miniconda/bin:$PATH
+# Allow conda to activate environments (conda 4.4)
+source /home/malcolm/.miniconda/etc/profile.d/conda.sh
 
 # Adding home directory bin to path
 [ -d "$HOME/go/bin" ] && export PATH="$HOME/go/bin:$PATH"
