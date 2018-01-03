@@ -632,7 +632,6 @@ nnoremap <leader>y :OnlineThesaurusCurrentWord<CR>
 noremap <leader>u :UndotreeToggle<CR>
 
 " }}}
-" }}}
 " vim-taskwarrior {{{
 
 " Highlighting field
