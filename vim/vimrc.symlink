@@ -144,6 +144,11 @@ nnoremap <C-l> <C-w>l
 " Consistency with yank
 nnoremap Y y$
 
+augroup gopass-security
+    " Don't backup gopass files.
+    autocmd BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
+augroup end 
+
 "}}}
 " Custom Shortcuts {{{
 
