@@ -88,7 +88,7 @@ function! StripTrailingWhitespaces()
     call winrestview(l:pos)
 endfun
 
-nnoremap <Leader>zz :call StripTrailingWhitespaces()<CR>
+nnoremap <Space>zz :call StripTrailingWhitespaces()<CR>
 
 
 "}}}
@@ -147,7 +147,7 @@ nnoremap Y y$
 augroup gopass-security
     " Don't backup gopass files.
     autocmd BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
-augroup end 
+augroup end
 
 "}}}
 " Custom Shortcuts {{{
