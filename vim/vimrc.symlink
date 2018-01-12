@@ -31,7 +31,7 @@ let g:username = 'Malcolm Ramsay'
 
 " Use existing neovim session if opening from terminal
 if has('nvim') && executable('nvr')
-  let $VISUAL = $HOME.'/.miniconda/envs/neovim3/bin/nvr -cc split --remote-wait'
+  let $VISUAL = $HOME."/.miniconda/envs/neovim3/bin/nvr -cc split --remote-wait +'set bufhidden=wipe'"
 endif
 
 if exists('&belloff')
