@@ -417,7 +417,18 @@ augroup neomake
     autocmd ColorScheme * hi NeomakeWarningSign ctermfg=yellow
 augroup END
 
-let g:neomake_python_enabled_makers = ['pydocstyle', 'pycodestyle', 'pylint', 'mypy']
+function! s:get_python_makers()
+    let l:all_makers = []
+    for l:maker in ['pydocstyle', 'pycodestyle', 'pylint', 'mypy']
+        if executable(l:maker)
+            let l:all_makers += [l:maker]
+        endif
+    endfor
+    return l:all_makers
+endfunction
+let g:neomake_python_enabled_makers = s:get_python_makers()
+
+
 let g:neomake_python_pycodesyle_args = ['--ignore=E123']
 let g:neomake_python_pydocsyle_args = ['--ignore=D105,D203,D213,D205,D213']
 
