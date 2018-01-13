@@ -46,12 +46,12 @@ Plug 'junegunn/fzf.vim'
 
 " Filetype specific plugins
 " Python
-Plug 'fisadev/vim-isort', { 'for': ['python', 'cython'] }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python', 'cython'] }
 Plug 'davidhalter/jedi-vim', { 'for': ['python', 'cython'] }
 Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
 Plug 'fs111/pydoc.vim', { 'on': ['Pydoc', 'PydocSearch'] }
 Plug 'lambdalisue/vim-cython-syntax'
+Plug 'fisadev/vim-isort', Cond(executable('isort'), { 'for': ['python', 'cython'] })
 
 " Other Languages
 Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
@@ -63,6 +63,8 @@ Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'cespare/vim-toml'
 Plug 'robertbasic/vim-hugo-helper', { 'for': 'markdown' }
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Terminal/REPL
@@ -108,8 +110,8 @@ Plug 'nixon/vim-vmath'                  " math on visual selections
 Plug 'aperezdc/vim-template'            " Create templates for new files
 Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'godlygeek/tabular'                " Align bits of text
-Plug 'malramsay64/vim-taskwarrior'
 Plug 'majutsushi/tagbar'
+Plug 'malramsay64/vim-taskwarrior', Cond(executable('task'))
 
 " all plugins must be added before this line
 call plug#end()
