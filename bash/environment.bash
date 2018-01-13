@@ -40,6 +40,10 @@ if hash nvim &>/dev/null; then
 else
     export MANPAGER="vim +'set ft:man' -"
 fi
+# Read --help as manpage when no manpage exists
+man() {
+    /usr/bin/man $1 || nvim "+read! $1 --help" '+setlocal ft=man bt=nofile bufhidden=wipe noswapfile ro'
+}
 
 # Alias hub if present
 if hash hub &>/dev/null; then
