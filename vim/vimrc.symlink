@@ -625,6 +625,15 @@ nnoremap <leader>eg :Goyo<CR>
 
 let g:templates_directory = [$DOTFILES.'/vim/templates']
 
+let g:templates_user_variables = [
+            \ ['DIRECTORY', 'GetDirectoryName'],
+            \ ]
+
+function! GetDirectoryName()
+    " Expand to full path, remove the filename, then get the folder
+    return expand('%:p:h:t')
+endfunction
+
 " }}}
 " iron.nvim {{{
 
