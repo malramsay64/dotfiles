@@ -144,7 +144,7 @@ nnoremap <C-l> <C-w>l
 " Consistency with yank
 nnoremap Y y$
 
-augroup gopass-security
+augroup gopass_security
     " Don't backup gopass files.
     autocmd BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
 augroup end
@@ -218,8 +218,9 @@ cmap w!! w !sudo tee > /dev/null %
 nnoremap <C-w>- :5wincmd -<CR>
 nnoremap <C-w>= :5wincmd +<CR>
 nnoremap <C-w>+ :wincmd =<CR>
-nmap <leader>vj :5wincmd +<CR>
-nmap <leader>vk :5wincmd -<CR>
+nnoremap <leader>vj :5wincmd +<CR>
+nnoremap <leader>vk :5wincmd -<CR>
+nnoremap <space>w= :wincmd =<CR>
 
 "}}}
 "Searching {{{
@@ -442,9 +443,9 @@ if executable('proselint')
     let g:neomake_vimwiki_enabled_makers = ['proselint']
 endif
 
-nmap <leader>md :NeomakeDisable<CR>
-nmap <leader>mt :NeomakeToggle<CR>
-nmap <leader>me :NeomakeEnable<CR>
+nnoremap <leader>md :NeomakeDisable<CR>
+nnoremap <leader>mt :NeomakeToggle<CR>
+nnoremap <leader>me :NeomakeEnable<CR>
 
 " }}}
 " deoplete {{{
