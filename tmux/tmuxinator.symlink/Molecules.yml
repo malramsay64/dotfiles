@@ -1,7 +1,7 @@
 # ~/.tmuxinator/Molecules.yml
 
-name: Molecules
-root: ~/
+name: PhD
+root: ~/Documents/PhD/statdyn-analysis
 
 # Optional tmux socket
 # socket_name: foo
@@ -31,9 +31,4 @@ windows:
   - Run:
       layout: main-horizontal
       panes:
-        - cd Documents/Molecules/MD-Molecules-Hoomd; nvim dynamics.py
-        - cd scratch/hoomd2
-        - cd scratch/hoomd2
-  - Scripts: 
-      panes:
-        - cd Documents/Molecules/MD-Molecules-Hoomd; nvim dynamics.py
+        - nvim dynamics.py

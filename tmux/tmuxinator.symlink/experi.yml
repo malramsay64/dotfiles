@@ -1,16 +1,16 @@
-# ~/.tmuxinator/Writing.yml
+# ~/.tmuxinator/experi.yml
 
-name: Writing
-root: ~/
+name: experi
+root: ~/Documents/PhD/experi
 
 # Optional tmux socket
 # socket_name: foo
 
 # Runs before everything. Use it to start daemons etc.
-# pre: sudo /etc/rc.d/mysqld start
+pre: sudo /etc/rc.d/mysqld start
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-# pre_window: rbenv shell 2.0.0-p247
+pre_window: pipenv shell
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
@@ -22,16 +22,13 @@ root: ~/
 # startup_window: logs
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
-# attach: false
+attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t Writing
+# post: tmux -CC attach -t experi
 
 windows:
-  - Tasks:
+  - editor:
       layout: main-horizontal
       panes:
-        - nvim +"TW -Home due.before:2w"
-        - task sync
-        - nvim +"TW +Home"
-  - Diary: nvim +VimwikiDiaryIndex
+        - nvim
