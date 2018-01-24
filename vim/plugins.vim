@@ -112,6 +112,7 @@ Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'godlygeek/tabular'                " Align bits of text
 Plug 'majutsushi/tagbar'
 Plug 'malramsay64/vim-taskwarrior', Cond(executable('task'))
+Plug 'gioele/vim-autoswap'
 
 " all plugins must be added before this line
 call plug#end()
