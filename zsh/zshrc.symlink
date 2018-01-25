@@ -13,7 +13,7 @@ fi
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' max-errors 2
-zstyle :compinstall filename '/Users/malcolm/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 
 autoload -Uz compinit
 compinit
@@ -78,6 +78,13 @@ PURE_PROMPT_SYMBOL=〉
 if hash rg 2> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+# Use neovim-remote when in a neovim buffer
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    if hash nvr 2>/dev/null; then
+        alias nvim="nvr"
+    fi
 fi
 
 # Source local changes
