@@ -435,12 +435,7 @@ let g:neomake_python_pydocsyle_args = ['--ignore=D105,D203,D213,D205,D213']
 
 " Makers for vimwiki filetype
 if executable('proselint')
-    let g:neomake_vimwiki_proselint_maker = {
-                \ 'exe': 'proselint',
-                \ 'errorformat': '%W%f:%l:%c: %m',
-                \ 'postprocess': function('neomake#postprocess#GenericLengthPostprocess'),
-                \}
-    let g:neomake_vimwiki_enabled_makers = ['proselint']
+    let g:neomake_text_enabled_makers = ['proselint']
 endif
 
 nnoremap <leader>md :NeomakeDisable<CR>
@@ -452,6 +447,8 @@ nnoremap <leader>me :NeomakeEnable<CR>
 if has('python3')
     let g:deoplete#enable_at_startup = 1
     let g:deoplete#enable_smart_case = 1
+    let g:deoplete#enable_refresh_always = 1
+    let g:deoplete#enable_on_insert_enter = 1
 
     let g:deoplete#max_list=15
     let g:deoplete#auto_complete_delay = 100
