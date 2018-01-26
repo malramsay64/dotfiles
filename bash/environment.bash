@@ -1,33 +1,44 @@
 # A series of environment settings that should be present in whichever shell is being used
 
-# Update path variable
-function _add_to_path() {
+# Update path variable if directory exists
+function add_to_path() {
     if [ -d "$1" ]; then
         export PATH="$1:$PATH"
     fi
 }
 
-function _source_file {
+# Source a file if it exists
+function source_file() {
     if [ -f "$1" ]; then
-        source "$1"
+        local -r file="$1"
+        shift
+        source "$file" "$@"
     fi
 }
 
-_add_to_path "$HOME/go/bin"
-_add_to_path "$HOME/.cargo/bin"
-_add_to_path "$HOME/dotfiles/bin"
-_add_to_path "$HOME/.bin"
-_add_to_path "$HOME/.local/bin"
-_add_to_path "/usr/local/bin"
-
-# Change settings for z
-export _Z_DATA="$HOME/.z/z"
-_source_file "$HOME/dotfiles/bash/z/z.sh"
+# Create function alias if function exists
+function alias_function() {
+    if hash $1 2>/dev/null; then
+        alias "$1"="$2"
+    fi
+}
 
 # histdb alias
 function hist {
     histdb $1 --host
 }
+
+add_to_path "$HOME/go/bin"
+add_to_path "$HOME/.cargo/bin"
+add_to_path "$HOME/dotfiles/bin"
+add_to_path "$HOME/.bin"
+add_to_path "$HOME/.local/bin"
+add_to_path "/usr/local/bin"
+
+# Change settings for z
+export _Z_DATA="$HOME/.z/z"
+source_file "$HOME/dotfiles/bash/z/z.sh"
+
 
 # Setting editor to nvim if present
 if hash nvr 2>/dev/null; then
@@ -62,18 +73,13 @@ man() {
     /usr/bin/man $1 || nvim "+read! $1 --help" '+setlocal ft=man bt=nofile bufhidden=wipe noswapfile ro'
 }
 
-# Alias hub if present
-if hash hub &>/dev/null; then
-    eval "$(hub alias -s)"
-fi
-
 # Allow conda to activate environments (conda 4.4)
-_source_file "$HOME/.miniconda/etc/profile.d/conda.sh"
+source_file "$HOME/.miniconda/etc/profile.d/conda.sh"
 
 # Alias gopass, which provides nicer features to pass
-if hash gopass 2> /dev/null; then
-    alias pass="gopass"
-fi
+alias_function pass "gopass"
+# Alias hub if present
+alias_function git "hub"
 
 # Test interactive shell
 [[ $- == *i* ]] && stty -ixon
