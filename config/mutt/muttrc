@@ -1,0 +1,32 @@
+set realname='Malcolm Ramsay'
+
+set imap_user = "malramsay64@gmail.com"
+set imap_pass = `pass show mutt/malramsay64@gmail.com`
+
+set folder = "imaps://imap.gmail.com:993/"
+set spoolfile = "imaps://imap.gmail.com:993/INBOX"
+set record = "+[GMAIL]/Sent Mail"
+set postponed = "+[GMAIL]/Drafts"
+
+set smtp_url = "smtps://malramsay64@smtp.gmail.com"
+set smtp_pass = `pass show mutt/malramsay64@gmail.com`
+set record = ""
+
+set imap_check_subscribed=yes
+
+set sort_aux=reverse-last-date-received
+set sort=threads
+
+set mbox="imaps://imap.gmail.com/[GMAIL]/All Mail"
+
+set sidebar_visible=yes
+set sidebar_width=30
+
+bind editor <space> noop
+bind index g noop
+macro index,pager A "<save-message>=[Gmail]/All Mail<enter><enter>" "Archive"
+macro index,pager d "<save-message>=[Gmail]/Trash<enter><enter>" "Trash"
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
+macro index gs "<change-folder>=[Gmail]/Starred<enter>" "Go to starred messages"
+macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
