@@ -44,8 +44,8 @@ if [ $#_ssh_hosts -gt 0 ]; then
     zstyle ':completion:*:rsync:*' hosts $_ssh_hosts
 fi
 
-source $DOTFILES/zsh/sourceables.sh
-source $DOTFILES/zsh/vi-mode.zsh
+_source_file $DOTFILES/zsh/sourceables.sh
+_source_file $DOTFILES/zsh/vi-mode.zsh
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
@@ -74,7 +74,7 @@ PURE_CMD_MAX_EXEC_TIME=10
 PURE_PROMPT_SYMBOL=〉
 
 # fzf configuratioin
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+_source_file "$HOME/.fzf.zsh"
 if hash rg 2> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -87,8 +87,6 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     fi
 fi
 
-# Source local changes
-[ -e $HOME/.bashrc.local ] && source $HOME/.bashrc.local
 
 # Have consistent location for forwarded ssh authentication socket
 if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
@@ -99,14 +97,21 @@ elif [[ "$SSH_AUTH_SOCK" == /run/* ]]; then
     export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
 fi
 
-# added by travis gem
-# Source travis program
-[ -f /home/malcolm/.travis/travis.sh ] && source /home/malcolm/.travis/travis.sh
+# Files to load
+function _source_file {
+    if [ -f "$1" ]; then
+        source "$1"
+    fi
+}
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/.local/google-cloud-sdk/path.zsh.inc" ]; then source "$HOME/.local/google-cloud-sdk/path.zsh.inc"; fi
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/.local/google-cloud-sdk/completion.zsh.inc" ]; then source "$HOME/.local/google-cloud-sdk/completion.zsh.inc"; fi
+## update PATH for google cloud SDK
+_source_file "$HOME/.local/google-cloud-sdk/path.zsh.inc"
+## enable shell completion for gcloud
+_source_file "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
+# Source local changes
+_source_file "$HOME/.bashrc.local"
+# Source travis config
+_source_file "/home/malcolm/.travis/travis.sh"
 
 if [[ "$PROFILE_STARTUP" == true ]]; then
     zprof

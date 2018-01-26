@@ -1,11 +1,28 @@
 # A series of environment settings that should be present in whichever shell is being used
 
-# For homebrew
-export PATH="/usr/local/bin:$PATH"
+# Update path variable
+function _add_to_path() {
+    if [ -d "$1" ]; then
+        export PATH="$1:$PATH"
+    fi
+}
+
+function _source_file {
+    if [ -f "$1" ]; then
+        source "$1"
+    fi
+}
+
+_add_to_path "$HOME/go/bin"
+_add_to_path "$HOME/.cargo/bin"
+_add_to_path "$HOME/dotfiles/bin"
+_add_to_path "$HOME/.bin"
+_add_to_path "$HOME/.local/bin"
+_add_to_path "/usr/local/bin"
 
 # Change settings for z
 export _Z_DATA="$HOME/.z/z"
-source "$HOME/dotfiles/bash/z/z.sh"
+_source_file "$HOME/dotfiles/bash/z/z.sh"
 
 # histdb alias
 function hist {
@@ -51,14 +68,7 @@ if hash hub &>/dev/null; then
 fi
 
 # Allow conda to activate environments (conda 4.4)
-source "$HOME/.miniconda/etc/profile.d/conda.sh"
-
-# Adding home directory bin to path
-[ -d "$HOME/go/bin" ] && export PATH="$HOME/go/bin:$PATH"
-[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
-[ -d "$HOME/dotfiles/bin" ] && export PATH="$PATH:$HOME/dotfiles/bin"
-[ -d "$HOME/.bin" ] && export PATH="$HOME/.bin:$PATH"
-[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+_source_file "$HOME/.miniconda/etc/profile.d/conda.sh"
 
 # Alias gopass, which provides nicer features to pass
 if hash gopass 2> /dev/null; then
