@@ -1,11 +1,9 @@
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
-zdharma/fast-syntax-highlighting
-Tarrasch/zsh-colors
-Tarrasch/zsh-autoenv
-mafredri/zsh-async
-sindresorhus/pure
-olivierverdier/zsh-git-prompt
 srijanshetty/zsh-pip-completion
 felixr/docker-zsh-completion
+zdharma/fast-syntax-highlighting
 larkery/zsh-histdb
+Tarrasch/zsh-colors
+mafredri/zsh-async
+sindresorhus/pure
