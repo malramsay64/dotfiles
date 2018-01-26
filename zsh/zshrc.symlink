@@ -30,10 +30,18 @@ bindkey -v
 
 
 export DOTFILES="$HOME/dotfiles"
+# Source zsh plugins
+# This needs to be a standard source for some reason
+source "$DOTFILES/zsh/sourceables.sh"
+# Source common environment configuration,
+# this includes the source_file function
 source "$DOTFILES/bash/environment.bash"
+# Aliases
 source_file "$DOTFILES/bash/aliases.bash"
+# Set RPROMPT when in vim mode
+source_file "$DOTFILES/zsh/vi-mode.zsh"
 
- #Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 _ssh_hosts=()
 if [ -e "$HOME/.ssh/config" ]; then
     _ssh_hosts=($(grep "^Host " ~/.ssh/config | grep -v "[?*]" | cut -d ' ' -f2- | tr '\n' ' '))
@@ -44,17 +52,11 @@ if [ $#_ssh_hosts -gt 0 ]; then
     zstyle ':completion:*:rsync:*' hosts $_ssh_hosts
 fi
 
-# This needs to be a standard source for some reason
-source "$DOTFILES/zsh/sourceables.sh"
-source_file "$DOTFILES/zsh/vi-mode.zsh"
-
-autoload -U zmv
-alias mmv='noglob zmv -W'
-
-# Use histdb timer
+# Use histdb timer to time each command
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd  histdb-update-outcome
 
+# Use histdb for zsh autosuggestions, with the top result being directory dependent
 _zsh_autosuggest_strategy_histdb_top_here() {
     local query="select commands.argv from
 history left join commands on history.command_id = commands.rowid
@@ -69,15 +71,20 @@ ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
 
 # setup prompt
 autoload -U promptinit; promptinit
+# Prompt is sourced so no need for `prompt pure`
+# This also means that only a single prompt can be loaded at once
 
-# optionally define some options
+# Time before prompt displays execution time
 PURE_CMD_MAX_EXEC_TIME=10
+# The default symbol doesn't work with Iosevka
 PURE_PROMPT_SYMBOL=〉
 
 # fzf configuratioin
 source_file "$HOME/.fzf.zsh"
 if hash rg 2> /dev/null; then
+    # Use ripgrep for fzf search
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+    # Use ripgrep for ctrl-T search
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
