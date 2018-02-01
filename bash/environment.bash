@@ -18,7 +18,7 @@ function source_file() {
 
 # Create function alias if function exists
 function alias_function() {
-    if hash $1 2>/dev/null; then
+    if hash $2 2>/dev/null; then
         alias "$1"="$2"
     fi
 }
@@ -81,7 +81,7 @@ alias_function pass "gopass"
 # Alias hub if present
 alias_function git "hub"
 # Alias mux for tmuxinator
-alias_function mux tmuxinator
+alias_function mux "tmuxinator"
 
 # Test interactive shell
 [[ $- == *i* ]] && stty -ixon
