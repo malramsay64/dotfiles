@@ -50,5 +50,5 @@ windows:
       # synchronize: after
       panes:
         - nvim vim/vimrc.symlink vim/plugins.vim
-  - zsh: nvim zsh/zshrc.symlink
+  - zsh: nvim zsh/zshrc.symlink bash/environment.bash zsh/plugins.txt
   - tmux: nvim tmux/tmuxinator.symlink/*
