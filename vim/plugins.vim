@@ -64,7 +64,8 @@ Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'zchee/deoplete-jedi', { 'for': ['python', 'cython'] }
-Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'c'] }
+Plug 'tweekmonster/deoplete-clang2', { 'for': ['cpp', 'c'] }
+
 Plug 'Shougo/echodoc.vim'
 
 " Additional text-objects
@@ -72,7 +73,7 @@ Plug 'wellle/targets.vim'
 Plug 'wvffle/vimterm'
 
 " Writing plugins
-Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text'] }
+Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text', 'gitcommit'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'junegunn/goyo.vim', { 'on': [ 'Goyo' ] }
@@ -99,8 +100,9 @@ Plug 'aperezdc/vim-template'            " Create templates for new files
 Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'godlygeek/tabular'                " Align bits of text
 Plug 'majutsushi/tagbar'
-Plug 'malramsay64/vim-taskwarrior', Cond(executable('task'))
+Plug '~/Documents/Programming/vim-taskwarrior', Cond(executable('task'))
 Plug 'gioele/vim-autoswap'
+Plug 'janko-m/vim-test'
 
 " all plugins must be added before this line
 call plug#end()
