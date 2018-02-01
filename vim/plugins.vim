@@ -46,26 +46,15 @@ Plug 'junegunn/fzf.vim'
 
 " Filetype specific plugins
 " Python
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python', 'cython'] }
 Plug 'davidhalter/jedi-vim', { 'for': ['python', 'cython'] }
-Plug 'wmayner/python3-syntax', { 'for': 'python' , 'branch': 'develop' }
 Plug 'fs111/pydoc.vim', { 'on': ['Pydoc', 'PydocSearch'] }
 Plug 'lambdalisue/vim-cython-syntax'
 Plug 'fisadev/vim-isort', Cond(executable('isort'), { 'for': ['python', 'cython'] })
 
 " Other Languages
-Plug 'jansenm/vim-cmake', { 'for': 'cmake' }
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['cpp', 'c'] }
-Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'dearrrfish/vim-applescript', { 'for': 'applescript' }
-Plug 'lumiliet/vim-twig', { 'for': 'twig' }
-Plug 'saltstack/salt-vim', { 'for': ['sls', 'saltstack'] }
-Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'cespare/vim-toml'
-Plug 'robertbasic/vim-hugo-helper', { 'for': 'markdown' }
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'sheerun/vim-polyglot'
+"Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Terminal/REPL
 Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
@@ -83,7 +72,6 @@ Plug 'wellle/targets.vim'
 Plug 'wvffle/vimterm'
 
 " Writing plugins
-Plug 'reedes/vim-pencil', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'beloglazov/vim-online-thesaurus'
