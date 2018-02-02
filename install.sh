@@ -11,7 +11,8 @@ mkdir -p "$HOME/.local/bin"
 source "install/link.sh"
 
 echo "Creating vim directories"
-mkdir -p "$HOME/.vim-tmp/{swap,undo}"
+mkdir -p "$HOME/.vim-tmp/undo"
+mkdir -p "$HOME/.vim-tmp/swap"
 
 echo "Installing vim plugins"
 vim +PlugUpdate +qall
