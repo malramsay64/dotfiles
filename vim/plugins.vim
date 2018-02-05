@@ -32,9 +32,6 @@ Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
 " Status bar
 Plug 'vim-airline/vim-airline'
 
-" Vim Wiki
-"Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-Plug '~/Documents/Programming/vimwiki'
 
 " Syntax checking
 Plug 'neomake/neomake'
@@ -54,7 +51,8 @@ Plug 'fisadev/vim-isort', Cond(executable('isort'), { 'for': ['python', 'cython'
 " Other Languages
 Plug 'sheerun/vim-polyglot'
 "Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'nelstrom/vim-markdown-folding', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 
 " Terminal/REPL
 Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
@@ -100,9 +98,10 @@ Plug 'aperezdc/vim-template'            " Create templates for new files
 Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'godlygeek/tabular'                " Align bits of text
 Plug 'majutsushi/tagbar'
-Plug '~/Documents/Programming/vim-taskwarrior', Cond(executable('task'))
 Plug 'gioele/vim-autoswap'
-Plug 'janko-m/vim-test'
+Plug 'jez/vim-github-hub'
+
+Plug 'malramsay64/nvim-project-log'
 
 " all plugins must be added before this line
 call plug#end()
