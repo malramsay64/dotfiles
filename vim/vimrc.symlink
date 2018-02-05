@@ -58,16 +58,18 @@ endif
 let g:one_allow_italics = 1
 let g:quantum_italics=1
 
+" Colourscheme override
+augroup colourOverride
+   autocmd!
+   autocmd ColorScheme * highlight Conceal guibg=None
+augroup END
+
 let g:airline_theme='quantum'
 
 set background=dark " for the dark version
 "colorscheme onedark
 colorscheme quantum
 
-" Colourscheme override
-highlight pythonSelf cterm=italic gui=italic
-highlight Conceal guibg=NONE ctermbg=NONE
-highlight Whitespace guibg=NONE ctermbg=NONE
 
 " }}}
 "Spaces and Tabs {{{
@@ -78,7 +80,7 @@ set shiftwidth=4        " autoindent amount when using cindent
 set expandtab           " TAB inserts softtabstop spaces
 
 set autoindent          " copy indentation from previous line
-set smartindent         " inserts extra indentation in some cases
+set nosmartindent         " inserts extra indentation in some cases
 
 
 " Remove trailing whitespace from file and return cursor to current position
@@ -383,11 +385,6 @@ endfunction
 
 
 "}}}
-" TaskWiki {{{
-
-let g:taskwiki_sort_order='urgency+,due+,project+'
-
-" }}}
 " fugitive {{{
 
 nnoremap <Leader>gs :Gstatus<CR>
@@ -432,11 +429,6 @@ let g:neomake_python_enabled_makers = s:get_python_makers()
 
 let g:neomake_python_pycodesyle_args = ['--ignore=E123']
 let g:neomake_python_pydocsyle_args = ['--ignore=D105,D203,D213,D205,D213']
-
-" Makers for vimwiki filetype
-if executable('proselint')
-    let g:neomake_text_enabled_makers = ['proselint']
-endif
 
 nnoremap <leader>md :NeomakeDisable<CR>
 nnoremap <leader>mt :NeomakeToggle<CR>
@@ -485,24 +477,6 @@ if has('python3')
 endif
 
 "}}}
-" clang_complete {{{
-let g:clang_use_library = 1
-
-if !isdirectory("/usr/local/opt/llvm/lib")
-    let g:clang_library_path='/usr/local/opt/llvm/lib'
-endif
-
-let g:clang_user_options = '-std=c+=11'
-let g:clang_complete_auto = 1
-let g:clang_hl_errors = 1
-let g:clang_snippets = 1
-let g:clang_snippets_engine = 'ultisnips'
-let g:clang_close_preview = 1
-let g:clang_auto_select = 1
-let g:clang_omnicppcomplete_compliance = 0
-let g:clang_make_default_keymappings = 0
-
-" }}}
 " ultisnips {{{
 
 let g:UltiSnipsExpandTrigger='<C-k>'
@@ -545,14 +519,6 @@ let g:vimtex_latexmk_build_dir = 'output'
 vmap <expr> ++ VMATH_YankAndAnalyse()
 nmap ++ vip++
 " }}}
-" litecorrect {{{
-augroup litecorrect
-    autocmd!
-    autocmd FileType markdown,mkd call litecorrect#init()
-    autocmd FileType text call litecorrect#init()
-    autocmd FileType vimwiki call litecorrect#init()
-augroup END
-" }}}
 " incsearch {{{
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -589,35 +555,6 @@ let g:jedi#completions_enabled = 0
 let g:jedi#popup_on_dot = 0
 
 " }}}
-" Goyo {{{
-
-function! s:goyo_enter()
-    silent !tmux set status off
-    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-    set noshowmode
-    set noshowcmd
-    set scrolloff=999
-    call deoplete#disable()
-endfunction
-
-function! s:goyo_leave()
-    silent !tmux set status on
-    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-    set showmode
-    set showcmd
-    set scrolloff=5
-    call deoplete#enable()
-endfunction
-
-augroup goyo
-    autocmd!
-    autocmd User GoyoEnter nested call <SID>goyo_enter()
-    autocmd User GoyoLeave nested call <SID>goyo_leave()
-augroup END
-
-nnoremap <leader>eg :Goyo<CR>
-
-" }}}
 " template {{{
 
 let g:templates_directory = [$DOTFILES.'/vim/templates']
@@ -637,9 +574,8 @@ endfunction
 let g:iron_map_defaults = 0
 let g:iron_new_python_REPL_hooks = ['import numpy as np']
 
-nmap <leader>i <Plug>(iron-send-motion)
-vmap <leader>i <Plug>(iron-send-motion)
-nmap <leader>p <Plug>(iron-repeat-cmd)
+nmap <leader>p <Plug>(iron-send-motion)
+vmap <leader>p <Plug>(iron-send-motion)
 
 
 " }}}
@@ -687,6 +623,21 @@ nmap <Leader>s <Plug>(Scalpel)
 
 nnoremap <Leader>t :TagbarToggle<CR>
 
+" }}}
+" project-log {{{
+
+let g:project_home = $HOME.'/Documents/PhD/'
+let g:project_log#logbooks = [
+            \ g:project_home.'Dynamics/logbook',
+            \ g:project_home.'Crystal_Melting/logbook',
+            \ g:project_home.'Machine_Learning/logbook'
+            \ ]
+
+"}}}
+" pandoc {{{
+let g:pandoc#syntax#conceal#use = 1
+let g:pandoc#syntax#conceal#urls = 1
+"
 " }}}
 
 "  }}}
