@@ -61,6 +61,8 @@ let g:quantum_italics=1
 " Colourscheme override
 augroup colourOverride
    autocmd!
+   " Italic self in python
+   "autocmd ColorScheme * highlight Identifier gui=italic
    autocmd ColorScheme * highlight Conceal guibg=None
 augroup END
 
@@ -576,6 +578,7 @@ let g:iron_new_python_REPL_hooks = ['import numpy as np']
 
 nmap <leader>p <Plug>(iron-send-motion)
 vmap <leader>p <Plug>(iron-send-motion)
+"nmap <leader>p <Plug>(iron-repeat-cmd)
 
 
 " }}}
@@ -630,13 +633,16 @@ let g:project_home = $HOME.'/Documents/PhD/'
 let g:project_log#logbooks = [
             \ g:project_home.'Dynamics/logbook',
             \ g:project_home.'Crystal_Melting/logbook',
-            \ g:project_home.'Machine_Learning/logbook'
+            \ g:project_home.'Machine_Learning/logbook',
+            \ g:project_home.'Seminars'
             \ ]
+let g:project_log#log_level = 'DEBUG'
 
 "}}}
 " pandoc {{{
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#urls = 1
+let g:pandoc#modules#disabled = ["chdir"]
 "
 " }}}
 
