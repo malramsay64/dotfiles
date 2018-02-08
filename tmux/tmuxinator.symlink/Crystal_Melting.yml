@@ -1,0 +1,31 @@
+# ~/.tmuxinator/Crystal_Melting.yml
+#
+name: Crystal_Melting
+project_root: "/tmp1m/mram5995/Crystal_Melting"
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+pre_window: conda activate crystal
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: Code
+
+windows:
+- Code:
+    layout: main-horizontal
+    panes:
+    - nvim
+    - 
+- Simulations:
+  panes:
+    - cd data/simulations
+- Jobs:
+  layout: main-horizontal
+    panes:
+    - watch qstat -Jt
+    - 
+- Experi:
+  panes:
+    - cd $HOME/experi; nvim
+- Interactive:
+  panes:
+    - cd data/simulations; sdanalysis figure -- --allow-websocket-origin=quartz.research.sydney.edu.au:5006
