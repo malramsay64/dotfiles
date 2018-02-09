@@ -629,7 +629,7 @@ nnoremap <Leader>t :TagbarToggle<CR>
 " }}}
 " project-log {{{
 
-let g:project_home = $HOME.'/Documents/PhD/'
+let g:project_home = $HOME.'/Projects/'
 let g:project_log#logbooks = [
             \ g:project_home.'Dynamics/logbook',
             \ g:project_home.'Crystal_Melting/logbook',
@@ -643,7 +643,6 @@ let g:project_log#log_level = 'DEBUG'
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#urls = 1
 let g:pandoc#modules#disabled = ["chdir"]
-"
 " }}}
 
 "  }}}
