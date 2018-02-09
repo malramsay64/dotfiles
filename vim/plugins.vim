@@ -54,8 +54,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 
-" Terminal/REPL
-Plug 'hkupty/iron.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
@@ -74,12 +72,14 @@ Plug 'wvffle/vimterm'
 Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text', 'gitcommit'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'beloglazov/vim-online-thesaurus'
-Plug 'junegunn/goyo.vim', { 'on': [ 'Goyo' ] }
 
 " Search and replace
 Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
-Plug 'wincent/loupe'
 Plug 'wincent/scalpel'
+
+" File Explorer
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
 " General Plugins
 Plug 'tpope/vim-fugitive'               " git integration
@@ -87,7 +87,6 @@ Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentary mappings
 Plug 'tpope/vim-speeddating'            " incr/decr dates
-Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'           " git diffs
@@ -101,7 +100,7 @@ Plug 'majutsushi/tagbar'
 Plug 'gioele/vim-autoswap'
 Plug 'jez/vim-github-hub'
 
-Plug 'malramsay64/nvim-project-log'
+Plug 'malramsay64/nvim-project-log', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 
 " all plugins must be added before this line
 call plug#end()
