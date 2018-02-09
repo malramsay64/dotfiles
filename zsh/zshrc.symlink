@@ -28,7 +28,8 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-
+# Souce system wide configuration
+source /etc/profile
 export DOTFILES="$HOME/dotfiles"
 # Source zsh plugins
 # This needs to be a standard source for some reason
