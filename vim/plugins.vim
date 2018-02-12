@@ -38,7 +38,7 @@ Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
 
 " fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-zsh --no-bash' }
 Plug 'junegunn/fzf.vim'
 
 " Filetype specific plugins
