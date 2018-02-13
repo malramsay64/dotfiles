@@ -1,12 +1,17 @@
 [general]
 ui = ttyui
-accounts = Personal
+accounts = Personal, USYD
 pythonfile=~/.config/mutt/offlineimap.py
 fsync=False
 
 [Account Personal]
 localrepository = Personal-Local
 remoterepository = Personal-Remote
+pystsynchook = notmuch new
+
+[Account USYD]
+localrepository = USYD-Local
+remoterepository = USYD-Remote
 pystsynchook = notmuch new
 
 [Repository Personal-Local]
@@ -23,7 +28,7 @@ nametrans = lambda folder: {'drafts': '[Gmail]/Drafts',
 maxconnections = 1
 type = Gmail
 remoteuser = malramsay64@gmail.com
-remotepasseval = get_pass()
+remotepasseval = get_pass('malramsay64@gmail.com')
 
 remotehost = imap.gmail.com
 remoteport = 993
@@ -37,3 +42,29 @@ nametrans = lambda folder: {'[Gmail]/Drafts': 'drafts',
                             '[Gmail]/Trash': 'trash',
                             '[Gmail]/All Mail': 'archive',
                             }.get(folder, folder)
+folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
+                                         '[Gmail]/Sent Mail',
+                                         '[Gmail]/Starred',
+                                         '[Gmail]/All Mail',
+                                         '[Gmail]/Trash']
+
+
+
+[Repository USYD-Local]
+type = Maildir
+localfolders = ~/.mail/mram5995@uni.sydney.edu.au
+
+[Repository USYD-Remote]
+auth_mechanisms = PLAIN
+maxconnections = 1
+type = IMAP
+remoteuser = mram5995@uni.sydney.edu.au
+remotepasseval = get_pass('mram5995@uni.sydney.edu.au')
+
+remotehost = outlook.office365.com
+remoteport = 993
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-bundle.crt
+# Leave mail in All Mail when deleted
+realdelete = no
+folderfilter = lambda folder: folder in ['INBOX', 'Sent', 'Drafts', 'Sent Items', 'Junk E-Mail']

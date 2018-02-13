@@ -8,5 +8,5 @@
 
 from subprocess import check_output
 
-def get_pass():
-    return check_output("pass show mutt/malramsay64@gmail.com", shell=True).strip("\n")
+def get_pass(account):
+    return check_output("pass show mail/{}".format(account), shell=True).strip(" \n")
