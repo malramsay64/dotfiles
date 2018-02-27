@@ -63,7 +63,7 @@ augroup colourOverride
    autocmd!
    " Italic self in python
    "autocmd ColorScheme * highlight Identifier gui=italic
-   autocmd ColorScheme * highlight Conceal guibg=None
+   autocmd ColorScheme * highlight Conceal guibg=NONE
 augroup END
 
 let g:airline_theme='quantum'
@@ -628,7 +628,8 @@ let g:project_log#logbooks = [
             \ g:project_home.'Dynamics/logbook',
             \ g:project_home.'Crystal_Melting/logbook',
             \ g:project_home.'Machine_Learning/logbook',
-            \ g:project_home.'Seminars'
+            \ g:project_home.'Seminars',
+            \ $HOME.'/Documents/diary'
             \ ]
 let g:project_log#log_level = 'DEBUG'
 
