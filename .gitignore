@@ -28,3 +28,6 @@ zsh/sourceables.sh
 # Ranger bookmarks
 config/ranger/bookmarks
 config/ranger/history
+
+# Ignore direnv allow
+config/direnv/allow
