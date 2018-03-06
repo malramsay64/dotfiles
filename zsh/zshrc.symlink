@@ -111,9 +111,9 @@ source_file "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
 # Source local changes
 source_file "$HOME/.bashrc.local"
 # Source travis config
-source_file "/home/malcolm/.travis/travis.sh"
+source_file "$HOME/.travis/travis.sh"
 # Allow conda to manage environment activation
-source /home/malcolm/.miniconda/etc/profile.d/conda.sh
+source "$HOME/.miniconda/etc/profile.d/conda.sh"
 
 # Source direnv
 eval "$(direnv hook zsh)"
