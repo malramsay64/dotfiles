@@ -54,10 +54,12 @@ if [ -e ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi
 
-#vim:filetype=sh
-
+# Allow conda to mange environment
+source /home/malcolm/.miniconda/etc/profile.d/conda.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # added by travis gem
 [ -f /home/malcolm/.travis/travis.sh ] && source /home/malcolm/.travis/travis.sh
+
+#vim:filetype=sh

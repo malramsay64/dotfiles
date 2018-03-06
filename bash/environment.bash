@@ -73,8 +73,6 @@ man() {
     /usr/bin/man $1 || nvim "+read! $1 --help" '+setlocal ft=man bt=nofile bufhidden=wipe noswapfile ro'
 }
 
-# Allow conda to activate environments (conda 4.4)
-source_file "$HOME/.miniconda/etc/profile.d/conda.sh"
 
 # Alias gopass, which provides nicer features to pass
 alias_function pass "gopass"
