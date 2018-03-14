@@ -28,13 +28,19 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+# Use histdb timer to time each command
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd  histdb-update-outcome
+# bash style word delimiter for <C>-w
+autoload -U select-word-style
+select-word-style bash
+
 # Souce system wide configuration
 source /etc/profile
 export DOTFILES="$HOME/dotfiles"
 # Source zsh plugins
 # This needs to be a standard source for some reason
 source "$DOTFILES/zsh/sourceables.sh"
-# Source common environment configuration,
 # this includes the source_file function
 source "$DOTFILES/bash/environment.bash"
 # Aliases
@@ -117,6 +123,8 @@ source "$HOME/.miniconda/etc/profile.d/conda.sh"
 
 # Source direnv
 eval "$(direnv hook zsh)"
+
+eval $(thefuck --alias)
 
 if [[ "$PROFILE_STARTUP" == true ]]; then
     zprof
