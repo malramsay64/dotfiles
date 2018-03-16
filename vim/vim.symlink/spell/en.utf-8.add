@@ -360,3 +360,7 @@ Altair
 unmaintained
 Holoviews
 Matplotlib
+metaclass
+Altair
+DataFrames
+HDF5
