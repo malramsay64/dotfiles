@@ -356,3 +356,7 @@ playbooks
 dotfiles
 Ansible
 symlinked
+Altair
+unmaintained
+Holoviews
+Matplotlib

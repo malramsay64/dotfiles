@@ -9,4 +9,4 @@
 from subprocess import check_output
 
 def get_pass(account):
-    return check_output("pass show mail/{}".format(account), shell=True).strip(" \n")
+    return check_output("pass show mail/{}".format(account), shell=True).split("\n")[0]

@@ -43,6 +43,7 @@ mailboxes +malramsay64-gmail.com/INBOX \
           +malramsay64-gmail.com/archive \
           +malramsay64-gmail.com/sent \
           +malramsay64-gmail.com/drafts \
+          +mram5995@uni.sydney.edu.au/INBOX \
 
 # Other special folders.
 set mbox      = "+malramsay64-gmail.com/archive"
