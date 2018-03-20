@@ -13,5 +13,4 @@ layout_anaconda() {
     exit 1;
   fi;
   conda activate ${env_name}
-  export VIRTUAL_ENV=${env_name}
 }
