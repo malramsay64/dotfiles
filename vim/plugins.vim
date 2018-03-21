@@ -32,7 +32,6 @@ Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
 " Status bar
 Plug 'vim-airline/vim-airline'
 
-
 " Syntax checking
 Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
@@ -43,7 +42,6 @@ Plug 'junegunn/fzf.vim'
 
 " Filetype specific plugins
 " Python
-Plug 'davidhalter/jedi-vim', { 'for': ['python', 'cython'] }
 Plug 'fs111/pydoc.vim', { 'on': ['Pydoc', 'PydocSearch'] }
 Plug 'lambdalisue/vim-cython-syntax'
 Plug 'fisadev/vim-isort', Cond(executable('isort'), { 'for': ['python', 'cython'] })
