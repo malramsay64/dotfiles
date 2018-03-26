@@ -24,7 +24,7 @@ endfunction
 call plug#begin()
 
 " Colourschemes
-Plug 'malramsay64/vim-quantum'
+Plug 'tyrannicaltoucan/vim-quantum'
 
 " Examine syntax highlighting rules
 Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
