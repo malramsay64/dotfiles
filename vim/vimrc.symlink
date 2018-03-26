@@ -625,14 +625,18 @@ let g:lightline = {
       \ 'colorscheme': 'quantum',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ], [ 'wordcount', 'percent' ], [ 'filetype', 'fileformat' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'fugitive#head',
+      \   'wordcount': 'wordCount#WordCount'
       \ },
       \ }
-
 " }}}
+" wordcount {{{ 
+
+let g:wc_conservative_update = 1
 
 "  }}}
 "

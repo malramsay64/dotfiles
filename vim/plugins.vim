@@ -70,6 +70,7 @@ Plug 'wvffle/vimterm'
 Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text', 'gitcommit'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'beloglazov/vim-online-thesaurus'
+Plug 'ChesleyTan/wordCount.vim', { 'for': ['markdown', 'text', 'gitcommit', 'pandoc'] }
 
 " Search and replace
 Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
