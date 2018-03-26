@@ -630,7 +630,10 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'wordcount': 'wordCount#WordCount'
+      \   'wordcount': 'wordCount#WordCount',
+      \ },
+      \ 'component': {
+      \   'lineinfo': '%3l %-2v',
       \ },
       \ }
 " }}}
