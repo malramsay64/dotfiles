@@ -64,6 +64,11 @@ augroup colourOverride
    " Italic self in python
    "autocmd ColorScheme * highlight Identifier gui=italic
    autocmd ColorScheme * highlight Conceal guibg=NONE
+   autocmd Colorscheme * highlight SpellBad guibg=NONE
+   autocmd Colorscheme * highlight SpellCap guibg=NONE
+   autocmd Colorscheme * highlight SpellLocal guibg=NONE
+   autocmd Colorscheme * highlight SpellRare guibg=NONE
+   autocmd Colorscheme * highlight CursorLineNr guibg=NONE
 augroup END
 
 set background=dark " for the dark version
