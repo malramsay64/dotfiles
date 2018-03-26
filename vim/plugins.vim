@@ -30,7 +30,7 @@ Plug 'malramsay64/vim-quantum'
 Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
 
 " Status bar
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 
 " Syntax checking
 Plug 'neomake/neomake'

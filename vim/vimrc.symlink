@@ -66,8 +66,6 @@ augroup colourOverride
    autocmd ColorScheme * highlight Conceal guibg=NONE
 augroup END
 
-let g:airline_theme='quantum'
-
 set background=dark " for the dark version
 "colorscheme onedark
 colorscheme quantum
@@ -297,20 +295,6 @@ augroup END
 " Plugin Configuration {{{
 source $DOTFILES/vim/fzf.vim
 
-" airline {{{
-
-let g:airline_powerline_fonts = 1
-
-" Only check for indent and mixed-indent whitespace errors
-let g:airline#extensions#whitespace#checks = [ 'indent', 'mixed-indent-file' ]
-
-" Have a wordcount in the following files (search regex)
-let g:airline#extensions#wordcount#enabled = 1
-let g:airline#extensions#wordcount#filetypes = '\vhelp|vimwiki|markdown|rst|org|text|asciidoc|tex|pandoc'
-
-let g:airline#extensions#virtualenv#enabled = 1
-
-"}}}
 " Vimwiki {{{
 
 nmap <Leader>wj <Plug>VimwikiDiaryPrevDay
@@ -629,6 +613,19 @@ let g:pandoc#modules#disabled = ["chdir"]
 " NERDTree {{{
 
 nnoremap <C-n> :NERDTreeToggle<CR>
+
+" }}}
+" lightline {{{
+let g:lightline = {
+      \ 'colorscheme': 'quantum',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 
 " }}}
 
