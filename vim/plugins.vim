@@ -67,7 +67,7 @@ Plug 'wellle/targets.vim'
 Plug 'wvffle/vimterm'
 
 " Writing plugins
-Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text', 'gitcommit'] }
+Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc'] }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'ChesleyTan/wordCount.vim', { 'for': ['markdown', 'text', 'gitcommit', 'pandoc'] }
