@@ -31,3 +31,9 @@ config/ranger/history
 
 # Ignore direnv allow
 config/direnv/allow
+
+# Ignore generated fish files
+config/fish/completions
+config/fish/conf.d
+config/fish/functions
+config/fish/fishd*
