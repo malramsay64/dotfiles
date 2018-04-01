@@ -49,7 +49,7 @@ Plug 'fisadev/vim-isort', Cond(executable('isort'), { 'for': ['python', 'cython'
 " Other Languages
 Plug 'sheerun/vim-polyglot'
 "Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 
 
