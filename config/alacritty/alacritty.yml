@@ -76,7 +76,7 @@ font:
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
     x: 0.0
-    y: 0.0
+    y: 2.0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -242,7 +242,7 @@ key_bindings:
   - { key: Insert,                  chars: "\x1b[2~"                     }
   - { key: Delete,                  chars: "\x1b[3~"                     }
   - { key: N, mods: Command, command: {program: "open", args: ["-n", "-a", "/Users/malcolm/Applications/Alacritty.app"]}}
-  - { key: N, mods: Alt, command: {program: "alacritty" }
+  - { key: N, mods: Alt, command: {program: "alacritty" }}
 
 # Mouse bindings
 #
@@ -295,7 +295,6 @@ live_config_reload: true
 # You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
 # Entries in shell.args are passed unmodified as arguments to the shell.
 #
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+shell:
+  program: login
+  args: ["-fp", "malcolm"]
