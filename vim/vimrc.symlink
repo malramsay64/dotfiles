@@ -474,42 +474,44 @@ nnoremap <leader>me :NeomakeEnable<CR>
 
 " }}}
 " deoplete {{{
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_refresh_always = 1
-let g:deoplete#enable_on_insert_enter = 1
+if has('python3')
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#enable_smart_case = 1
+    let g:deoplete#enable_refresh_always = 1
+    let g:deoplete#enable_on_insert_enter = 1
 
-let g:deoplete#max_list=15
-let g:deoplete#auto_complete_delay = 100
+    let g:deoplete#max_list=15
+    let g:deoplete#auto_complete_delay = 100
 
-" <C-h>: close popup
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+    " <C-h>: close popup
+    inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
 
-" <CR> gives newline
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-    return deoplete#close_popup() . "\<CR>"
-endfunction
+    " <CR> gives newline
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function() abort
+        return deoplete#close_popup() . "\<CR>"
+    endfunction
 
-" Enable echodoc to show function variables in command bar
-set noshowmode
-let g:echodoc_enable_at_startup = 1
+    " Enable echodoc to show function variables in command bar
+    set noshowmode
+    let g:echodoc_enable_at_startup = 1
 
-" Remove preview window
-set completeopt-=preview
-"autocmd CompleteDone * pclose!
+    " Remove preview window
+    set completeopt-=preview
+    "autocmd CompleteDone * pclose!
 
-if !exists('g:deoplete#omni_patterns')
-    let g:deoplete#omni_patterns = {}
+    if !exists('g:deoplete#omni_patterns')
+        let g:deoplete#omni_patterns = {}
+    endif
+    let g:deoplete#omni_patterns.tex =
+                \ '\v\\%('
+                \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+                \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+                \ . '|hyperref\s*\[[^]]*'
+                \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+                \ . '|%(include%(only)?|input)\s*\{[^}]*'
+                \ . ')\m'
 endif
-let g:deoplete#omni_patterns.tex =
-            \ '\v\\%('
-            \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-            \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
-            \ . '|hyperref\s*\[[^]]*'
-            \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-            \ . '|%(include%(only)?|input)\s*\{[^}]*'
-            \ . ')\m'
 
 "}}}
 " ultisnips {{{
@@ -635,9 +637,10 @@ let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due'
 
 " }}}
 "  vimterm {{{
-
-nnoremap <leader>vo :call vimterm#toggle() <CR>
-tnoremap <leader>vo <C-\><C-n>:call vimterm#toggle() <CR>
+if has('nvim')
+    nnoremap <leader>vo :call vimterm#toggle() <CR>
+    tnoremap <leader>vo <C-\><C-n>:call vimterm#toggle() <CR>
+endif
 
 "  }}}
 "  Scalpel {{{
