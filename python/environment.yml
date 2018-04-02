@@ -1,11 +1,3 @@
-name: neovim3
+name: neovim
 dependencies:
-    - python
-    - pip
-    - pip:
-        - jedi
-        - isort
-        - neovim
-        - neovim-remote
-        - vim-vint
-        - tasklib
+  - conda-forge::neovim
