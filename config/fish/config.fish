@@ -30,3 +30,14 @@ end
 #source "$HOME/.miniconda/etc/fish/conf.d/conda.fish"
 
 set -x GPG_TTY (tty)
+
+if not set -q abbrs_initialized
+  set -U abbrs_initialized
+  echo -n Setting abbreviations... 
+
+  abbr g 'git'
+  abbr qsu 'qstat -u $USER'
+  abbr qs 'qstat -Jt -u $USER'
+
+  echo 'Done'
+end
