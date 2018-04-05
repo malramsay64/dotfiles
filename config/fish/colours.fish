@@ -26,4 +26,3 @@ set fish_pager_color_completion
 set fish_pager_color_description B3A06D yellow
 set fish_pager_color_prefix white --bold --underline
 set fish_pager_color_progress brwhite --background=cyan
-[31mF[31mi[31ms[31mh[31m [31mc[38;5;208mo[38;5;208ml[38;5;208mo[38;5;208mr[33ms[33m [33mh[33ma[32mv[32me[32m [32mb[34me[34me[34mn[34m [35ms[35me[35mt[30m(B[m
