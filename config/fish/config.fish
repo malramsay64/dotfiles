@@ -38,6 +38,7 @@ if not set -q abbrs_initialized
   abbr g 'git'
   abbr qsu 'qstat -u $USER'
   abbr qs 'qstat -Jt -u $USER'
+  abbr c 'clear'
 
   echo 'Done'
 end
