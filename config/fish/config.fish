@@ -31,6 +31,9 @@ if type -q rg
     set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 end
 
+
+. $HOME/.config/fish/gnupg.fish
+
 if [ -n "$NVIM_LISTEN_ADDRESS" ]
     alias "nvim" "nvr"
 end
