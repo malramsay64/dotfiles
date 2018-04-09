@@ -37,3 +37,6 @@ config/fish/completions
 config/fish/conf.d
 config/fish/functions
 config/fish/fishd*
+
+# Ignore gnupg generated files
+gpg/gnupg.symlink/*
