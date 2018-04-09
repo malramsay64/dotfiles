@@ -4,10 +4,18 @@ set fish_greeting
 
 set -x DOTFILES "$HOME/dotfiles"
 
-set -x fish_user_paths $HOME/.local/bin $HOME/.fzf/bin
+set -x fish_user_paths $HOME/.local/bin $HOME/.fzf/bin $HOME/dotfiles/bin
 
 # Enable direnv
 eval (direnv hook fish)
+
+if type -q nvim
+    set -x EDITOR 'nvim'
+else
+    set -x EDITOR 'vim'
+end
+set -x VISUAL $EDITOR
+set -x MANPAGER "$EDITOR +'set ft:man' -"
 
 set -gx LSCOLORS
 # Ensure that GPG Agent is used as the SSH agent
@@ -27,7 +35,7 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]
     alias "nvim" "nvr"
 end
 
-#source "$HOME/.miniconda/etc/fish/conf.d/conda.fish"
+source "$HOME/.miniconda/etc/fish/conf.d/conda.fish"
 
 set -x GPG_TTY (tty)
 
