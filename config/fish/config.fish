@@ -53,3 +53,7 @@ if not set -q abbrs_initialized
 
   echo 'Done'
 end
+
+if type -q thefuck
+    thefuck --alias | source
+end
