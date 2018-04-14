@@ -511,6 +511,9 @@ if has('python3')
                 \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
                 \ . '|%(include%(only)?|input)\s*\{[^}]*'
                 \ . ')\m'
+
+    let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.0/lib/libclang.dylib'
+    let g:deoplete#sources#clang#libclang_header = '/usr/local/Cellar/llvm/6.0.0/lib/clang'
 endif
 
 "}}}
@@ -698,5 +701,19 @@ let g:lightline = {
 let g:wc_conservative_update = 1
 
 "  }}}
+" nerdcommenter {{{
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" }}}
+" clang-format {{{
+
+let g:clang_format#auto_format=1
+
+"}}}
+"
 "
 " vim:foldmethod=marker:foldlevel=0:filetype=vim

@@ -52,13 +52,13 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
 
-
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'zchee/deoplete-jedi', { 'for': ['python', 'cython'] }
-Plug 'tweekmonster/deoplete-clang2', { 'for': ['cpp', 'c'] }
+Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
+Plug 'rhysd/vim-clang-format', { 'for': ['cpp', 'c'] }
 
 Plug 'Shougo/echodoc.vim'
 
@@ -98,6 +98,7 @@ Plug 'godlygeek/tabular'                " Align bits of text
 Plug 'majutsushi/tagbar'
 Plug 'gioele/vim-autoswap'
 Plug 'jez/vim-github-hub'
+Plug 'kana/vim-textobj-user' " Custom text objects
 
 Plug 'malramsay64/nvim-project-log', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 
