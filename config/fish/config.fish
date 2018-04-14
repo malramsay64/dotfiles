@@ -4,7 +4,7 @@ set fish_greeting
 
 set -x DOTFILES "$HOME/dotfiles"
 
-set -x fish_user_paths $HOME/.local/bin $HOME/.fzf/bin $HOME/dotfiles/bin
+set -x fish_user_paths $HOME/.local/bin $HOME/.fzf/bin $HOME/dotfiles/bin $HOME/go/bin /usr/local/bin
 
 # Enable direnv
 eval (direnv hook fish)
@@ -31,7 +31,6 @@ if type -q rg
     set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 end
 
-
 . $HOME/.config/fish/gnupg.fish
 
 if [ -n "$NVIM_LISTEN_ADDRESS" ]
@@ -44,7 +43,7 @@ set -x GPG_TTY (tty)
 
 if not set -q abbrs_initialized
   set -U abbrs_initialized
-  echo -n Setting abbreviations... 
+  echo -n Setting abbreviations...
 
   abbr g 'git'
   abbr qsu 'qstat -u $USER'
