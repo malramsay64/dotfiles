@@ -2,6 +2,9 @@
 # No greeting when starting fish
 set fish_greeting
 
+# Unset the shell colours and use fish's colouring
+set -gx LS_COLORS
+
 set -x DOTFILES "$HOME/dotfiles"
 
 set -x fish_user_paths $HOME/.local/bin $HOME/.fzf/bin $HOME/dotfiles/bin $HOME/go/bin /usr/local/bin
