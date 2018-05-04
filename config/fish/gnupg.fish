@@ -12,12 +12,12 @@ if not set -q -x GPG_AGENT_INFO
 end
 
 if test -f ~/.gpg-agent-info
-	__refresh_gpg_agent_info
+    __refresh_gpg_agent_info
 
-	gpg-connect-agent /bye ^/dev/null
-	if test $status -eq 1
-		pkill -U $USER gpg-agent
-		gpg-agent --daemon >/dev/null
-		__refresh_gpg_agent_info
-	end
+    gpg-connect-agent /bye ^/dev/null
+    if test $status -eq 1
+        pkill -U $USER gpg-agent
+        gpg-agent --daemon >/dev/null
+        __refresh_gpg_agent_info
+    end
 end
