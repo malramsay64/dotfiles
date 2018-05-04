@@ -7,6 +7,8 @@
 
 if not set -q -x GPG_AGENT_INFO
     gpg-agent --daemon >/dev/null
+    if test $status -eq 0
+        set -x GPG_AGENT_INFO present
 end
 
 if test -f ~/.gpg-agent-info
