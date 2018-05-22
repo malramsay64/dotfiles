@@ -49,6 +49,11 @@ source_file "$DOTFILES/bash/aliases.bash"
 # Set RPROMPT when in vim mode
 source_file "$DOTFILES/zsh/vi-mode.zsh"
 
+# set TERM appropriately
+if [ "$TERM" == "tmux-256color" ] && [ "$(tmux -V | cut -d' ' -f2)" -lt 2]; then
+    export TERM=screen-256color
+fi
+
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 _ssh_hosts=()
 if [ -e "$HOME/.ssh/config" ]; then
