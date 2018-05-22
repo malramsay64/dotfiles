@@ -7,3 +7,4 @@ larkery/zsh-histdb
 Tarrasch/zsh-colors
 mafredri/zsh-async
 sindresorhus/pure
+robbyrussell/oh-my-zsh folder:plugins/gitfast
