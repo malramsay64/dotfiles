@@ -28,12 +28,13 @@ function hist {
     histdb $1 --host
 }
 
+add_to_path "/usr/local/bin"
 add_to_path "$HOME/go/bin"
 add_to_path "$HOME/.cargo/bin"
 add_to_path "$HOME/dotfiles/bin"
 add_to_path "$HOME/.bin"
 add_to_path "$HOME/.local/bin"
-add_to_path "/usr/local/bin"
+add_to_path "$HOME/.pyenv/bin"
 
 # Change settings for z
 export _Z_DATA="$HOME/.z/z"
