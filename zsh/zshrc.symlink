@@ -15,6 +15,7 @@ zstyle ':completion:*' completer _expand _complete _ignored _correct _approximat
 zstyle ':completion:*' max-errors 2
 zstyle :compinstall filename "$HOME/.zshrc"
 
+export fpath=(~/.local/share/zsh-completions $fpath)
 autoload -Uz compinit
 compinit
 
@@ -84,7 +85,7 @@ autoload -U promptinit; promptinit
 # Time before prompt displays execution time
 PURE_CMD_MAX_EXEC_TIME=10
 # The default symbol doesn't work with Iosevka
-PURE_PROMPT_SYMBOL=〉
+# PURE_PROMPT_SYMBOL=〉
 
 # fzf configuratioin
 source_file "$HOME/.fzf.zsh"
@@ -119,12 +120,22 @@ source_file "$HOME/.bashrc.local"
 # Source travis config
 source_file "$HOME/.travis/travis.sh"
 # Allow conda to manage environment activation
-source "$HOME/.miniconda/etc/profile.d/conda.sh"
+# source "$HOME/.miniconda/etc/profile.d/conda.sh"
+
+# Source pyenv if present
+if hash pyenv 2>/dev/null; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 # Source direnv
-eval "$(direnv hook zsh)"
+if hash direnv; then
+    eval "$(direnv hook zsh)"
+fi
 
-eval $(thefuck --alias)
+if hash thefuck; then
+    eval $(thefuck --alias)
+fi
 
 if [[ "$PROFILE_STARTUP" == true ]]; then
     zprof
