@@ -15,7 +15,7 @@ zstyle ':completion:*' completer _expand _complete _ignored _correct _approximat
 zstyle ':completion:*' max-errors 2
 zstyle :compinstall filename "$HOME/.zshrc"
 
-export fpath=(~/.local/share/zsh-completions $fpath)
+# export fpath=(~/.local/share/zsh-completions $fpath)
 
 # Load Completions
 autoload -Uz compinit
@@ -72,14 +72,9 @@ if [[ "$TERM" == "tmux-256color" ]] && [[ $(tmux -V | awk "{print $2}") < 2 ]]; 
 fi
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-_ssh_hosts=()
-if [ -e "$HOME/.ssh/config" ]; then
-    _ssh_hosts=($(grep "^Host " ~/.ssh/config | grep -v "[?*]" | cut -d ' ' -f2- | tr '\n' ' '))
-fi
-if [ $#_ssh_hosts -gt 0 ]; then
-    zstyle ':completion:*:ssh:*' hosts $_ssh_hosts
-    zstyle ':completion:*:scp:*' hosts $_ssh_hosts
-    zstyle ':completion:*:rsync:*' hosts $_ssh_hosts
+if [[ -f $HOME/.ssh/config ]]; then
+  hosts=($(egrep '^Host.*' $HOME/.ssh/config | awk '{print $2}' | grep -v '^*' | sed -e 's/\.*\*$//'))
+  zstyle ':completion:*:hosts' hosts $hosts
 fi
 
 # Use histdb timer to time each command
