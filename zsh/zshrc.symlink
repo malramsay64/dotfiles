@@ -71,6 +71,9 @@ if [[ "$TERM" == "tmux-256color" ]] && [[ $(tmux -V | awk "{print $2}") < 2 ]]; 
     export TERM="screen-256color"
 fi
 
+# Turn off system colours as they have a habit of ruining things
+export LS_COLORS=
+
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 if [[ -f $HOME/.ssh/config ]]; then
   hosts=($(egrep '^Host.*' $HOME/.ssh/config | awk '{print $2}' | grep -v '^*' | sed -e 's/\.*\*$//'))
