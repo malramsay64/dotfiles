@@ -1,10 +1,10 @@
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
-srijanshetty/zsh-pip-completion
-felixr/docker-zsh-completion
 zdharma/fast-syntax-highlighting
 larkery/zsh-histdb
-Tarrasch/zsh-colors
 mafredri/zsh-async
-sindresorhus/pure
 robbyrussell/oh-my-zsh folder:plugins/gitfast
+
+# Load these last
+sindresorhus/pure
+zsh-users/zsh-history-substring-search
