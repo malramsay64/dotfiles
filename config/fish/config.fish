@@ -32,15 +32,10 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]
     alias "nvim" "nvr"
 end
 
-# Enable direnv
-if type -q direnv
-    eval (direnv hook fish)
+if type -q pyenv
+   status --is-interactive; and source (pyenv init - | psub)
+   status --is-interactive; and source (pyenv virtualenv-init - | psub)
 end
-
-# Enable pipenv completion
-# if type -q pipenv
-    # eval (pipenv --completion)
-# end
 
 if not set -q abbrs_initialized
   set -U abbrs_initialized
