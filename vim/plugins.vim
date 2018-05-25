@@ -1,11 +1,11 @@
 " Configuration for Vundle package manager
 
 " Automatic install vim-plug if not already
-if empty(glob('~/.vim/autoload/plug.vim'))
+if empty(glob('~/dotfiles/vim/vim.symlink/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   augroup pluginstall
-      augroup!
+      autocmd!
       autocmd VimEnter * PlugInstall | source $MYVIMRC
   augroup END
 endif
