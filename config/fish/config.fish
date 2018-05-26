@@ -5,9 +5,23 @@ set fish_greeting
 # Unset the shell colours and use fish's colouring
 set -gx LS_COLORS
 # Setup terminal, and turn on colors
-set -x TERM xterm-256color
+# set -x TERM xterm-256color
 
 set -x DOTFILES "$HOME/dotfiles"
+
+# Update user path
+function __check_path_exists
+    if test -d $argv
+        echo $argv
+    end
+end
+
+set -x fish_user_paths $fish_user_paths (__check_path_exists $HOME/.pyenv/bin)
+set -x fish_user_paths $fish_user_paths (__check_path_exists $HOME/.local/bin)
+set -x fish_user_paths $fish_user_paths (__check_path_exists $HOME/.fzf/bin)
+set -x fish_user_paths $fish_user_paths (__check_path_exists $HOME/dotfiles/bin)
+set -x fish_user_paths $fish_user_paths (__check_path_exists $HOME/go/bin)
+set -x fish_user_paths $fish_user_paths (__check_path_exists /usr/local/bin)
 
 if type -q nvim
     set -x EDITOR 'nvim'
