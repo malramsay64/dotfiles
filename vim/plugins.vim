@@ -31,10 +31,11 @@ Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
 
 " Status bar
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 
 " Syntax checking
-Plug 'neomake/neomake'
 Plug 'janko-m/vim-test'
+Plug 'w0rp/ale'
 
 " fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-zsh --no-bash' }
