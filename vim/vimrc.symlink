@@ -453,20 +453,21 @@ augroup neomake
     autocmd ColorScheme * hi NeomakeWarningSign ctermfg=yellow
 augroup END
 
-function! s:get_python_makers()
+function! s:get_installed_makers(...)
     let l:all_makers = []
-    for l:maker in ['pydocstyle', 'pycodestyle', 'pylint', 'mypy']
+    for l:maker in a:000
         if executable(l:maker)
             let l:all_makers += [l:maker]
         endif
     endfor
     return l:all_makers
 endfunction
-let g:neomake_python_enabled_makers = s:get_python_makers()
-
+let g:neomake_python_enabled_makers = s:get_installed_makers('pydocstyle', 'pycodestyle', 'pylint', 'mypy')
 
 let g:neomake_python_pycodesyle_args = ['--ignore=E123']
 let g:neomake_python_pydocsyle_args = ['--ignore=D105,D203,D213,D205,D213']
+
+let g:neomake_text_enabled_makers = s:get_installed_makers('proselint')
 
 nnoremap <leader>md :NeomakeDisable<CR>
 nnoremap <leader>mt :NeomakeToggle<CR>
@@ -485,12 +486,6 @@ if has('python3')
 
     " <C-h>: close popup
     inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-
-    " <CR> gives newline
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function() abort
-        return deoplete#close_popup() . "\<CR>"
-    endfunction
 
     " Enable echodoc to show function variables in command bar
     set noshowmode
@@ -673,6 +668,11 @@ let g:project_log#log_level = 'DEBUG'
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#urls = 1
 let g:pandoc#modules#disabled = ["chdir"]
+
+augroup pandoc_syntax
+    autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
+
 " }}}
 " NERDTree {{{
 

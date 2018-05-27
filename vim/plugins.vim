@@ -50,7 +50,7 @@ Plug 'fisadev/vim-isort', Cond(executable('isort'), { 'for': ['python', 'cython'
 Plug 'sheerun/vim-polyglot'
 "Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 
 " Autocomplete
 Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
@@ -67,10 +67,12 @@ Plug 'wellle/targets.vim'
 Plug 'wvffle/vimterm'
 
 " Writing plugins
-Plug 'reedes/vim-litecorrect', { 'for': ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc'] }
+let g:text_files = ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc']
+Plug 'reedes/vim-litecorrect', { 'for': text_files }
+Plug 'reedes/vim-wordy', {'for': text_files }
 Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
 Plug 'beloglazov/vim-online-thesaurus'
-Plug 'ChesleyTan/wordCount.vim', { 'for': ['markdown', 'text', 'gitcommit', 'pandoc'] }
+Plug 'ChesleyTan/wordCount.vim', { 'for': text_files }
 
 " Search and replace
 Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
