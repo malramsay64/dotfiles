@@ -1,0 +1,15 @@
+rules:
+  "no-todo": true
+  write-good: true
+  unexpanded-acronym: 
+    ignore_acronyms: ["CUDA", "GPU"]
+  stop-words:
+    defaultWords: false
+    words: ["simply"]
+  terminology: true
+  alex:
+    allow: ["ball", "balls"]
+  no-dead-link: true
+  ng-word:
+    words: ["obviously", "basically", "simply", "of course", "clearly", "just", "everyone knows", "however", "so", "easy"]
+# vim: filetype=yaml
