@@ -46,6 +46,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'fs111/pydoc.vim', { 'on': ['Pydoc', 'PydocSearch'] }
 Plug 'lambdalisue/vim-cython-syntax'
 Plug 'fisadev/vim-isort', Cond(executable('isort'), { 'for': ['python', 'cython'] })
+Plug 'bps/vim-textobj-python', { 'for': ['python', 'cython'] }
 
 " Other Languages
 Plug 'sheerun/vim-polyglot'
