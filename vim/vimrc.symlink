@@ -733,6 +733,12 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 nnoremap <space>gg :Goyo<CR>
 
+" }}}
+" netrw {{{
+
+let g:netrw_banner = 0
+
+" }}}
 "
 "
 " vim:foldmethod=marker:foldlevel=0:filetype=vim
