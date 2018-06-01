@@ -89,6 +89,7 @@ Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentary mappings
 Plug 'tpope/vim-speeddating'            " incr/decr dates
+Plug 'tpope/vim-vinegar'                " Make netrw useable
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'airblade/vim-gitgutter'           " git diffs
