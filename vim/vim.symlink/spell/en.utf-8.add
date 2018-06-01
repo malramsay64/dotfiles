@@ -11,9 +11,7 @@ cutouts
 vs
 Kauzmann
 foldlevel
-#im
 foldnestmax
-#
 eg
 Lammps
 Intramolecular
@@ -52,7 +50,6 @@ inhomogeneities
 NMR
 berthier
 cooperativity
-#unctinon
 orientational
 antiparallel
 packings
@@ -124,7 +121,6 @@ Infiniband
 config
 vibrance
 Lightroom
-#houroughly
 setup
 desoldering
 LEDs
@@ -137,7 +133,6 @@ Synology
 btrfs
 NAS
 shutdown
-#uisness
 iTunes
 neovim
 plugins
@@ -147,12 +142,8 @@ hyperspectral
 magnetorquer
 magnetorquers
 reddit
-#nsensitive
 TaskWarrior
 blockchain
-#rojets
-#wtitching
-#uanities
 CubeSat
 GoPro
 WHS
@@ -163,7 +154,6 @@ Ising
 FluroSat
 Raspbian
 MAVProxy
-#eniability
 deniability
 Macbook
 Hackintosh
@@ -245,7 +235,6 @@ AWS
 rasterio
 Pika
 consitent
-#nhouse
 playbook
 fiona
 DataFrame
@@ -286,14 +275,12 @@ Semiconducing
 semiconducing
 exciton
 excitons
-#oomd
 elastin
 nano
 nanoparticles
 nanometer
 redox
 nanorods
-#icroscpoe
 colourschemes
 bokeh
 timestep
@@ -367,7 +354,6 @@ HDF5
 Plotly
 Matplotlib
 Holoviews
-#emaarkably
 Kaggle
 racemic
 chirality
@@ -390,3 +376,10 @@ Facebook
 JavaScript
 scipy
 pyenv
+inline
+ethernet
+filesystem
+Kerberos
+https
+symlink
+conda
