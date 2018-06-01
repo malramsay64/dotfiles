@@ -627,10 +627,12 @@ let g:project_log#log_level = 'DEBUG'
 " pandoc {{{
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#urls = 1
-let g:pandoc#modules#disabled = ["chdir"]
+let g:pandoc#modules#disabled = ["chdir", "folding"]
+let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
+let g:pandoc#filetypes#pandoc_markdown = 0
 
 augroup pandoc_syntax
-    autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+    autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=pandoc.markdown
 augroup END
 
 " }}}

@@ -71,10 +71,9 @@ Plug 'wvffle/vimterm'
 " Writing plugins
 let g:text_files = ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc']
 Plug 'reedes/vim-litecorrect', { 'for': text_files }
-Plug 'reedes/vim-wordy', {'for': text_files }
-Plug 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
+" Plug 'reedes/vim-wordy', {'for': text_files }
 Plug 'beloglazov/vim-online-thesaurus'
-Plug 'ChesleyTan/wordCount.vim', { 'for': text_files }
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 " Search and replace
 Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
