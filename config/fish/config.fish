@@ -16,12 +16,12 @@ function __check_path_exists
     end
 end
 
-set -x PATH $PATH (__check_path_exists $HOME/.pyenv/bin)
-set -x PATH $PATH (__check_path_exists $HOME/.local/bin)
-set -x PATH $PATH (__check_path_exists $HOME/.fzf/bin)
-set -x PATH $PATH (__check_path_exists $HOME/dotfiles/bin)
-set -x PATH $PATH (__check_path_exists $HOME/go/bin)
-set -x PATH $PATH (__check_path_exists /usr/local/bin)
+set -x PATH (__check_path_exists /usr/local/bin) $PATH
+set -x PATH (__check_path_exists $HOME/go/bin) $PATH
+set -x PATH (__check_path_exists $HOME/.fzf/bin) $PATH
+set -x PATH (__check_path_exists $HOME/dotfiles/bin) $PATH
+set -x PATH (__check_path_exists $HOME/.local/bin) $PATH
+set -x PATH (__check_path_exists $HOME/.pyenv/bin) $PATH
 
 if type -q nvim
     set -x EDITOR 'nvim'
