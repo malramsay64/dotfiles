@@ -1,3 +1,6 @@
 name: neovim
 dependencies:
   - conda-forge::neovim
+  - python
+  - pip
+  - isort
