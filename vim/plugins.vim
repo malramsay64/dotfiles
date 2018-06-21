@@ -71,7 +71,9 @@ Plug 'wvffle/vimterm'
 " Writing plugins
 let g:text_files = ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc']
 Plug 'reedes/vim-litecorrect', { 'for': text_files }
+Plug 'ChesleyTan/wordCount.vim', { 'for': text_files }
 " Plug 'reedes/vim-wordy', {'for': text_files }
+Plug 'reedes/vim-pencil', {'for': text_files }
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
