@@ -748,4 +748,4 @@ let g:netrw_banner = 0
 " }}}
 "
 "
-" vim:foldmethod=marker:foldlevel=0:filetype=vim
+" vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2
