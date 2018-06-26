@@ -56,6 +56,7 @@ if not set -q abbrs_initialized
   echo -n Setting abbreviations...
 
   abbr g 'git'
+  abbr gap 'git add -p'
   abbr qsu 'qstat -u $USER'
   abbr qs 'qstat -Jt -u $USER'
   abbr c 'clear'
