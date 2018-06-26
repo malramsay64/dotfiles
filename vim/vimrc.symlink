@@ -708,24 +708,31 @@ let g:clang_format#auto_format=1
 let g:goyo_width = 100
 
 function! s:goyo_enter()
+  " sign unplace *
+  ALEDisableBuffer
+  exec lightline#disable()
   set noshowmode
   set noshowcmd
   set scrolloff=999
-  let g:ale_enabled = 0
-  ALEResetBuffer
-  call deoplete#disable()
+  " let g:ale_enabled = 0
+  if has('nvim')
+      call deoplete#disable()
+  endif
   silent !tmux set status off
-  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  silent !tmux list-panes -F '\#F' | grep -q Z; or tmux resize-pane -Z
 endfunction
 
 function! s:goyo_leave()
   silent !tmux set status on
-  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  silent !tmux list-panes -F '\#F' | grep -q Z; and tmux resize-pane -Z
+  exec lightline#enable()
   set showmode
   set showcmd
   set scrolloff=5
   let g:ale_enabled = 1
-  call deoplete#enable()
+  if has('nvim')
+      call deoplete#enable()
+  endif
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
