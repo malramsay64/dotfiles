@@ -202,7 +202,7 @@ nnoremap <Leader>ez :edit ~/.zshrc<CR>
 nnoremap <Leader>ed :edit $DOTFILES/vim/denite.vim<CR>
 " <C-s> will correct previous spelling misake and set undo point
 nnoremap <C-s> [s1z=<c-o>
-inoremap <C-s> <c-g>u<Esc>[s1z=`]A<c-g>u
+inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 " navigate between tabs
 nnoremap ]w :tabnext<CR>
 nnoremap [w :tabprev<CR>
