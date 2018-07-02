@@ -29,11 +29,6 @@ zstyle ':completion:*' matcher-list '' \
 # Load Completions
 autoload -Uz compinit
 
-re_initialize=0
-for match in ${ZDOTDIR}/.zcompdump*(.Nmh+24); do
-  re_initialize=1
-  break
-done
 
 autoload -Uz compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
@@ -74,7 +69,7 @@ source "$DOTFILES/zsh/sourceables.sh"
 # this includes the source_file function
 source "$DOTFILES/bash/environment.bash"
 # Aliases
-source_file "$DOTFILES/bash/aliases.bash"
+source_file "$DOTFILES/zsh/aliases.zsh"
 # Set RPROMPT when in vim mode
 source_file "$DOTFILES/zsh/vi-mode.zsh"
 
@@ -168,7 +163,7 @@ fi
     # eval "$(direnv hook zsh)"
 # fi
 
-if hash thefuck; then
+if hash thefuck 2>/dev/null; then
     function load_thefuck() {
         eval $(thefuck --alias)
     }
