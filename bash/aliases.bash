@@ -25,7 +25,7 @@ alias rd='pushd +1'
 alias ravp='rsync -av --progress'
 alias rsync-ex='rsync -rltDvP'
 alias grep='grep --color=AUTO'
-alias tmux='direnv exec / tmux'
+alias tmux='tmux'
 
 # Conda aliases
 alias sact='source activate'
