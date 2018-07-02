@@ -14,7 +14,7 @@ if-shell " [[ $(tmux -V | cut -d' ' -f2 -ge 2.2 ]]" \
 set -g history-limit 20000
 
 # Enable mouse interaction with tmux
-setw -g mouse on
+setw -g mouse off
 
 # Copy to system clipboard from copy mode
 bind -T copy-mode-vi y send-keys -X copy-pipe 'xclip -in -selection clipboard'
