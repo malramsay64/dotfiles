@@ -55,6 +55,9 @@ unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
+# Use async for autosuggestions
+ZSH_AUTOSUGGEST_USE_ASYNC=True
+
 # Use histdb timer to time each command
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd  histdb-update-outcome
