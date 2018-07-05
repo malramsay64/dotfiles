@@ -117,7 +117,7 @@ set nosplitbelow               " open splits above current
 set formatoptions+=n           " smart auto-indenting inside numbered lists
 set formatoptions+=j           " smart comment joining
 set nojoinspaces               " don't autoinsert two spaces after '.', '?', '!' for join command
-set textwidth=100               " Textwidth is 100 columns
+set textwidth=100              " Textwidth is 100 columns
 
 " common mistypings of exit and save
 cabbrev W w
@@ -290,7 +290,6 @@ set fileformats=unix,mac,dos    " default line ending is unix
 " set filetype defaults
 augroup filetypes
     autocmd!
-    autocmd BufNewFile,BufRead *.md set ft=markdown
     if has('nvim')
         autocmd TermOpen * setlocal nonumber norelativenumber
     endif
@@ -636,6 +635,8 @@ let g:pandoc#syntax#conceal#urls = 1
 let g:pandoc#modules#disabled = ["chdir", "folding"]
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 let g:pandoc#filetypes#pandoc_markdown = 0
+let g:pandoc#formatting#textwidth = 100
+let g:pandoc#formatting#mode="s"
 
 augroup pandoc_syntax
     autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=pandoc.markdown
@@ -744,6 +745,11 @@ nnoremap <space>gg :Goyo<CR>
 " netrw {{{
 
 let g:netrw_banner = 0
+
+" }}}
+" Polyglot  {{{
+let g:python_highlight_all = 1
+" let g:polyglot_disabled = ['markdown']
 
 " }}}
 "

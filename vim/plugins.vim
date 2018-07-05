@@ -50,7 +50,6 @@ Plug 'bps/vim-textobj-python', { 'for': ['python', 'cython'] }
 
 " Other Languages
 Plug 'sheerun/vim-polyglot'
-"Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 
@@ -72,7 +71,6 @@ Plug 'wvffle/vimterm'
 let g:text_files = ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc']
 Plug 'reedes/vim-litecorrect', { 'for': text_files }
 Plug 'ChesleyTan/wordCount.vim', { 'for': text_files }
-" Plug 'reedes/vim-wordy', {'for': text_files }
 Plug 'reedes/vim-pencil', {'for': text_files }
 Plug 'beloglazov/vim-online-thesaurus'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -82,8 +80,6 @@ Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
 Plug 'wincent/scalpel'
 
 " File Explorer
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
 " General Plugins
 Plug 'tpope/vim-fugitive'               " git integration
