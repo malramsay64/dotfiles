@@ -118,6 +118,7 @@ set formatoptions+=n           " smart auto-indenting inside numbered lists
 set formatoptions+=j           " smart comment joining
 set nojoinspaces               " don't autoinsert two spaces after '.', '?', '!' for join command
 set textwidth=100              " Textwidth is 100 columns
+set clipboard=unnamed          " Use the system clipboard
 
 " common mistypings of exit and save
 cabbrev W w
