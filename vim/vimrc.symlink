@@ -439,44 +439,6 @@ let g:ale_lint_delay = 1000
 let g:ale_lint_on_save = 1
 
 " }}}
-" deoplete {{{
-if has('python3')
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#enable_smart_case = 1
-    let g:deoplete#enable_refresh_always = 1
-    let g:deoplete#enable_on_insert_enter = 1
-
-    let g:deoplete#max_list=15
-    let g:deoplete#auto_complete_delay = 100
-
-    " <C-h>: close popup
-    inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-
-    " Enable echodoc to show function variables in command bar
-    set noshowmode
-    let g:echodoc_enable_at_startup = 1
-
-    " Remove preview window
-    set completeopt-=preview
-    "autocmd CompleteDone * pclose!
-
-    if !exists('g:deoplete#omni_patterns')
-        let g:deoplete#omni_patterns = {}
-    endif
-    let g:deoplete#omni_patterns.tex =
-                \ '\v\\%('
-                \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-                \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
-                \ . '|hyperref\s*\[[^]]*'
-                \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-                \ . '|%(include%(only)?|input)\s*\{[^}]*'
-                \ . ')\m'
-
-    let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.0/lib/libclang.dylib'
-    let g:deoplete#sources#clang#libclang_header = '/usr/local/Cellar/llvm/6.0.0/lib/clang'
-endif
-
-"}}}
 " ultisnips {{{
 
 let g:UltiSnipsExpandTrigger='<C-k>'
@@ -752,6 +714,26 @@ let g:python_highlight_all = 1
 " let g:polyglot_disabled = ['markdown']
 
 " }}}
+" ncm2 {{{
+
+set completeopt=noinsert,menuone,noselect
+
+augroup ncm2
+  autocmd!
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup END
+
+" supress the annoying 'match x of y', 'The only match' and 'Pattern not
+" found' messages
+set shortmess+=c
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" }}}
 "
 "
 " vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2
+"

@@ -54,12 +54,18 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-github'
+Plug 'ncm2/ncm2-jedi'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-markdown-subscope'
+
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'zchee/deoplete-jedi', { 'for': ['python', 'cython'] }
-Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'c'] }
-Plug 'rhysd/vim-clang-format', { 'for': ['cpp', 'c'] }
 
 Plug 'Shougo/echodoc.vim'
 
