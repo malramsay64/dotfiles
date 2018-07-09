@@ -353,76 +353,6 @@ nnoremap <Leader>gf :<C-u>GFiles<CR>
 nnoremap <leader>b :<C-U>Buffers<CR>
 
 " }}}
-" Vimwiki {{{
-
-nmap <Leader>wj <Plug>VimwikiDiaryPrevDay
-nmap <Leader>wk <Plug>VimwikiDiaryNextDay
-
-let g:vimwiki_folding = 'syntax'
-
-" Wiki settings
-let s:wiki_default = {}
-let s:wiki_default.auto_export = 0
-let s:wiki_default.auto_toc = 0
-let s:wiki_default.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh'}
-
-let s:home_wiki = copy(s:wiki_default)
-let s:home_wiki.path = '~/Documents/notes/personal/'
-let s:home_wiki.diary_rel_path = 'diary/'
-let s:home_wiki.path_html = '~/Documents/notes/html/personal/'
-
-let s:phd_wiki = copy(s:wiki_default)
-let s:phd_wiki.path = '~/Documents/notes/PhD/'
-let s:phd_wiki.diary_rel_path = 'logbook/'
-let s:phd_wiki.diary_index = 'index'
-let s:phd_wiki.diary_header = 'PhD Logbook'
-let s:phd_wiki.path_html = '~/Documents/notes/html/PhD/'
-let s:phd_wiki.auto_export = 1
-let s:phd_wiki.html_template = '~/Documents/notes/template.html'
-let s:phd_wiki.template_path = '~/Documents/notes/'
-let s:phd_wiki.template_default = 'template'
-let s:phd_wiki.template_ext = '.html'
-
-let s:flurosat_wiki = copy(s:wiki_default)
-let s:flurosat_wiki.path = '~/Documents/notes/FluroSat/'
-
-let g:vimwiki_list = [s:home_wiki, s:phd_wiki, s:flurosat_wiki]
-
-" Custom image handler for html
-function! VimwikiWikiIncludeHandler(value)
-    let l:str = a:value
-
-    " complete URL
-    let l:url_0 = matchstr(l:str, vimwiki#vars#get_global('rxWikiInclMatchUrl'))
-    " URL parts
-    let l:link_infos = vimwiki#base#resolve_link(l:url_0)
-    let l:descr = matchstr(l:str, vimwiki#html#incl_match_arg(1))
-    let l:verbatim_str = matchstr(l:str, vimwiki#html#incl_match_arg(2))
-
-    let l:link_infos = vimwiki#base#resolve_link(l:url_0)
-
-    let l:url = l:link_infos.filename
-
-    let l:url = escape(l:url, '#')
-
-    if fnamemodify(l:url, ':e') =~? 'pdf'
-        let l:line = '<figure>'.
-                    \ '<object data='.l:url." type='application/pdf' height=100% width=100%></object>".
-                    \'<figcaption>Fig: '.l:descr.'</figcaption>'.
-                    \'</figure>'
-    else
-        let l:line = '<figure>'.
-                    \ vimwiki#html#linkify_image(l:url, l:descr, l:verbatim_str).
-                    \'<figcaption>Fig: '.l:descr.'</figcaption>'.
-                    \'</figure>'
-    endif
-
-    " Return the empty string when unable to process link
-    return l:line
-endfunction
-
-
-"}}}
 " fugitive {{{
 
 nnoremap <Leader>gs :Gstatus<CR>
@@ -545,23 +475,6 @@ nnoremap <leader>y :OnlineThesaurusCurrentWord<CR>
 noremap <leader>u :UndotreeToggle<CR>
 
 " }}}
-" vim-taskwarrior {{{
-
-" Highlighting field
-let g:task_highlight_field = 0
-
-" Long descriptions
-let g:task_rc_override = 'rc.defaultwidth=0'
-
-" Allow changes to data
-let g:task_readonly = 0
-
-" Change default fields
-let g:task_default_prompt = ['description', 'project', 'tags', 'priority', 'due']
-
-"let g:task_gui_term = 0
-
-" }}}
 "  vimterm {{{
 if has('nvim')
     nnoremap <leader>vo :call vimterm#toggle() <CR>
@@ -604,11 +517,6 @@ let g:pandoc#formatting#mode="s"
 augroup pandoc_syntax
     autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=pandoc.markdown
 augroup END
-
-" }}}
-" NERDTree {{{
-
-nnoremap <C-n> :NERDTreeToggle<CR>
 
 " }}}
 " lightline {{{
@@ -655,6 +563,7 @@ let g:wc_conservative_update = 1
 
 "  }}}
 " nerdcommenter {{{
+
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
