@@ -65,25 +65,6 @@ source "$DOTFILES/bash/environment.bash"
 # Aliases
 source_file "$DOTFILES/zsh/aliases.zsh"
 
-VIM_PROMPT="❯"
-PROMPT='%(?.%F{magenta}.%F{red})${VIM_PROMPT}%f '
-
-prompt_pure_update_vim_prompt() {
-    zle || {
-        print "error: pure_update_vim_prompt must be called when zle is active"
-        return 1
-    }
-    VIM_PROMPT=${${KEYMAP/vicmd/❮}/(main|viins)/❯}
-    zle .reset-prompt
-}
-
-function zle-line-init zle-keymap-select { 
-    prompt_pure_update_vim_prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-
 # set TERM appropriately
 if [[ "$TERM" == "tmux-256color" ]] && [[ $(tmux -V | awk "{print $2}") < 2 ]]; then
     export TERM="screen-256color"
@@ -124,6 +105,22 @@ autoload -U promptinit; promptinit
 PURE_CMD_MAX_EXEC_TIME=10
 # The default symbol doesn't work with Iosevka
 # PURE_PROMPT_SYMBOL=〉
+
+# Configure prompt symbol to flip when in vim-mode
+prompt_pure_update_vim_prompt() {
+    zle || {
+        print "error: pure_update_vim_prompt must be called when zle is active"
+        return 1
+    }
+    PURE_PROMPT_SYMBOL=${${KEYMAP/vicmd/❮}/(main|viins)/❯}
+    zle .reset-prompt
+}
+
+function zle-line-init zle-keymap-select {
+    prompt_pure_update_vim_prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 # fzf configuratioin
 source_file "$HOME/.fzf.zsh"
