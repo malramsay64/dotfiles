@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Transparent aliases
 #
@@ -45,9 +45,8 @@ function abbr()
 
 function expand-abbr()
 {
-    if [[ $LBUFFER =~ "\<(${(j:|:)abbr})\$" ]]; then
-        zle _expand_abbr
-        zle expand-word
+    if [[ $LBUFFER =~ "(^|[;|&])\s*(${(j:|:)abbr})\$" ]]; then
+        zle _expand_alias
     fi
     zle magic-space
 }
@@ -57,24 +56,6 @@ zle -N expand-abbr
 bindkey -M viins ' '        expand-abbr
 bindkey -M viins '^ '       magic-space     # control-space to bypass completion
 bindkey -M isearch " "      magic-space     # normal space during searches
-
-abbr ravp='rsync -av --progress'
-abbr rex='rsync -rltDvP'
-abbr tmux='tmux'
-abbr g='git'
-abbr gap='git add -p'
-abbr gst='git status'
-
-# Cause I can never spell install correctly
-abbr isntall='install'
-
-# PBS aliases
-if hash qstat 2>/dev/null; then
-    abbr qs='qstat -Jt -u $USER'
-    abbr qsu='qstat -u $USER'
-    abbr qdelall='qdel $(qstat -u $USER | grep ^[0-9] | cut -d. -f1 | tr "\n" " ")'
-fi
-
 
 # Function to revert all files to default permissions
 defmod() {
