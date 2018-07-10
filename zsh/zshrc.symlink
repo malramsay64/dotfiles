@@ -10,9 +10,9 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
     setopt xtrace prompt_subst
 fi
 
-# The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' max-errors 2
+zstyle ':completion:*' menu select
 zstyle :compinstall filename "$HOME/.zshrc"
 
 # 0 -- vanilla completion (abc => abc)
@@ -28,9 +28,6 @@ zstyle ':completion:*' matcher-list '' \
 
 # Load Completions
 autoload -Uz compinit
-
-
-autoload -Uz compinit
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
   compinit -i
@@ -40,15 +37,12 @@ fi
 
 unset updated_at
 
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory sharehistory incappendhistory autocd extendedglob
 unsetopt beep
 bindkey -v
-# End of lines configured by zsh-newuser-install
 
 # Use async for autosuggestions
 ZSH_AUTOSUGGEST_USE_ASYNC=True
@@ -70,8 +64,25 @@ source "$DOTFILES/zsh/sourceables.sh"
 source "$DOTFILES/bash/environment.bash"
 # Aliases
 source_file "$DOTFILES/zsh/aliases.zsh"
-# Set RPROMPT when in vim mode
-source_file "$DOTFILES/zsh/vi-mode.zsh"
+
+VIM_PROMPT="❯"
+PROMPT='%(?.%F{magenta}.%F{red})${VIM_PROMPT}%f '
+
+prompt_pure_update_vim_prompt() {
+    zle || {
+        print "error: pure_update_vim_prompt must be called when zle is active"
+        return 1
+    }
+    VIM_PROMPT=${${KEYMAP/vicmd/❮}/(main|viins)/❯}
+    zle .reset-prompt
+}
+
+function zle-line-init zle-keymap-select { 
+    prompt_pure_update_vim_prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
 
 # set TERM appropriately
 if [[ "$TERM" == "tmux-256color" ]] && [[ $(tmux -V | awk "{print $2}") < 2 ]]; then
@@ -128,7 +139,6 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     alias_function "nvim" "nvr"
 fi
 
-
 # Have consistent location for forwarded ssh authentication socket
 if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
     ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh-agent-sock"
@@ -151,11 +161,8 @@ source_file "$HOME/.travis/travis.sh"
 
 # Source pyenv if present
 if hash pyenv 2>/dev/null; then
-    function load_pyenv() {
-        eval "$(pyenv init -)"
-        eval "$(pyenv virtualenv-init -)"
-    }
-    alias pyenv='unalias pyenv && load_pyenv && pyenv'
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 fi
 
 # Source direnv
@@ -169,6 +176,33 @@ if hash thefuck 2>/dev/null; then
     }
     alias fuck='unalias fuck && load_thefuck && fuck'
 fi
+
+# Abbreviations
+#
+# These are expanded in the shell
+abbr ravp='rsync -av --progress'
+abbr rex='rsync -rltDvP'
+abbr g='git'
+abbr gap='git add -p'
+abbr gst='git status'
+
+# Cause I can never spell install correctly
+abbr isntall='install'
+
+# PBS aliases
+if hash qstat 2>/dev/null; then
+    abbr qs='qstat -Jt -u $USER'
+    abbr qsu='qstat -u $USER'
+    abbr qdelall='qdel $(qstat -u $USER | grep ^[0-9] | cut -d. -f1 | tr "\n" " ")'
+fi
+
+# Directory abreviations
+abbr cm="~/Projects/Crystal_Melting"
+abbr ss="~/Projects/statdyn-simulation"
+abbr sa="~/Projects/statdyn-analysis"
+abbr th="~/Projects/phd-thesis"
+abbr dot="~/dotfiles"
+
 
 if [[ "$PROFILE_STARTUP" == true ]]; then
     zprof
