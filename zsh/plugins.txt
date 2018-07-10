@@ -4,6 +4,7 @@ zdharma/fast-syntax-highlighting
 larkery/zsh-histdb
 mafredri/zsh-async
 robbyrussell/oh-my-zsh folder:plugins/gitfast
+esc/conda-zsh-completion
 
 # Load these last
 sindresorhus/pure
