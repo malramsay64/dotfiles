@@ -13,7 +13,8 @@ fi
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' max-errors 2
 zstyle ':completion:*' menu select
-zstyle :compinstall filename "$HOME/.zshrc"
+# zstyle :compinstall filename "$HOME/.zshrc"
+zstyle ':completion::complete:*' use-cache 1
 
 # 0 -- vanilla completion (abc => abc)
 # 1 -- smart case completion (abc => Abc)
@@ -24,18 +25,6 @@ zstyle ':completion:*' matcher-list '' \
   'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
   'r:|?=** m:{a-z\-}={A-Z\_}'
 
-# export fpath=(~/.local/share/zsh-completions $fpath)
-
-# Load Completions
-autoload -Uz compinit
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
-else
-  compinit -C -i
-fi
-
-unset updated_at
 
 HISTFILE=~/.histfile
 HISTSIZE=10000
@@ -200,6 +189,18 @@ abbr sa="~/Projects/statdyn-analysis"
 abbr th="~/Projects/phd-thesis"
 abbr dot="~/dotfiles"
 
+# Add local completions to search path
+fpath+="$DOTFILES/zsh/completions"
+
+# Load Completions
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
+unset updated_at
 
 if [[ "$PROFILE_STARTUP" == true ]]; then
     zprof
