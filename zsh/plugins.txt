@@ -3,8 +3,7 @@ zsh-users/zsh-completions
 zdharma/fast-syntax-highlighting
 larkery/zsh-histdb
 mafredri/zsh-async
-robbyrussell/oh-my-zsh folder:plugins/gitfast
-esc/conda-zsh-completion
+malramsay64/conda-zsh-completion
 
 # Load these last
 sindresorhus/pure
