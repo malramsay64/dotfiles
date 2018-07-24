@@ -52,6 +52,7 @@ Plug 'bps/vim-textobj-python', { 'for': ['python', 'cython'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
+Plug 'gu-fan/riv.vim'
 
 " Autocomplete
 Plug 'ncm2/ncm2'
@@ -63,6 +64,7 @@ Plug 'ncm2/ncm2-github'
 Plug 'ncm2/ncm2-jedi'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-markdown-subscope'
+Plug 'ncm2/ncm2-rst-subscope'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -74,7 +76,7 @@ Plug 'wellle/targets.vim'
 Plug 'wvffle/vimterm'
 
 " Writing plugins
-let g:text_files = ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc']
+let g:text_files = ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc', 'rst']
 Plug 'reedes/vim-litecorrect', { 'for': text_files }
 Plug 'ChesleyTan/wordCount.vim', { 'for': text_files }
 Plug 'reedes/vim-pencil', {'for': text_files }
