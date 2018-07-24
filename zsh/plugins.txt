@@ -4,6 +4,8 @@ zdharma/fast-syntax-highlighting
 larkery/zsh-histdb
 mafredri/zsh-async
 malramsay64/conda-zsh-completion
+srijanshetty/zsh-pandoc-completion
+axtl/gpg-agent.zsh
 
 # Load these last
 sindresorhus/pure

@@ -105,6 +105,9 @@ prompt_pure_update_vim_prompt() {
     zle .reset-prompt
 }
 
+# Equivalent of set backspace=indent,eol,start in vim
+bindkey "^?" backward-delete-char
+
 function zle-line-init zle-keymap-select {
     prompt_pure_update_vim_prompt
 }
@@ -137,17 +140,15 @@ fi
 # update PATH for google cloud SDK
 source_file "$HOME/.local/google-cloud-sdk/path.zsh.inc"
 # enable shell completion for gcloud
-source_file "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
+# source_file "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
 # Source local changes
 source_file "$HOME/.bashrc.local"
 # Source travis config
 source_file "$HOME/.travis/travis.sh"
-# Allow conda to manage environment activation
-# source "$HOME/.miniconda/etc/profile.d/conda.sh"
 
 # Source pyenv if present
 if hash pyenv 2>/dev/null; then
-    eval "$(pyenv init -)"
+    eval "$(pyenv init - --no-rehash)"
     eval "$(pyenv virtualenv-init -)"
 fi
 
