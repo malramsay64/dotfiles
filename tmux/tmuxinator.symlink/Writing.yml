@@ -22,16 +22,22 @@ root: ~/
 # startup_window: logs
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
-# attach: false
+attach: true
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
 # post: tmux -CC attach -t Writing
 
 windows:
+  - Thesis:
+      root: "~/Projects/phd-thesis"
+      panes:
+        - nvim .
+  - Blog:
+      root: "~/Projects/personal_site"
+      panes:
+        - nvim content/post/ideas
   - Tasks:
       layout: main-horizontal
       panes:
-        - nvim +"TW -Home due.before:2w"
+        - vit
         - task sync
-        - nvim +"TW +Home"
-  - Diary: nvim +VimwikiDiaryIndex
