@@ -32,8 +32,9 @@
 [hub]
 	protocol = ssh
 [merge]
-  tool = vimdiff
+	tool = diffconflicts
 [mergetool]
-  prompt = true
-[mergetool "vimdiff"]
-  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+	prompt = true
+[mergetool "diffconflicts"]
+	cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = true

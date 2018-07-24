@@ -114,6 +114,7 @@ Plug 'majutsushi/tagbar'
 Plug 'gioele/vim-autoswap'
 Plug 'jez/vim-github-hub'
 Plug 'kana/vim-textobj-user' " Custom text objects
+Plug 'whiteinge/diffconflicts'
 
 Plug 'malramsay64/nvim-project-log', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 
