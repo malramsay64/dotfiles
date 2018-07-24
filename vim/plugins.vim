@@ -54,6 +54,11 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
 Plug 'gu-fan/riv.vim'
 
+" vim -> nvim compatability
+if !has("nvim")
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 " Autocomplete
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
