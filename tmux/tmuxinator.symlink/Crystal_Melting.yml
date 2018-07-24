@@ -3,9 +3,6 @@
 name: Crystal_Melting
 project_root: ~/Projects/Crystal_Melting
 
-# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-pre_window: conda activate crystal
-
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
 startup_window: Code
 
