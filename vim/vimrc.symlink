@@ -118,7 +118,7 @@ set formatoptions+=n           " smart auto-indenting inside numbered lists
 set formatoptions+=j           " smart comment joining
 set nojoinspaces               " don't autoinsert two spaces after '.', '?', '!' for join command
 set textwidth=100              " Textwidth is 100 columns
-set clipboard=unnamed          " Use the system clipboard
+" set clipboard=unnamed          " Use the system clipboard
 
 " common mistypings of exit and save
 cabbrev W w
@@ -349,7 +349,6 @@ let g:fzf_tags_command = 'ctags -R'
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
 nnoremap <silent> <C-p> :<C-u>GFiles<CR>
-nnoremap <silent> <leader>p :<C-u>Files<CR>
 nnoremap <Leader>gf :<C-u>Commits<CR>
 nnoremap <leader>b :<C-U>Buffers<CR>
 
@@ -509,11 +508,13 @@ let g:project_log#log_level = 'DEBUG'
 " pandoc {{{
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#urls = 1
-let g:pandoc#modules#disabled = ["chdir", "folding"]
+let g:pandoc#modules#disabled = ["chdir", "folding", "keyboard"]
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
-let g:pandoc#filetypes#pandoc_markdown = 0
+let g:pandoc#filetypes#pandoc_markdown = 1
 let g:pandoc#formatting#textwidth = 100
-let g:pandoc#formatting#mode="s"
+let g:pandoc#formatting#mode='ha'
+let g:pandoc#hypertext#open_editable_alternates=1
+let g:pandoc#hypertext#use_default_mappings = 1
 
 augroup pandoc_syntax
     autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=pandoc.markdown
@@ -582,15 +583,13 @@ let g:clang_format#auto_format=1
 let g:goyo_width = 100
 
 function! s:goyo_enter()
-  " sign unplace *
   ALEDisableBuffer
   exec lightline#disable()
   set noshowmode
   set noshowcmd
   set scrolloff=999
-  " let g:ale_enabled = 0
   if has('nvim')
-      call deoplete#disable()
+      call ncm2#disable_for_buffer()
   endif
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z; or tmux resize-pane -Z
@@ -605,7 +604,7 @@ function! s:goyo_leave()
   set scrolloff=5
   let g:ale_enabled = 1
   if has('nvim')
-      call deoplete#enable()
+      call ncm2#enable_for_buffer()
   endif
 endfunction
 
