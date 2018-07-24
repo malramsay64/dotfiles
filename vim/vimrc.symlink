@@ -348,8 +348,9 @@ let g:fzf_tags_command = 'ctags -R'
 " [Commands] --expect expression for directly executing the command
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
-nnoremap <silent> <C-p> :<C-u>FZF<CR>
-nnoremap <Leader>gf :<C-u>GFiles<CR>
+nnoremap <silent> <C-p> :<C-u>GFiles<CR>
+nnoremap <silent> <leader>p :<C-u>Files<CR>
+nnoremap <Leader>gf :<C-u>Commits<CR>
 nnoremap <leader>b :<C-U>Buffers<CR>
 
 " }}}
