@@ -6,57 +6,43 @@ if [ -f /etc/bashrc ]; then
     source /etc/bashrc
 fi
 
-# Source
-export DOTFILES=$HOME/dotfiles
-BASH_CONFIG=$DOTFILES/bash
+# Update path variable if directory exists
+function add_to_path() {
+    if [ -d "$1" ]; then
+        export PATH="$1:$PATH"
+    fi
+}
 
-# Source all .sh files inside bash direcotry
-for config in "$BASH_CONFIG"/*.bash; do
-    source "$config"
-done
+# Source a file if it exists
+function source_file() {
+    if [ -f "$1" ]; then
+        local -r file="$1"
+        shift
+        source "$file" "$@"
+    fi
+}
 
-# Bash History {{{
+# Create function alias if function exists
+function alias_function() {
+    if hash $2 2>/dev/null; then
+        alias "$1"="$2"
+    fi
+}
 
-# Large Bash History
-# http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows
-#export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
-export HISTSIZE=100000                   # big big history
-export HISTFILESIZE=100000               # big big history
-shopt -s histappend                      # append to history, don't overwrite it
+# histdb alias
+function hist {
+    histdb $1 --host
+}
 
-# Save and reload the history after each command finishes
-#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+add_to_path "/usr/local/bin"
+add_to_path "$HOME/go/bin"
+add_to_path "$HOME/.cargo/bin"
+add_to_path "$HOME/dotfiles/bin"
+add_to_path "$HOME/.bin"
+add_to_path "$HOME/.local/bin"
+add_to_path "$HOME/.pyenv/bin"
 
-# }}}
-
-# Adding home directory lib to ld_library_path
-[ -d "$HOME/.local/lib" ] && export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
-
-# Interface {{{
-
-export GREP_COLOR='1;33'
-export CLI_COLOR=1
-
-# Base 16 shell theme
-if [ -z "$THEME" ]; then
-    export THEME="base16-solarized"
-fi
-if [ -z "$BACKGROUND" ]; then
-    export BACKGROUND="dark"
-fi
-
-if [ ! -n "$SSH_CLIENT" ] && [ ! -n "$SSH_TTY" ]; then
-    BASE16_SHELL="$DOTFILES/config/base16-shell/$THEME.$BACKGROUND.sh"
-    [[ -s "$BASE16_SHELL" ]] && source "$BASE16_SHELL"
-fi
-
-# Allow conda to mange environment
-source "$HOME/.miniconda/etc/profile.d/conda.sh"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# added by travis gem
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
+export EDITOR=nvim
 
 if [ -e ~/.bashrc.local ]; then
     source ~/.bashrc.local
