@@ -36,6 +36,10 @@ windows:
       root: "~/Projects/personal_site"
       panes:
         - nvim content/post/ideas
+  - Notes:
+      root: ~
+      panes:
+        - nvim
   - Tasks:
       layout: main-horizontal
       panes:
