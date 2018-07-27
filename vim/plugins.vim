@@ -38,7 +38,7 @@ Plug 'janko-m/vim-test'
 Plug 'w0rp/ale'
 
 " fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all --no-zsh --no-bash' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Filetype specific plugins

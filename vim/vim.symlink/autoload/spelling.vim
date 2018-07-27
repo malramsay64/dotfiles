@@ -4,11 +4,11 @@ function spelling#fix_previous()
     " Get cursor position from end of line
     let l:cur_col = col("$") - col(".")
     " Save undo state
-    normal <C-g>u
+    normal! <C-g>u
     " Correct spelling error
-    normal [s1z=
+    normal! [s1z=
     " create another undo state
-    normal <C-g>u
+    normal! <C-g>u
     " Return to position relative to end of line
     let l:save_cursor[2] = col("$") - l:cur_col
     " Return cursor to previous position
