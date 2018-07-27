@@ -643,7 +643,14 @@ set shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 " }}}
+" black {{{
 "
+augroup black
+    autocmd!
+    autocmd BufWritePre *.py execute ':Black'
+augroup END
+
+" }}}
 "
 " vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2
 "

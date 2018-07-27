@@ -11,6 +11,7 @@ vim/vim.symlink/spell
 .netrwhist
 vim/vim.symlink/view
 vim/vim.symlink/bundle
+vim/vim.symlink/black
 
 # Ignoring taskwarrior config and data files
 task/task.symlink/*.pem
