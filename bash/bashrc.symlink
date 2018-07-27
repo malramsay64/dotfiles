@@ -49,3 +49,5 @@ if [ -e ~/.bashrc.local ]; then
 fi
 
 #vim:filetype=sh
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
