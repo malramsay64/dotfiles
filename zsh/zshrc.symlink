@@ -50,7 +50,12 @@ export DOTFILES="$HOME/dotfiles"
 # This needs to be a standard source for some reason
 source "$DOTFILES/zsh/sourceables.sh"
 # this includes the source_file function
-source "$DOTFILES/bash/environment.bash"
+
+function source_file() {
+    if [ -f "$1" ]; then
+        source $1
+    fi
+}
 # Aliases
 source_file "$DOTFILES/zsh/aliases.zsh"
 
@@ -152,18 +157,6 @@ if hash pyenv 2>/dev/null; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
-# Source direnv
-# if hash direnv; then
-    # eval "$(direnv hook zsh)"
-# fi
-
-if hash thefuck 2>/dev/null; then
-    function load_thefuck() {
-        eval $(thefuck --alias)
-    }
-    alias fuck='unalias fuck && load_thefuck && fuck'
-fi
-
 # Abbreviations
 #
 # These are expanded in the shell
@@ -208,3 +201,5 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
     unsetopt xtrace
     exec 2>&-
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
