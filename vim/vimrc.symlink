@@ -202,8 +202,8 @@ nnoremap <Leader>ez :edit ~/.zshrc<CR>
 " Edit denite config
 nnoremap <Leader>ed :edit $DOTFILES/vim/denite.vim<CR>
 " <C-s> will correct previous spelling misake and set undo point
-nnoremap <C-s> :call spelling#fix_previous()<CR>
-inoremap <C-s> <C-o>:call spelling#fix_previous()<CR>
+nnoremap <silent> <C-s> :call spelling#fix_previous()<CR>
+inoremap <silent> <C-s> <C-o>:call spelling#fix_previous()<CR>
 " navigate between tabs
 nnoremap ]w :tabnext<CR>
 nnoremap [w :tabprev<CR>
