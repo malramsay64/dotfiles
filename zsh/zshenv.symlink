@@ -12,3 +12,8 @@ add_to_path "$HOME/dotfiles/bin"
 add_to_path "$HOME/.bin"
 add_to_path "$HOME/.local/bin"
 add_to_path "$HOME/.pyenv/bin"
+
+if hash nvim 2>/dev/null; then
+    export EDITOR=nvim
+fi
+export VISUAL=$EDITOR
