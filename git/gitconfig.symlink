@@ -36,5 +36,5 @@
 [mergetool]
 	prompt = true
 [mergetool "diffconflicts"]
-	cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+	cmd = $EDITOR -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
 	trustExitCode = true
