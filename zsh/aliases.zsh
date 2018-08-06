@@ -33,6 +33,7 @@ fi
 if hash neomutt 2>/dev/null; then
     alias mutt='neomutt'
 fi
+alias mux='tmuxinator'
 
 # Abbreviations
 #
