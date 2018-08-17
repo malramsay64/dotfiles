@@ -1,5 +1,9 @@
 augroup ftpython
     autocmd!
-    autocmd BufWritePost *.py Isort
+    autocmd BufWritePost <buffer> Isort
 augroup END
 set formatoptions-=t
+
+setlocal spell
+
+let b:ale_linters = ['pylint', 'mypy', 'pycodestyle', 'pydocstyle']
