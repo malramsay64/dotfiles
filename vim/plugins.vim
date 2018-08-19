@@ -1,4 +1,4 @@
-" Configuration for Vundle package manager
+" Configuration for vim-plug package manager
 
 " Automatic install vim-plug if not already
 if empty(glob('~/dotfiles/vim/vim.symlink/autoload/plug.vim'))
@@ -34,7 +34,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
 
 " Syntax checking
-Plug 'janko-m/vim-test'
 Plug 'w0rp/ale'
 
 " fzf
@@ -45,9 +44,7 @@ Plug 'junegunn/fzf.vim'
 " Python
 Plug 'fs111/pydoc.vim', { 'on': ['Pydoc', 'PydocSearch'] }
 Plug 'lambdalisue/vim-cython-syntax'
-Plug 'fisadev/vim-isort', Cond(executable('isort'), { 'for': ['python', 'cython'] })
 Plug 'bps/vim-textobj-python', { 'for': ['python', 'cython'] }
-Plug 'ambv/black', { 'for': 'python' }
 
 " Other Languages
 Plug 'sheerun/vim-polyglot'
@@ -64,13 +61,18 @@ endif
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-github'
-Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-ultisnips'
-Plug 'ncm2/ncm2-markdown-subscope'
-Plug 'ncm2/ncm2-rst-subscope'
+Plug 'ncm2/ncm2-bufword'           " Completions from words in current buffer
+Plug 'ncm2/ncm2-path'              " Complete file paths
+Plug 'ncm2/ncm2-github'            " Complete GitHub repository, user, link, and issues
+Plug 'ncm2/ncm2-jedi'              " Python completion with Jedi
+Plug 'ncm2/ncm2-ultisnips'         " Ultisnips snippet completion
+Plug 'ncm2/ncm2-tmux'              " Completion from other tmux panes
+
+" Sub-scopes
+" These plugins detect other programming languages within a document and activate the relevant
+" completion for them.
+Plug 'ncm2/ncm2-markdown-subscope' " Detect in Markdown documents
+Plug 'ncm2/ncm2-rst-subscope'      " Detect in reStructured Text documents
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -86,8 +88,8 @@ let g:text_files = ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc', 'rst']
 Plug 'reedes/vim-litecorrect', { 'for': text_files }
 Plug 'ChesleyTan/wordCount.vim', { 'for': text_files }
 Plug 'reedes/vim-pencil', {'for': text_files }
-Plug 'beloglazov/vim-online-thesaurus'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'ron89/thesaurus_query.vim',  { 'on': ['ThesaurusQueryReplaceCurrentWord', 'Thesaurus'] }
 
 " Search and replace
 Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
@@ -110,12 +112,13 @@ Plug 'mbbill/undotree'                  " undo
 Plug 'nixon/vim-vmath'                  " math on visual selections
 Plug 'aperezdc/vim-template'            " Create templates for new files
 Plug 'farmergreg/vim-lastplace'         " Remember last location in files
-Plug 'godlygeek/tabular'                " Align bits of text
-Plug 'majutsushi/tagbar'
-Plug 'gioele/vim-autoswap'
-Plug 'jez/vim-github-hub'
-Plug 'kana/vim-textobj-user' " Custom text objects
+Plug 'majutsushi/tagbar'                " Tagbar with useful information
+Plug 'gioele/vim-autoswap'              " Automatically deal with swap files
+Plug 'jez/vim-github-hub'               " Formatting of hub commit, issues, pull-requests
+Plug 'kana/vim-textobj-user'            " Custom text objects
 Plug 'whiteinge/diffconflicts'
+Plug 'tommcdo/vim-lion'                 " Align based on characters
+Plug 'junegunn/gv.vim'                  " Browse git history
 
 Plug 'malramsay64/nvim-project-log', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 

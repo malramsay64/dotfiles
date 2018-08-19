@@ -55,7 +55,6 @@ if !has('nvim')
 endif
 
 """ Configure Colourschems
-let g:one_allow_italics = 1
 let g:quantum_italics=1
 
 " Colourscheme override
@@ -75,7 +74,6 @@ set background=dark " for the dark version
 "colorscheme onedark
 colorscheme quantum
 
-
 " }}}
 "Spaces and Tabs {{{
 
@@ -85,8 +83,7 @@ set shiftwidth=4        " autoindent amount when using cindent
 set expandtab           " TAB inserts softtabstop spaces
 
 set autoindent          " copy indentation from previous line
-set nosmartindent         " inserts extra indentation in some cases
-
+set nosmartindent       " inserts extra indentation in some cases
 
 " Remove trailing whitespace from file and return cursor to current position
 function! StripTrailingWhitespaces()
@@ -117,7 +114,7 @@ set nosplitbelow               " open splits above current
 set formatoptions+=n           " smart auto-indenting inside numbered lists
 set formatoptions+=j           " smart comment joining
 set nojoinspaces               " don't autoinsert two spaces after '.', '?', '!' for join command
-set textwidth=100              " Textwidth is 100 columns
+set textwidth=100               " Textwidth is 100 columns
 " set clipboard=unnamed          " Use the system clipboard
 
 " common mistypings of exit and save
@@ -203,7 +200,7 @@ nnoremap <Leader>ez :edit ~/.zshrc<CR>
 nnoremap <Leader>ed :edit $DOTFILES/vim/denite.vim<CR>
 " <C-s> will correct previous spelling misake and set undo point
 nnoremap <silent> <C-s> :call spelling#fix_previous()<CR>
-inoremap <silent> <C-s> <C-o>:call spelling#fix_previous()<CR>
+inoremap <silent> <C-s> <C-g>u<C-o>:call spelling#fix_previous()<CR>
 " navigate between tabs
 nnoremap ]w :tabnext<CR>
 nnoremap [w :tabprev<CR>
@@ -365,9 +362,23 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
+let g:ale_linters = {
+      \ 'python': ['pylint', 'mypy', 'pycodestyle', 'pydocstyle'],
+      \ }
+
 let g:ale_lint_on_text_changed = 1
-let g:ale_lint_delay = 1000
+let g:ale_lint_delay = 500
 let g:ale_lint_on_save = 1
+
+let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \ 'python': ['isort', 'black', 'remove_trailing_lines', 'trim_whitespace'],
+      \ 'yaml': ['prettier'],
+      \ 'markdown': ['prettier'],
+      \ }
+
+
+let g:ale_fix_on_save = 1
 
 " }}}
 " ultisnips {{{
@@ -432,12 +443,6 @@ nnoremap <leader>gg :GrammarousCheck<CR>
 nnoremap <leader>gr :GrammarousReset<CR>
 
 " }}}
-" isort {{{
-
-let g:vim_isort_map  = '<leader>i'
-let g:vim_isort_python_version = 'python3'
-
-"}}}
 " template {{{
 
 let g:templates_directory = [$DOTFILES.'/vim/templates']
@@ -463,11 +468,9 @@ vmap <leader>p <Plug>(iron-send-motion)
 
 
 " }}}
-" vim-online-thesaurus {{{
+" thesaurus_query {{{
 
-let g:online_thesaurus_map_keys = 0
-
-nnoremap <leader>y :OnlineThesaurusCurrentWord<CR>
+nnoremap <Leader>y :ThesaurusQueryReplaceCurrentWord<CR>
 
 " }}}
 " undotree {{{
@@ -558,8 +561,9 @@ let g:lightline.active = {
       \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
       \             [ 'lineinfo' ], [ 'wordcount', 'percent' ], [ 'filetype', 'fileformat' ] ]
       \ }
+
 " }}}
-" wordcount {{{ 
+" wordcount {{{
 
 let g:wc_conservative_update = 1
 
@@ -621,12 +625,13 @@ let g:netrw_banner = 0
 " }}}
 " Polyglot  {{{
 let g:python_highlight_all = 1
-" let g:polyglot_disabled = ['markdown']
 
 " }}}
 " ncm2 {{{
 
 set completeopt=noinsert,menuone,noselect
+
+let g:ncm2#matcher = 'substrfuzzy'
 
 augroup ncm2
   autocmd!
@@ -643,14 +648,4 @@ set shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 " }}}
-" black {{{
-"
-augroup black
-    autocmd!
-    autocmd BufWritePre *.py execute ':Black'
-augroup END
-
-" }}}
-"
 " vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2
-"
