@@ -98,24 +98,24 @@ nnoremap <Space>zz :call StripTrailingWhitespaces()<CR>
 "}}}
 "UI Config {{{
 
+
 " The combination of relative number and number gives the absolute line
 " number for the current line and relative numbers for all others
-set relativenumber             " show relative line numbers
-set number                     " show line numbers
-set scrolloff=5                " 5 lines above and below cursor when scrolling
-set wildmenu                   " visual autocomplete for command
-set wildmode=longest:full,full " Complete to longest matching text then first match. Like shell completion
-set lazyredraw                 " redraw only when need to
-set hidden                     " allows you to hide buffers with unsaved changes without being prompted
-set noshowmatch                " highlight matching parenthesis/bracket/brace
-set laststatus=2               " Display statusline
-set splitright                 " open splits by default to the right
-set nosplitbelow               " open splits above current
-set formatoptions+=n           " smart auto-indenting inside numbered lists
-set formatoptions+=j           " smart comment joining
-set nojoinspaces               " don't autoinsert two spaces after '.', '?', '!' for join command
-set textwidth=100               " Textwidth is 100 columns
-" set clipboard=unnamed          " Use the system clipboard
+set relativenumber                      " show relative line numbers
+set number                              " show line numbers
+set scrolloff=5                         " 5 lines above and below cursor when scrolling
+set wildmenu                            " visual autocomplete for command
+set wildmode=longest:full,full          " Complete to longest matching text then first match. Like shell completion
+set lazyredraw                          " redraw only when need to
+set hidden                              " allows you to hide buffers with unsaved changes without being prompted
+set noshowmatch                         " highlight matching parenthesis/bracket/brace
+set laststatus=2                        " Display statusline
+set splitright                          " open splits by default to the right
+set nosplitbelow                        " open splits above current
+set formatoptions+=n                    " smart auto-indenting inside numbered lists
+set formatoptions+=j                    " smart comment joining
+set nojoinspaces                        " don't autoinsert two spaces after '.', '?', '!' for join command
+set textwidth=88                        " Textwidth is 88 columns
 
 " common mistypings of exit and save
 cabbrev W w
@@ -514,7 +514,6 @@ let g:pandoc#syntax#conceal#urls = 1
 let g:pandoc#modules#disabled = ["chdir", "folding", "keyboard"]
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 let g:pandoc#filetypes#pandoc_markdown = 1
-let g:pandoc#formatting#textwidth = 100
 let g:pandoc#formatting#mode='ha'
 let g:pandoc#hypertext#open_editable_alternates=1
 let g:pandoc#hypertext#use_default_mappings = 1
@@ -583,8 +582,6 @@ let g:clang_format#auto_format=1
 
 "}}}
 " Goyo {{{
-
-let g:goyo_width = 100
 
 function! s:goyo_enter()
   ALEDisableBuffer
