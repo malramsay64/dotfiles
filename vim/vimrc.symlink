@@ -216,6 +216,10 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
+" Disable backspace cause it is causing wrist issues
+inoremap <BS> <Nop>
+nnoremap <BS> <Nop>
+
 " Shortcut for saving file as root
 cmap w!! w !sudo tee > /dev/null %
 
@@ -363,7 +367,7 @@ let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
 let g:ale_linters = {
-      \ 'python': ['pylint', 'mypy', 'pycodestyle', 'pydocstyle'],
+      \ 'python': ['pylint', 'mypy', 'pydocstyle'],
       \ }
 
 let g:ale_lint_on_text_changed = 1
