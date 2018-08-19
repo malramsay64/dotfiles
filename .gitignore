@@ -41,3 +41,6 @@ config/fish/fishd*
 
 # Ignore gnupg generated files
 gpg/gnupg.symlink/*
+
+# Ignore python compiled files
+*.pyo
