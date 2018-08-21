@@ -119,6 +119,7 @@ Plug 'kana/vim-textobj-user'            " Custom text objects
 Plug 'whiteinge/diffconflicts'
 Plug 'tommcdo/vim-lion'                 " Align based on characters
 Plug 'junegunn/gv.vim'                  " Browse git history
+Plug 'lambdalisue/suda.vim'             " Allow write with sudo
 
 Plug 'malramsay64/nvim-project-log', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 

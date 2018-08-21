@@ -221,7 +221,8 @@ inoremap <BS> <Nop>
 nnoremap <BS> <Nop>
 
 " Shortcut for saving file as root
-cmap w!! w !sudo tee > /dev/null %
+" cmap w!! w !sudo tee > /dev/null %
+cmap w!! w suda://%
 
 " Faster window resizing
 nnoremap <C-w>- :5wincmd -<CR>
