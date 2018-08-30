@@ -99,6 +99,7 @@ autoload -U promptinit; promptinit
 PURE_CMD_MAX_EXEC_TIME=10
 # The default symbol doesn't work with Iosevka
 # PURE_PROMPT_SYMBOL=〉
+PURE_GIT_UNTRACKED_DIRTY=0
 
 # Equivalent of set backspace=indent,eol,start in vim
 bindkey "^?" backward-delete-char
