@@ -1,0 +1,4 @@
+# .prettierrc
+printWidth = 88
+tabWidth = 2
+# vim: set ft=toml
