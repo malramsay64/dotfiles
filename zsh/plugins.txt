@@ -1,11 +1,14 @@
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-completions
 zdharma/fast-syntax-highlighting
 larkery/zsh-histdb
 mafredri/zsh-async
+axtl/gpg-agent.zsh
+
+# Completion
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions
 malramsay64/conda-zsh-completion
 srijanshetty/zsh-pandoc-completion
-axtl/gpg-agent.zsh
+ninrod/pass-zsh-completion
 
 # Load these last
 sindresorhus/pure
