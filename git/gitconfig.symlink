@@ -38,3 +38,7 @@
 [mergetool "diffconflicts"]
 	cmd = $EDITOR -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
 	trustExitCode = true
+[pull]
+    rebase = true
+[push]
+    followTags = true
