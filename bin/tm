@@ -19,18 +19,21 @@ select opt in "${options[@]}"; do
         "New Session")
             read -p "Enter new session name: " SESSION_NAME
             tmux new -s "$SESSION_NAME"
-            break;;
+            break
+            ;;
         "Tmuxinator Sessions")
             echo " "
             echo "Tmuxinator Sessions"
             echo "-------------------"
             echo " "
-            select opt_mux in $(mux list | tail -1); do
-                mux start $opt_mux
+            select opt_mux in $(tmuxinator list | tail -1); do
+                tmuxinator start $opt_mux
+                break 2
             done
-            break;;
+            ;;
         *)
             tmux attach-session -t $opt
-            break;;
+            break
+            ;;
     esac
 done
