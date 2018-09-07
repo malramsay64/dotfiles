@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # script to launch a tmux session
 # taken from https://github.com/nicknisi/dotfiles/blob/master/bin/tm
@@ -17,7 +17,7 @@ echo " "
 select opt in "${options[@]}"; do
     case $opt in
         "New Session")
-            read -p "Enter new session name: " SESSION_NAME
+            read -r -p "Enter new session name: " SESSION_NAME
             tmux new -s "$SESSION_NAME"
             break
             ;;
@@ -27,12 +27,12 @@ select opt in "${options[@]}"; do
             echo "-------------------"
             echo " "
             select opt_mux in $(tmuxinator list | tail -n+2); do
-                tmuxinator start $opt_mux
+                tmuxinator start "$opt_mux"
                 break 2
             done
             ;;
         *)
-            tmux attach-session -t $opt
+            tmux attach-session -t "$opt"
             break
             ;;
     esac
