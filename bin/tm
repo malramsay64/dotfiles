@@ -26,7 +26,7 @@ select opt in "${options[@]}"; do
             echo "Tmuxinator Sessions"
             echo "-------------------"
             echo " "
-            select opt_mux in $(tmuxinator list | tail -1); do
+            select opt_mux in $(tmuxinator list | tail -n+2); do
                 tmuxinator start $opt_mux
                 break 2
             done
