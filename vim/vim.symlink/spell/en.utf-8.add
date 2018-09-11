@@ -416,3 +416,9 @@ Travis-CI/!
 licence/!
 Makefile
 README
+stderr
+SELinux
+lowercase
+iterators
+iterator
+docstrings
