@@ -135,6 +135,8 @@ source_file "$HOME/.local/google-cloud-sdk/path.zsh.inc"
 source_file "$HOME/.bashrc.local"
 # Source travis config
 source_file "$HOME/.travis/travis.sh"
+# Source conda configuration
+source_file "$HOME/.miniconda/etc/profile.d/conda.sh"
 
 # Source pyenv if present
 if hash pyenv 2>/dev/null; then
