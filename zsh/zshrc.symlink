@@ -145,7 +145,7 @@ if hash pyenv 2>/dev/null; then
 fi
 
 # Source direnv if present
-if type direnv; then
+if type direnv >/dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
