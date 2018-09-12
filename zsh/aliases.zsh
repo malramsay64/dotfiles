@@ -24,13 +24,13 @@ alias c='clear'
 del() { mv "$@" ~/.Trash/ ;}  # Make use of the trash on command line
 alias eject="hdiutil eject"   # will unmount and eject drives. useage eject /Volume/<drive>
 
-if hash hub 2>/dev/null; then
+if type hub > /dev/null; then
     alias git='hub'
 fi
-if hash gopass 2>/dev/null; then
+if type mutt > /dev/null; then
     alias pass='gopass'
 fi
-if hash neomutt 2>/dev/null; then
+if type mutt > /dev/null; then
     alias mutt='neomutt'
 fi
 alias mux='tmuxinator'
