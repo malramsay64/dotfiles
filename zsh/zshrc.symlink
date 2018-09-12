@@ -144,6 +144,11 @@ if hash pyenv 2>/dev/null; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
+# Source direnv if present
+if type direnv; then
+    eval "$(direnv hook zsh)"
+fi
+
 # Abbreviations
 #
 # These are expanded in the shell
