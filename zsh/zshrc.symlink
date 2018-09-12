@@ -106,7 +106,7 @@ bindkey "^?" backward-delete-char
 
 # fzf configuratioin
 source_file "$HOME/.fzf.zsh"
-if hash rg 2> /dev/null; then
+if type rg > /dev/null; then
     # Use ripgrep for fzf search
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
     # Use ripgrep for ctrl-T search
@@ -139,7 +139,7 @@ source_file "$HOME/.travis/travis.sh"
 source_file "$HOME/.miniconda/etc/profile.d/conda.sh"
 
 # Source pyenv if present
-if hash pyenv 2>/dev/null; then
+if type pyenv >/dev/null; then
     eval "$(pyenv init - --no-rehash)"
     eval "$(pyenv virtualenv-init -)"
 fi
@@ -162,7 +162,7 @@ abbr gst='git status'
 abbr isntall='install'
 
 # PBS aliases
-if hash qstat 2>/dev/null; then
+if type qstat >/dev/null; then
     abbr qs='qstat -Jt -u $USER'
     abbr qsu='qstat -u $USER'
     abbr qdelall='qdel $(qstat -u $USER | grep ^[0-9] | cut -d. -f1 | tr "\n" " ")'
