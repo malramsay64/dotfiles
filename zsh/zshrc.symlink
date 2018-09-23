@@ -46,6 +46,7 @@ select-word-style bash
 # Souce system wide configuration
 source /etc/profile
 export DOTFILES="$HOME/dotfiles"
+export _Z_DATA="$HOME/.z/z"
 # Source zsh plugins
 # This needs to be a standard source for some reason
 source "$DOTFILES/zsh/sourceables.sh"
