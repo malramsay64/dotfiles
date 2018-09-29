@@ -373,6 +373,7 @@ let g:ale_linters = {
       \ 'python': ['pylint', 'mypy', 'pydocstyle'],
       \ }
 
+let g:ale_python_pylint_change_directory = 0
 let g:ale_lint_on_text_changed = 1
 let g:ale_lint_delay = 500
 let g:ale_lint_on_save = 1
