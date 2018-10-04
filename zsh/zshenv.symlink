@@ -1,3 +1,11 @@
+# .zshenv
+#
+# This file is loaded whenever zsh is initialised. Since this is read every time, there
+# are only the minimal amount of initialisation. This primarily sets the path variables,
+# and other environment variables so that they are consistent throughout all
+# initialisation of the shell.
+#
+
 function add_to_path() {
     if [ -d "$1" ]; then
         export PATH="$1:$PATH"
