@@ -197,3 +197,6 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# added by travis gem
+[ -f /home/malcolm/.travis/travis.sh ] && source /home/malcolm/.travis/travis.sh

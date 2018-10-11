@@ -30,7 +30,7 @@ fi
 if type gopass > /dev/null; then
     alias pass='gopass'
 fi
-if type mutt > /dev/null; then
+if type neomutt > /dev/null; then
     alias mutt='neomutt'
 fi
 alias mux='tmuxinator'
@@ -72,4 +72,3 @@ defmod() {
     find "$1" -type d -exec chmod 755 {} \;
     find "$1" -type f -exec chmod 644 {} \;
 }
-
