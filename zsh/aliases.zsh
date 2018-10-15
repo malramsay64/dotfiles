@@ -27,7 +27,7 @@ alias eject="hdiutil eject"   # will unmount and eject drives. useage eject /Vol
 if type hub > /dev/null; then
     alias git='hub'
 fi
-if type mutt > /dev/null; then
+if type gopass > /dev/null; then
     alias pass='gopass'
 fi
 if type mutt > /dev/null; then

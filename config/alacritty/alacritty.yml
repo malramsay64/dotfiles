@@ -30,7 +30,7 @@ window:
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: true
+  decorations: full
 
 scrolling: 
   # How many lines of scrollback to keep,
@@ -97,12 +97,6 @@ font:
   glyph_offset:
     x: 0
     y: 0
-
-  # Scale the font size based on the monitor's DPI. This will lead to bigger text on HiDPI
-  # screens and make reading text a little easier.
-  # On X11 it is possible to change the DPI for each instance of alacritty by using
-  # `WINIT_HIDPI_FACTOR=1.0 alacritty` to scale the font.
-  scale_with_dpi: true
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -215,11 +209,23 @@ mouse:
   # scrolling for applications like `man`.
   #
   # To disable this completely, set `faux_scrollback_lines` to 0.
-  faux_scrollback_lines: 0
+  faux_scrolling_lines: 0
 
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+
+# Cursor style
+#
+# Values for 'cursor_style':
+#   - Block
+#   - Underline
+#   - Beam
+cursor_style: Block
+
+# If this is `true`, the cursor will be rendered as a hollow box when the
+# window is not focused.
+unfocused_hollow_cursor: true
 
 hide_cursor_when_typing: false
 
