@@ -30,6 +30,9 @@ fi
 if type gopass > /dev/null; then
     alias pass='gopass'
 fi
+if type gpg2 > /dev/null; then
+    alias gpg='gpg2'
+fi
 if type neomutt > /dev/null; then
     alias mutt='neomutt'
 fi
