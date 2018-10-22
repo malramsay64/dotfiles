@@ -33,6 +33,15 @@ setopt appendhistory sharehistory incappendhistory autocd extendedglob
 unsetopt beep
 bindkey -v
 
+# ------------------------------------
+# cd
+# ------------------------------------
+setopt auto_cd
+
+# Auto directory pushd
+# that you can get dirs list by cd -[tab]
+setopt auto_pushd
+
 # Use async for autosuggestions
 ZSH_AUTOSUGGEST_USE_ASYNC=True
 
