@@ -593,7 +593,8 @@ let g:clang_format#auto_format=1
 
 function! s:goyo_enter()
   ALEDisableBuffer
-  exec lightline#disable()
+  let b:ale_fix_on_save = 0
+  call lightline#disable()
   set noshowmode
   set noshowcmd
   set scrolloff=999
@@ -607,11 +608,12 @@ endfunction
 function! s:goyo_leave()
   silent !tmux set status on
   silent !tmux list-panes -F '\#F' | grep -q Z; and tmux resize-pane -Z
-  exec lightline#enable()
+  call lightline#enable()
   set showmode
   set showcmd
   set scrolloff=5
-  let g:ale_enabled = 1
+  ALEEnableBuffer
+  let b:ale_fix_on_save = 1
   if has('nvim')
       call ncm2#enable_for_buffer()
   endif
