@@ -521,16 +521,14 @@ let g:project_log#log_level = 'DEBUG'
 " pandoc {{{
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#urls = 1
-let g:pandoc#modules#disabled = ["chdir", "folding", "keyboard"]
+let g:pandoc#syntax#codeblocks#embeds#langs = ["python"]
+let g:pandoc#modules#disabled = ["chdir", "folding", "keyboard", "formatting"]
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 let g:pandoc#filetypes#pandoc_markdown = 1
 let g:pandoc#formatting#mode='ha'
 let g:pandoc#hypertext#open_editable_alternates=1
 let g:pandoc#hypertext#use_default_mappings = 1
 
-augroup pandoc_syntax
-    autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=pandoc.markdown
-augroup END
 
 " }}}
 " lightline {{{
