@@ -143,10 +143,20 @@ set backspace=eol,start,indent  " backspace deletes newlines
 set whichwrap+=<,>,h,l,[,]      " left right wraps to next/previous lines
 
 " Movement between splits
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+if has('nvim')
+  tnoremap <A-h> <C-\><C-N><C-w>h
+  tnoremap <A-j> <C-\><C-N><C-w>j
+  tnoremap <A-k> <C-\><C-N><C-w>k
+  tnoremap <A-l> <C-\><C-N><C-w>l
+endif
 
 " Consistency with yank
 nnoremap Y y$
@@ -158,14 +168,6 @@ augroup end
 
 "}}}
 " Custom Shortcuts {{{
-
-" Neovim terminal mappings
-if has('nvim')
-    tnoremap <C-h> <C-\><C-N><C-w>h
-    tnoremap <C-j> <C-\><C-N><C-w>j
-    tnoremap <C-k> <C-\><C-N><C-w>k
-    tnoremap <C-l> <C-\><C-N><C-w>l
-endif
 
 " jk is escape
 inoremap jk <esc>
@@ -217,10 +219,6 @@ nnoremap ; :
 nnoremap : ;
 vnoremap ; :
 vnoremap : ;
-
-" Disable backspace cause it is causing wrist issues
-inoremap <BS> <Nop>
-nnoremap <BS> <Nop>
 
 " Shortcut for saving file as root
 " cmap w!! w !sudo tee > /dev/null %
@@ -521,16 +519,14 @@ let g:project_log#log_level = 'DEBUG'
 " pandoc {{{
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#urls = 1
-let g:pandoc#modules#disabled = ["chdir", "folding", "keyboard"]
+let g:pandoc#syntax#codeblocks#embeds#langs = ["python"]
+let g:pandoc#modules#disabled = ["chdir", "folding", "keyboard", "formatting"]
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 let g:pandoc#filetypes#pandoc_markdown = 1
 let g:pandoc#formatting#mode='ha'
 let g:pandoc#hypertext#open_editable_alternates=1
 let g:pandoc#hypertext#use_default_mappings = 1
 
-augroup pandoc_syntax
-    autocmd! BufNewFile,BufFilePre,BufRead *.md set filetype=pandoc.markdown
-augroup END
 
 " }}}
 " lightline {{{
@@ -595,7 +591,8 @@ let g:clang_format#auto_format=1
 
 function! s:goyo_enter()
   ALEDisableBuffer
-  exec lightline#disable()
+  let b:ale_fix_on_save = 0
+  call lightline#disable()
   set noshowmode
   set noshowcmd
   set scrolloff=999
@@ -609,11 +606,12 @@ endfunction
 function! s:goyo_leave()
   silent !tmux set status on
   silent !tmux list-panes -F '\#F' | grep -q Z; and tmux resize-pane -Z
-  exec lightline#enable()
+  call lightline#enable()
   set showmode
   set showcmd
   set scrolloff=5
-  let g:ale_enabled = 1
+  ALEEnableBuffer
+  let b:ale_fix_on_save = 1
   if has('nvim')
       call ncm2#enable_for_buffer()
   endif
@@ -653,6 +651,56 @@ set shortmess+=c
 " hides the menu. Use this mapping to close the menu and also start a new
 " line.
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" }}}
+" gitgutter {{{
+
+"
+" Cycle changes in all buffers
+function! NextHunkAllBuffers()
+  let line = line('.')
+  GitGutterNextHunk
+  if line('.') != line
+    return
+  endif
+
+  let bufnr = bufnr('')
+  while 1
+    bnext
+    if bufnr('') == bufnr
+      return
+    endif
+    if !empty(GitGutterGetHunks())
+      normal! 1G
+      GitGutterNextHunk
+      return
+    endif
+  endwhile
+endfunction
+
+function! PrevHunkAllBuffers()
+  let line = line('.')
+  GitGutterPrevHunk
+  if line('.') != line
+    return
+  endif
+
+  let bufnr = bufnr('')
+  while 1
+    bprevious
+    if bufnr('') == bufnr
+      return
+    endif
+    if !empty(GitGutterGetHunks())
+      normal! G
+      GitGutterPrevHunk
+      return
+    endif
+  endwhile
+endfunction
+
+nnoremap <silent> ]c :call NextHunkAllBuffers()<CR>
+nnoremap <silent> [c :call PrevHunkAllBuffers()<CR>
 
 " }}}
 " vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2

@@ -33,6 +33,15 @@ setopt appendhistory sharehistory incappendhistory autocd extendedglob
 unsetopt beep
 bindkey -v
 
+# ------------------------------------
+# cd
+# ------------------------------------
+setopt auto_cd
+
+# Auto directory pushd
+# that you can get dirs list by cd -[tab]
+setopt auto_pushd
+
 # Use async for autosuggestions
 ZSH_AUTOSUGGEST_USE_ASYNC=True
 
@@ -198,3 +207,6 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# added by travis gem
+[ -f /home/malcolm/.travis/travis.sh ] && source /home/malcolm/.travis/travis.sh
