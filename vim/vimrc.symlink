@@ -703,4 +703,10 @@ nnoremap <silent> ]c :call NextHunkAllBuffers()<CR>
 nnoremap <silent> [c :call PrevHunkAllBuffers()<CR>
 
 " }}}
+" neoterm {{{
+let g:neoterm_autoinsert = 1
+let g:neoterm_default_mod = 'keepalt'
+let g:neoterm_autoscroll = 1
+
+" }}}
 " vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2
