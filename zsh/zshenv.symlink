@@ -6,16 +6,29 @@
 # initialisation of the shell.
 #
 
+function source_file() {
+    if [ -f "$1" ]; then
+        source $1
+    fi
+}
+
+export _Z_DATA=$HOME/.config/z/data
+
+# Turn off system colours as they have a habit of ruining things
+export LS_COLORS=
+
 function add_to_path() {
     if [ -d "$1" ]; then
         export PATH="$1:$PATH"
     fi
 }
+
 add_to_path "/usr/local/bin"
 add_to_path "$HOME/.linuxbrew/bin"
 add_to_path "$HOME/go/bin"
 add_to_path "$HOME/.cargo/bin"
 add_to_path "$HOME/dotfiles/bin"
+add_to_path "$HOME/.poetry/bin"
 add_to_path "$HOME/.bin"
 add_to_path "$HOME/.local/bin"
 # add_to_path "$HOME/.pyenv/bin"

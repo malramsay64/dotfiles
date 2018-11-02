@@ -53,8 +53,6 @@ autoload -U select-word-style
 select-word-style bash
 
 export _Z_DATA=$HOME/.config/z/data
-# Souce system wide configuration
-source /etc/profile
 export DOTFILES="$HOME/dotfiles"
 export _Z_DATA="$HOME/.z/z"
 # Source zsh plugins
