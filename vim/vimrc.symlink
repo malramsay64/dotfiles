@@ -486,13 +486,6 @@ nnoremap <Leader>y :ThesaurusQueryReplaceCurrentWord<CR>
 noremap <leader>u :UndotreeToggle<CR>
 
 " }}}
-"  vimterm {{{
-if has('nvim')
-    nnoremap <leader>vo :call vimterm#toggle() <CR>
-    tnoremap <leader>vo <C-\><C-n>:call vimterm#toggle() <CR>
-endif
-
-"  }}}
 "  Scalpel {{{
 
 nmap <Leader>s <Plug>(Scalpel)

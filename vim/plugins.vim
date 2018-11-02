@@ -77,11 +77,9 @@ Plug 'ncm2/ncm2-rst-subscope'      " Detect in reStructured Text documents
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-Plug 'Shougo/echodoc.vim'
-
 " Additional text-objects
 Plug 'wellle/targets.vim'
-Plug 'wvffle/vimterm'
+Plug 'kana/vim-textobj-user'            " Custom text objects
 
 " Writing plugins
 let g:text_files = ['markdown', 'vimwiki', 'text', 'gitcommit', 'pandoc', 'rst']
@@ -115,13 +113,13 @@ Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'majutsushi/tagbar'                " Tagbar with useful information
 Plug 'gioele/vim-autoswap'              " Automatically deal with swap files
 Plug 'jez/vim-github-hub'               " Formatting of hub commit, issues, pull-requests
-Plug 'kana/vim-textobj-user'            " Custom text objects
 Plug 'whiteinge/diffconflicts'
 Plug 'tommcdo/vim-lion'                 " Align based on characters
 Plug 'junegunn/gv.vim'                  " Browse git history
 Plug 'lambdalisue/suda.vim'             " Allow write with sudo
 Plug 'malramsay64/vimpyter', Cond(executable('jupytext'))  " Edit juptyer notebooks in Vim
 Plug 'kassio/neoterm'
+Plug 'direnv/direnv.vim'
 
 Plug 'malramsay64/nvim-project-log', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 
