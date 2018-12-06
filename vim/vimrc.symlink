@@ -385,7 +385,6 @@ let g:ale_fixers = {
       \ 'markdown': ['prettier'],
       \ }
 
-
 let g:ale_fix_on_save = 1
 
 " }}}
@@ -394,7 +393,6 @@ let g:ale_fix_on_save = 1
 let g:UltiSnipsExpandTrigger='<C-k>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<S-tab>'
-
 let g:UltiSnipsEditSplit='horizontal'
 
 " Set the documentation style for the snippets
@@ -419,19 +417,14 @@ let g:vimtex_enabled = 1
 " Folding options
 let g:vimtex_fold_enabled = 1
 let g:vimtex_fold_env_whitelist = ['figure', 'table']
-"let g:vimtex_fold_manual = 1
 
 " latexmk options
-
 let g:vimtex_latexmk_enabled = 1
 let g:vimtex_latexmk_build_dir = 'output'
 
 " }}}
-" vmath {{{
-vmap <expr> ++ VMATH_YankAndAnalyse()
-nmap ++ vip++
-" }}}
 " incsearch {{{
+
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
@@ -440,6 +433,7 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
 " }}}
 " grammarous {{{
 
@@ -463,17 +457,6 @@ function! GetDirectoryName()
     " Expand to full path, remove the filename, then get the folder
     return expand('%:p:h:t')
 endfunction
-
-" }}}
-" iron.nvim {{{
-
-let g:iron_map_defaults = 0
-let g:iron_new_python_REPL_hooks = ['import numpy as np']
-
-nmap <leader>p <Plug>(iron-send-motion)
-vmap <leader>p <Plug>(iron-send-motion)
-"nmap <leader>p <Plug>(iron-repeat-cmd)
-
 
 " }}}
 " thesaurus_query {{{
@@ -510,6 +493,7 @@ let g:project_log#log_level = 'DEBUG'
 
 "}}}
 " pandoc {{{
+
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#urls = 1
 let g:pandoc#syntax#codeblocks#embeds#langs = ["python"]
@@ -634,7 +618,7 @@ let g:ncm2#matcher = 'substrfuzzy'
 
 augroup ncm2
   autocmd!
-  autocmd BufEnter * call ncm2#enable_for_buffer()
+  autocmd BufRead * call ncm2#enable_for_buffer()
 augroup END
 
 " supress the annoying 'match x of y', 'The only match' and 'Pattern not
@@ -649,7 +633,6 @@ inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 " }}}
 " gitgutter {{{
 
-"
 " Cycle changes in all buffers
 function! NextHunkAllBuffers()
   let line = line('.')
@@ -698,6 +681,7 @@ nnoremap <silent> [c :call PrevHunkAllBuffers()<CR>
 
 " }}}
 " neoterm {{{
+
 let g:neoterm_autoinsert = 1
 let g:neoterm_default_mod = 'keepalt'
 let g:neoterm_autoscroll = 1
