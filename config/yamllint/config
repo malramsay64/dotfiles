@@ -1,7 +1,10 @@
 rules:
-  line-length: 
+  line-length:
     max: 88
     level: warning
   document-start: disable
+
+ignore: |
+  ~/.config
 
 # vim: filetype=yaml
