@@ -36,24 +36,28 @@ hdr_order from: to: cc: date: subject:  # and in this order
 # Account Settings -----------------------------------
 
 # Default inbox.
-set spoolfile = "+malramsay64-gmail.com/INBOX"
+set spoolfile = "+malramsay64@gmail.com/INBOX"
 
 # Mailboxes to show in the sidebar.
-mailboxes +malramsay64-gmail.com/INBOX \
-          +malramsay64-gmail.com/archive \
-          +malramsay64-gmail.com/sent \
-          +malramsay64-gmail.com/drafts \
+mailboxes +malramsay64@gmail.com/INBOX \
+          +malramsay64@gmail.com/archive \
+          +malramsay64@gmail.com/sent \
+          +malramsay64@gmail.com/drafts \
           +mram5995@uni.sydney.edu.au/INBOX \
 
 # Other special folders.
-set mbox      = "+malramsay64-gmail.com/archive"
-set postponed = "+malramsay64-gmail.com/drafts"
+set mbox      = "+malramsay64@gmail.com/archive"
+set postponed = "+malramsay64@gmail.com/drafts"
 
 
 # View Options
 set sort_aux=reverse-last-date-received
+set editor=nvim
 set sort=threads
 set sort_re         # Thread based on regex
+auto_view text/html                                      # view html automatically
+alternative_order text/plain text/enriched text/html     # save html for last
+
 
 # Key Bindings
 bind index,pager g noop # address warnings bout binding gg
@@ -117,6 +121,3 @@ set include                          # include message in replies
 set forward_quote                    # include message in forwards
 
 set editor = "nvim"
-
-
-

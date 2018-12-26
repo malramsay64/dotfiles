@@ -16,7 +16,7 @@ pystsynchook = notmuch new
 
 [Repository Personal-Local]
 type = Maildir
-localfolders = ~/.mail/malramsay64-gmail.com
+localfolders = ~/.mail/malramsay64@gmail.com
 nametrans = lambda folder: {'drafts': '[Gmail]/Drafts',
                             'sent': '[Gmail]/Sent Mail',
                             'flagged': '[Gmail]/Starred',
