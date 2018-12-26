@@ -70,6 +70,7 @@ Plug 'ncm2/ncm2-github'            " Complete GitHub repository, user, link, and
 Plug 'ncm2/ncm2-jedi'              " Python completion with Jedi
 Plug 'ncm2/ncm2-ultisnips'         " Ultisnips snippet completion
 Plug 'ncm2/ncm2-tmux'              " Completion from other tmux panes
+Plug 'ncm2/ncm2-pyclang'
 
 " Sub-scopes
 " These plugins detect other programming languages within a document and activate the relevant

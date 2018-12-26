@@ -371,6 +371,9 @@ let g:ale_linter_aliases = {'pandoc': ['markdown']}
 
 let g:ale_linters = {
       \ 'python': ['pylint', 'mypy', 'pydocstyle'],
+      \ 'c++': ['clangd'],
+      \ 'cpp': ['clangd'],
+      \ 'c': ['clangd'],
       \ }
 
 let g:ale_python_pylint_change_directory = 0
@@ -380,9 +383,10 @@ let g:ale_lint_on_save = 1
 
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'python': ['isort', 'black', 'remove_trailing_lines', 'trim_whitespace'],
-      \ 'yaml': ['prettier'],
-      \ 'markdown': ['prettier'],
+      \ 'python': ['isort', 'black'],
+      \ 'yaml': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+      \ 'markdown': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+      \ 'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
       \ }
 
 let g:ale_fix_on_save = 1
@@ -560,11 +564,6 @@ let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 
 " }}}
-" clang-format {{{
-
-let g:clang_format#auto_format=1
-
-"}}}
 " Goyo {{{
 
 function! s:goyo_enter()
@@ -629,6 +628,11 @@ set shortmess+=c
 " hides the menu. Use this mapping to close the menu and also start a new
 " line.
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+let g:ncm2_pyclang#library_path = '/usr/lib64/libclang.so.7'
+" a list of relative paths looking for .clang_complete
+let g:ncm2_pyclang#args_file_path = ['.clang_complete']
+let g:ncm2_pyclang#clang_path = 'clang++'
 
 " }}}
 " gitgutter {{{
