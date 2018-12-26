@@ -158,6 +158,10 @@ if type direnv >/dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
+if [[ -d "$HOME/Documents/Programming/z.lua" ]]; then
+    eval "$(lua $HOME/Documents/Programming/z.lua/z.lua --init zsh)"
+fi
+
 # Abbreviations
 #
 # These are expanded in the shell
