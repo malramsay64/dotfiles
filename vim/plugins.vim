@@ -60,6 +60,12 @@ if !has("nvim")
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+" Language Clients
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 " Autocomplete
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
