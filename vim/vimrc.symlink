@@ -351,6 +351,7 @@ let g:fzf_tags_command = 'ctags -R'
 let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
 nnoremap <silent> <C-p> :<C-u>GFiles<CR>
+nnoremap <silent> <C-f> :<C-u>Files<CR>
 nnoremap <Leader>gf :<C-u>Commits<CR>
 nnoremap <leader>b :<C-U>Buffers<CR>
 
