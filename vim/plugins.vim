@@ -100,7 +100,7 @@ Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
 Plug 'wincent/scalpel'
 
 " Tags
-Plug 'szw/vim-tags'                     " ctag support
+Plug 'ludovicchabant/vim-gutentags'    " ctag support
 Plug 'majutsushi/tagbar'                " Tagbar with useful information
 
 " Git Plugins
