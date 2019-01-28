@@ -33,7 +33,7 @@ window:
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: full
+  decorations: none
 
 scrolling:
   # How many lines of scrollback to keep,
@@ -243,7 +243,7 @@ mouse:
     #modifiers: Control|Shift
 
 selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  # semantic_escape_chars: ',│`|:"' ()[]{}<>'
 
   # When set to `true`, selected text will be copied to both the primary and
   # the selection clipboard. Otherwise, it will only be copied to the selection
@@ -354,9 +354,9 @@ live_config_reload: true
 #   - ~AppKeypad
 #   - AppKeypad
 key_bindings:
-  - { key: V, mods: Alt, action: Paste }
-  - { key: C, mods: Alt, action: Copy }
-  - { key: Q, mods: Alt, action: Quit }
+  - { key: V, mods: Super, action: Paste }
+  - { key: C, mods: Super, action: Copy }
+  - { key: Q, mods: Super, action: Quit }
   - { key: Home, chars: "\x1bOH", mode: AppCursor }
   - { key: Home, chars: "\x1b[H", mode: ~AppCursor }
   - { key: End, chars: "\x1bOF", mode: AppCursor }
@@ -420,4 +420,5 @@ key_bindings:
           args: ["-n", "-a", "/Users/malcolm/Applications/Alacritty.app"],
         },
     }
-  - { key: N, mods: Alt, command: { program: "alacritty" } }
+  - { key: N, mods: Alt, command: "alacritty" }
+  - { key: Return, mods: Alt|Shift, action: SpawnNewInstance }
