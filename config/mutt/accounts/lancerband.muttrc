@@ -19,8 +19,13 @@ bind index,pager gg noop
 bind index,pager g noop
 bind index gg first-entry
 unmailboxes *
-mailboxes =lancerband =-------------------
-set spoolfile = ""
-set record = ""
-set postponed = ""
-set trash = ""
+mailboxes =lancerband =------------------- "=Priority" "=[Gmail].Drafts" "=INBOX" "=[Gmail].Spam" "=[Gmail].Starred" "=Misc" "=[Gmail].Important" "=[Gmail].Trash" "=[Gmail].Sent Mail" "=Follow up" "=Notes"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox."
+macro index,pager gs "<change-folder>=[Gmail].Sent Mail<enter>" "Go to sent."
+macro index,pager gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts."
+macro index,pager gt "<change-folder>=[Gmail].Trash<enter>" "Go to trash."
+macro index,pager gS "<change-folder>=[Gmail].Spam<enter>" "Go to spam."
+set spoolfile = "+INBOX"
+set record = "+[Gmail].Sent Mail"
+set postponed = "+[Gmail].Drafts"
+set trash = "+[Gmail].Trash"
