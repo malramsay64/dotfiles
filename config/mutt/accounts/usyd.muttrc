@@ -1,0 +1,26 @@
+# vim: filetype=neomuttrc
+# muttrc file for account usyd
+set realname = "Malcolm Ramsay"
+set from = "mram5995@uni.sydney.edu.au"
+set sendmail = "/usr/bin/msmtp -a usyd"
+set folder = "~/.mail/usyd"
+set header_cache = ~/.config/mutt/accounts/usyd/cache/headers
+set message_cachedir = ~/.config/mutt/accounts/usyd/cache/bodies
+set certificate_file = ~/.config/mutt/accounts/usyd/certificates
+source "~/.config/mutt/credentials/getmuttpass usyd |"
+
+alias me Malcolm Ramsay <mram5995@uni.sydney.edu.au>
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index gg first-entry
+unmailboxes *
+mailboxes =usyd =-------------------
+set spoolfile = ""
+set record = ""
+set postponed = ""
+set trash = ""

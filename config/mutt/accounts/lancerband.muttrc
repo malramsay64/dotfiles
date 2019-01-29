@@ -1,0 +1,26 @@
+# vim: filetype=neomuttrc
+# muttrc file for account lancerband
+set realname = "Malcolm Ramsay"
+set from = "mramsay@lancerband.com"
+set sendmail = "/usr/bin/msmtp -a lancerband"
+set folder = "~/.mail/lancerband"
+set header_cache = ~/.config/mutt/accounts/lancerband/cache/headers
+set message_cachedir = ~/.config/mutt/accounts/lancerband/cache/bodies
+set certificate_file = ~/.config/mutt/accounts/lancerband/certificates
+source "~/.config/mutt/credentials/getmuttpass lancerband |"
+
+alias me Malcolm Ramsay <mramsay@lancerband.com>
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index gg first-entry
+unmailboxes *
+mailboxes =lancerband =-------------------
+set spoolfile = ""
+set record = ""
+set postponed = ""
+set trash = ""

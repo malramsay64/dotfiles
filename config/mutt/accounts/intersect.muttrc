@@ -1,0 +1,26 @@
+# vim: filetype=neomuttrc
+# muttrc file for account intersect
+set realname = "Malcolm Ramsay"
+set from = "malcolm@intersect.org.au"
+set sendmail = "/usr/bin/msmtp -a intersect"
+set folder = "~/.mail/intersect"
+set header_cache = ~/.config/mutt/accounts/intersect/cache/headers
+set message_cachedir = ~/.config/mutt/accounts/intersect/cache/bodies
+set certificate_file = ~/.config/mutt/accounts/intersect/certificates
+source "~/.config/mutt/credentials/getmuttpass intersect |"
+
+alias me Malcolm Ramsay <malcolm@intersect.org.au>
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index gg first-entry
+unmailboxes *
+mailboxes =intersect =-------------------
+set spoolfile = ""
+set record = ""
+set postponed = ""
+set trash = ""

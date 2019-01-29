@@ -1,0 +1,26 @@
+# vim: filetype=neomuttrc
+# muttrc file for account personal
+set realname = "Malcolm Ramsay"
+set from = "malramsay64@gmail.com"
+set sendmail = "/usr/bin/msmtp -a personal"
+set folder = "~/.mail/personal"
+set header_cache = ~/.config/mutt/accounts/personal/cache/headers
+set message_cachedir = ~/.config/mutt/accounts/personal/cache/bodies
+set certificate_file = ~/.config/mutt/accounts/personal/certificates
+source "~/.config/mutt/credentials/getmuttpass personal |"
+
+alias me Malcolm Ramsay <malramsay64@gmail.com>
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index gg first-entry
+unmailboxes *
+mailboxes =personal =-------------------
+set spoolfile = ""
+set record = ""
+set postponed = ""
+set trash = ""

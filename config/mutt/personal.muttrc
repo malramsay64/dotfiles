@@ -1,0 +1,5 @@
+macro index,pager i1 '<sync-mailbox><enter-command>source "/home/malcolm/.config/mutt"/accounts/personal.muttrc<enter><change-folder>!<enter>;<check-stats>'
+source /home/malcolm/.config/mutt/accounts/personal.muttrc
+macro index,pager i2 '<sync-mailbox><enter-command>source "/home/malcolm/.config/mutt"/accounts/usyd.muttrc<enter><change-folder>!<enter>;<check-stats>'
+macro index,pager i3 '<sync-mailbox><enter-command>source "/home/malcolm/.config/mutt"/accounts/lancerband.muttrc<enter><change-folder>!<enter>;<check-stats>'
+macro index,pager i4 '<sync-mailbox><enter-command>source "/home/malcolm/.config/mutt"/accounts/intersect.muttrc<enter><change-folder>!<enter>;<check-stats>'

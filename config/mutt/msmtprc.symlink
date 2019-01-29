@@ -1,0 +1,34 @@
+defaults
+auth	on
+tls	on
+tls_trust_file	/etc/ssl/certs/ca-certificates.crt
+logfile	~/.msmtp.log
+
+
+account personal
+host smtp.gmail.com
+port 587
+from malramsay64@gmail.com
+user malramsay64@gmail.com
+passwordeval "pass show mail/personal"
+
+account usyd
+host smtp.office365.com
+port 587
+from mram5995@uni.sydney.edu.au
+user mram5995@uni.sydney.edu.au
+passwordeval "pass show mail/usyd"
+
+account lancerband
+host smtp.gmail.com
+port 587
+from mramsay@lancerband.com
+user mramsay@lancerband.com
+passwordeval "pass show mail/lancerband"
+
+account intersect
+host smtp.gmail.com
+port 587
+from malcolm@intersect.org.au
+user malcolm@intersect.org.au
+passwordeval "pass show mail/intersect"
