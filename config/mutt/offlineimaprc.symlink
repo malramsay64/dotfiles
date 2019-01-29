@@ -1,6 +1,6 @@
 [general]
 ui = ttyui
-accounts = Personal, USYD
+accounts = Personal, USYD, Lancerband, Intersect
 pythonfile=~/.config/mutt/offlineimap.py
 fsync=False
 
@@ -14,6 +14,16 @@ localrepository = USYD-Local
 remoterepository = USYD-Remote
 pystsynchook = notmuch new
 
+[Account Lancerband]
+localrepository = Lancerband-Local
+remoterepository = Lancerband-Remote
+pystsynchook = notmuch new
+
+[Account Intersect]
+localrepository = Intersect-Local
+remoterepository = Intersect-Remote
+pystsynchook = notmuch new
+
 [Repository Personal-Local]
 type = Maildir
 localfolders = ~/.mail/malramsay64@gmail.com
@@ -22,6 +32,7 @@ nametrans = lambda folder: {'drafts': '[Gmail]/Drafts',
                             'flagged': '[Gmail]/Starred',
                             'trash': '[Gmail]/Trash',
                             'archive': '[Gmail]/All Mail',
+                            'inbox': 'INBOX',
                             }.get(folder, folder)
 
 [Repository Personal-Remote]
@@ -41,8 +52,10 @@ nametrans = lambda folder: {'[Gmail]/Drafts': 'drafts',
                             '[Gmail]/Starred': 'flagged',
                             '[Gmail]/Trash': 'trash',
                             '[Gmail]/All Mail': 'archive',
+                            'INBOX': 'inbox'
                             }.get(folder, folder)
-folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
+folderfilter = lambda folder: folder in ['INBOX',
+                                         '[Gmail]/Drafts',
                                          '[Gmail]/Sent Mail',
                                          '[Gmail]/Starred',
                                          '[Gmail]/All Mail',
@@ -60,6 +73,10 @@ maxconnections = 1
 type = IMAP
 remoteuser = mram5995@uni.sydney.edu.au
 remotepasseval = get_pass('mram5995@uni.sydney.edu.au')
+nametrans = lambda folder: {'inbox': 'INBOX',
+                            'sent': 'Sent Items',
+                            'junk': 'Junk E-Mail',
+                            }.get(folder, folder)
 
 remotehost = outlook.office365.com
 remoteport = 993
@@ -67,4 +84,82 @@ ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
 # Leave mail in All Mail when deleted
 realdelete = no
-folderfilter = lambda folder: folder in ['INBOX', 'Sent', 'Drafts', 'Sent Items', 'Junk E-Mail']
+nametrans = lambda folder: {'INBOX': 'inbox',
+                            'Sent Items': 'sent',
+                            'Junk E-Mail': 'junk',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder in ['INBOX', 'Drafts', 'Sent Items', 'Junk E-Mail']
+
+[Repository Lancerband-Local]
+type = Maildir
+localfolders = ~/.mail/mramsay@lancerband.com
+nametrans = lambda folder: {'drafts': '[Gmail]/Drafts',
+                            'sent': '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash': '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            'inbox': 'INBOX',
+                            }.get(folder, folder)
+
+[Repository Lancerband-Remote]
+maxconnections = 1
+type = Gmail
+remoteuser = mramsay@lancerband.com
+remotepasseval = get_pass('mramsay@lancerband.com')
+
+remotehost = imap.gmail.com
+remoteport = 993
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-bundle.crt
+# Leave mail in All Mail when deleted
+realdelete = no
+nametrans = lambda folder: {'[Gmail]/Drafts': 'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred': 'flagged',
+                            '[Gmail]/Trash': 'trash',
+                            '[Gmail]/All Mail': 'archive',
+                            'INBOX': 'inbox'
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder in ['INBOX',
+                                         '[Gmail]/Drafts',
+                                         '[Gmail]/Sent Mail',
+                                         '[Gmail]/Starred',
+                                         '[Gmail]/All Mail',
+                                         '[Gmail]/Trash']
+
+[Repository Intersect-Local]
+type = Maildir
+localfolders = ~/.mail/malcolm@intersect.org.au
+nametrans = lambda folder: {'inbox': 'INBOX',
+                            'drafts': '[Gmail]/Drafts',
+                            'sent': '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash': '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
+
+[Repository Intersect-Remote]
+maxconnections = 1
+type = Gmail
+remoteuser = malcolm@intersect.org.au
+remotepasseval = get_pass('malcolm@intersect.org.au')
+
+remotehost = imap.gmail.com
+remoteport = 993
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-bundle.crt
+# Leave mail in All Mail when deleted
+realdelete = no
+nametrans = lambda folder: {'INBOX': 'inbox',
+                            '[Gmail]/Drafts': 'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred': 'flagged',
+                            '[Gmail]/Trash': 'trash',
+                            '[Gmail]/All Mail': 'archive',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder in ['INBOX',
+                                         '[Gmail]/Drafts',
+                                         '[Gmail]/Sent Mail',
+                                         '[Gmail]/Starred',
+                                         '[Gmail]/All Mail',
+                                         '[Gmail]/Trash']

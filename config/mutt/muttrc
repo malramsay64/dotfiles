@@ -36,19 +36,18 @@ hdr_order from: to: cc: date: subject:  # and in this order
 # Account Settings -----------------------------------
 
 # Default inbox.
-set spoolfile = "+malramsay64@gmail.com/INBOX"
+set spoolfile = "+malramsay64@gmail.com/inbox"
+
 
 # Mailboxes to show in the sidebar.
-mailboxes +malramsay64@gmail.com/INBOX \
-          +malramsay64@gmail.com/archive \
-          +malramsay64@gmail.com/sent \
-          +malramsay64@gmail.com/drafts \
-          +mram5995@uni.sydney.edu.au/INBOX \
+mailboxes +malramsay64@gmail.com/inbox \
+          +mram5995@uni.sydney.edu.au/inbox \
+          +mramsay@lancerband.com/inbox \
+          +malcolm@intersect.org.au/inbox \
 
 # Other special folders.
 set mbox      = "+malramsay64@gmail.com/archive"
 set postponed = "+malramsay64@gmail.com/drafts"
-
 
 # View Options
 set sort_aux=reverse-last-date-received
@@ -73,7 +72,7 @@ macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "ma
 
 # Sync email
 macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
-macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+macro index o "<shell-escape>offlineimap -qf inbox<enter>" "run offlineimap to sync inbox"
 
 # Saner copy/move dialogs
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
@@ -83,6 +82,10 @@ macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 bind index,pager <down>   sidebar-next
 bind index,pager <up>     sidebar-prev
 bind index,pager <right>  sidebar-open
+
+# Allow opening of urls
+macro index,pager \Cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs from a message"
+macro index,compose \Cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs from a message"
 
 # Pager view options
 set pager_index_lines = 10 # number of index lines to show
