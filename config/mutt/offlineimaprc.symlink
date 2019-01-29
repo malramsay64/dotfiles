@@ -16,6 +16,8 @@ remotepasseval = get_pass("personal")
 remoteport = 993
 folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
+# Leave mail in All Mail when deleted
+realdelete = no
 
 [Repository personal-local]
 type = Maildir
@@ -28,9 +30,10 @@ remoterepository = usyd-remote
 
 [Repository usyd-remote]
 auth_mechanisms = LOGIN
-type = Gmail
+type = IMAP
 remoteuser = mram5995@uni.sydney.edu.au
 remotepasseval = get_pass("usyd")
+remotehost = outlook.office365.com
 remoteport = 993
 folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
@@ -49,9 +52,12 @@ auth_mechanisms = LOGIN
 type = Gmail
 remoteuser = mramsay@lancerband.com
 remotepasseval = get_pass("lancerband")
+remotehost = imap.gmail.com
 remoteport = 993
 folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
+# Leave mail in All Mail when deleted
+realdelete = no
 
 [Repository lancerband-local]
 type = Maildir
@@ -67,9 +73,12 @@ auth_mechanisms = LOGIN
 type = Gmail
 remoteuser = malcolm@intersect.org.au
 remotepasseval = get_pass("intersect")
+remotehost = imap.gmail.com
 remoteport = 993
 folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
+# Leave mail in All Mail when deleted
+realdelete = no
 
 [Repository intersect-local]
 type = Maildir
