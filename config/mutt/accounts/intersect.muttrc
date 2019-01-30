@@ -1,0 +1,30 @@
+# vim: filetype=neomuttrc
+# muttrc file for account intersect
+set realname = "Malcolm Ramsay"
+set from = "malcolm@intersect.org.au"
+set sendmail = "/usr/bin/msmtp -a intersect"
+set folder = "~/.mail/intersect"
+set header_cache = ~/.config/mutt/accounts/intersect/cache/headers
+set message_cachedir = ~/.config/mutt/accounts/intersect/cache/bodies
+set certificate_file = ~/.config/mutt/accounts/intersect/certificates
+source "~/.config/mutt/credentials/getmuttpass intersect |"
+
+alias me Malcolm Ramsay <malcolm@intersect.org.au>
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index gg first-entry
+unmailboxes *
+mailboxes =intersect =------------------- "=[Gmail].Drafts" "=INBOX" "=[Gmail].Spam" "=[Gmail].Starred" "=[Gmail].Important" "=[Gmail].Sent Mail" "=[Gmail].Bin"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox."
+macro index,pager gs "<change-folder>=[Gmail].Sent Mail<enter>" "Go to sent."
+macro index,pager gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts."
+macro index,pager gS "<change-folder>=[Gmail].Spam<enter>" "Go to spam."
+set spoolfile = "+INBOX"
+set record = "+[Gmail].Sent Mail"
+set postponed = "+[Gmail].Drafts"
+set trash = ""

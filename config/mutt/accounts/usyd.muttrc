@@ -1,0 +1,31 @@
+# vim: filetype=neomuttrc
+# muttrc file for account usyd
+set realname = "Malcolm Ramsay"
+set from = "mram5995@uni.sydney.edu.au"
+set sendmail = "/usr/bin/msmtp -a usyd"
+set folder = "~/.mail/usyd"
+set header_cache = ~/.config/mutt/accounts/usyd/cache/headers
+set message_cachedir = ~/.config/mutt/accounts/usyd/cache/bodies
+set certificate_file = ~/.config/mutt/accounts/usyd/certificates
+source "~/.config/mutt/credentials/getmuttpass usyd |"
+
+alias me Malcolm Ramsay <mram5995@uni.sydney.edu.au>
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index gg first-entry
+unmailboxes *
+mailboxes =usyd =------------------- "=INBOX" "=Junk E-Mail" "=Sent Items" "=Drafts" "=Archive"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox."
+macro index,pager gs "<change-folder>=Sent Items<enter>" "Go to sent."
+macro index,pager gd "<change-folder>=Drafts<enter>" "Go to drafts."
+# macro index,pager gt "<change-folder>=Trash<enter>" "Go to trash."
+macro index,pager ga "<change-folder>=Archive<enter>" "Go to archive."
+set spoolfile = "+INBOX"
+set record = "+Sent Items"
+set postponed = "+Drafts"
+set trash = "+Archive"

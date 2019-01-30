@@ -1,0 +1,33 @@
+# vim: filetype=neomuttrc
+# muttrc file for account personal
+set realname = "Malcolm Ramsay"
+set from = "malramsay64@gmail.com"
+set sendmail = "/usr/bin/msmtp -a personal"
+set folder = "~/.mail/personal"
+set header_cache = ~/.config/mutt/accounts/personal/cache/headers
+set message_cachedir = ~/.config/mutt/accounts/personal/cache/bodies
+set certificate_file = ~/.config/mutt/accounts/personal/certificates
+source "~/.config/mutt/credentials/getmuttpass personal |"
+
+alias me Malcolm Ramsay <malramsay64@gmail.com>
+
+set mbox_type = Maildir
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+bind index,pager gg noop
+bind index,pager g noop
+bind index gg first-entry
+unmailboxes *
+mailboxes =personal =------------------- "=[Gmail].Drafts" "=INBOX" "=[Gmail].Spam" "=[Gmail].Starred" "=[Gmail].Sent Mail"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox."
+macro index,pager gs "<change-folder>=[Gmail].Sent Mail<enter>" "Go to sent."
+macro index,pager gd "<change-folder>=[Gmail].Drafts<enter>" "Go to drafts."
+# macro index,pager gt "<change-folder>=Trash<enter>" "Go to trash."
+macro index,pager gS "<change-folder>=[Gmail].Spam<enter>" "Go to spam."
+# macro index,pager ga "<change-folder>=[Gmail].Archive<enter>" "Go to archive."
+set spoolfile = "+INBOX"
+set record = "+[Gmail].Sent Mail"
+set postponed = "+[Gmail].Drafts"
+# set trash = "+Trash"
+unset move
