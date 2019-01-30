@@ -14,7 +14,7 @@ type = Gmail
 remoteuser = malramsay64@gmail.com
 remotepasseval = get_pass("personal")
 remoteport = 993
-folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+folderfilter = lambda foldername: foldername in ["[Gmail]/Drafts", "[Gmail]/Spam", "[Gmail]/Starred", "[Gmail]/Sent Mail", "INBOX"]
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
 # Leave mail in All Mail when deleted
 realdelete = no
@@ -35,7 +35,7 @@ remoteuser = mram5995@uni.sydney.edu.au
 remotepasseval = get_pass("usyd")
 remotehost = outlook.office365.com
 remoteport = 993
-folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+folderfilter = lambda foldername: foldername in [ "Archive", "INBOX", "Junk E-Mail", "Sent Items"]
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
 
 [Repository usyd-local]

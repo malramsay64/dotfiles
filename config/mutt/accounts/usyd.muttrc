@@ -19,13 +19,13 @@ bind index,pager gg noop
 bind index,pager g noop
 bind index gg first-entry
 unmailboxes *
-mailboxes =usyd =------------------- "=Contacts" "=Outbox" "=Deleted Items.Archives.2010" "=Archive" "=Trash" "=INBOX.MATH" "=INBOX" "=Scheduled" "=INBOX.Exchange" "=Deleted Items.Archives" "=INBOX.PHYS" "=Journal" "=Deleted Items" "=INBOX.INFO" "=Clutter" "=Junk E-Mail" "=Deleted Items.Archives.2013" "=Tasks" "=Sent Items" "=Calendar" "=INBOX.Chem" "=Deleted Items.Archives.2011" "=Deleted Items.Archives.2017" "=Notes" "=Conversation History" "=Sent" "=INBOX.Lammps" "=Archive1" "=Drafts"
-macro index,pager gi "<change-folder>=INBOX.MATH<enter>" "Go to inbox."
+mailboxes =usyd =------------------- "=INBOX" "=Junk E-Mail" "=Sent Items" "=Drafts" "=Archive"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox."
 macro index,pager gs "<change-folder>=Sent Items<enter>" "Go to sent."
 macro index,pager gd "<change-folder>=Drafts<enter>" "Go to drafts."
-macro index,pager gt "<change-folder>=Trash<enter>" "Go to trash."
-macro index,pager ga "<change-folder>=Deleted Items.Archives.2010<enter>" "Go to archive."
-set spoolfile = "+INBOX.MATH"
+# macro index,pager gt "<change-folder>=Trash<enter>" "Go to trash."
+macro index,pager ga "<change-folder>=Archive<enter>" "Go to archive."
+set spoolfile = "+INBOX"
 set record = "+Sent Items"
 set postponed = "+Drafts"
-set trash = "+Trash"
+set trash = "+Archive"
