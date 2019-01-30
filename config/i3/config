@@ -4,12 +4,16 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+#
+# ----- Startup External Scripts ----- #
+
+exec --no-startup-id unclutter
 
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 set $term alacritty
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -32,9 +36,19 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec $term
+bindsym $mod+Shift+Return exec --no-startup-id ~/dotfiles/bin/alacritty-cwd
 
 # kill focused window
 bindsym $mod+Shift+q kill
+
+# Start browser
+bindsym $mod+Shift+w exec --no-startup-id $BROWSER
+
+# Resize Windows
+bindsym $mod+Shift+y  exec --no-startup-id i3resize left
+bindsym $mod+Shift+u  exec --no-startup-id i3resize down
+bindsym $mod+Shift+i  exec --no-startup-id i3resize up
+bindsym $mod+Shift+o  exec --no-startup-id i3resize right
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
