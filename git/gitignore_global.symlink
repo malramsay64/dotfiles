@@ -43,3 +43,6 @@ cmake_install.cmake
 *.eggs
 .coverage
 htmlcov/*
+
+# Generated tags files
+tags
