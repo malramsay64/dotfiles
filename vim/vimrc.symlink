@@ -375,7 +375,11 @@ let g:ale_linters = {
       \ 'c++': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'c': ['clangd'],
+      \ 'rust': ['cargo'],
       \ }
+let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
+let g:ale_rust_cargo_clippy_options = '--all-features'
+
 
 let g:ale_python_pylint_change_directory = 0
 let g:ale_lint_on_text_changed = 1
