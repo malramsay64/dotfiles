@@ -39,6 +39,9 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec
 ### Reload configuration
 bindsym $mod+Shift+r reload
 
+### Lock Screen
+bindsym $mod+Shift+Escape exec --no-startup-id 'swaylock -f -c 000000'
+
 ### Launch applications
 
 ### Output configuration
