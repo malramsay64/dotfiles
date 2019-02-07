@@ -95,6 +95,9 @@ exec swayidle \
   input "1133:16489:Logitech_MX_Master_2S" {
       natural_scroll enabled
   }
+  input "1133:4123:Logitech_M705" {
+    natural_scroll enabled
+  }
 
 ### Key bindings
 #
