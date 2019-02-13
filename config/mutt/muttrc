@@ -35,9 +35,9 @@ bind pager j next-line
 bind pager k previous-line
 bind pager gg top
 bind pager G bottom
-bind index d half-down
+# bind index d half-down
 bind index u half-up
-bind index D delete-message
+bind index d delete-message
 bind index U undelete-message
 bind index F search
 bind index,pager R group-reply
@@ -46,8 +46,8 @@ bind index \005 next-undeleted # Mouse wheel
 bind pager \031 previous-line # Mouse wheel
 bind pager \005 next-line # Mouse wheel
 macro index,pager S <sync-mailbox>
-macro index,pager \Cu "|urlscan -r 'setsid $BROWSER \"{}\"'"\n
-macro index,pager ,, "|urlscan -r 'setsid $BROWSER \"{}\"'"\n
+macro index,pager \Cu "| urlscan<Enter>
+macro index,pager ,, "|<pipe-message> urlscan<Enter>
 
 # View attachments properly.
 bind attach <return> view-mailcap
@@ -88,3 +88,4 @@ bind index,pager \Co sidebar-open
 bind index,pager \Cp sidebar-prev-new
 bind index,pager \Cn sidebar-next-new
 bind index,pager B sidebar-toggle-visible
+alias anastasios Anastasios Papaioannou <anastasios@intersect.org.au>

@@ -19,7 +19,7 @@ bind index,pager gg noop
 bind index,pager g noop
 bind index gg first-entry
 unmailboxes *
-mailboxes =usyd =------------------- "=INBOX" "=Junk E-Mail" "=Sent Items" "=Drafts" "=Archive"
+mailboxes =usyd =------------------- "=INBOX" "=Junk EMail" "=Sent Items" "=Drafts" "=Archive"
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox."
 macro index,pager gs "<change-folder>=Sent Items<enter>" "Go to sent."
 macro index,pager gd "<change-folder>=Drafts<enter>" "Go to drafts."
@@ -29,3 +29,4 @@ set spoolfile = "+INBOX"
 set record = "+Sent Items"
 set postponed = "+Drafts"
 set trash = "+Archive"
+unset move

@@ -29,5 +29,5 @@ macro index,pager gS "<change-folder>=[Gmail].Spam<enter>" "Go to spam."
 set spoolfile = "+INBOX"
 set record = "+[Gmail].Sent Mail"
 set postponed = "+[Gmail].Drafts"
-# set trash = "+Trash"
+set trash = ""
 unset move

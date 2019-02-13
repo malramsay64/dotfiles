@@ -17,16 +17,14 @@ then
 	notify() { osascript -e "display notification \"$2 in $1\" with title \"You've got Mail\" subtitle \"Account: $account\"" && sleep 2 ;}
 else
 	ping -q -w 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exit
-	notify() { mpv --really-quiet ~/.config/mutt/etc/notify.opus & pgrep -x dunst && notify-send -i ~/.config/mutt/etc/email.gif "$2 new mail(s) in \`$1\` account." ;}
+	notify() { notify-send -i ~/.config/mutt/etc/email.gif "$2 new mail(s) in \`$1\` account." ;}
 fi
 
 echo " 🔃" > ~/.config/mutt/.dl
-pkill -RTMIN+12 i3blocks
 
 # Run offlineimap. You can feed this script different settings.
 offlineimap -o "$@"
 rm -f ~/.config/mutt/.dl
-pkill -RTMIN+12 i3blocks
 
 # Check all accounts/mailboxes for new mail. Notify if there is new content.
 for account in $(ls ~/.mail)
