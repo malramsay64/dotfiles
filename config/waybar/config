@@ -76,6 +76,9 @@
     "custom/spotify": {
         "format": " {}",
         "max-length": 40,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next"
+
     }
 }
