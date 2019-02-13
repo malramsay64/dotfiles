@@ -287,8 +287,9 @@ endif
 "}}}
 "Spelling and Files{{{
 
-set spelllang=en_au             " spelling language is english australian
+set spelllang=en_au             " spelling language is English Australian
 set fileformats=unix,mac,dos    " default line ending is unix
+set nospell                     " Spelling is off by default, but is turned on for many filetypes
 
 " set filetype defaults
 augroup filetypes
