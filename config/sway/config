@@ -258,8 +258,16 @@ exec swayidle \
     bindsym $mod+s gaps inner current plus 5
     bindsym $mod+Shift+s gaps inner current minus 5
 
-    # No border
+    # Window border
     default_border pixel 2
+
+    # Configure which windows are floating
+    for_window [window_role="pop-up"]                       floating enable
+    for_window [window_role="bubble"]                       floating enable
+    for_window [window_role="task_dialog"]                  floating enable
+    for_window [window_role="Preferences"]                  floating enable
+    for_window [window_type="dialog"]                       floating enable
+    for_window [window_type="menu"]                         floating enable
 #
 # Scratchpad:
 #
