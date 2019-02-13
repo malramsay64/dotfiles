@@ -56,14 +56,12 @@ if !has('nvim')
     set t_8f=[38;2;%lu;%lu;%lum
 endif
 
-""" Configure Colourschems
+""" Configure Colourscheme
 let g:quantum_italics=1
 
 " Colourscheme override
 augroup colourOverride
    autocmd!
-   " Italic self in python
-   "autocmd ColorScheme * highlight Identifier gui=italic
    autocmd ColorScheme * highlight Conceal guibg=NONE
    autocmd Colorscheme * highlight SpellBad guibg=NONE
    autocmd Colorscheme * highlight SpellCap guibg=NONE
@@ -73,7 +71,6 @@ augroup colourOverride
 augroup END
 
 set background=dark " for the dark version
-"colorscheme onedark
 colorscheme quantum
 
 " }}}
@@ -202,7 +199,7 @@ nnoremap <Leader>ez :edit ~/.zshrc<CR>
 "nnoremap <Leader>ed :edit $DOTFILES/vim/<CR>
 " Edit denite config
 nnoremap <Leader>ed :edit $DOTFILES/vim/denite.vim<CR>
-" <C-s> will correct previous spelling misake and set undo point
+" <C-s> will correct previous spelling mistake and set undo point
 nnoremap <silent> <C-s> :call spelling#fix_previous()<CR>
 inoremap <silent> <C-s> <C-g>u<C-o>:call spelling#fix_previous()<CR>
 " navigate between tabs
@@ -237,7 +234,7 @@ nnoremap <space>w= :wincmd =<CR>
 
 set incsearch " search as characters entered
 set hlsearch  " highlight matches
-set ignorecase " ignore case when seraching
+set ignorecase " ignore case when searching
 set smartcase " overrides ignorecase if uppercase characters in search query
 
 set magic     " regular expressions
@@ -317,7 +314,7 @@ let g:fzf_layout = { 'down': '~40%' }
 " In Neovim, you can set up fzf window using a Vim command
 let g:fzf_layout = { 'window': 'belowright 10split enew' }
 
-" Customize fzf colors to match your color scheme
+" Customize fzf colours to match your colour scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -519,7 +516,6 @@ let g:pandoc#hypertext#open_editable_alternates=1
 let g:pandoc#hypertext#use_default_mappings = 1
 let g:pandoc#command#autoexec_command = "Pandoc! pdf"
 
-
 " }}}
 " lightline {{{
 "
@@ -632,7 +628,7 @@ augroup ncm2
   autocmd BufRead * call ncm2#enable_for_buffer()
 augroup END
 
-" supress the annoying 'match x of y', 'The only match' and 'Pattern not
+" suppress the annoying 'match x of y', 'The only match' and 'Pattern not
 " found' messages
 set shortmess+=c
 
