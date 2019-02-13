@@ -36,24 +36,6 @@ set $resize_len 50px
 # Note: it's recommended that you pass the final command to sway
 set $menu dmenu_path | dmenu | xargs swaymsg exec
 
-
-### Keyboard Shortcuts
-
-### Reload configuration
-bindsym $mod+Shift+r reload
-
-### Lock Screen
-bindsym $mod+Shift+Escape exec --no-startup-id 'swaylock -f -c 000000'
-
-# Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
-
 ### Launch applications
 
 # Launch mako, a notification handler
@@ -136,6 +118,22 @@ exec swayidle \
 
     # dmenu emoji
     bindsym $mod+grave exec ~/dotfiles/bin/dmenuunicode
+
+    ### Reload configuration
+    bindsym $mod+Shift+r reload
+
+    ### Lock Screen
+    bindsym $mod+Shift+Escape exec --no-startup-id 'swaylock -f -c 000000'
+
+    # Media player controls
+    bindsym XF86AudioPlay exec playerctl play
+    bindsym XF86AudioPause exec playerctl pause
+    bindsym XF86AudioNext exec playerctl next
+    bindsym XF86AudioPrev exec playerctl previous
+    bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+    bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
+    bindsym XF86AudioMute exec amixer -q set Master toggle
+
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
