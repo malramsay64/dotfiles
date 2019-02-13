@@ -375,6 +375,8 @@ let g:ale_linters = {
       \ 'c': ['clangd'],
       \ 'rust': ['cargo'],
       \ }
+
+let g:ale_rust_check_all_targets = 1
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
 let g:ale_rust_cargo_clippy_options = '--all-features'
 
