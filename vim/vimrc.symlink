@@ -510,7 +510,7 @@ let g:project_log#log_level = 'DEBUG'
 
 let g:pandoc#syntax#conceal#use = 1
 let g:pandoc#syntax#conceal#urls = 1
-let g:pandoc#syntax#codeblocks#embeds#langs = ["python"]
+let g:pandoc#syntax#codeblocks#embeds#langs = ["python", "rust"]
 let g:pandoc#modules#disabled = ["chdir", "folding", "keyboard", "formatting"]
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
 let g:pandoc#filetypes#pandoc_markdown = 1
@@ -575,6 +575,8 @@ let g:NERDCompactSexyComs = 1
 
 " }}}
 " Goyo {{{
+"
+let g:goyo_width=88
 
 function! s:goyo_enter()
   ALEDisableBuffer
@@ -726,6 +728,13 @@ augroup LSP
   autocmd!
   autocmd FileType cpp,c,rust call SetLSPShortcuts()
 augroup END
+
+" }}}
+" My Notes {{{
+
+let g:notes_dir = '~/Documents/PhD/notes'
+nnoremap <silent> <space>wn :execute 'lcd '.fnameescape(g:notes_dir).' <bar> edit index.md'<CR>
+nnoremap gf :e <cfile><CR>
 
 " }}}
 " vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2
