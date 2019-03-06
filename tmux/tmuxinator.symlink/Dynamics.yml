@@ -4,26 +4,17 @@ name: Dynamics
 project_root: ~/Projects/Dynamics
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: Code
+startup_window: Analysis
 
 windows:
+  - Analysis:
+      layout: main-horizontal
+      panes:
+        - ls
+  - Management:
+      panes:
+        - git status
   - Code:
       layout: main-horizontal
       panes:
         - nvim .
-  - Simulations:
-      panes:
-        - cd data/simulations
-  - Jobs:
-      layout: main-horizontal
-      panes:
-        - watch qstat -Jt
-  - Experi:
-      panes:
-        - cd ../experi; nvim
-  - sdanalysis:
-      panes:
-        - cd ../statdyn-analysis
-  - sdrun:
-      panes:
-        - cd ../statdyn-simulation

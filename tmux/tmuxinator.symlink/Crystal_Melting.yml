@@ -4,23 +4,17 @@ name: Crystal_Melting
 project_root: ~/Projects/Crystal_Melting
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: Code
+startup_window: Analysis
 
 windows:
+  - Analysis:
+      layout: main-horizontal
+      panes:
+        - ls
+  - Management:
+      panes:
+        - cd data/simulations
   - Code:
       layout: main-horizontal
       panes:
-        - nvim
-  - Simulations:
-      panes:
-        - cd data/simulations
-  - Jobs:
-      layout: main-horizontal
-      panes:
-        - watch qstat -Jt
-  - Experi:
-      panes:
-        - cd ../experi; nvim
-  - Interactive:
-      panes:
-        - cd data/simulations
+        - nvim .
