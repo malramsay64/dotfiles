@@ -211,12 +211,6 @@ inoremap <C-y> <C-k>
 " Open last buffer
 nnoremap <leader><leader> <C-^>
 
-" Swap semicolon and colon for easier commands
-nnoremap ; :
-nnoremap : ;
-vnoremap ; :
-vnoremap : ;
-
 " Shortcut for saving file as root
 " cmap w!! w !sudo tee > /dev/null %
 cmap w!! w suda://%
