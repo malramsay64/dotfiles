@@ -160,6 +160,9 @@ exec --no-startup-id i3-msg 'workspace 3; exec firefox'
 exec --no-startup-id i3-msg 'workspace $ws4; exec $term'
 exec --no-startup-id i3-msg 'workspace $ws4; exec $term -e offlineimap'
 
+gaps inner 10
+gaps outer 10
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -196,7 +199,10 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
+
 bar {
+        i3bar_command i3bar -t
         position top
         status_command i3status
 }
