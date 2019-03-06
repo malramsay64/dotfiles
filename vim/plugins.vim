@@ -116,6 +116,7 @@ Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentary mappings
 Plug 'tpope/vim-speeddating'            " incr/decr dates
 Plug 'tpope/vim-vinegar'                " Make netrw useable
+Plug 'tpope/vim-abolish'                " Coercion and useful tools
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
 Plug 'mbbill/undotree'                  " undo
