@@ -218,7 +218,7 @@ exec swayidle \
     exec --no-startup-id "swaymsg 'workspace $ws2; exec $term --working-directory ~/dotfiles'"
 
     # Workspace 3: Firefox
-    exec --no-startup-id "swaymsg 'workspace 3; exec firefox'"
+    exec --no-startup-id "swaymsg 'workspace $ws3; exec firefox'"
 
     # Workspace 4: Emails
     exec --no-startup-id "swaymsg 'workspace $ws4; exec $term'"
