@@ -34,7 +34,7 @@ set $resize_len 50px
 
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | dmenu | xargs swaymsg exec
+set $menu dmenu_path | i3-dmenu-desktop | xargs swaymsg exec
 
 ### Launch applications
 
