@@ -183,8 +183,8 @@ exec swayidle \
     set $ws6 6
     set $ws7 7
     set $ws8 8
-    set $ws9 9
-    set $ws10 10
+    set $ws9 9📎
+    set $ws10 10
     # switch to workspace
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
@@ -226,6 +226,12 @@ exec swayidle \
 
     # Workspace 5: Spotify
     exec --no-startup-id "swaymsg 'workspace $ws5; exec flatpak run com.spotify.Client'"
+
+    # Workspace 9: Zotero
+    exec --no-startup-id "swaymsg 'workspace $ws5; exec flatpak run org.zotero.Zotero'"
+
+    # Workspace 10: PhD Thesis
+    exec --no-startup-id "swaymsg 'workspace $ws10; exec $term --working-directory ~/Projects/phd-thesis'"
 
 # Layout stuff:
 #
