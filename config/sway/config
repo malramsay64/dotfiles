@@ -343,7 +343,5 @@ bar {
         inactive_workspace #00000000 #00000000 #ffffff
     }
 }
-    output DP-1
-}
 
 include @sysconfdir@/sway/config.d/*
