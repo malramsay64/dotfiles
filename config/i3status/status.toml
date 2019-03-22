@@ -26,13 +26,13 @@ player = "spotify"
 marquee = false
 
 [[block]]
+block = "cpu"
+interval = 1
+
+[[block]]
 block = "memory"
 display_type = "memory"
 format_mem = "{Mug}/{MTg} GB"
-
-[[block]]
-block = "cpu"
-interval = 1
 
 [[block]]
 block = "sound"
