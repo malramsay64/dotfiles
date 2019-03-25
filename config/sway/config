@@ -228,7 +228,7 @@ exec swayidle \
     exec --no-startup-id "swaymsg 'workspace $ws5; exec flatpak run com.spotify.Client'"
 
     # Workspace 9: Zotero
-    exec --no-startup-id "swaymsg 'workspace $ws5; exec flatpak run org.zotero.Zotero'"
+    exec --no-startup-id "swaymsg 'workspace $ws9; exec flatpak run org.zotero.Zotero'"
 
     # Workspace 10: PhD Thesis
     exec --no-startup-id "swaymsg 'workspace $ws10; exec $term --working-directory ~/Projects/phd-thesis'"
