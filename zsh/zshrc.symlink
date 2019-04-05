@@ -158,8 +158,6 @@ source_file "$HOME/.local/google-cloud-sdk/path.zsh.inc"
 source_file "$HOME/.bashrc.local"
 # Source travis config
 source_file "$HOME/.travis/travis.sh"
-# Source conda configuration
-source_file "$HOME/.miniconda/etc/profile.d/conda.sh"
 
 # Source pyenv if present
 if type pyenv >/dev/null; then
@@ -230,3 +228,18 @@ fi
 
 # added by travis gem
 [ -f /home/malcolm/.travis/travis.sh ] && source /home/malcolm/.travis/travis.sh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/malcolm/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/malcolm/.miniconda/etc/profile.d/conda.sh" ]; then
+        . "/home/malcolm/.miniconda/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/malcolm/.miniconda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
