@@ -1,4 +1,5 @@
-
+#! /usr/bin/fish
+#
 # No greeting when starting fish
 set fish_greeting
 
@@ -21,7 +22,7 @@ set -x PATH (__check_path_exists $HOME/go/bin) $PATH
 set -x PATH (__check_path_exists $HOME/.fzf/bin) $PATH
 set -x PATH (__check_path_exists $HOME/dotfiles/bin) $PATH
 set -x PATH (__check_path_exists $HOME/.local/bin) $PATH
-set -x PATH (__check_path_exists $HOME/.pyenv/bin) $PATH
+set -x PATH (__check_path_exists $HOME/.miniconda/bin) $PATH
 
 if type -q nvim
     set -x EDITOR 'nvim'
@@ -46,11 +47,6 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ]
     alias "nvim" "nvr"
 end
 
-if type -q pyenv
-   status --is-interactive; and source (pyenv init - | psub)
-   status --is-interactive; and source (pyenv virtualenv-init - | psub)
-end
-
 if not set -q abbrs_initialized
   set -U abbrs_initialized
   echo -n Setting abbreviations...
@@ -64,3 +60,10 @@ if not set -q abbrs_initialized
 
   echo 'Done'
 end
+
+source (conda info --root)/etc/fish/conf.d/conda.fish
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval (eval /home/malcolm/.miniconda/bin/conda "shell.fish" "hook" $argv)
+# <<< conda initialize <<<
