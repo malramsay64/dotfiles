@@ -1,0 +1,10 @@
+anaconda_upload: true
+create_default_packages:
+  - ipython
+  - pip
+channels:
+  - glotzer
+  - conda-forge
+  - defaults
+  - malramsay
+changeps1: False
