@@ -16,6 +16,7 @@ remotepasseval = get_pass("personal")
 remoteport = 993
 folderfilter = lambda foldername: foldername in ["[Gmail]/Drafts", "[Gmail]/Spam", "[Gmail]/Starred", "[Gmail]/Sent Mail", "INBOX"]
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
+ssl_version = tls1_2
 # Leave mail in All Mail when deleted
 realdelete = no
 
@@ -37,6 +38,7 @@ remotehost = outlook.office365.com
 remoteport = 993
 folderfilter = lambda foldername: foldername in [ "Archive", "INBOX", "Junk E-Mail", "Sent Items"]
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
+ssl_version = tls1_2
 
 [Repository usyd-local]
 type = Maildir
@@ -58,6 +60,7 @@ folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
 # Leave mail in All Mail when deleted
 realdelete = no
+ssl_version = tls1_2
 
 [Repository lancerband-local]
 type = Maildir
@@ -79,6 +82,7 @@ folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
 sslcacertfile = /etc/ssl/certs/ca-bundle.crt
 # Leave mail in All Mail when deleted
 realdelete = no
+ssl_version = tls1_2
 
 [Repository intersect-local]
 type = Maildir
