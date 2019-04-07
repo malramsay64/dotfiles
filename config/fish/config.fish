@@ -32,37 +32,18 @@ end
 set -x VISUAL $EDITOR
 set -x MANPAGER "$EDITOR +'set ft:man' -"
 
-# Ensure that GPG Agent is used as the SSH agent
-set -e SSH_AUTH_SOCK
-set -U -x SSH_AUTH_SOCK ~/.gnupg/S.gpg-agent.ssh
-set -x GPG_TTY (tty)
-
 if type -q rg
     set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
     # Use ripgrep for ctrl-T search
     set -x FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 end
 
-if [ -n "$NVIM_LISTEN_ADDRESS" ]
-    alias "nvim" "nvr"
-end
+direnv hook fish | source
 
-if not set -q abbrs_initialized
-  set -U abbrs_initialized
-  echo -n Setting abbreviations...
-
-  abbr g 'git'
-  abbr gap 'git add -p'
-  abbr qsu 'qstat -u $USER'
-  abbr qs 'qstat -Jt -u $USER'
-  abbr c 'clear'
-  abbr isntall 'install'
-
-  echo 'Done'
-end
+source $HOME/.config/fish/gnupg.fish
+source $HOME/.config/fish/alias.fish
 
 source (conda info --root)/etc/fish/conf.d/conda.fish
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 eval (eval /home/malcolm/.miniconda/bin/conda "shell.fish" "hook" $argv)
