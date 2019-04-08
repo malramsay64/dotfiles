@@ -8,3 +8,4 @@ channels:
   - defaults
   - malramsay
 changeps1: False
+auto_activate_base: false
