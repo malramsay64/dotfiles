@@ -1,7 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export SSH_AUTH_SOCK:/home/malcolm/\x2egnupg/S\x2egpg\x2dagent\x2essh
-SETUVAR Z_DATA_DIR:/home/malcolm/\x2elocal/share/z
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
 SETUVAR _fish_abbr_c:clear
