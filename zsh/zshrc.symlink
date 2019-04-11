@@ -114,7 +114,7 @@ PURE_GIT_UNTRACKED_DIRTY=0
 bindkey "^?" backward-delete-char
 
 # fzf configuratioin
-source_file "$HOME/.fzf.zsh"
+source_file "$HOME/.fzf/shell/key-bindings.zsh"
 if type rg > /dev/null; then
     # Use ripgrep for fzf search
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
