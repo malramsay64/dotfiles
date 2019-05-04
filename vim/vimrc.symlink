@@ -397,7 +397,7 @@ nnoremap [v :ALEPreviousWrap<CR>
 " }}}
 " ultisnips {{{
 
-let g:UltiSnipsExpandTrigger='<C-k>'
+let g:UltiSnipsExpandTrigger='<C-f>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<S-tab>'
 let g:UltiSnipsEditSplit='horizontal'
