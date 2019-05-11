@@ -184,7 +184,7 @@ abbr isntall='install'
 
 # PBS aliases
 if type qstat >/dev/null; then
-    abbr qs='qstat -Jt -u $USER'
+    abbr qs='qstat -t -u $USER'
     abbr qsu='qstat -u $USER'
     abbr qdelall='qdel $(qstat -u $USER | grep ^[0-9] | cut -d. -f1 | tr "\n" " ")'
     abbr qsi='qsub -I -P PRJ-CrysGrowth'
