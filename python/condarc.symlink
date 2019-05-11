@@ -3,9 +3,9 @@ create_default_packages:
   - ipython
   - pip
 channels:
+  - defaults
   - glotzer
   - conda-forge
-  - defaults
   - malramsay
 changeps1: False
 auto_activate_base: false
