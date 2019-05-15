@@ -510,6 +510,9 @@ let g:pandoc#hypertext#open_editable_alternates=1
 let g:pandoc#hypertext#use_default_mappings = 1
 let g:pandoc#command#autoexec_command = "Pandoc! pdf"
 
+let g:pandoc#biblio#bibs = [$HOME."/Downloads/PhD.bib"]
+let g:pandoc#biblio#use_bibtool = 2
+
 " }}}
 " lightline {{{
 "
@@ -640,6 +643,21 @@ let g:ncm2_pyclang#args_file_path = ['.clang_complete']
 let g:ncm2_pyclang#clang_path = 'clang++'
 
 call ncm2#override_source('LanguageClient_cpp', {'enable': 0})
+
+let g:float_preview#docked = 1
+
+augroup my_cm_setup
+    autocmd!
+    autocmd Filetype pandoc call ncm2#register_source({
+      \ 'name': 'pandoc',
+      \ 'priority': 8,
+      \ 'scope': ['pandoc'],
+      \ 'mark': 'md',
+      \ 'word_pattern': '\w+',
+      \ 'complete_pattern': ['@'],
+      \ 'on_complete': ['ncm2#on_complete#omni', 'pandoc#completion#Complete'],
+      \ })
+augroup END
 
 " }}}
 " gitgutter {{{
