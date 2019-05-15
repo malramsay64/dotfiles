@@ -563,6 +563,9 @@ let g:NERDSpaceDelims = 1
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 
+nnoremap <C-/> <plug>NERDCommenterToggle
+vnoremap <C-/> <plug>NERDCommenterToggle
+
 " }}}
 " Goyo {{{
 "
