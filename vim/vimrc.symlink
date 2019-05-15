@@ -24,8 +24,6 @@ let g:loaded_python_provider = 1
 
 if isdirectory($HOME.'/.miniconda/envs/neovim')
     let g:python3_host_prog = $HOME.'/.miniconda/envs/neovim/bin/python'
-elseif isdirectory($HOME.'/.pyenv/neovim/bin/python')
-    let g:python3_host_prog = $HOME.'/.pyenv/versions/neovim/bin/python'
 endif
 
 let g:email = 'malramsay64@gmail.com'
