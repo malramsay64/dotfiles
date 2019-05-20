@@ -131,6 +131,7 @@ Plug 'lambdalisue/suda.vim'             " Allow write with sudo
 Plug 'malramsay64/vimpyter', Cond(executable('jupytext'))  " Edit juptyer notebooks in Vim
 Plug 'kassio/neoterm'
 Plug 'direnv/direnv.vim'
+Plug 'vimlab/split-term.vim'
 
 Plug 'malramsay64/nvim-project-log', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
 
