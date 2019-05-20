@@ -46,5 +46,5 @@ source $HOME/.config/fish/alias.fish
 source (conda info --root)/etc/fish/conf.d/conda.fish
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval (eval /home/malcolm/.miniconda/bin/conda "shell.fish" "hook" $argv)
+eval (eval $HOME/.miniconda/bin/conda "shell.fish" "hook" $argv)
 # <<< conda initialize <<<
