@@ -220,16 +220,16 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 
     # Workspaces for the primary monitor
     workspace $ws1 output $m1
-    workspace $ws3 output $m1
-    workspace $ws7 output $m1
     workspace $ws10 output $m1
+    workspace $ws7 output $m1
 
     # Workspaces for the secondary monitor
     workspace $ws2 output $m2
+    workspace $ws3 output $m2
     workspace $ws4 output $m2
     workspace $ws5 output $m2
     workspace $ws6 output $m2
-    workspace $ws6 output $m2
+    workspace $ws8 output $m2
     workspace $ws9 output $m2
 
     # Setup workspaces automatically
