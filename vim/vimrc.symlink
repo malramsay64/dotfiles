@@ -504,7 +504,7 @@ let g:pandoc#syntax#conceal#urls = 1
 let g:pandoc#syntax#codeblocks#embeds#langs = ["python", "rust"]
 let g:pandoc#modules#disabled = ["chdir", "folding", "keyboard", "formatting"]
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
-let g:pandoc#filetypes#pandoc_markdown = 1
+let g:pandoc#filetypes#pandoc_markdown = 0
 let g:pandoc#formatting#mode='ha'
 let g:pandoc#hypertext#open_editable_alternates=1
 let g:pandoc#hypertext#use_default_mappings = 1
@@ -616,6 +616,8 @@ let g:netrw_banner = 0
 " Polyglot  {{{
 let g:python_highlight_all = 1
 
+let g:polyglot_disabled = ['markdown']
+
 " }}}
 " ncm2 {{{
 
@@ -646,12 +648,14 @@ call ncm2#override_source('LanguageClient_cpp', {'enable': 0})
 
 let g:float_preview#docked = 1
 
+let g:markdown_fenced_languages=["python"]
+
 augroup my_cm_setup
     autocmd!
     autocmd Filetype pandoc call ncm2#register_source({
       \ 'name': 'pandoc',
       \ 'priority': 8,
-      \ 'scope': ['pandoc'],
+      \ 'scope': ['pandoc', 'markdown'],
       \ 'mark': 'md',
       \ 'word_pattern': '\w+',
       \ 'complete_pattern': ['@'],
