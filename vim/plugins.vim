@@ -52,7 +52,7 @@ Plug 'bps/vim-textobj-python', { 'for': ['python', 'cython'] }
 " Other Languages
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'pandoc' }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['pandoc', 'markdown'] }
 Plug 'gu-fan/riv.vim'
 
 " vim -> nvim compatability
