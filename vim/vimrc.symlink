@@ -655,11 +655,11 @@ let g:markdown_fenced_languages=["python"]
 
 augroup my_cm_setup
     autocmd!
-    autocmd Filetype pandoc call ncm2#register_source({
+    autocmd Filetype markdown,pandoc call ncm2#register_source({
       \ 'name': 'pandoc',
       \ 'priority': 8,
-      \ 'scope': ['pandoc', 'markdown'],
-      \ 'mark': 'md',
+      \ 'scope': ['markdown', 'pandoc'],
+      \ 'mark': 'bib',
       \ 'word_pattern': '\w+',
       \ 'complete_pattern': ['@'],
       \ 'on_complete': ['ncm2#on_complete#omni', 'pandoc#completion#Complete'],
