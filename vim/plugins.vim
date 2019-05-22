@@ -77,7 +77,6 @@ Plug 'ncm2/ncm2-jedi'              " Python completion with Jedi
 Plug 'ncm2/ncm2-ultisnips'         " Ultisnips snippet completion
 Plug 'ncm2/ncm2-tmux'              " Completion from other tmux panes
 Plug 'ncm2/ncm2-pyclang'
-Plug 'ncm2/ncm2-tagprefix'
 
 " Sub-scopes
 " These plugins detect other programming languages within a document and activate the relevant
