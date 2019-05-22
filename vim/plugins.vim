@@ -82,7 +82,7 @@ Plug 'ncm2/ncm2-tagprefix'
 " Sub-scopes
 " These plugins detect other programming languages within a document and activate the relevant
 " completion for them.
-Plug 'ncm2/ncm2-markdown-subscope' " Detect in Markdown documents
+Plug 'malramsay64/ncm2-pandoc-subscope' " Detect in Markdown and pandoc documents
 Plug 'ncm2/ncm2-rst-subscope'      " Detect in reStructured Text documents
 
 " Snippets
