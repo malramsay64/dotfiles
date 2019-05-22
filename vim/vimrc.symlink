@@ -625,6 +625,9 @@ set completeopt=noinsert,menuone,noselect
 
 let g:ncm2#matcher = 'substrfuzzy'
 
+" Increse the delay before the popup appears
+let g:ncm2#popup_delat = 250
+
 augroup ncm2
   autocmd!
   autocmd BufRead * call ncm2#enable_for_buffer()
