@@ -17,7 +17,6 @@ set $right l
 
 # Your preferred terminal emulator
 set $term alacritty
-set $term_wd ~/dotfiles/bin/alacritty-cwd
 
 # Preferred web browser
 set $browser qutebrowser
@@ -105,7 +104,6 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 #
     # start a terminal
     bindsym $mod+Return exec $term
-    # bindsym $mod+Shift+Return exec $term_wd
 
     # kill focused window
     bindsym $mod+q kill
@@ -144,9 +142,6 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
     floating_modifier $mod normal
-
-    # reload the configuration file
-    bindsym $mod+Shift+c reload
 
     # exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
@@ -264,7 +259,7 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     bindsym $mod+space focus mode_toggle
 
     # move focus to the parent container
-    bindsym $mod+a focus parent
+    # bindsym $mod+a focus parent
 
     # Configure gaps
     gaps inner $gap_inner_default
