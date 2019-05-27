@@ -18,27 +18,22 @@ set -g status-right-length 150
 set -g status-interval 5
 
 # default status bar colours
-set-option -g status-fg $tm_colour_active
-set-option -g status-bg default
-set-option -g status-attr default
+set-option -g status-style "fg=$tm_colour_active"
 
 # default window title colours
-set-window-option -g window-status-fg $tm_colour_inactive
-set-window-option -g window-status-bg default
+set-window-option -g window-status-style "fg=$tm_colour_inactive"
 set -g window-status-format "#I #W"
 
 # active window title colors
-set-window-option -g window-status-current-fg $tm_colour_active
-set-window-option -g window-status-current-bg default
+set-window-option -g window-status-current-style "fg=$tm_colour_active"
 set-window-option -g  window-status-current-format "#[bold]#I #W"
 
 # pane border
-set-option -g pane-border-fg $tm_colour_inactive
-set-option -g pane-active-border-fg $tm_active_border_colour
+set-option -g pane-border-style "fg=$tm_colour_inactive"
+set-option -g pane-active-border-style "fg=$tm_active_border_colour"
 
 # message text
-set-option -g message-bg default
-set-option -g message-fg $tm_colour_active
+set-option -g message-style "fg=$tm_colour_active"
 
 # pane number display
 set-option -g display-panes-active-colour $tm_colour_active
@@ -60,4 +55,3 @@ set -g status-left $tm_session_name' '
 set -g status-right $tm_tunes' '$tm_battery' '$tm_date' '$tm_user$tm_nocolour' @ '$tm_host
 
 #}}}
-
