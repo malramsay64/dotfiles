@@ -24,7 +24,6 @@ set -x PATH (__check_path_exists $HOME/.fzf/bin) $PATH
 set -x PATH (__check_path_exists $HOME/dotfiles/bin) $PATH
 set -x PATH (__check_path_exists $HOME/bin) $PATH
 set -x PATH (__check_path_exists $HOME/.local/bin) $PATH
-set -x PATH (__check_path_exists $HOME/.miniconda/bin) $PATH
 
 if type -q nvim
     set -x EDITOR 'nvim'
@@ -52,7 +51,7 @@ if not functions -q fisher
     fish -c fisher
 end
 
-source (conda info --root)/etc/fish/conf.d/conda.fish
+source $HOME/.miniconda/etc/fish/conf.d/conda.fish
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 eval (eval $HOME/.miniconda/bin/conda "shell.fish" "hook" $argv)
