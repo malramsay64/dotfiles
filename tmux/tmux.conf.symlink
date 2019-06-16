@@ -79,12 +79,4 @@ set-window-option -g mode-keys vi
 source "$HOME/dotfiles/tmux/theme.sh"
 
 #}}}
-# Plugins {{{
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-battery'
-set -g @plugin 'tmux-plugins/tmux-yank'
-
-run '~/.tmux/plugins/tpm/tpm'
-# }}}
 # vim: ft=conf foldmethod=marker
