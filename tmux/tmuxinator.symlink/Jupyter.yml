@@ -30,4 +30,4 @@ attach: false
 windows:
   - server:
       panes:
-        - jupyter lab
+        - jupyter lab --no-browser
