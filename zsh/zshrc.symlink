@@ -68,11 +68,6 @@ function source_file() {
 # Aliases
 source_file "$DOTFILES/zsh/aliases.zsh"
 
-# set TERM appropriately
-if [[ "$TERM" == "tmux-256color" ]] && [[ $(tmux -V | awk "{print $2}") < 2 ]]; then
-    export TERM="screen-256color"
-fi
-
 # Turn off system colours as they have a habit of ruining things
 export LS_COLORS=
 
@@ -212,14 +207,6 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
     zprof
     unsetopt xtrace
     exec 2>&-
-fi
-
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    export TERM=xterm-256color
-else
-  case $(ps -o comm= -p $PPID) in
-    sshd|*/sshd) export TERM=xterm-256color
-  esac
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
