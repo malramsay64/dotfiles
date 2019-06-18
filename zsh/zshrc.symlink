@@ -152,8 +152,6 @@ fi
 
 # update PATH for google cloud SDK
 source_file "$HOME/.local/google-cloud-sdk/path.zsh.inc"
-# enable shell completion for gcloud
-# source_file "$HOME/.local/google-cloud-sdk/completion.zsh.inc"
 # Source local changes
 source_file "$HOME/.bashrc.local"
 # Source travis config
