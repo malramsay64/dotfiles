@@ -39,6 +39,7 @@ set $menu dmenu_path | j4-dmenu-desktop --dmenu="rofi -dmenu -i" | xargs swaymsg
 
 # Launch mako, a notification handler
 exec --no-startup-id mako
+exec --no-startup-id redshift
 
 ### Output configuration
 #
