@@ -21,6 +21,7 @@ set -x PATH (__check_path_exists /usr/local/bin) $PATH
 set -x PATH (__check_path_exists $HOME/go/bin) $PATH
 set -x PATH (__check_path_exists $HOME/.fzf/bin) $PATH
 set -x PATH (__check_path_exists $HOME/dotfiles/bin) $PATH
+set -x PATH (__check_path_exists $HOME/bin) $PATH
 set -x PATH (__check_path_exists $HOME/.local/bin) $PATH
 set -x PATH (__check_path_exists $HOME/.miniconda/bin) $PATH
 
