@@ -5,12 +5,6 @@
 # This is stuff that I don't really care about what it does, just that it works behind the scenes to
 # make my life easier.
 
-alias cp='cp -iv'       # Confirm overwrite of file, list files on copying
-alias mv='mv -iv'       # Confirm overwrite of file, list files on moving
-alias la='ls -a'        # List hidden files
-alias ll='ls -l'        # List in long form
-alias mkdir='mkdir -pv' # Make all folders in path given, lists directories as they are created
-
 if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -G'
     cd() { builtin cd "$@"; [[ $? == 0 ]] && ls -G ;}
@@ -18,6 +12,16 @@ else
     alias ls='ls --color=auto'
     cd() { builtin cd "$@"; [[ $? == 0 ]] && ls --color=auto ;}
 fi
+
+if type exa > /dev/null; then
+    alias ls='exa'
+fi
+
+alias cp='cp -iv'       # Confirm overwrite of file, list files on copying
+alias mv='mv -iv'       # Confirm overwrite of file, list files on moving
+alias la='ls -a'        # List hidden files
+alias ll='ls -l'        # List in long form
+alias mkdir='mkdir -pv' # Make all folders in path given, lists directories as they are created
 
 alias grep='grep --color=AUTO'
 alias c='clear'
@@ -50,14 +54,12 @@ alias mux='tmuxinator'
 typeset -a abbr
 abbr=()
 
-function abbr()
-{
+function abbr() {
     alias $1
     abbr+=(${1%%\=*})
 }
 
-function expand-abbr()
-{
+function expand-abbr() {
     if [[ $LBUFFER =~ "(^|[;|&])\s*(${(j:|:)abbr})\$" ]]; then
         zle _expand_alias
     fi
