@@ -127,7 +127,6 @@ Plug 'farmergreg/vim-lastplace'         " Remember last location in files
 Plug 'gioele/vim-autoswap'              " Automatically deal with swap files
 Plug 'tommcdo/vim-lion'                 " Align based on characters
 Plug 'lambdalisue/suda.vim'             " Allow write with sudo
-Plug 'malramsay64/vimpyter', Cond(executable('jupytext'))  " Edit juptyer notebooks in Vim
 Plug 'kassio/neoterm'
 Plug 'direnv/direnv.vim'
 Plug 'vimlab/split-term.vim'
