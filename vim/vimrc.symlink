@@ -755,4 +755,78 @@ nnoremap <silent> <space>wn :execute 'lcd '.fnameescape(g:notes_dir).' <bar> edi
 nnoremap gf :e <cfile><CR>
 
 " }}}
+" Vimwiki {{{
+
+nmap <Leader>wj <Plug>VimwikiDiaryPrevDay
+nmap <Leader>wk <Plug>VimwikiDiaryNextDay
+
+let g:vimwiki_folding = 'syntax'
+let g:vimwiki_ext2syntax = {
+      \'.md': 'markdown',
+      \ '.mkd': 'markdown',
+      \ '.wiki': 'media'
+      \}
+
+" Wiki settings
+let s:wiki_default = {}
+let s:wiki_default.auto_export = 0
+let s:wiki_default.auto_toc = 0
+let s:wiki_default.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh'}
+let s:wiki_default.syntax = 'markdown'
+let s:wiki_default.ext = '.md'
+
+let s:home_wiki = copy(s:wiki_default)
+let s:home_wiki.path = '~/Documents/notes/personal/'
+let s:home_wiki.diary_rel_path = 'diary/'
+let s:home_wiki.path_html = '~/Documents/notes/html/personal/'
+
+let s:phd_wiki = copy(s:wiki_default)
+let s:phd_wiki.path = '~/Documents/notes/PhD/'
+let s:phd_wiki.diary_rel_path = 'logbook/'
+let s:phd_wiki.diary_index = 'index'
+let s:phd_wiki.diary_header = 'PhD Logbook'
+let s:phd_wiki.path_html = '~/Documents/notes/html/PhD/'
+let s:phd_wiki.auto_export = 1
+let s:phd_wiki.html_template = '~/Documents/notes/template.html'
+let s:phd_wiki.template_path = '~/Documents/notes/'
+let s:phd_wiki.template_default = 'template'
+let s:phd_wiki.template_ext = '.html'
+
+let g:vimwiki_list = [s:home_wiki, s:phd_wiki]
+
+" Custom image handler for html
+function! VimwikiWikiIncludeHandler(value)
+    let l:str = a:value
+
+    " complete URL
+    let l:url_0 = matchstr(l:str, vimwiki#vars#get_global('rxWikiInclMatchUrl'))
+    " URL parts
+    let l:link_infos = vimwiki#base#resolve_link(l:url_0)
+    let l:descr = matchstr(l:str, vimwiki#html#incl_match_arg(1))
+    let l:verbatim_str = matchstr(l:str, vimwiki#html#incl_match_arg(2))
+
+    let l:link_infos = vimwiki#base#resolve_link(l:url_0)
+
+    let l:url = l:link_infos.filename
+
+    let l:url = escape(l:url, '#')
+
+    if fnamemodify(l:url, ':e') =~? 'pdf'
+        let l:line = '<figure>'.
+                    \ '<object data='.l:url." type='application/pdf' height=100% width=100%></object>".
+                    \'<figcaption>Fig: '.l:descr.'</figcaption>'.
+                    \'</figure>'
+    else
+        let l:line = '<figure>'.
+                    \ vimwiki#html#linkify_image(l:url, l:descr, l:verbatim_str).
+                    \'<figcaption>Fig: '.l:descr.'</figcaption>'.
+                    \'</figure>'
+    endif
+
+    " Return the empty string when unable to process link
+    return l:line
+endfunction
+
+
+"}}}
 " vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2
