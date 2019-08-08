@@ -4,8 +4,9 @@ create_default_packages:
   - pip
 channels:
   - defaults
-  - glotzer
+  - anaconda
   - conda-forge
+  - glotzer
   - malramsay
 changeps1: False
 auto_activate_base: false
