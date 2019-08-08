@@ -130,8 +130,7 @@ Plug 'lambdalisue/suda.vim'             " Allow write with sudo
 Plug 'kassio/neoterm'
 Plug 'direnv/direnv.vim'
 Plug 'vimlab/split-term.vim'
-
-Plug 'malramsay64/nvim-project-log', Cond(has('nvim'), { 'do': ':UpdateRemotePlugins' })
+Plug 'vimwiki/vimwiki'
 
 " all plugins must be added before this line
 call plug#end()
