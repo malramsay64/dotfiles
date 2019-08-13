@@ -770,8 +770,8 @@ let g:vimwiki_global_ext = 0
 
 " Wiki settings
 let s:wiki_default = {}
-let s:wiki_default.auto_export = 1
-let s:wiki_default.auto_toc = 0
+let s:wiki_default.auto_export = 0
+let s:wiki_default.auto_toc = 1
 let s:wiki_default.nested_syntaxes = {'python': 'python', 'c++': 'cpp', 'sh': 'sh'}
 let s:wiki_default.syntax = 'markdown'
 let s:wiki_default.ext = '.md'
@@ -787,7 +787,7 @@ let s:phd_wiki.diary_rel_path = 'logbook/'
 let s:phd_wiki.diary_index = 'index'
 let s:phd_wiki.diary_header = 'PhD Logbook'
 let s:phd_wiki.path_html = '~/Documents/notes/html/PhD/'
-let s:phd_wiki.auto_export = 1
+let s:phd_wiki.auto_export = 0
 let s:phd_wiki.html_template = '~/Documents/notes/template.html'
 let s:phd_wiki.template_path = '~/Documents/notes/'
 let s:phd_wiki.template_default = 'template'
