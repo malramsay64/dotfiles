@@ -107,6 +107,7 @@ Plug 'majutsushi/tagbar'                " Tagbar with useful information
 
 " Git Plugins
 Plug 'tpope/vim-fugitive'               " git integration
+Plug 'tpope/vim-rhubarb'                " hub integration
 Plug 'jez/vim-github-hub'               " Formatting of hub commit, issues, pull-requests
 Plug 'junegunn/gv.vim'                  " Browse git history
 Plug 'whiteinge/diffconflicts'
