@@ -361,7 +361,7 @@ let g:ale_sign_warning = '--'
 let g:ale_linter_aliases = {'pandoc': ['markdown']}
 
 let g:ale_linters = {
-      \ 'python': ['pylint', 'mypy', 'pydocstyle'],
+      \ 'python': ['flake8', 'pylint', 'mypy', 'pydocstyle'],
       \ 'c++': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'c': ['clangd'],
