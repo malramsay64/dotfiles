@@ -99,12 +99,6 @@ Plug 'ron89/thesaurus_query.vim',  { 'on': ['ThesaurusQueryReplaceCurrentWord', 
 Plug 'haya14busa/incsearch.vim'         " Auto unhighlight search results
 Plug 'wincent/scalpel'
 
-" Tags
-if executable("ctags")
-    Plug 'ludovicchabant/vim-gutentags'    " ctag support
-endif
-Plug 'majutsushi/tagbar'                " Tagbar with useful information
-
 " Git Plugins
 Plug 'tpope/vim-fugitive'               " git integration
 Plug 'tpope/vim-rhubarb'                " hub integration
