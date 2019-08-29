@@ -5,6 +5,7 @@
 # This is stuff that I don't really care about what it does, just that it works behind the scenes to
 # make my life easier.
 
+# Colour in ls prompt and ls on cd
 if [[ $(uname) == "Darwin" ]]; then
     alias ls='ls -G'
     cd() { builtin cd "$@"; [[ $? == 0 ]] && ls -G ;}
@@ -13,9 +14,12 @@ else
     cd() { builtin cd "$@"; [[ $? == 0 ]] && ls --color=auto ;}
 fi
 
+# Use exa instead of ls when it is available
 if type exa > /dev/null; then
     alias ls='exa'
+    cd() { builtin cd "$@"; [[ $? == 0 ]] && exa ;}
 fi
+
 
 alias cp='cp -iv'       # Confirm overwrite of file, list files on copying
 alias mv='mv -iv'       # Confirm overwrite of file, list files on moving
