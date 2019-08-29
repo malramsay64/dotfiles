@@ -183,13 +183,6 @@ if type qstat >/dev/null; then
     abbr qsi='qsub -I -P PRJ-CrysGrowth'
 fi
 
-# Directory abreviations
-abbr cm="~/Projects/Crystal_Melting"
-abbr ss="~/Projects/statdyn-simulation"
-abbr sa="~/Projects/statdyn-analysis"
-abbr th="~/Projects/phd-thesis"
-abbr dot="~/dotfiles"
-
 # Add local completions to search path
 fpath+="$DOTFILES/zsh/completions"
 
