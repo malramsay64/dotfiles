@@ -172,8 +172,9 @@ abbr g='git'
 abbr gap='git add -p'
 abbr gst='git status'
 
-# Cause I can never spell install correctly
+# Common spelling corrections
 abbr isntall='install'
+abbr juptyer='jupyter'
 
 # PBS aliases
 if type qstat >/dev/null; then
