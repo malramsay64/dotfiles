@@ -25,6 +25,7 @@ call plug#begin()
 
 " Colourschemes
 Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'NLKNguyen/papercolor-theme'
 
 " Examine syntax highlighting rules
 Plug 'gerw/vim-HiLinkTrace', { 'on': ['HLT', 'HLT!'] }
