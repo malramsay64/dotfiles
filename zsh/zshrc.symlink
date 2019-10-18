@@ -208,6 +208,14 @@ fi
 # added by travis gem
 [ -f /home/malcolm/.travis/travis.sh ] && source /home/malcolm/.travis/travis.sh
 
+# Configure rustup
+[ -f $HOME/malcolm/cargo ] && source $HOME/.cargo/env
+
+# Configure pazi if available
+if command -v pazi &>/dev/null; then
+  eval "$(pazi init zsh)"
+fi
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('$HOME/.miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
