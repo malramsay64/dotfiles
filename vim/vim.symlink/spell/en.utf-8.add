@@ -465,3 +465,9 @@ matplotlib
 PyMC3
 JupyterHub
 emoji
+monolayer
+PRNG
+Saru
+PCG
+linting
+pytest
