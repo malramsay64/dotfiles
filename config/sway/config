@@ -33,7 +33,8 @@ set $resize_len 50px
 
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | j4-dmenu-desktop --dmenu="rofi -dmenu -i" | xargs swaymsg exec
+for_window [title="Launcher"] floating enable, border pixel 10, sticky enable
+set $menu exec alacritty --title Launcher -d 55 18 -e env TERMINAL_COMMAND="alacritty -e" ~/Documents/Programming/sway-launcher-desktop/sway-launcher-desktop.sh
 
 ### Launch applications
 
