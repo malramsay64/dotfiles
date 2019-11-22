@@ -6,13 +6,46 @@
 # initialisation of the shell.
 #
 
+#
+# General Configuration
+#
+
+# Change to directory when passed on command line
+setopt auto_cd
+
+# Auto directory pushd
+# then you can get dirs list by cd -[tab]
+setopt auto_pushd
+
+unsetopt beep
+bindkey -v
+
+# Use async for autosuggestions
+ZSH_AUTOSUGGEST_USE_ASYNC=True
+
+# bash style word delimiter for <C>-w
+autoload -U select-word-style
+select-word-style bash
+
+# Equivalent of set backspace=indent,eol,start in vim
+bindkey "^?" backward-delete-char
+
+#
+# Command History
+#
+
+# Configure history in zsh
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory sharehistory incappendhistory autocd extendedglob
+
+
 function source_file() {
     if [ -f "$1" ]; then
         source $1
     fi
 }
-
-export _Z_DATA=$HOME/.config/z/data
 
 # Turn off system colours as they have a habit of ruining things
 export LS_COLORS=
@@ -32,6 +65,9 @@ add_to_path "$HOME/.bin"
 add_to_path "$HOME/bin"
 add_to_path "$HOME/.local/bin"
 
+# Add local completions to search path
+fpath+="$DOTFILES/zsh/completions"
+
 if type nvim > /dev/null; then
     export EDITOR=nvim
 fi
@@ -43,3 +79,5 @@ export MANPAGER="$EDITOR +'set ft:man' -"
 # Configure nnn
 export NNN_USE_EDITOR=1
 export NNN_BMS='d:~/Documents;D:~/Downloads/;p:~/Projects;P:~/Documents/Programming'
+
+export DOTFILES="$HOME/dotfiles"

@@ -11,5 +11,4 @@ srijanshetty/zsh-pandoc-completion
 ninrod/pass-zsh-completion
 
 # Load these last
-sindresorhus/pure
 zsh-users/zsh-history-substring-search

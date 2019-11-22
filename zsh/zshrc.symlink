@@ -1,5 +1,9 @@
 #
+
 #
+# Profile zsh startup
+#
+
 # Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
 PROFILE_STARTUP=false
 if [[ "$PROFILE_STARTUP" == true ]]; then
@@ -10,72 +14,13 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
     setopt xtrace prompt_subst
 fi
 
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle ':completion:*' max-errors 2
-zstyle ':completion:*' menu select
-# zstyle :compinstall filename "$HOME/.zshrc"
-zstyle ':completion::complete:*' use-cache 1
+#
+# Plugins
+#
 
-# 0 -- vanilla completion (abc => abc)
-# 1 -- smart case completion (abc => Abc)
-# 2 -- word flex completion (abc => A-big-Car)
-# 3 -- full flex completion (abc => ABraCadabra)
-zstyle ':completion:*' matcher-list '' \
-  'm:{a-z\-}={A-Z\_}' \
-  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
-  'r:|?=** m:{a-z\-}={A-Z\_}'
-
-
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory sharehistory incappendhistory autocd extendedglob
-unsetopt beep
-bindkey -v
-
-# ------------------------------------
-# cd
-# ------------------------------------
-setopt auto_cd
-
-# Auto directory pushd
-# that you can get dirs list by cd -[tab]
-setopt auto_pushd
-
-# Use async for autosuggestions
-ZSH_AUTOSUGGEST_USE_ASYNC=True
-
-# Use histdb timer to time each command
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd  histdb-update-outcome
-# bash style word delimiter for <C>-w
-autoload -U select-word-style
-select-word-style bash
-
-export _Z_DATA=$HOME/.config/z/data
-export DOTFILES="$HOME/dotfiles"
-export _Z_DATA="$HOME/.z/z"
 # Source zsh plugins
-# This needs to be a standard source for some reason
+# This needs to be a standard source, so can't use source_file function
 source "$DOTFILES/zsh/sourceables.sh"
-# this includes the source_file function
-
-function source_file() {
-    if [ -f "$1" ]; then
-        source $1
-    fi
-}
-# Aliases
-source_file "$DOTFILES/zsh/aliases.zsh"
-
-# Turn off system colours as they have a habit of ruining things
-export LS_COLORS=
-
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-if [[ -f $HOME/.ssh/config ]]; then
-  hosts=($(egrep '^Host.*' $HOME/.ssh/config | awk '{print $2}' | grep -v '^*' | sed -e 's/\.*\*$//'))
-  zstyle ':completion:*:hosts' hosts $hosts
-fi
 
 # Use histdb timer to time each command
 autoload -Uz add-zsh-hook
@@ -101,39 +46,11 @@ autoload -U promptinit; promptinit
 
 # Time before prompt displays execution time
 PURE_CMD_MAX_EXEC_TIME=10
-# The default symbol doesn't work with Iosevka
-# PURE_PROMPT_SYMBOL=〉
 PURE_GIT_UNTRACKED_DIRTY=0
-
-# Equivalent of set backspace=indent,eol,start in vim
-bindkey "^?" backward-delete-char
-
-# fzf configuratioin
-source_file "$HOME/.fzf/shell/key-bindings.zsh"
-if type rg > /dev/null; then
-    # Use ripgrep for fzf search
-    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-    # Use ripgrep for ctrl-T search
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-fi
 
 # Use neovim-remote when in a neovim buffer
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     alias_function "nvim" "nvr"
-fi
-
-if type "fasd" >/dev/null; then
-    eval "$(fasd --init auto)"
-
-    alias a='fasd -a'        # any
-    alias s='fasd -si'       # show / search / select
-    alias d='fasd -d'        # directory
-    alias f='fasd -f'        # file
-    alias sd='fasd -sid'     # interactive directory selection
-    alias sf='fasd -sif'     # interactive file selection
-    alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-    alias zz='fasd_cd -d -i' # cd with interactive selection
-
 fi
 
 # Have consistent location for forwarded ssh authentication socket
@@ -145,76 +62,11 @@ elif [[ "$SSH_AUTH_SOCK" == /run/* ]]; then
     export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent-sock"
 fi
 
-# update PATH for google cloud SDK
-source_file "$HOME/.local/google-cloud-sdk/path.zsh.inc"
-# Source local changes
-source_file "$HOME/.bashrc.local"
-# Source travis config
-source_file "$HOME/.travis/travis.sh"
-
-# Source pyenv if present
-if type pyenv >/dev/null; then
-    eval "$(pyenv init - --no-rehash)"
-    eval "$(pyenv virtualenv-init -)"
-fi
-
-# Source direnv if present
-if type direnv >/dev/null; then
-    eval "$(direnv hook zsh)"
-fi
-
-# Abbreviations
 #
-# These are expanded in the shell
-abbr ravp='rsync -av --progress'
-abbr rex='rsync -rltDvP'
-abbr g='git'
-abbr gap='git add -p'
-abbr gst='git status'
+# Initialise Programs
+#
 
-# Common spelling corrections
-abbr isntall='install'
-abbr juptyer='jupyter'
-
-# PBS aliases
-if type qstat >/dev/null; then
-    abbr qs='qstat -t -u $USER'
-    abbr qsu='qstat -u $USER'
-    abbr qdelall='qdel $(qstat -u $USER | grep ^[0-9] | cut -d. -f1 | tr "\n" " ")'
-    abbr qsi='qsub -I -P PRJ-CrysGrowth'
-fi
-
-# Add local completions to search path
-fpath+="$DOTFILES/zsh/completions"
-
-# Load Completions
-autoload -Uz compinit
-typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
-if [ $(date +'%j') != $updated_at ]; then
-  compinit -i
-else
-  compinit -C -i
-fi
-unset updated_at
-
-if [[ "$PROFILE_STARTUP" == true ]]; then
-    zprof
-    unsetopt xtrace
-    exec 2>&-
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# added by travis gem
-[ -f /home/malcolm/.travis/travis.sh ] && source /home/malcolm/.travis/travis.sh
-
-# Configure rustup
-[ -f $HOME/malcolm/cargo ] && source $HOME/.cargo/env
-
-# Configure pazi if available
-if command -v pazi &>/dev/null; then
-  eval "$(pazi init zsh)"
-fi
+# Conda
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -230,3 +82,106 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# Initialise and configure FZF
+source_file "$HOME/.fzf/shell/key-bindings.zsh"
+if command -v rg > /dev/null; then
+    # Use ripgrep for fzf search
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+    # Use ripgrep for ctrl-T search
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
+# Initialise google cloud sdk
+source_file "$HOME/.local/google-cloud-sdk/path.zsh.inc"
+
+# Configure rustup
+source_file $HOME/.cargo/env
+
+# Initialise pazi command (directory jumper)
+if command -v pazi > /dev/null; then
+  eval "$(pazi init zsh)"
+fi
+
+# Initialise direnv (auto activate environment)
+if command -v direnv > /dev/null; then
+    eval "$(direnv hook zsh)"
+fi
+
+# Initialise startship (prompt)
+if command -v starship > /dev/null; then
+    eval "$(starship init zsh)"
+fi
+
+#
+# Abbreviations
+#
+
+# Aliases
+source_file "$DOTFILES/zsh/aliases.zsh"
+
+# These are expanded in the shell
+abbr ravp='rsync -av --progress'
+abbr rex='rsync -rltDvP'
+abbr g='git'
+abbr gap='git add -p'
+abbr gst='git status'
+
+# Common spelling corrections
+abbr isntall='install'
+abbr juptyer='jupyter'
+
+# PBS aliases
+if command -v qstat 2>/dev/null; then
+    abbr qs='qstat -t -u $USER'
+    abbr qsu='qstat -u $USER'
+    abbr qdelall='qdel $(qstat -u $USER | grep ^[0-9] | cut -d. -f1 | tr "\n" " ")'
+    abbr qsi='qsub -I -P PRJ-CrysGrowth'
+fi
+
+
+#
+# Completions
+#
+
+# Configure completion options
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' max-errors 2
+zstyle ':completion:*' menu select
+zstyle ':completion::complete:*' use-cache 1
+
+# 0 -- vanilla completion (abc => abc)
+# 1 -- smart case completion (abc => Abc)
+# 2 -- word flex completion (abc => A-big-Car)
+# 3 -- full flex completion (abc => ABraCadabra)
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-z\-}={A-Z\_}' \
+  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
+  'r:|?=** m:{a-z\-}={A-Z\_}'
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+if [[ -f $HOME/.ssh/config ]]; then
+  hosts=($(egrep '^Host.*' $HOME/.ssh/config | awk '{print $2}' | grep -v '^*' | sed -e 's/\.*\*$//'))
+  zstyle ':completion:*:hosts' hosts $hosts
+fi
+
+# Load Completions
+autoload -Uz compinit
+typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
+if [ $(date +'%j') != $updated_at ]; then
+  compinit -i
+else
+  compinit -C -i
+fi
+unset updated_at
+
+#
+# Profile End
+#
+
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    zprof
+    unsetopt xtrace
+    exec 2>&-
+fi
