@@ -77,6 +77,9 @@ Plug 'ncm2/ncm2-jedi'              " Python completion with Jedi
 Plug 'ncm2/ncm2-ultisnips'         " Ultisnips snippet completion
 Plug 'ncm2/ncm2-tmux'              " Completion from other tmux panes
 Plug 'ncm2/ncm2-pyclang'
+if has("nvim-0.4.0")                " Floating window support arrived in 0.4.0
+    Plug 'ncm2/float-preview.nvim'
+endif
 
 " Sub-scopes
 " These plugins detect other programming languages within a document and activate the relevant
