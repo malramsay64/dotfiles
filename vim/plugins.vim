@@ -115,7 +115,7 @@ Plug 'tpope/vim-surround'               " surround text with characters
 Plug 'tpope/vim-repeat'                 " repeat with plugins
 Plug 'tpope/vim-unimpaired'             " complimentary mappings
 Plug 'tpope/vim-speeddating'            " incr/decr dates
-Plug 'tpope/vim-vinegar'                " Make netrw useable
+Plug 'justinmk/vim-dirvish'             " Directory manipulation
 Plug 'tpope/vim-abolish'                " Coercion and useful tools
 Plug 'scrooloose/nerdcommenter'         " commenting code
 Plug 'PeterRincker/vim-argumentative'   " manipulating function arguments
