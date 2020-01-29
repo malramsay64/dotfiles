@@ -108,7 +108,7 @@ Plug 'tpope/vim-rhubarb'                " hub integration
 Plug 'jez/vim-github-hub'               " Formatting of hub commit, issues, pull-requests
 Plug 'junegunn/gv.vim'                  " Browse git history
 Plug 'whiteinge/diffconflicts'
-Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'           " git diffs
 
 " General Plugins
 Plug 'tpope/vim-surround'               " surround text with characters
