@@ -113,6 +113,9 @@ if command -v starship > /dev/null; then
     eval "$(starship init zsh)"
 fi
 
+# Configure gpg-agent for ssh keys
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
 #
 # Abbreviations
 #
