@@ -1,19 +1,18 @@
 #!/bin/sh
-# Give dmenu list of all unicode characters to copy.
+# Give bemenu list of all unicode characters to copy.
 # Shows the selected character in dunst if running.
 
-# Must have xclip installed to even show menu.
-xclip -h >/dev/null || exit
+# Must have wl-copy installed to even show menu.
+command wl-copy || exit
 
 chosen=$(grep -v "#" -h ~/dotfiles/resources/emoji ~/dotfiles/resources/font-awesome |
-    dmenu -i -l 20 -fn Roboto-18)
+    bemenu -i --fn Iosevka 14)
 
 [ "$chosen" != "" ] || exit
 
 c=$(echo "$chosen" | sed "s/ .*//")
-echo "$c" | tr -d '\n' | xclip -selection clipboard
+# Copy to primary clipboard => when text is highlighted
+wl-copy --primary --no-newline $c
+# Copy to clipboard
+wl-copy --no-newline "$c"
 notify-send "'$c' copied to clipboard." &
-
-s=$(echo "$chosen" | sed "s/.*; //" | awk '{print $1}')
-echo "$s" | tr -d '\n' | xclip
-notify-send "'$s' copied to primary." &
