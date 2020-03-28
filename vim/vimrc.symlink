@@ -748,13 +748,6 @@ augroup LSP
 augroup END
 
 " }}}
-" My Notes {{{
-
-let g:notes_dir = '~/Documents/PhD/notes'
-nnoremap <silent> <space>wn :execute 'lcd '.fnameescape(g:notes_dir).' <bar> edit index.md'<CR>
-nnoremap gf :e <cfile><CR>
-
-" }}}
 " Vimwiki {{{
 
 nmap <Leader>wj <Plug>VimwikiDiaryPrevDay
@@ -830,4 +823,12 @@ endfunction
 
 
 "}}}
+" floaterm {{{
+
+let g:floaterm_position = 'center'
+let g:floaterm_keymap_toggle = '<space>t'
+hi FloatermNF guibg=None
+hi FloatermBorderNF guifg=cyan
+
+" }}}
 " vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2
