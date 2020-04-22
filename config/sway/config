@@ -36,12 +36,6 @@ set $resize_len 50px
 for_window [title="Launcher"] floating enable, border pixel 10, sticky enable
 set $menu exec alacritty --title Launcher -d 55 18 -e env TERMINAL_COMMAND="alacritty -e" ~/Documents/Programming/sway-launcher-desktop/sway-launcher-desktop.sh
 
-### Launch applications
-
-# Launch mako, a notification handler
-exec --no-startup-id mako
-exec --no-startup-id redshift
-
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
