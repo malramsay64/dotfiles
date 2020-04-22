@@ -50,7 +50,9 @@ PURE_GIT_UNTRACKED_DIRTY=0
 
 # Use neovim-remote when in a neovim buffer
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-    alias_function "nvim" "nvr"
+    if type nvr > /dev/null; then
+        alias nvim='nvr'
+    fi
 fi
 
 # Have consistent location for forwarded ssh authentication socket
