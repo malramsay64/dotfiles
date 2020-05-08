@@ -33,7 +33,7 @@ set $resize_len 50px
 
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-wofi --term=alacritty --show=drun
+set $menu wofi --show drun -i | xargs swaymsg exec --¬
 
 ### Output configuration
 #
