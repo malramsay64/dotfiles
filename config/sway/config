@@ -334,7 +334,7 @@ bar {
 
     position top
 
-    status_command ~/.local/bin/i3status-rs ~/.config/i3status/status.toml
+    status_command i3status-rs ~/.config/i3status/status.toml
 
     colors {
         # Use a transparent background for the bar
