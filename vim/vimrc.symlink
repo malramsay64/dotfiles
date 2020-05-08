@@ -722,11 +722,12 @@ let g:neoterm_autoinsert = 1
 let g:neoterm_default_mod = 'keepalt'
 let g:neoterm_autoscroll = 1
 
-" }}} Language client neovim {{{
+" }}}
+" Language client neovim {{{
 
 let g:LanguageClient_serverCommands = {
   \ 'cpp': ['clangd'],
-  \ 'rust': ['rls'],
+  \ 'rust': ['rust-analyzer'],
   \ }
 
 function! SetLSPShortcuts()
