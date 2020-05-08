@@ -346,4 +346,5 @@ bar {
     }
 }
 
+# Local sway configuration
 include @sysconfdir@/sway/config.d/*
