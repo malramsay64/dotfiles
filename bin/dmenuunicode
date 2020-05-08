@@ -6,7 +6,7 @@
 command wl-copy || exit
 
 chosen=$(grep -v "#" -h ~/dotfiles/resources/emoji ~/dotfiles/resources/font-awesome |
-    bemenu -i --fn Iosevka 14)
+    wofi -i --show=dmenu)
 
 [ "$chosen" != "" ] || exit
 
