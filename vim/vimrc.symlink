@@ -479,11 +479,6 @@ noremap <leader>u :UndotreeToggle<CR>
 nmap <Leader>s <Plug>(Scalpel)
 
 "  }}}
-" Tagbar {{{
-
-nnoremap <Leader>t :TagbarToggle<CR>
-
-" }}}
 " project-log {{{
 
 let g:project_home = $HOME.'/Projects/'
