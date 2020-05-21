@@ -8,5 +8,6 @@ channels:
   - conda-forge
   - glotzer
   - malramsay
-changeps1: False
+changeps1: false
 auto_activate_base: false
+ssl_verify: true
