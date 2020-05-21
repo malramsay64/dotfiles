@@ -787,7 +787,12 @@ let s:phd_wiki.template_path = '~/Documents/notes/'
 let s:phd_wiki.template_default = 'template'
 let s:phd_wiki.template_ext = '.html'
 
-let g:vimwiki_list = [s:home_wiki, s:phd_wiki]
+let s:inter_wiki = copy(s:wiki_default)
+let s:inter_wiki.path = '~/Documents/Work/Intersect/notes/'
+let s:inter_wiki.diary_rel_path = 'diary/'
+let s:inter_wiki.path_html = '~/Documents/Work/Intersect/html/personal/'
+
+let g:vimwiki_list = [s:home_wiki, s:phd_wiki, s:inter_wiki]
 
 " Custom image handler for html
 function! VimwikiWikiIncludeHandler(value)
