@@ -1,17 +1,16 @@
 # Plug managed directory
-vim/vim.symlink/plugged
-vim/vim.symlink/autoload/plug.vim.old
-vim/vim.symlink/autoload/plug.vim
+config/nvim/plugged
+config/nvim/autoload/plug.vim
 
 # Ignoring most spell files
-vim/vim.symlink/spell
+config/nvim/spell
 *.spl
 
 # Ignoring vim files
 .netrwhist
-vim/vim.symlink/view
-vim/vim.symlink/bundle
-vim/vim.symlink/black
+config/nvim/view
+config/nvim/bundle
+config/nvim/black
 
 # Ignoring taskwarrior config and data files
 task/task.symlink/*.pem
