@@ -6,7 +6,6 @@ setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
 
-UltiSnipsAddFiletypes tex.plaintex
+call UltiSnipsAddFiletypes tex.plaintex
 
 setlocal makeprg="latexmk -pdf -outdir=output "
-

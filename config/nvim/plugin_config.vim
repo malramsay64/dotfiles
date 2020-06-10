@@ -1,296 +1,3 @@
-" Malcolm Ramsay  .vimrc
-"
-"General {{{
-
-if !has('nvim')
-    set encoding=utf-8
-endif
-
-scriptencoding utf-8
-
-source $HOME/dotfiles/vim/plugins.vim   " load plugins
-
-set autoread                            " Vim automatically reads changes to a file
-
-augroup vimrc
-    autocmd!
-    autocmd BufEnter * :checktime       " Reload changes on FocusGained
-augroup END
-
-filetype plugin indent on               " load filetype specific indent and plugin files
-
-""" Python configuration
-let g:loaded_python_provider = 1
-
-if isdirectory($HOME.'/.miniconda/envs/neovim')
-    let g:python3_host_prog = $HOME.'/.miniconda/envs/neovim/bin/python'
-endif
-
-let g:email = 'malramsay64@gmail.com'
-let g:username = 'Malcolm Ramsay'
-
-" Use existing neovim session if opening from terminal
-if has('nvim') && executable('nvr')
-  let $VISUAL = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
-endif
-
-if exists('&belloff')
-    set belloff=all                     " Turn off all bells
-endif
-
-"}}}
-"Colours {{{
-
-syntax enable                           " enable syntax processing
-
-" Enable truecolour support in neovim >= 0.1.5 || vim >= 7.4.1799
-if has('termguicolors')
-    set termguicolors
-endif
-
-" Load colourscheme in vim with tmux
-if !has('nvim')
-    set t_8b=[48;2;%lu;%lu;%lum
-    set t_8f=[38;2;%lu;%lu;%lum
-endif
-
-""" Configure Colourscheme
-let g:quantum_italics=1
-
-" Colourscheme override
-augroup colourOverride
-   autocmd!
-   autocmd ColorScheme * highlight Conceal guibg=NONE
-   autocmd Colorscheme * highlight SpellBad guibg=NONE
-   autocmd Colorscheme * highlight SpellCap guibg=NONE
-   autocmd Colorscheme * highlight SpellLocal guibg=NONE
-   autocmd Colorscheme * highlight SpellRare guibg=NONE
-   autocmd Colorscheme * highlight CursorLineNr guibg=NONE
-augroup END
-
-set background=dark " for the dark version
-colorscheme quantum
-
-" }}}
-"Spaces and Tabs {{{
-
-set tabstop=4           " number of visual spaces per TAB
-set softtabstop=4       " number of spaces inserted upon TAB
-set shiftwidth=4        " autoindent amount when using cindent
-set expandtab           " TAB inserts softtabstop spaces
-
-set autoindent          " copy indentation from previous line
-set nosmartindent       " inserts extra indentation in some cases
-
-" Remove trailing whitespace from file and return cursor to current position
-function! StripTrailingWhitespaces()
-    let l:pos = winsaveview()
-    execute('%s/\s\+$//e')
-    call winrestview(l:pos)
-endfun
-
-nnoremap <Space>zz :call StripTrailingWhitespaces()<CR>
-
-
-"}}}
-"UI Config {{{
-
-
-" The combination of relative number and number gives the absolute line
-" number for the current line and relative numbers for all others
-set relativenumber                      " show relative line numbers
-set number                              " show line numbers
-set scrolloff=5                         " 5 lines above and below cursor when scrolling
-set wildmenu                            " visual autocomplete for command
-set wildmode=longest:full,full          " Complete to longest matching text then first match. Like shell completion
-set lazyredraw                          " redraw only when need to
-set hidden                              " allows you to hide buffers with unsaved changes without being prompted
-set noshowmatch                         " highlight matching parenthesis/bracket/brace
-set laststatus=2                        " Display statusline
-set splitright                          " open splits by default to the right
-set nosplitbelow                        " open splits above current
-set formatoptions+=n                    " smart auto-indenting inside numbered lists
-set formatoptions+=j                    " smart comment joining
-set nojoinspaces                        " don't autoinsert two spaces after '.', '?', '!' for join command
-set textwidth=88                        " Textwidth is 88 columns
-
-" common mistypings of exit and save
-cabbrev W w
-cabbrev Q q
-cabbrev Wq wq
-cabbrev WQ wq
-
-" Unicode UI elements
-if has('linebreak')
-  let &showbreak='⤷ '          " ARROW POINTING DOWNWARDS THEN CURVING RIGHTWARDS (U+2937, UTF-8: E2 A4 B7)
-endif
-set fillchars=vert:│           " BOX DRAWINGS LIGHT VERTICAL (U+2502, UTF-8: E2 94 82)
-
-set list                       " we want to show whitespace elements
-set listchars=tab:▶‒
-set listchars+=nbsp:␣
-set listchars+=extends:»       " RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
-set listchars+=precedes:«      " LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
-set listchars+=trail:•         " BULLET (U+2022, UTF-8: E2 80 A2)
-
-"" Movement
-set backspace=eol,start,indent  " backspace deletes newlines
-set whichwrap+=<,>,h,l,[,]      " left right wraps to next/previous lines
-
-" Movement between splits
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-inoremap <C-h> <C-\><C-N><C-w>h
-inoremap <C-j> <C-\><C-N><C-w>j
-inoremap <C-k> <C-\><C-N><C-w>k
-inoremap <C-l> <C-\><C-N><C-w>l
-if has('nvim')
-  tnoremap <C-h> <C-\><C-N><C-w>h
-  tnoremap <C-j> <C-\><C-N><C-w>j
-  tnoremap <C-k> <C-\><C-N><C-w>k
-  tnoremap <C-l> <C-\><C-N><C-w>l
-endif
-
-" Consistency with yank
-nnoremap Y y$
-
-augroup gopass_security
-    " Don't backup gopass files.
-    autocmd BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
-augroup end
-
-"}}}
-" Custom Shortcuts {{{
-
-" jk is escape
-inoremap jk <esc>
-inoremap jK <esc>
-inoremap JK <esc>
-inoremap Jk <esc>
-
-" leader is <space>
-let g:mapleader="\<space>"
-
-" go to next split
-nnoremap <Leader>w <c-w>w
-" Turn off search highlighting
-nnoremap <Leader>h :nohlsearch<CR>
-" Reload vimrc
-nnoremap <Leader>r :source $MYVIMRC<CR>
-" Edit vimrc
-nnoremap <Leader>er :edit $MYVIMRC<CR>
-" Edit plugins
-nnoremap <Leader>ep :edit $DOTFILES/vim/plugins.vim<CR>
-" Edit UnltiSnips
-nnoremap <Leader>es :UltiSnipsEdit<CR>
-" Edit in ftplugin directory
-nnoremap <Leader>ef :edit ~/.vim/ftplugin<CR>
-" Edit in tmux config
-nnoremap <Leader>et :edit ~/.tmux.conf<CR>
-" Edit bashrc
-nnoremap <Leader>eb :edit ~/.bashrc<CR>
-" Edit zshrc
-nnoremap <Leader>ez :edit ~/.zshrc<CR>
-" Edit vim direcotry
-"nnoremap <Leader>ed :edit $DOTFILES/vim/<CR>
-" Edit denite config
-nnoremap <Leader>ed :edit $DOTFILES/vim/denite.vim<CR>
-" <C-s> will correct previous spelling mistake and set undo point
-nnoremap <silent> <C-s> :call spelling#fix_previous()<CR>
-inoremap <silent> <C-s> <C-g>u<C-o>:call spelling#fix_previous()<CR>
-" navigate between tabs
-nnoremap ]w :tabnext<CR>
-nnoremap [w :tabprev<CR>
-" Remap for digraphs
-inoremap <C-y> <C-k>
-
-" Open last buffer
-nnoremap <leader><leader> <C-^>
-
-" Shortcut for saving file as root
-" cmap w!! w !sudo tee > /dev/null %
-cmap w!! w suda://%
-
-" Faster window resizing
-nnoremap <C-w>- :5wincmd -<CR>
-nnoremap <C-w>= :5wincmd +<CR>
-nnoremap <C-w>+ :wincmd =<CR>
-nnoremap <leader>vj :5wincmd +<CR>
-nnoremap <leader>vk :5wincmd -<CR>
-nnoremap <space>w= :wincmd =<CR>
-
-"}}}
-"Searching {{{
-
-set incsearch " search as characters entered
-set hlsearch  " highlight matches
-set ignorecase " ignore case when searching
-set smartcase " overrides ignorecase if uppercase characters in search query
-
-set magic     " regular expressions
-
-" Use ripgrep for search if available
-if executable('rg')
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-endif
-
-"}}}
-"Folding {{{
-
-set foldenable         " enable folding
-set foldlevelstart=5   " have all levels open by default
-set foldnestmax=2      " Maximum number of nested folds
-set foldmethod=syntax  " fold based on indent
-
-set modelines=1        " last line of file is checked to run as a command
-
-"}}}
-"Backups {{{
-
-if exists('$SUDO_USER')
-    set nobackup        " Don't write backups for root files
-    set nowritebackup   " No backups when root user
-    set noswapfile      " no swap files for root user
-
-    if has('persistent_undo')
-        set noundofile  " no undo for root user
-    endif
-else
-    set backup          " Performs backups
-    set writebackup     " perform backup
-    set backupdir=~/.vim-tmp,~/.tmp,. " Backup directories
-
-    set directory=~/.vim-tmp/swap//,~/.tmp/swap//,. " Directories for swap files
-
-    if has('persistent_undo')
-        set undofile
-        set undodir=~/.vim-tmp/undo     "undo directory
-        set undodir+=~/.tmp/undo
-        set undodir+=.
-    endif
-endif
-
-"}}}
-"Spelling and Files{{{
-
-set spelllang=en_au             " spelling language is English Australian
-set fileformats=unix,mac,dos    " default line ending is unix
-set nospell                     " Spelling is off by default, but is turned on for many filetypes
-
-" set filetype defaults
-augroup filetypes
-    autocmd!
-    if has('nvim')
-        autocmd TermOpen * setlocal nonumber norelativenumber
-    endif
-augroup END
-
-"}}}
-" Plugin Configuration {{{
-
 " fzf {{{
 "
 " This is the default extra key bindings
@@ -342,14 +49,14 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
 nnoremap <silent> <C-p> :<C-u>GFiles<CR>
 nnoremap <silent> <C-f> :<C-u>Files<CR>
-nnoremap <Leader>gf :<C-u>Commits<CR>
-nnoremap <leader>b :<C-U>Buffers<CR>
+nnoremap <space>gf :<C-u>Commits<CR>
+nnoremap <space>b :<C-U>Buffers<CR>
 
 " }}}
 " fugitive {{{
 
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit<CR>
 
 " }}}
 " ale {{{
@@ -361,11 +68,12 @@ let g:ale_sign_warning = '--'
 let g:ale_linter_aliases = {'pandoc': ['markdown']}
 
 let g:ale_linters = {
-      \ 'python': ['flake8', 'pylint', 'mypy', 'pydocstyle'],
+      \ 'python': ['flake8', 'mypy', 'pydocstyle'],
       \ 'c++': ['clangd'],
       \ 'cpp': ['clangd'],
       \ 'c': ['clangd'],
       \ 'rust': ['cargo'],
+      \ 'markdown': ['textlint', 'mdl', 'alex'],
       \ }
 
 let g:ale_rust_check_all_targets = 1
@@ -446,8 +154,8 @@ let g:grammarous#use_vim_spelllang = 1
 let g:grammarous#move_to_first_error = 0
 let g:grammarous#default_lang = 'en_au'
 
-nnoremap <leader>gg :GrammarousCheck<CR>
-nnoremap <leader>gr :GrammarousReset<CR>
+nnoremap <space>gg :GrammarousCheck<CR>
+nnoremap <space>gr :GrammarousReset<CR>
 
 " }}}
 " template {{{
@@ -466,17 +174,17 @@ endfunction
 " }}}
 " thesaurus_query {{{
 
-nnoremap <Leader>y :ThesaurusQueryReplaceCurrentWord<CR>
+nnoremap <space>y :ThesaurusQueryReplaceCurrentWord<CR>
 
 " }}}
 " undotree {{{
 
-noremap <leader>u :UndotreeToggle<CR>
+noremap <space>u :UndotreeToggle<CR>
 
 " }}}
 "  Scalpel {{{
 
-nmap <Leader>s <Plug>(Scalpel)
+nmap <space>s <Plug>(Scalpel)
 
 "  }}}
 " project-log {{{
@@ -726,16 +434,16 @@ let g:LanguageClient_serverCommands = {
   \ }
 
 function! SetLSPShortcuts()
-  nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
-  nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-  nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-  nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-  nnoremap <leader>lx :call LanguageClient#textDocument_references()<CR>
-  nnoremap <leader>la :call LanguageClient_workspace_applyEdit()<CR>
-  nnoremap <leader>lc :call LanguageClient#textDocument_completion()<CR>
-  nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
-  nnoremap <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-  nnoremap <leader>lm :call LanguageClient_contextMenu()<CR>
+  nnoremap <space>ld :call LanguageClient#textDocument_definition()<CR>
+  nnoremap <space>lr :call LanguageClient#textDocument_rename()<CR>
+  nnoremap <space>lf :call LanguageClient#textDocument_formatting()<CR>
+  nnoremap <space>lt :call LanguageClient#textDocument_typeDefinition()<CR>
+  nnoremap <space>lx :call LanguageClient#textDocument_references()<CR>
+  nnoremap <space>la :call LanguageClient_workspace_applyEdit()<CR>
+  nnoremap <space>lc :call LanguageClient#textDocument_completion()<CR>
+  nnoremap <space>lh :call LanguageClient#textDocument_hover()<CR>
+  nnoremap <space>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+  nnoremap <space>lm :call LanguageClient_contextMenu()<CR>
 endfunction()
 
 augroup LSP
@@ -746,8 +454,8 @@ augroup END
 " }}}
 " Vimwiki {{{
 
-nmap <Leader>wj <Plug>VimwikiDiaryPrevDay
-nmap <Leader>wk <Plug>VimwikiDiaryNextDay
+nmap <space>wj <Plug>VimwikiDiaryPrevDay
+nmap <space>wk <Plug>VimwikiDiaryNextDay
 
 let g:vimwiki_folding = 'syntax'
 let g:vimwiki_ext2syntax = {
@@ -786,6 +494,7 @@ let s:inter_wiki = copy(s:wiki_default)
 let s:inter_wiki.path = '~/Documents/Work/Intersect/notes/'
 let s:inter_wiki.diary_rel_path = 'diary/'
 let s:inter_wiki.path_html = '~/Documents/Work/Intersect/html/personal/'
+let s:inter_wiki.diary_header = 'Intersect Notes'
 
 let g:vimwiki_list = [s:home_wiki, s:phd_wiki, s:inter_wiki]
 
@@ -832,4 +541,3 @@ hi FloatermNF guibg=None
 hi FloatermBorderNF guifg=cyan
 
 " }}}
-" vim: foldmethod=marker foldlevel=0 filetype=vim tabstop=2 softtabstop=2 shiftwidth=2

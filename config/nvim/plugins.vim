@@ -1,8 +1,9 @@
 " Configuration for vim-plug package manager
 
 " Automatic install vim-plug if not already
-if empty(glob('~/dotfiles/vim/vim.symlink/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+let s:vim_plug_file = glob(g:vim_home . '/autoload/plug.vim')
+if empty(s:vim_plug_file)
+  silent !curl -fLo s:vim_plug_file --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   augroup pluginstall
       autocmd!
@@ -51,8 +52,8 @@ Plug 'bps/vim-textobj-python', { 'for': ['python', 'cython'] }
 
 " Other Languages
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'malramsay64/vim-pandoc-syntax', { 'for': ['pandoc', 'markdown'] }
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'malramsay64/vim-pandoc-syntax', { 'for': ['pandoc', 'markdown'] }
 Plug 'gu-fan/riv.vim'
 
 " vim -> nvim compatability
@@ -131,6 +132,11 @@ if has("nvim-0.4.0")                " Floating window support arrived in 0.4.0
     Plug 'ncm2/float-preview.nvim'
     Plug 'voldikss/vim-floaterm'
 endif
+
+" Tool to provide better methods of moving within vim
+" Plug 'AlphaMycelium/pathfinder.vim'
+
+" Plug '~/Projects/markdown-syntax-rs'
 
 " all plugins must be added before this line
 call plug#end()
