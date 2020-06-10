@@ -15,6 +15,12 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
 fi
 
 #
+# Config
+#
+
+unset LS_COLORS
+
+#
 # Plugins
 #
 

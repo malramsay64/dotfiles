@@ -53,9 +53,6 @@ function source_file() {
     fi
 }
 
-# Turn off system colours as they have a habit of ruining things
-export LS_COLORS=
-
 function add_to_path() {
     if [ -d "$1" ]; then
         export PATH="$1:$PATH"
