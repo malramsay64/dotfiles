@@ -222,14 +222,15 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 
     # Workspace 5: Spotify
     exec --no-startup-id "swaymsg 'workspace $ws5; exec flatpak run com.spotify.Client'"
-    assign [class="Spotify"] workspace $ws5
-    assign [instance="spotify"] workspace $ws5
-    assign [title="Spotify"] workspace $ws5
+    # Spotify doesn't work with assign because of some implementation details
+    # See this issue for more details https://github.com/swaywm/sway/issues/3793
+    for_window [class="Spotify"] move container to workspace $ws5
 
     # Workspace 9: Zotero
-    exec --no-startup-id "swaymsg 'workspace $ws9; exec flatpak run org.zotero.Zotero'"
-    assign [class="Zotero"] workspace $ws9
-    assign [title="Zotero"] workspace $ws9
+    # exec --no-startup-id "swaymsg 'workspace $ws9; exec flatpak run org.zotero.Zotero'"
+    # Zotero doesn't work with assign because of some implementation details
+    # See this issue for more details https://github.com/swaywm/sway/issues/3793
+    for_window [class="Zotero"] move container to workspace $ws5
 
     # Workspace 10: PhD Thesis
     exec --no-startup-id "swaymsg 'workspace $ws10; exec $term --working-directory ~/Projects/phd-thesis'"
