@@ -30,7 +30,6 @@ source "$DOTFILES/zsh/sourceables.sh"
 
 # Use histdb timer to time each command
 autoload -Uz add-zsh-hook
-add-zsh-hook precmd  histdb-update-outcome
 
 # Use histdb for zsh autosuggestions, with the top result being directory dependent
 _zsh_autosuggest_strategy_histdb_top_here() {
