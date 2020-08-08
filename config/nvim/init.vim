@@ -188,7 +188,7 @@ nnoremap <space>r :source $MYVIMRC<CR>
 " Edit vimrc
 nnoremap <space>er :edit $MYVIMRC<CR>
 " Edit plugins
-" nnoremap <space>ep :edit $DOTFILES/vim/plugins.vim<CR>
+nnoremap <space>ep :edit ~/.config/nvim/plugins.vim<CR>
 " Edit UnltiSnips
 nnoremap <space>es :UltiSnipsEdit<CR>
 " Edit in ftplugin directory
