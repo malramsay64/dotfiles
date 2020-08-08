@@ -171,16 +171,16 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 # Workspaces:
 #
     # Set workspace names (number by default)
-    set $ws1 1
-    set $ws2 2
-    set $ws3 3
-    set $ws4 4
-    set $ws5 5
-    set $ws6 6
-    set $ws7 7
+    set $ws1 1
+    set $ws2 2
+    set $ws3 3
+    set $ws4 4
+    set $ws5 5
+    set $ws6 6
+    set $ws7 7
     set $ws8 8
-    set $ws9 9📎
-    set $ws10 10
+    set $ws9 9
+    set $ws10 10
     # switch to workspace
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
@@ -280,6 +280,7 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     for_window [window_type="menu"]                         floating enable
     for_window [app_id="org.gnome.NautilusPreviewer"]       floating enable
     for_window [app_id="nm-connection-editor"]              floating enable
+    for_window [app_id="pavucontrol"]              floating enable
 #
 # Scratchpad:
 #
@@ -332,22 +333,7 @@ bindsym $mod+Shift+o resize shrink width $resize_len
 # }
 #
 bar {
-    strip_workspace_name no
-    strip_workspace_numbers yes
-    font Iosevka SS03 12
-
-    position top
-
-    status_command i3status-rs ~/.config/i3status/status.toml
-
-    colors {
-        # Use a transparent background for the bar
-        background #00000000
-        # The focused workspace has an orange number and border
-        focused_workspace #f6c9a9 #00000000 #f6c9a9
-        # Active workspaces have white text with everything else transparent
-        inactive_workspace #00000000 #00000000 #ffffff
-    }
+    swaybar_command waybar
 }
 
 # Local sway configuration
