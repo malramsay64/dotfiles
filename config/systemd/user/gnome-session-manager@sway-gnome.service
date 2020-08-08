@@ -9,5 +9,5 @@ After=sway.service
 
 [Service]
 Type=notify
-ExecStart=/usr/lib/gnome-session-binary --systemd-service --session=%i
-ExecStopPost=-/usr/lib/gnome-session-ctl --shutdown
+ExecStart=/usr/bin/gnome-session-custom-session
+ExecStopPost=-/usr/bin/gnome-session-quit
