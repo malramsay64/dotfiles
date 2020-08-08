@@ -112,8 +112,11 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     # start file browser
     bindsym $mod+n exec $term -e $files
 
-    # dmenu emoji
-    bindsym $mod+grave exec ~/dotfiles/bin/dmenuunicode
+    # Select emoji
+    bindsym $mod+Shift+grave exec ~/dotfiles/bin/dmenuunicode
+
+    # Select Passwords
+    bindsym $mod+grave exec ~/dotfiles/bin/passmenu
 
     ### Reload configuration
     bindsym $mod+Shift+r reload
