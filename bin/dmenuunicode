@@ -12,7 +12,7 @@ chosen=$(grep -v "#" -h ~/dotfiles/resources/emoji ~/dotfiles/resources/font-awe
 
 c=$(echo "$chosen" | sed "s/ .*//")
 # Copy to primary clipboard => when text is highlighted
-wl-copy --primary --no-newline $c
+wl-copy --primary --trim-newline $c
 # Copy to clipboard
-wl-copy --no-newline "$c"
+wl-copy --trim-newline "$c"
 notify-send "'$c' copied to clipboard." &
