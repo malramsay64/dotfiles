@@ -90,7 +90,7 @@
             "critical-threshold": 80,
             // "format-critical": "{icon} {temperatureC}°C",
             "format": "{icon} {temperatureC}°C",
-            "format-icons": ["", "", ""]
+            "format-icons": ["", "", ""]
         },
         "backlight": {
             // "device": "acpi_video1",
@@ -126,14 +126,14 @@
             // "scroll-step": 1, // %, can be a float
             "format": "{icon} {volume}% {format_source}",
             "format-bluetooth": "{icon} {volume}%  {format_source}",
-            "format-bluetooth-muted": " {icon} {format_source}",
-            "format-muted": " {format_source}",
+            "format-bluetooth-muted": "🔇 {icon} {format_source}",
+            "format-muted": "🔇 {format_source}",
             "format-source": "  {volume}%",
             "format-source-muted": "",
             "format-icons": {
                 "headphone": "",
-                "hands-free": "",
-                "headset": "",
+                "hands-free": "",
+                "headset": "",
                 "phone": "",
                 "portable": "",
                 "car": "",
