@@ -259,7 +259,8 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     bindsym $mod+space focus mode_toggle
 
     # move focus to the parent container
-    # bindsym $mod+a focus parent
+    bindsym $mod+a focus parent
+    bindsym $mod+Shift+a focus child
 
     # Configure gaps
     gaps inner $gap_inner_default
