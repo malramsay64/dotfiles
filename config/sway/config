@@ -230,7 +230,7 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     # exec --no-startup-id "swaymsg 'workspace $ws9; exec flatpak run org.zotero.Zotero'"
     # Zotero doesn't work with assign because of some implementation details
     # See this issue for more details https://github.com/swaywm/sway/issues/3793
-    for_window [class="Zotero"] move container to workspace $ws5
+    for_window [class="Zotero"] move container to workspace $ws9
 
     # Workspace 10: PhD Thesis
     exec --no-startup-id "swaymsg 'workspace $ws10; exec $term --working-directory ~/Projects/phd-thesis'"
