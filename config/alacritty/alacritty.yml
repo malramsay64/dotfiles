@@ -248,7 +248,7 @@ colors:
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0
   color: '0xffffff'
@@ -311,15 +311,6 @@ mouse:
     # on them. The available modifiers are documented in the key binding section.
     modifiers: None
 
-selection:
-  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
-
-  # When set to `true`, selected text will be copied to the primary clipboard.
-  save_to_clipboard: false
-
-# Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
-
 cursor:
   # Cursor style
   #
@@ -355,17 +346,6 @@ live_config_reload: true
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
 working_directory: None
-
-# Windows 10 ConPTY backend (Windows only)
-#
-# This will enable better color support and may resolve other issues,
-# however this API and its implementation is still young and so is
-# disabled by default, as stability may not be as good as the winpty
-# backend.
-#
-# Alacritty will fall back to the WinPTY automatically if the ConPTY
-# backend cannot be initialized.
-enable_experimental_conpty_backend: false
 
 # Send ESC (\x1b) before characters when alt is pressed.
 alt_send_esc: true
