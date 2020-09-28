@@ -160,7 +160,7 @@ nnoremap <space>gr :GrammarousReset<CR>
 " }}}
 " template {{{
 
-let g:templates_directory = [$DOTFILES.'/vim/templates']
+let g:templates_directory = [g:vim_home . '/templates']
 
 let g:templates_user_variables = [
             \ ['DIRECTORY', 'GetDirectoryName'],
