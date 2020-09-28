@@ -1,43 +1,54 @@
 require 'nvim_utils'
 
 SetOptions({
-    hidden = true, -- allow an unwritten bugger to be hidden
-    secure = true, -- Prevent commands running in local files
-    title = true, -- set the title of the terminal window
-    splitright = true, -- new widows go to the right of the current one
     fileencoding = "utf-8",
+    belloff = "all", -- no terminal bells
 
-    incsearch = true, -- search as characters are entered
-    hlsearch = true, -- highlight search matches
-    ignorecase = true, -- ignore case when searching
-    smartcase = true, -- override ignore case when uppercase
+    -- Visual Options
+    title = true, -- set the title of the terminal window
     signcolumn = "yes:1", -- always have a 1 character sign column
-
-    wildmenu = true,
-    wildmode = {"longest:full" , "full"}, --
-
-    magic = true, -- Use regular expression magic
     relativenumber = true, -- Use relative line numbers
     number = true, -- except for the current line
-
-    -- Use ripgrep to search within files
-    grepprg = [[rg\ --vimgrep\ --smart-case\ --no-heading\ --block-buffered]],
-
+    lazyredraw = true, -- Only redraw the window when we need to
+    splitright = true, -- new widows go to the right of the current one
     termguicolors = true, -- Use 24 bit rgb colours in the TUI
-    shiftwidth = 4, -- number of spaces to use for autoindent (also >> and <<)
-    tabstop = 4, -- number of spaces a tab character is represented as
-    softtabstop = 4, -- How a tab is handled in editing
-    expandtab = true, -- use spaces in place of tabs
-    completeopt={"menu", "menuone", "noinsert", "noselect"},
-    shortmess="filnxtToOFc",
-    belloff = "all", -- no terminal bells
+    list = true, -- Show whitespace characters
     listchars = {
         "tab:▶‒",
         "nbsp:␣",
         "extends:»",       --- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
         "precedes:«",      --- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
         "trail:•",      --- BULLET (U+2022, UTF-8: E2 80 A2)
-    }
+    },
+    scrolloff=5, -- Always have 5 lines above or below the cursor
+
+    --- Search Options
+    incsearch = true, -- search as characters are entered
+    hlsearch = true, -- highlight search matches
+    ignorecase = true, -- ignore case when searching
+    smartcase = true, -- override ignore case when uppercase
+    magic = true, -- Use regular expression magic
+    -- Use ripgrep to search within files
+    grepprg = [[rg\ --vimgrep\ --smart-case\ --no-heading\ --block-buffered]],
+
+    hidden = true, -- allow an unwritten bugger to be hidden
+    secure = true, -- Prevent commands running in local files
+
+    --- Joining lines and newlines
+    formatoptions = "jcroqln",
+    joinspaces = false,
+
+    --- Completion and Menu Options
+    wildmenu = true,
+    wildmode = {"longest:full" , "full"},
+    completeopt={"menu", "menuone", "noinsert", "noselect"},
+    shortmess="filnxtToOFc",
+
+    --- Spaces and Tabs
+    shiftwidth = 4, -- number of spaces to use for autoindent (also >> and <<)
+    tabstop = 4, -- number of spaces a tab character is represented as
+    softtabstop = 4, -- How a tab is handled in editing
+    expandtab = true, -- use spaces in place of tabs
 })
 
 vim.g.netrw_banner = 0
