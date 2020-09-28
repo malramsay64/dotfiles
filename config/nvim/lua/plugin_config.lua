@@ -54,7 +54,6 @@ Mapper("n", "<space>wk", ":VimwikiDiaryNextDay<CR>")
 vim.g.UltiSnipsExpandTrigger="<tab>"
 vim.g.UltiSnipsJumpForwardTrigger="<c-b>"
 vim.g.UltiSnipsJumpBackwardTrigger="<c-z>"
-vim.g.completion_enable_snippet = "UltiSnips"
 vim.g.UlltiSnipsSnippetDirectories = {"UltiSnips", "~/.config/.nvim/UltiSnips"}
 
 -- }}}
@@ -80,5 +79,19 @@ vim.g.lightline = {
 -- fugitive {{{
 
 Mapper("n", "<space>gs", ":Git<CR>")
+
+-- }}}
+-- Completion {{{
+
+vim.g.completion_chain_complete_list = {
+    default={
+        {complete_items={"lsp", "snippet"}},
+        {complete_items={"path"}, triggered_only={"/"}},
+    },
+}
+
+vim.g.completion_trigger_keyword_length = 2
+vim.g.completion_enable_auto_paren = 1
+vim.g.completion_enable_snippet = "UltiSnips"
 
 -- }}}
