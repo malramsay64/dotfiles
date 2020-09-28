@@ -6,6 +6,7 @@
 	st = status
 	br = branch
 	re = remote
+	sw = switch
 	gca = gc --aggressive --prune=now
 [color]
 	branch = auto
