@@ -16,6 +16,7 @@ Plug 'itchyny/lightline.vim' " Status line
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-repeat' " Repeat plugin commands
 call plug#end()
 
 colorscheme edge
