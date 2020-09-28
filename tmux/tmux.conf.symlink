@@ -13,6 +13,9 @@ if-shell " [[ $(tmux -V | cut -d' ' -f2 -ge 2.2 ]]" \
 # Configturation {{{
 set -g history-limit 20000
 
+# Allow neovim to reload in tmux
+set -g focus-events on
+
 # Enable mouse interaction with tmux
 setw -g mouse off
 
