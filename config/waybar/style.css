@@ -5,6 +5,7 @@
  * Distributed under terms of the MIT license.
  */
 
+/* Default configurations to apply to all component of the bar */
 * {
     border: none;
     border-radius: 0;
@@ -20,13 +21,14 @@ window#waybar {
 
 #window {
     font-weight: bold;
-    font-family: "Ubuntu";
 }
-/*
-#workspaces {
+
+#workspaces button {
     padding: 0 5px;
+    background: transparent;
+    color: white;
+    border-top: 2px solid transparent;
 }
-*/
 
 #workspaces button {
     padding: 0 5px;
@@ -53,6 +55,7 @@ window#waybar {
 #clock {
     font-weight: bold;
 }
+
 #battery {
 }
 
@@ -79,23 +82,12 @@ window#waybar {
     animation-direction: alternate;
 }
 
-#cpu {
-}
-
-#memory {
-}
-
-#network {
-}
-
 #network.disconnected {
     background: #f53c3c;
 }
 
-#pulseaudio {
-}
-
-#pulseaudio.muted {
+#temperature.critcal {
+    color: orange
 }
 
 #custom-spotify {
@@ -104,5 +96,5 @@ window#waybar {
 }
 
 #tray {
-    background-color: #2980b9;
+    background: transparent;
 }
