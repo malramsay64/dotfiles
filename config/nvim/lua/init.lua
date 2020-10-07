@@ -49,7 +49,11 @@ SetOptions({
     tabstop = 4, -- number of spaces a tab character is represented as
     softtabstop = 4, -- How a tab is handled in editing
     expandtab = true, -- use spaces in place of tabs
+
+    pyxversion = 3, -- Only use python3
 })
+
+vim.g.python3_host_prog = "/usr/bin/python3"
 
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle=3
