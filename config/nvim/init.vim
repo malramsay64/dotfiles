@@ -9,7 +9,7 @@ Plug 'nvim-treesitter/completion-treesitter'
 Plug 'nvim-lua/completion-nvim'
 Plug 'sainnhe/edge' " The colourscheme
 Plug 'tpope/vim-vinegar' " Make netrw useful
-Plug 'vimwiki/vimwiki' 
+Plug 'wincent/corpus'
 Plug 'SirVer/ultisnips' " support snippets
 Plug 'honza/vim-snippets' " This contains the snippets
 Plug 'itchyny/lightline.vim' " Status line
