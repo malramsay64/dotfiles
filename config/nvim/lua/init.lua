@@ -51,6 +51,10 @@ SetOptions({
     expandtab = true, -- use spaces in place of tabs
 
     pyxversion = 3, -- Only use python3
+
+    --- Backups
+    undofile = true,
+
 })
 
 vim.g.python3_host_prog = "/usr/bin/python3"
