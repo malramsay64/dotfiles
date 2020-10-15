@@ -1,4 +1,7 @@
-require 'nvim_utils'
+require('nvim_utils')
+
+vim.g.email = "malramsay64@gmail.com"
+vim.g.username = "Malcolm Ramsay"
 
 SetOptions({
     fileencoding = "utf-8",
@@ -56,15 +59,10 @@ SetOptions({
     undofile = true,
 
     --- Spelling
-    spelllang = "en_au"
+    spelllang = "en_au",
 })
 
 vim.g.python3_host_prog = "/usr/bin/python3"
-
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle=3
-vim.g.email = "malramsay64@gmail.com"
-vim.g.username = "Malcolm Ramsay"
 
 -- Configuration of colourscheme
 vim.g.edge_style = 'aura'
