@@ -54,6 +54,10 @@ nvim_lsp.vimls.setup({
 nvim_lsp.rust_analyzer.setup({on_attach=custom_attach})
 nvim_lsp.pyls.setup({on_attach=custom_attach})
 nvim_lsp.r_language_server.setup({on_attach=custom_attach})
+nvim_lsp.clangd.setup({
+    on_attach=custom_attach,
+    filetypes={ "c", "cpp", "objc", "objcpp", "cuda" },
+})
 
 vim.cmd("autocmd BufEnter *.md lua require'completion'.on_attach()")
 
