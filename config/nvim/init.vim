@@ -8,7 +8,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/completion-treesitter'
 Plug 'nvim-lua/completion-nvim'
 Plug 'sainnhe/edge' " The colourscheme
-Plug 'tpope/vim-vinegar' " Make netrw useful
+Plug 'justinmk/vim-dirvish'
 Plug 'wincent/corpus'
 Plug 'SirVer/ultisnips' " support snippets
 Plug 'honza/vim-snippets' " This contains the snippets
