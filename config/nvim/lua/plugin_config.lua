@@ -23,10 +23,10 @@ CorpusDirectories = {
         base = "./",
         transform = "local"
     },
-    ["~/Projects/personal_site/content/post/"] = {
+    ["~/Projects/personal_site/content/post"] = {
         autocommit = false,
-        autoreference = 1,
-        autotitle = 1,
+        autoreference = 0,
+        autotitle = 0,
         base = "post/",
         transform = "web"
     },
