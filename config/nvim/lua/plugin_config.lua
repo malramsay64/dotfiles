@@ -79,3 +79,17 @@ vim.g.completion_enable_auto_paren = 1
 vim.g.completion_enable_snippet = "UltiSnips"
 
 -- }}}
+-- telescope {{{
+
+Mapper("n", "<space>p", "<cmd>lua require('telescope.builtin').git_files{}<CR>")
+Mapper("n", "<space>f", "<cmd>lua require('telescope.builtin').find_files{}<CR>")
+Mapper("n", "<space>gr", "<cmd>lua require('telescope.builtin').lsp_references{}<CR>")
+Mapper("n", "<space>en", "<cmd>lua require('telescope.builtin').git_files{cwd = '~/dotfiles'}<CR>")
+Mapper("n", "<space>gg", "<cmd>lua require('telescope.builtin').live_grep{}<CR>")
+
+-- }}}
+-- gitsigns {{{
+
+require('gitsigns').setup()
+
+-- }}}
