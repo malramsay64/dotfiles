@@ -2,6 +2,7 @@ zdharma/fast-syntax-highlighting
 larkery/zsh-histdb
 mafredri/zsh-async
 robbyrussell/oh-my-zsh path:plugins/gpg-agent
+olets/zsh-abbr
 
 # Completion
 zsh-users/zsh-autosuggestions

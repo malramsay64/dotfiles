@@ -69,7 +69,7 @@ add_to_path "$HOME/bin"
 add_to_path "$HOME/.local/bin"
 
 # Add local completions to search path
-fpath+="$DOTFILES/zsh/completions"
+fpath+="$XDG_HOME/zsh/completions"
 
 if type nvim > /dev/null; then
     export EDITOR=nvim

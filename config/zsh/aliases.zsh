@@ -47,39 +47,3 @@ if type neomutt > /dev/null; then
     alias mutt='neomutt'
 fi
 alias mux='tmuxinator'
-
-# Abbreviations
-#
-# These are aliases that I want replaced on the command line. These are mostly tools to make my life
-# easier with fewer keystrokes. However, these I care about them showing up in the command line
-# history.
-#
-# The abbreviations are not builtin, so we first have to write the functions to suport them.
-# Functions adapted from http://www.math.cmu.edu/~gautam/sj/blog/20140625-zsh-expand-alias.html
-
-typeset -a abbr
-abbr=()
-
-function abbr() {
-    alias $1
-    abbr+=(${1%%\=*})
-}
-
-function expand-abbr() {
-    if [[ $LBUFFER =~ "(^|[;|&])\s*(${(j:|:)abbr})\$" ]]; then
-        zle _expand_alias
-    fi
-    zle magic-space
-}
-
-zle -N expand-abbr
-
-bindkey -M viins ' '        expand-abbr
-bindkey -M viins '^ '       magic-space     # control-space to bypass completion
-bindkey -M isearch " "      magic-space     # normal space during searches
-
-# Function to revert all files to default permissions
-defmod() {
-    find "$1" -type d -exec chmod 755 {} \;
-    find "$1" -type f -exec chmod 644 {} \;
-}
