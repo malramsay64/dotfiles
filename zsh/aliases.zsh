@@ -26,6 +26,8 @@ alias mv='mv -iv'       # Confirm overwrite of file, list files on moving
 alias la='ls -a'        # List hidden files
 alias ll='ls -l'        # List in long form
 alias mkdir='mkdir -pv' # Make all folders in path given, lists directories as they are created
+# Configure dd to work nicely with some default options
+alias dd='dd status=progress conv=sync bs=1M'
 
 alias grep='grep --color=AUTO'
 alias c='clear'
