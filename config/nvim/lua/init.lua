@@ -86,6 +86,9 @@ Mapper("n", "[t", ":tabPrev<CR>")
 Mapper("n", "<C-s>", ":call spelling#fix_previous()<CR>")
 Mapper("i", "<C-s>", "<C-g>u<C-o>:call spelling#fix_previous()<CR>")
 
+-- Commands
+Command("Reload", "source $MYVIMRC")
+
 require('plugin_config')
 require('treesitter_config')
 require('lsp_config')
