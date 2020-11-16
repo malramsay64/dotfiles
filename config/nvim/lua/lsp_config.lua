@@ -1,7 +1,6 @@
-local nvim_lsp = require('nvim_lsp')
+local nvim_lsp = require('lspconfig')
 local completion = require('completion')
-
-require "nvim_utils"
+require("nvim_utils")
 
 --- Function defining how we attach to a language server
 -- This is all the functionality associated with the langauge server protocol.
