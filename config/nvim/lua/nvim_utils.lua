@@ -48,3 +48,7 @@ end
 function Mapper(mode, key, result)
     vim.fn.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
 end
+
+function Command(name, code)
+    vim.cmd("command! -nargs=0 " .. name .. " " .. code)
+end
