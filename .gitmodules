@@ -10,6 +10,3 @@
 [submodule "python/utils"]
 	path = python/utils
 	url = https://github.com/malramsay64/python-utils.git
-[submodule "config/nvim/site/pack/packer/opt/packer.nvim"]
-	path = config/nvim/site/pack/packer/opt/packer.nvim
-	url = https://github.com/wbthomason/packer.nvim
