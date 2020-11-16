@@ -44,6 +44,9 @@ group by commands.argv order by count(*) desc limit 1"
 
 ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
 
+# Use histdb for reverse search
+bindkey '^r' _histdb-isearch
+
 # setup prompt
 autoload -U promptinit; promptinit
 # Prompt is sourced so no need for `prompt pure`
@@ -130,26 +133,6 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 # Aliases
 source_file "$DOTFILES/zsh/aliases.zsh"
 
-# These are expanded in the shell
-abbr ravp='rsync -av --progress'
-abbr rex='rsync -rltDvP'
-abbr g='git'
-abbr gap='git add -p'
-abbr gst='git status'
-
-# Common spelling corrections
-abbr isntall='install'
-abbr juptyer='jupyter'
-
-# PBS aliases
-if command -v qstat 2>/dev/null; then
-    abbr qs='qstat -t -u $USER'
-    abbr qsu='qstat -u $USER'
-    abbr qdelall='qdel $(qstat -u $USER | grep ^[0-9] | cut -d. -f1 | tr "\n" " ")'
-    abbr qsi='qsub -I -P PRJ-CrysGrowth'
-fi
-
-
 #
 # Completions
 #
@@ -195,3 +178,9 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
     unsetopt xtrace
     exec 2>&-
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/malcolm/google-cloud-sdk/path.zsh.inc' ]; then . '/home/malcolm/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/malcolm/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/malcolm/google-cloud-sdk/completion.zsh.inc'; fi
