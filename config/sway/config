@@ -216,9 +216,8 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     # Workspace 3: Firefox
     exec --no-startup-id "swaymsg 'workspace $ws3; exec firefox'"
 
-    # Workspace 4: Email & Calendar
+    # Workspace 4: Email
     exec --no-startup-id "swaymsg 'workspace $ws4; exec geary'"
-    exec --no-startup-id "swaymsg 'workspace $ws4; exec gnome-calendar'"
 
     # Workspace 5: Spotify
     exec --no-startup-id "swaymsg 'workspace $ws5; exec flatpak run com.spotify.Client'"
