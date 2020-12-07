@@ -1,0 +1,49 @@
+[alias]
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ci = commit
+	co = checkout
+	st = status
+	br = branch
+	re = remote
+	sw = switch
+	gca = gc --aggressive --prune=now
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[core]
+	pager = less -r
+	excludesfile = ~/.gitignore_global
+[user]
+	name = Malcolm Ramsay
+	email = malramsay64@gmail.com
+[push]
+	default = current
+[merge "ours"]
+	driver = true
+[mergetool]
+	keepBackup = false
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[hub]
+	protocol = ssh
+[merge]
+	tool = diffconflicts
+[mergetool]
+	prompt = true
+[mergetool "diffconflicts"]
+	cmd = $EDITOR -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = true
+[push]
+    followTags = true
+[gpg]
+	program = gpg
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[pull]
+	ff = only
