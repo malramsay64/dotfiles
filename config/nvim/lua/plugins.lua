@@ -23,10 +23,12 @@ return require('packer').startup(function()
     -- completions, including support for snippets.
     use 'neovim/nvim-lspconfig'
     use 'nvim-treesitter/nvim-treesitter'
-    use 'nvim-treesitter/completion-treesitter'
+    use {'nvim-treesitter/completion-treesitter',
+            requires="nvim-treesitter/nvim-treesitter"}
     use 'nvim-lua/completion-nvim'
-    use 'SirVer/ultisnips'        -- support snippets
-    use 'honza/vim-snippets'      -- This contains the snippets
+    use 'nvim-lua/lsp_extensions.nvim'
+    -- support snippets
+    use {'honza/vim-snippets', requires='SirVer/ultisnips'}
 
     -- Enhancing Vim
     -- A collection of plugins for enhancing the general behaviour of vim/neovim.
