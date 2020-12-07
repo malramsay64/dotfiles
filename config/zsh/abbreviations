@@ -1,8 +1,12 @@
 abbr g="git"
+abbr c="clear"
 abbr gap="git add -p"
 abbr gst="git status"
-abbr isntall="install"
-abbr juptyer="jupyter"
 abbr ravp="rsync -av --progress"
 abbr rex="rsync -rltDvP"
 abbr ssht="TERM=xterm-256color ssh"
+
+# Common Mispellings
+abbr isntall="install"
+abbr juptyer="jupyter"
+abbr serach="search"
