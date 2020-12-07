@@ -6,6 +6,12 @@
 # initialisation of the shell.
 #
 
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_DATA_HOME="$HOME"/.local/share
+export XDG_CACHE_HOME="$HOME"/.cache
+
+export ZDOTDIR="$XDG_CONFIG_HOME"/zsh
+
 #
 # Interface Configuration
 #
@@ -41,7 +47,7 @@ bindkey "^?" backward-delete-char
 #
 
 # Configure history in zsh
-HISTFILE=~/.histfile
+HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory sharehistory incappendhistory autocd extendedglob
@@ -69,7 +75,7 @@ add_to_path "$HOME/bin"
 add_to_path "$HOME/.local/bin"
 
 # Add local completions to search path
-fpath+="$XDG_HOME/zsh/completions"
+fpath+="$XDG_CONFIG_HOME/zsh/completions"
 
 if type nvim > /dev/null; then
     export EDITOR=nvim
@@ -82,5 +88,3 @@ export MANPAGER="$EDITOR +'set ft:man' -"
 # Configure nnn
 export NNN_USE_EDITOR=1
 export NNN_BMS='d:~/Documents;D:~/Downloads/;p:~/Projects;P:~/Documents/Programming'
-
-export DOTFILES="$HOME/dotfiles"
