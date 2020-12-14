@@ -1,11 +1,7 @@
-#
-
-#
 # Profile zsh startup
+# Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/ 
 #
-
-# Credit: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
-PROFILE_STARTUP=false
+# PROFILE_STARTUP=false
 if [[ "$PROFILE_STARTUP" == true ]]; then
     zmodload zsh/zprof # Output load-time statistics
     # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
@@ -26,7 +22,7 @@ unset LS_COLORS
 
 # Source zsh plugins
 # This needs to be a standard source, so can't use source_file function
-source "$XDG_CONFIG_HOME"/zsh/sourceables.sh
+source "$XDG_CONFIG_HOME/zsh/sourceables.sh"
 
 # Use histdb timer to time each command
 autoload -Uz add-zsh-hook
@@ -47,17 +43,15 @@ ZSH_AUTOSUGGEST_STRATEGY=histdb_top_here
 # Use histdb for reverse search
 bindkey '^r' _histdb-isearch
 
-# setup prompt
-autoload -U promptinit; promptinit
-# Prompt is sourced so no need for `prompt pure`
-# This also means that only a single prompt can be loaded at once
-
 # Use neovim-remote when in a neovim buffer
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     if type nvr > /dev/null; then
         alias nvim='nvr'
     fi
 fi
+
+# Configure gpg-agent for ssh keys
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 # Have consistent location for forwarded ssh authentication socket
 if [[ "$SSH_AUTH_SOCK" == /tmp/* ]]; then
@@ -98,11 +92,8 @@ if command -v rg > /dev/null; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
-# Initialise google cloud sdk
-source_file "$HOME/.local/google-cloud-sdk/path.zsh.inc"
-
 # Configure rustup
-source_file $HOME/.cargo/env
+source_file "$HOME"/.cargo/env
 
 # Initialise pazi command (directory jumper)
 if command -v pazi > /dev/null; then
@@ -118,9 +109,6 @@ fi
 if command -v starship > /dev/null; then
     eval "$(starship init zsh)"
 fi
-
-# Configure gpg-agent for ssh keys
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 #
 # Abbreviations
@@ -174,9 +162,3 @@ if [[ "$PROFILE_STARTUP" == true ]]; then
     unsetopt xtrace
     exec 2>&-
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/malcolm/google-cloud-sdk/path.zsh.inc' ]; then . '/home/malcolm/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/malcolm/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/malcolm/google-cloud-sdk/completion.zsh.inc'; fi
