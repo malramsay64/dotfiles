@@ -53,7 +53,8 @@ nvim_lsp.vimls.setup({
 })
 
 nvim_lsp.rust_analyzer.setup({on_attach=custom_attach})
-nvim_lsp.pyls.setup({on_attach=custom_attach})
+nvim_lsp.pyls_ms.setup({on_attach=custom_attach})
+nvim_lsp.tsserver.setup({on_attach=custom_attach})
 nvim_lsp.r_language_server.setup({on_attach=custom_attach})
 nvim_lsp.clangd.setup({
     on_attach=custom_attach,
