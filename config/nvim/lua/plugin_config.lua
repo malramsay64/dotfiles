@@ -84,6 +84,11 @@ Mapper("n", "<space>f", "<cmd>lua require('telescope.builtin').find_files{}<CR>"
 Mapper("n", "<space>gr", "<cmd>lua require('telescope.builtin').lsp_references{}<CR>")
 Mapper("n", "<space>en", "<cmd>lua require('telescope.builtin').git_files{cwd = '~/dotfiles'}<CR>")
 Mapper("n", "<space>gg", "<cmd>lua require('telescope.builtin').live_grep{}<CR>")
+Mapper("n", "<space>tc", "<cmd>lua require('telescope.builtin').commands{}<CR>")
+Mapper("n", "<space>tr", "<cmd>lua require('telescope.builtin').registers{}<CR>")
+Mapper("n", "<space>ta", "<cmd>lua require('telescope.builtin').autocommands{}<CR>")
+Mapper("n", "<space>tk", "<cmd>lua require('telescope.builtin').keymaps{}<CR>")
+Mapper("n", "<space>tl", "<cmd>lua require('telescope.builtin').lsp_code_actions{}<CR>")
 
 -- }}}
 -- gitsigns {{{
