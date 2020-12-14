@@ -7,7 +7,7 @@ olets/zsh-abbr
 # Completion
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-completions
-malramsay64/conda-zsh-completion
+esc/conda-zsh-completion
 srijanshetty/zsh-pandoc-completion
 ninrod/pass-zsh-completion
 
