@@ -43,3 +43,6 @@
     followTags = true
 [gpg]
 	program = gpg
+# Enforce SSH
+[url "ssh://git@"]
+	insteadOf = https://
