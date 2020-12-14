@@ -96,3 +96,8 @@ Mapper("n", "<space>tl", "<cmd>lua require('telescope.builtin').lsp_code_actions
 require('gitsigns').setup()
 
 -- }}}
+-- dirvish {{{
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+-- }}}
