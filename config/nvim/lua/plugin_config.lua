@@ -1,4 +1,3 @@
-
 -- Corpus {{{
 
 CorpusDirectories = {
@@ -100,4 +99,27 @@ require('gitsigns').setup()
 -- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+-- Terminal {{{
+
+require("toggleterm").setup({
+  size = 20,
+  open_mapping = "<C-F12>",
+  shade_filetypes = {},
+  shade_terminals = true,
+  persist_size = true,
+  direction = 'horizontal',
+})
+
+-- Toggle term sets mappings in both insert and normal mode 
+-- which causes issues when using the spacebar.
+vim.api.nvim_set_keymap(
+    "n",
+    "<space>t",
+    ':<c-u>exe v:count1 . "ToggleTerm"<CR>',
+    {
+      silent = true,
+      noremap = true
+    }
+)
+
 -- }}}

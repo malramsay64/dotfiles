@@ -18,10 +18,6 @@ return require('packer').startup(function()
 
     -- Colourscheme Plugins
     use 'sainnhe/edge'
-    use {'Th3Whit3Wolf/onebuddy',
-        -- The onebuddy plugin requires the colorbuddy extension to work
-        requires = {"tjdevries/colorbuddy.nvim"}
-    }
 
     -- Language and Completion Plugins
     -- These are either plugins for parsing the language and colouring or
@@ -61,7 +57,14 @@ return require('packer').startup(function()
     use {'tpope/vim-fugitive', opt=true, cmd={"Git"}}
     use 'wincent/corpus'
     -- Fuzzy finder
-    use {'nvim-lua/telescope.nvim',
-        requires = {"nvim-lua/plenary.nvim", "nvim-lua/popup.nvim"}
+    use {'nvim-telescope/telescope.nvim',
+        requires = {"nvim-lua/plenary.nvim", "nvim-lua/popup.nvim"},
     }
+
+    use {'nvim-telescope/telescope-symbols.nvim',
+        requires = {'nvim-lua/telescope.nvim'},
+        opt = true,
+        cmd = {"Telsescope symbols"},
+    }
+    use 'akinsho/nvim-toggleterm.lua'
 end)
