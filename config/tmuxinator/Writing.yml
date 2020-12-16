@@ -1,4 +1,4 @@
-# ~/.tmuxinator/Writing.yml
+# ~/.config/tmuxinator/Writing.yml
 
 name: Writing
 root: ~/
@@ -28,10 +28,6 @@ attach: true
 # post: tmux -CC attach -t Writing
 
 windows:
-  - Thesis:
-      root: "~/Projects/phd-thesis"
-      panes:
-        - nvim .
   - Blog:
       root: "~/Projects/personal_site"
       panes:
