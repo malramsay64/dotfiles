@@ -11,10 +11,10 @@
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-data.location=~/.task
+data.location=/home/malcolm/.local/share/task
 
 # Colourscheme
-include ~/.task/solarized-dark-256.theme
+include /usr/share/task/solarized-dark-256.theme
 rule.color.merge=no
 color.blocked=color15 on color10
 color.blocking=color0 on color10
@@ -36,8 +36,6 @@ context.home=-PhD
 pomodoro.default.sort=project+,urgency-
 pomodoro.defaultFilter=due.before:1w
 pomodoro.displayCount=true
-
-include ~/.task/taskrc.local
 
 uda.reviewed.type=date
 uda.reviewed.label=Reviewed

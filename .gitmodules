@@ -1,9 +1,3 @@
-[submodule "task/task.symlink/hooks/default-time"]
-	path = task/task.symlink/hooks/default-time
-	url = https://github.com/tbabej/taskwarrior-default-date-time-hook.git
-[submodule "task/task.symlink/taskpirate"]
-	path = task/task.symlink/taskpirate
-	url = https://github.com/tbabej/taskpirate.git
 [submodule "tmux/tmux.symlink/plugins/tpm"]
 	path = tmux/tmux.symlink/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
