@@ -88,3 +88,6 @@ export MANPAGER="$EDITOR +'set ft:man' -"
 # Configure nnn
 export NNN_USE_EDITOR=1
 export NNN_BMS='d:~/Documents;D:~/Downloads/;p:~/Projects;P:~/Documents/Programming'
+
+# Configure Taskwarrior
+export TASKRC="$XDG_CONFIG_HOME/task/config"
