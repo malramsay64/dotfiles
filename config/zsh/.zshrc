@@ -95,9 +95,9 @@ fi
 # Configure rustup
 source_file "$HOME"/.cargo/env
 
-# Initialise pazi command (directory jumper)
-if command -v pazi > /dev/null; then
-  eval "$(pazi init zsh)"
+# Initialise zoxide command (directory jumper)
+if command -v zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
 fi
 
 # Initialise direnv (auto activate environment)
