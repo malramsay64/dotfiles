@@ -86,8 +86,26 @@ Mapper("n", "[t", ":tabPrev<CR>")
 Mapper("n", "<C-s>", ":call spelling#fix_previous()<CR>")
 Mapper("i", "<C-s>", "<C-g>u<C-o>:call spelling#fix_previous()<CR>")
 
+-- Working in the terminal
+Mapper("t", "<C-h>", [[<C-\><C-N><C-w>h]])
+Mapper("t", "<C-j>", [[<C-\><C-N><C-w>j]])
+Mapper("t", "<C-k>", [[<C-\><C-N><C-w>k]])
+Mapper("t", "<C-l>", [[<C-\><C-N><C-w>l]])
+
+-- Remove all trailing whitespace
+Mapper("n", "<space>zz", [[:%s/\s\+$//e<CR>]])
+
 -- Commands
 Command("Reload", "source $MYVIMRC")
+
+-- Terminal Confiugartion
+
+nvim_create_augroups({
+        terminal = {
+            {"TermOpen", "*", "setlocal nonumber norelativenumber"},
+            {"TermOpen", "*", "startinsert"},
+        }
+    })
 
 require('plugin_config')
 require('treesitter_config')
