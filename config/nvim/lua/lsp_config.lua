@@ -60,6 +60,14 @@ nvim_lsp.clangd.setup({
     on_attach=custom_attach,
     filetypes={ "c", "cpp", "objc", "objcpp", "cuda" },
 })
+nvim_lsp.html.setup({on_attach=custom_attach})
+
+require('lsp_extensions').inlay_hints{
+        highlight = "Comment",
+        prefix = " > ",
+        aligned = true,
+        only_current_line = false
+}
 
 vim.cmd("autocmd BufEnter *.md lua require'completion'.on_attach()")
 
