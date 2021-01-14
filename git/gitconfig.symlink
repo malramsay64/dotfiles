@@ -46,3 +46,5 @@
 # Enforce SSH
 [url "ssh://git@"]
 	insteadOf = https://
+[pull]
+	ff = only
