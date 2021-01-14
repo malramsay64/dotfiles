@@ -68,7 +68,29 @@ nvim_lsp.vimls.setup({
 })
 
 nvim_lsp.rust_analyzer.setup({on_attach=custom_attach})
-nvim_lsp.pyls_ms.setup({on_attach=custom_attach})
+nvim_lsp.pyls.setup({
+    enable = true,
+    on_attach=custom_attach,
+    settings = {
+        pyls = {
+            configurationSources = {"flake8"},
+            plugins = {
+                pydocstyle = {enabled = true},
+                pycodestyle = {enabled = true},
+                flake8 = {enabled = true},
+                pyls_black = {enabled = false},
+                pyls_isort = {enabled = false},
+                pyls_mypy = {
+                    enabled = true,
+                    live_mode = true,
+                },
+                jedi_completion = {fuzzy = true},
+                yapf = {enabled = false}
+
+            }
+        }
+    },
+})
 nvim_lsp.tsserver.setup({on_attach=custom_attach})
 nvim_lsp.r_language_server.setup({on_attach=custom_attach})
 nvim_lsp.clangd.setup({
