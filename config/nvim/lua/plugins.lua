@@ -71,5 +71,4 @@ return require('packer').startup(function()
         opt = true,
         cmd = {"Telsescope symbols"},
     }
-    use 'akinsho/nvim-toggleterm.lua'
 end)
