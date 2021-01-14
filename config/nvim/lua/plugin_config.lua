@@ -111,7 +111,7 @@ require("toggleterm").setup({
   direction = 'horizontal',
 })
 
--- Toggle term sets mappings in both insert and normal mode 
+-- Toggle term sets mappings in both insert and normal mode
 -- which causes issues when using the spacebar.
 vim.api.nvim_set_keymap(
     "n",
@@ -122,5 +122,25 @@ vim.api.nvim_set_keymap(
       noremap = true
     }
 )
+
+-- }}}
+-- formatter {{{
+
+require("format").setup({
+    ["*"] = {
+        {cmd = {"sed -i 's/[ \t]*$//'"}} -- remove trailing whitespace
+    },
+    -- This uses the local versions of these packages to work within a project.
+    python = {
+            { cmd = {"black"} },
+            { cmd = {"isort"} },
+    },
+})
+
+nvim_create_augroups({
+     formatting = {
+         {"BufWritePost", "*", "FormatWrite"}
+     }
+ })
 
 -- }}}

@@ -27,10 +27,14 @@ return require('packer').startup(function()
     use 'nvim-treesitter/nvim-treesitter'
     use {'nvim-treesitter/completion-treesitter',
             requires="nvim-treesitter/nvim-treesitter"}
+    use {'nvim-treesitter/nvim-treesitter-textobjects',
+            requires="nvim-treesitter/nvim-treesitter"}
     use 'nvim-lua/completion-nvim'
     use 'nvim-lua/lsp_extensions.nvim'
     -- support snippets
     use {'honza/vim-snippets', requires='SirVer/ultisnips'}
+    --- Additional support for running formatters
+    use {'lukas-reineke/format.nvim'}
 
     -- Enhancing Vim
     -- A collection of plugins for enhancing the general behaviour of vim/neovim.
@@ -60,6 +64,7 @@ return require('packer').startup(function()
     use {'nvim-telescope/telescope.nvim',
         requires = {"nvim-lua/plenary.nvim", "nvim-lua/popup.nvim"},
     }
+    use 'tpope/vim-unimpaired'
 
     use {'nvim-telescope/telescope-symbols.nvim',
         requires = {'nvim-lua/telescope.nvim'},
