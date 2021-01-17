@@ -100,29 +100,6 @@ require('gitsigns').setup()
 -- Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
--- Terminal {{{
-
-require("toggleterm").setup({
-  size = 20,
-  open_mapping = "<C-F12>",
-  shade_filetypes = {},
-  shade_terminals = true,
-  persist_size = true,
-  direction = 'horizontal',
-})
-
--- Toggle term sets mappings in both insert and normal mode
--- which causes issues when using the spacebar.
-vim.api.nvim_set_keymap(
-    "n",
-    "<space>t",
-    ':<c-u>exe v:count1 . "ToggleTerm"<CR>',
-    {
-      silent = true,
-      noremap = true
-    }
-)
-
 -- }}}
 -- formatter {{{
 
@@ -132,9 +109,26 @@ require("format").setup({
     },
     -- This uses the local versions of these packages to work within a project.
     python = {
-            { cmd = {"black"} },
-            { cmd = {"isort"} },
+            -- { cmd = {"black"} },
+            -- { cmd = {"isort", "--filter-files"} },
     },
+    lua = {
+            {
+            cmd = {
+                function(file)
+                    return string.format("luafmt -l %s -w replace %s", vim.bo.textwidth, file)
+                end
+            }
+        }
+    },
+    markdown = {
+        {
+            cmd = {"black"},
+            start_pattern = "^```python",
+            end_pattern = "^```",
+            target="current",
+        }
+    }
 })
 
 nvim_create_augroups({

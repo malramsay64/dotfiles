@@ -34,7 +34,8 @@ return require('packer').startup(function()
     -- support snippets
     use {'honza/vim-snippets', requires='SirVer/ultisnips'}
     --- Additional support for running formatters
-    use {'lukas-reineke/format.nvim'}
+    use 'lukas-reineke/format.nvim'
+    use 'tjdevries/nlua.nvim'
 
     -- Enhancing Vim
     -- A collection of plugins for enhancing the general behaviour of vim/neovim.
@@ -58,7 +59,7 @@ return require('packer').startup(function()
     -- usually through an interface for a specific task.
     use 'justinmk/vim-dirvish'
     use 'itchyny/lightline.vim'  -- Status line
-    use {'tpope/vim-fugitive', opt=true, cmd={"Git"}}
+    use 'tpope/vim-fugitive'
     use 'wincent/corpus'
     -- Fuzzy finder
     use {'nvim-telescope/telescope.nvim',

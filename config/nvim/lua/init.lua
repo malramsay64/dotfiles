@@ -7,6 +7,7 @@ vim.g.username = "Malcolm Ramsay"
 SetOptions({
     fileencoding = "utf-8",
     belloff = "all", -- no terminal bells
+    shell = "/bin/bash",
 
     -- Visual Options
     title = true, -- set the title of the terminal window

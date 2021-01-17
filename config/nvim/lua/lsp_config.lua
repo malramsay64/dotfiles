@@ -36,7 +36,7 @@ else
 end
 
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = vim.fn.stdpath('cache')..'/lspconfig/sumneko_lua/lua-language-server'
+local sumneko_root_path = vim.fn.stdpath('cache')..'/nlua/sumneko_lua/lua-language-server'
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
 
 nvim_lsp.sumneko_lua.setup({
@@ -73,13 +73,13 @@ nvim_lsp.pyls.setup({
     on_attach=custom_attach,
     settings = {
         pyls = {
-            configurationSources = {"flake8"},
+            configurationSources = {"flake8", "isort"},
             plugins = {
                 pydocstyle = {enabled = true},
                 pycodestyle = {enabled = true},
                 flake8 = {enabled = true},
-                pyls_black = {enabled = false},
-                pyls_isort = {enabled = false},
+                pyls_black = {enabled = true},
+                pyls_isort = {enabled = true},
                 pyls_mypy = {
                     enabled = true,
                     live_mode = true,
