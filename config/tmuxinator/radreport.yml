@@ -52,13 +52,15 @@ windows:
       # synchronize: after
       panes:
         - nvim
-        - 
+        -
   - wiki:
       root: ~/Projects/radreport.wiki
       panes:
         - nvim .
-  - servers: 
+  - servers:
       panes:
         - jupyter lab
         - npm start
         - flask run
+  - monitor:
+      panes: btm
