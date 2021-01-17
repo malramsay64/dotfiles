@@ -15,7 +15,6 @@
 	status = auto
 [core]
 	pager = less -r
-	excludesfile = ~/.gitignore_global
 [user]
 	name = Malcolm Ramsay
 	email = malramsay64@gmail.com
@@ -23,7 +22,15 @@
 	default = current
 [merge "ours"]
 	driver = true
+# define command which will be used when "nvim" is set as a merge tool
+[mergetool "nvim"]
+	cmd = nvim -f -c \"Git\" \"mergetool\"
+# set "nvim" as tool for merging
+[merge]
+	tool = nvim
+# automatically launch merge tool without displaying a prompt
 [mergetool]
+	prompt = false
 	keepBackup = false
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
@@ -32,18 +39,11 @@
 	clean = git-lfs clean -- %f
 [hub]
 	protocol = ssh
-[merge]
-	tool = diffconflicts
-[mergetool]
-	prompt = true
-[mergetool "diffconflicts"]
-	cmd = $EDITOR -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
-	trustExitCode = true
 [push]
-    followTags = true
+	followTags = true
+[pull]
+	ff = only
 [gpg]
 	program = gpg
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
-[pull]
-	ff = only

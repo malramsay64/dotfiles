@@ -32,7 +32,7 @@ cmake_install.cmake
 *.pem
 
 # python
-.ipynb_checkpoints
+.ipynb_checkpoints/
 .python-version
 .autoenv.zsh
 .autoenv_leave.zsh
@@ -46,3 +46,6 @@ htmlcov/*
 
 # Generated tags files
 tags
+
+# Direnv directories
+.direnv
