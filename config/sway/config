@@ -308,10 +308,10 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bindsym $mod+Shift+y resize grow width $resize_len
-bindsym $mod+Shift+u resize shrink height $resize_len
-bindsym $mod+Shift+i resize grow height $resize_len
-bindsym $mod+Shift+o resize shrink width $resize_len
+bindsym $mod+Shift+y resize shrink width $resize_len
+bindsym $mod+Shift+u resize grow height $resize_len
+bindsym $mod+Shift+i resize shrink height $resize_len
+bindsym $mod+Shift+o resize grow width $resize_len
 
 #
 # Status Bar:
