@@ -24,8 +24,7 @@
 	driver = true
 # define command which will be used when "nvim" is set as a merge tool
 [mergetool "nvim"]
-	cmd = nvim -f -c \"Git\" \"mergetool\"
-# set "nvim" as tool for merging
+	cmd = nvim -f -c \"Git mergetool\" \"$MERGED\"
 [merge]
 	tool = nvim
 # automatically launch merge tool without displaying a prompt
