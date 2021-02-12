@@ -1,7 +1,7 @@
 require('nvim_utils')
 require('plugins')
 
-vim.g.email = "malramsay64@gmail.com"
+vim.g.email = "m@malramsay.com"
 vim.g.username = "Malcolm Ramsay"
 
 SetOptions({
