@@ -51,16 +51,16 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - nvim
+        - direnv exec . nvim
         -
   - wiki:
       root: ~/Projects/radreport.wiki
       panes:
-        - nvim .
+        - direnv exec . nvim .
   - servers:
       panes:
-        - jupyter lab
-        - npm start
-        - flask run
+        - direnv exec . jupyter lab
+        - direnv exec . npm start
+        - direnv exec . flask run
   - monitor:
       panes: btm
