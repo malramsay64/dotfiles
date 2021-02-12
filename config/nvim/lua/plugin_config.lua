@@ -34,7 +34,7 @@ CorpusDirectories = {
 -- }}}
 -- UltiSnips {{{
 
--- vim.g.UltiSnipsExpandTrigger = "<c-k>"
+vim.g.UltiSnipsExpandTrigger = "<c-k>"
 vim.g.UltiSnipsSnippetDirectories = {"UltiSnips", "~/.config/.nvim/UltiSnips"}
 vim.g.ultisnips_python_style = "google"
 
