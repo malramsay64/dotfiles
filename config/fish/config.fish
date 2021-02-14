@@ -7,12 +7,11 @@ direnv hook fish | source
 
 zoxide init fish | source
 
-set -x TASKRC "$XDG_CONFIG_HOME/task/config"
+alias ls exa
 
 abbr g git
 abbr c clear
 abbr ravp "rsync -av --progress"
-abbr ls exa
 
 # Commmon misspellings
 abbr isntall install
