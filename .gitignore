@@ -43,3 +43,7 @@ gpg/gnupg.symlink/*
 
 # Ignore python compiled files
 *.pyo
+
+# ZSH Generated completion files
+config/zsh/.zcompcache
+config/zsh/.zcompdump
