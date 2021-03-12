@@ -91,6 +91,10 @@ Mapper("n", "<space>ta", "<cmd>lua require('telescope.builtin').autocommands{}<C
 Mapper("n", "<space>tk", "<cmd>lua require('telescope.builtin').keymaps{}<CR>")
 Mapper("n", "<space>tl", "<cmd>lua require('telescope.builtin').lsp_code_actions{}<CR>")
 
+Mapper("n", "<space>gb", "<cmd>lua require('telescope.builtin').git_branches{}<CR>")
+Mapper("n", "<space>gt", "<cmd>lua require('telescope.builtin').git_status{}<CR>")
+Mapper("n", "<space>gd", "<cmd>lua require('telescope.builtin').git_status{}<CR>")
+
 -- }}}
 -- gitsigns {{{
 
