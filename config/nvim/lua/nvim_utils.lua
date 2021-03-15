@@ -37,7 +37,7 @@ end
 -- or 'v' for visual mode.
 -- @param key str The key code that will be used in the mapping
 function BufMapper(mode, key, result)
-    vim.fn.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
 end
 
 --- Utility to simplify the mapping of global bindings
@@ -46,7 +46,7 @@ end
 -- or 'v' for visual mode.
 -- @param key str The key code that will be used in the mapping
 function Mapper(mode, key, result)
-    vim.fn.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
+    vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
 end
 
 function Command(name, code)
