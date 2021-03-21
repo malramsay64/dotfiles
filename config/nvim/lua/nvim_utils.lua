@@ -1,36 +1,3 @@
---- Helper function that makes setting vim options easier
---- This iterates through each of the options that have been set
---- updating the configuration value within neovim.
----
---- @param options table A mapping of the options to their value
-function SetOptions(options)
-    for k, v in pairs(options) do
-        -- Handle setting of true options
-        if v == true then
-            vim.api.nvim_command('set ' .. k)
-            -- Setting false values requires set no<name>
-        elseif v == false then
-            vim.api.nvim_command('set no' .. k)
-        -- Handle values with containing a mapping
-        elseif type(v) == 'table' then
-            local values = ''
-            -- append each value separated by a comma
-            for k2, v2 in pairs(v) do
-                if k2 == 1 then
-                    values = values .. v2
-                else
-                    values = values .. ',' .. v2
-                end
-            end
-            vim.api.nvim_command('set ' .. k .. '=' .. values)
-        -- Set value directly
-        else
-            vim.api.nvim_command('set ' .. k .. '=' .. v)
-        end
-    end
-end
-
-
 --- Utility to simplify the mapping of buffer local bindings
 -- @param mode str The mode in which the mapping takes place,
 -- this will be one of 'n' for normal mode, 'i' for insert mode
@@ -53,6 +20,9 @@ function Command(name, code)
     vim.cmd("command! -nargs=0 " .. name .. " " .. code)
 end
 
+--- Utility for the creation of autocommand groups
+--- @param definitions table A table mapping the name of the group to the
+--- definitions that are used within it.
 function nvim_create_augroups(definitions)
     for group_name, definition in pairs(definitions) do
         vim.api.nvim_command('augroup '..group_name)

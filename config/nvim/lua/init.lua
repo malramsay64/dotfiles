@@ -4,65 +4,93 @@ require('plugins')
 vim.g.email = "m@malramsay.com"
 vim.g.username = "Malcolm Ramsay"
 
-SetOptions({
-    fileencoding = "utf-8",
-    belloff = "all", -- no terminal bells
-    shell = "/bin/bash",
+-- Use the space key as the map leader
+vim.g.mapleader = " "
 
-    -- Visual Options
-    title = true, -- set the title of the terminal window
-    signcolumn = "yes:1", -- always have a 1 character sign column
-    relativenumber = true, -- Use relative line numbers
-    number = true, -- except for the current line
-    lazyredraw = true, -- Only redraw the window when we need to
-    splitright = true, -- new widows go to the right of the current one
-    termguicolors = true, -- Use 24 bit rgb colours in the TUI
-    list = true, -- Show whitespace characters
-    listchars = {
+-- Always use UTF-8 as the file encoding
+vim.o.fileencoding = "utf-8"
+-- no terminal bells
+vim.o.belloff = "all"
+-- Always use the sh shell to evaluate commands. This ensures that the various
+-- commands are always as fast as possible.
+vim.o.shell = "/bin/sh"
+
+--- Visual Options
+
+-- set the title of the terminal window
+vim.o.title = true
+-- always have a 1 character sign column
+vim.o.signcolumn = "yes:1"
+-- Use relative line numbers
+vim.o.relativenumber = true
+-- except for the current line
+vim.o.number = true
+-- Only redraw the window when we need to
+vim.o.lazyredraw = true
+-- new widows go to the right of the current one
+vim.o.splitright = true
+-- Use 24 bit rgb colours in the TUI
+vim.o.termguicolors = true
+-- Show whitespace characters
+vim.o.list = true
+vim.o.listchars = {
         "tab:▶‒",
         "nbsp:␣",
         "extends:»",       --- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
         "precedes:«",      --- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
         "trail:•",      --- BULLET (U+2022, UTF-8: E2 80 A2)
-    },
-    scrolloff=5, -- Always have 5 lines above or below the cursor
+    }
+-- Always have 5 lines above or below the cursor
+vim.o.scrolloff=5
 
-    --- Search Options
-    incsearch = true, -- search as characters are entered
-    hlsearch = true, -- highlight search matches
-    ignorecase = true, -- ignore case when searching
-    smartcase = true, -- override ignore case when uppercase
-    magic = true, -- Use regular expression magic
-    -- Use ripgrep to search within files
-    grepprg = [[rg\ --vimgrep\ --smart-case\ --no-heading\ --block-buffered]],
+--- Search Options
 
-    hidden = true, -- allow an unwritten bugger to be hidden
-    secure = true, -- Prevent commands running in local files
+-- search as characters are entered
+vim.o.incsearch = true
+-- highlight search matches
+vim.o.hlsearch = true
+-- ignore case when searching
+vim.o.ignorecase = true
+-- override ignore case when uppercase
+vim.o.smartcase = true
+-- Use regular expression magic
+vim.o.magic = true
+-- Use ripgrep to search within files
+vim.o.grepprg = [[rg\ --vimgrep\ --smart-case\ --no-heading\ --block-buffered]]
 
-    --- Joining lines and newlines
-    formatoptions = "jcroqln",
-    joinspaces = false,
+-- allow an unwritten buffer to be hidden
+vim.o.hidden = true
+-- Prevent commands running in local files
+vim.o.secure = true
 
-    --- Completion and Menu Options
-    wildmenu = true,
-    wildmode = {"longest:full" , "full"},
-    completeopt={"menu", "menuone", "noinsert", "noselect"},
-    shortmess="filnxtToOFc",
+--- Joining lines and newlines
+vim.o.formatoptions = "jcroqln"
+vim.o.joinspaces = false
 
-    --- Spaces and Tabs
-    shiftwidth = 4, -- number of spaces to use for autoindent (also >> and <<)
-    tabstop = 4, -- number of spaces a tab character is represented as
-    softtabstop = 4, -- How a tab is handled in editing
-    expandtab = true, -- use spaces in place of tabs
+--- Completion and Menu Options
+vim.o.wildmenu = true
+vim.o.wildmode = {"longest:full" , "full"}
+vim.o.completeopt={"menu", "menuone", "noinsert", "noselect"}
+vim.o.shortmess="filnxtToOFc"
 
-    pyxversion = 3, -- Only use python3
+--- Spaces and Tabs
 
-    --- Backups
-    undofile = true,
+-- number of spaces to use for autoindent (also >> and <<)
+vim.o.shiftwidth = 4
+-- number of spaces a tab character is represented as
+vim.o.tabstop = 4
+-- How a tab is handled in editing
+vim.o.softtabstop = 4
+-- use spaces in place of tabs
+vim.o.expandtab = true
 
-    --- Spelling
-    spelllang = "en_au",
-})
+vim.o.pyxversion = 3, -- Only use python
+
+--- Backups
+vim.o.undofile = true
+
+--- Spelling
+vim.o.spelllang = "en_au"
 
 vim.g.python3_host_prog = "/usr/bin/python3"
 
