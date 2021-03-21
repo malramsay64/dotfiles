@@ -33,13 +33,10 @@ vim.o.splitright = true
 vim.o.termguicolors = true
 -- Show whitespace characters
 vim.o.list = true
-vim.o.listchars = {
-        "tab:▶‒",
-        "nbsp:␣",
-        "extends:»",       --- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
-        "precedes:«",      --- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
-        "trail:•",      --- BULLET (U+2022, UTF-8: E2 80 A2)
-    }
+--- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
+--- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
+--- BULLET (U+2022, UTF-8: E2 80 A2)
+vim.o.listchars = "tab:▶‒,nbsp:␣,extends:»,precedes:«,trail:•"
 -- Always have 5 lines above or below the cursor
 vim.o.scrolloff=5
 
@@ -69,8 +66,8 @@ vim.o.joinspaces = false
 
 --- Completion and Menu Options
 vim.o.wildmenu = true
-vim.o.wildmode = {"longest:full" , "full"}
-vim.o.completeopt={"menu", "menuone", "noinsert", "noselect"}
+vim.o.wildmode = "longest:full,full"
+vim.o.completeopt="menu,menuone,noinsert,noselect"
 vim.o.shortmess="filnxtToOFc"
 
 --- Spaces and Tabs
@@ -83,8 +80,8 @@ vim.o.tabstop = 4
 vim.o.softtabstop = 4
 -- use spaces in place of tabs
 vim.o.expandtab = true
-
-vim.o.pyxversion = 3, -- Only use python
+-- Only use python3
+vim.o.pyxversion = 3
 
 --- Backups
 vim.o.undofile = true
@@ -139,3 +136,6 @@ nvim_create_augroups({
 require('plugin_config')
 require('treesitter_config')
 require('lsp_config')
+
+--- Set colourscheme
+vim.cmd("colorscheme edge")

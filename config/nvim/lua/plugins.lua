@@ -31,6 +31,8 @@ return require('packer').startup(function()
             requires="nvim-treesitter/nvim-treesitter"}
     use 'nvim-lua/completion-nvim'
     use 'nvim-lua/lsp_extensions.nvim'
+    -- Installing language servers
+    use 'anott03/nvim-lspinstall'
     -- support snippets
     use {'honza/vim-snippets', requires='SirVer/ultisnips'}
     --- Additional support for running formatters
