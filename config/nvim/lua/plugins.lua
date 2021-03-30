@@ -24,7 +24,7 @@ return require('packer').startup(function()
     -- alternatively for finding completions. This covers all aspects of the
     -- completions, including support for snippets.
     use 'neovim/nvim-lspconfig'
-    use 'nvim-treesitter/nvim-treesitter'
+    use {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"}
     use {'nvim-treesitter/completion-treesitter',
             requires="nvim-treesitter/nvim-treesitter"}
     use {'nvim-treesitter/nvim-treesitter-textobjects',
