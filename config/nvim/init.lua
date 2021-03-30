@@ -20,11 +20,11 @@ vim.o.shell = "/bin/sh"
 -- set the title of the terminal window
 vim.o.title = true
 -- always have a 1 character sign column
-vim.o.signcolumn = "yes:1"
+vim.wo.signcolumn = "yes:1"
 -- Use relative line numbers
-vim.o.relativenumber = true
+vim.wo.relativenumber = true
 -- except for the current line
-vim.o.number = true
+vim.wo.number = true
 -- Only redraw the window when we need to
 vim.o.lazyredraw = true
 -- new widows go to the right of the current one
@@ -73,13 +73,13 @@ vim.o.shortmess="filnxtToOFc"
 --- Spaces and Tabs
 
 -- number of spaces to use for autoindent (also >> and <<)
-vim.o.shiftwidth = 4
+vim.bo.shiftwidth = 4
 -- number of spaces a tab character is represented as
-vim.o.tabstop = 4
+vim.bo.tabstop = 4
 -- How a tab is handled in editing
-vim.o.softtabstop = 4
+vim.bo.softtabstop = 4
 -- use spaces in place of tabs
-vim.o.expandtab = true
+vim.bo.expandtab = true
 -- Only use python3
 vim.o.pyxversion = 3
 
