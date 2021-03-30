@@ -60,7 +60,8 @@ vim.g.lightline = {
 -- }}}
 -- fugitive {{{
 
-Mapper("n", "<space>gs", ":Git<CR>")
+-- Open a fugitve window in a vertical split on the right hand side of the window
+Mapper("n", "<space>gs", ":vertical rightbelow Git<CR>")
 
 -- }}}
 -- Completion {{{
