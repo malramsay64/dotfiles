@@ -53,7 +53,7 @@ vim.o.smartcase = true
 -- Use regular expression magic
 vim.o.magic = true
 -- Use ripgrep to search within files
-vim.o.grepprg = [[rg\ --vimgrep\ --smart-case\ --no-heading\ --block-buffered]]
+vim.o.grepprg = [[rg --vimgrep --smart-case --no-heading --block-buffered]]
 
 -- allow an unwritten buffer to be hidden
 vim.o.hidden = true
