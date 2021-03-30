@@ -122,7 +122,7 @@ Mapper("t", "<C-l>", [[<C-\><C-N><C-w>l]])
 Mapper("n", "<space>zz", [[:%s/\s\+$//e<CR>]])
 
 -- Commands
-Command("Reload", "source $MYVIMRC")
+Command("Reload", "luafile $MYVIMRC")
 
 -- Terminal Confiugartion
 
