@@ -1,12 +1,18 @@
 local nvim_lsp = require('lspconfig')
 local completion = require('completion')
+local lsp_status = require('lsp-status')
+
 require("nvim_utils")
+
+-- Register the process handler
+lsp_status.register_progress()
 
 --- Function defining how we attach to a language server
 -- This is all the functionality associated with the langauge server protocol.
 local custom_attach = function(client)
     vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     completion.on_attach(client)
+    lsp_status.on_attach(client)
     -- On write automatically format buffer
     if client.resolved_capabilities.document_formatting then
         vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
@@ -83,14 +89,19 @@ nvim_lsp.sumneko_lua.setup({
                 },
             },
         },
-    }
+    },
+    capabilities = lsp_status.capabilities,
 })
 
 nvim_lsp.vimls.setup({
     on_attach=custom_attach
 })
 
-nvim_lsp.rust_analyzer.setup({on_attach=custom_attach})
+nvim_lsp.rust_analyzer.setup({
+    on_attach=custom_attach,
+    capabilities = lsp_status.capabilities
+})
+
 nvim_lsp.pyls.setup({
     enable = true,
     on_attach=custom_attach,
@@ -113,8 +124,15 @@ nvim_lsp.pyls.setup({
             }
         }
     },
+    capabilities = lsp_status.capabilities,
 })
-nvim_lsp.tsserver.setup({on_attach=custom_attach})
+-- nvim_lsp.denols.setup({
+--     on_attach=custom_attach
+
+-- })
+nvim_lsp.angularls.setup({
+    on_attach=custom_attach
+})
 nvim_lsp.r_language_server.setup({on_attach=custom_attach})
 nvim_lsp.clangd.setup({
     on_attach=custom_attach,

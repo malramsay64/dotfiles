@@ -41,21 +41,55 @@ vim.g.ultisnips_python_style = "google"
 -- }}}
 -- lightline {{{
 
-vim.g.lightline = {
-    colorscheme = "edge",
-    component = {lineinfo='%3l %-2v'},
-    active = {
-        left= {
-            {'mode', 'paste'},
-            {'gitbranch', 'readonly', 'filename', 'modified' },
-        },
-        right = {
-            { 'lineinfo' },
-            { 'percent' },
-            { 'filetype', 'fileformat' }
-        }
-    }
+vim.g.bubbly_statusline = {
+  'mode',
+
+  'truncate',
+
+  'branch',
+
+  'signify',
+
+  'path',
+
+  'divisor',
+
+  'lsp_status.diagnostics',
+
+  'filetype',
+  'progress',
 }
+
+vim.g.bubbly_palette = {
+      background = "#34343c",
+      foreground = "#c5cdd9",
+      black = "#3e4249",
+      red = "#ec7279",
+      green = "#a0c980",
+      yellow = "#deb974",
+      blue = "#6cb6eb",
+      purple = "#d38aea",
+      cyan = "#5dbbc1",
+      white = "#c5cdd9",
+      lightgrey = "#57595e",
+      darkgrey = "#404247",
+}
+
+-- vim.g.lightline = {
+--     colorscheme = "edge",
+--     component = {lineinfo='%3l %-2v'},
+--     active = {
+--         left= {
+--             {'mode', 'paste'},
+--             {'gitbranch', 'readonly', 'filename', 'modified' },
+--         },
+--         right = {
+--             { 'lineinfo' },
+--             { 'percent' },
+--             { 'filetype', 'fileformat' }
+--         }
+--     }
+-- }
 
 -- }}}
 -- fugitive {{{

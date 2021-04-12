@@ -31,6 +31,7 @@ return require('packer').startup(function()
             requires="nvim-treesitter/nvim-treesitter"}
     use 'nvim-lua/completion-nvim'
     use 'nvim-lua/lsp_extensions.nvim'
+    use 'nvim-lua/lsp-status.nvim'
     -- Installing language servers
     use 'anott03/nvim-lspinstall'
     -- support snippets
@@ -44,7 +45,8 @@ return require('packer').startup(function()
     -- These are specifically general plugins that work across the board.
     use 'tpope/vim-surround'
     use 'tpope/vim-commentary'
-    use 'tpope/vim-repeat'        -- Repeat plugin commands
+    -- Repeat plugin commands
+    use 'tpope/vim-repeat'
     -- Align symbols within vim
     use {'junegunn/vim-easy-align', opt = true, cmd={"EasyAlign"}}
 
@@ -60,18 +62,35 @@ return require('packer').startup(function()
     -- This provide tools for enhancing specific aspects of the vim experience,
     -- usually through an interface for a specific task.
     use 'justinmk/vim-dirvish'
-    use 'itchyny/lightline.vim'  -- Status line
+    -- use 'itchyny/lightline.vim'  -- Status line
     use 'tpope/vim-fugitive'
     use 'wincent/corpus'
+    use 'tpope/vim-unimpaired'
+    use 'datwaft/bubbly.nvim'
+
     -- Fuzzy finder
     use {'nvim-telescope/telescope.nvim',
         requires = {"nvim-lua/plenary.nvim", "nvim-lua/popup.nvim"},
     }
-    use 'tpope/vim-unimpaired'
 
     use {'nvim-telescope/telescope-symbols.nvim',
         requires = {'nvim-lua/telescope.nvim'},
         opt = true,
         cmd = {"Telsescope symbols"},
+    }
+
+    use {"nvim-telescope/telescope-fzf-writer.nvim", requires={'nvim-lua/telescope.nvim'}}
+
+
+    extensions = {
+        fzf_writer = {
+            minimum_grep_characters = 2,
+            minimum_files_characters = 2,
+
+            -- Disabled by default.
+            -- Will probably slow down some aspects of the sorter, but can make color highlights.
+            -- I will work on this more later.
+            use_highlighter = true,
+        }
     }
 end)
