@@ -67,6 +67,8 @@ return require('packer').startup(function()
     use 'wincent/corpus'
     use 'tpope/vim-unimpaired'
     use 'datwaft/bubbly.nvim'
+    use {'steelsojka/pears.nvim', config="require('pears').setup()"}
+    -- use {'windwp/nvim-autopairs', config = "require('nvim-autopairs').setup()" }
 
     -- Fuzzy finder
     use {'nvim-telescope/telescope.nvim',
