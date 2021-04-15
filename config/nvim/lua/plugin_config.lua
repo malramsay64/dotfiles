@@ -43,19 +43,12 @@ vim.g.ultisnips_python_style = "google"
 
 vim.g.bubbly_statusline = {
   'mode',
-
   'truncate',
-
   'branch',
-
   'signify',
-
   'path',
-
   'divisor',
-
   'lsp_status.diagnostics',
-
   'filetype',
   'progress',
 }
