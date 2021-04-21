@@ -45,22 +45,32 @@ root: ~/Projects/radreport
 # attach: false
 
 windows:
-  - editor:
+  - backend:
+      pre_window: cd radreport-backend
       layout: main-horizontal
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - direnv exec . nvim
+        - nvim
         -
+  - frontend:
+      pre_window: cd radreport-frontend
+      layout: main-horizontal
+      # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+      # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+      # synchronize: after
+      panes:
+        -
+        -
+  - servers:
+      panes:
+        - direnv exec . jupyter lab
+        - cd radreport-frontend && npm start
+        - cd radreport-backend && flask run
   - wiki:
       root: ~/Projects/radreport.wiki
       panes:
         - direnv exec . nvim .
-  - servers:
-      panes:
-        - direnv exec . jupyter lab
-        - direnv exec . npm start
-        - direnv exec . flask run
   - monitor:
       panes: btm
