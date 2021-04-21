@@ -68,22 +68,6 @@ vim.g.bubbly_palette = {
       darkgrey = "#404247",
 }
 
--- vim.g.lightline = {
---     colorscheme = "edge",
---     component = {lineinfo='%3l %-2v'},
---     active = {
---         left= {
---             {'mode', 'paste'},
---             {'gitbranch', 'readonly', 'filename', 'modified' },
---         },
---         right = {
---             { 'lineinfo' },
---             { 'percent' },
---             { 'filetype', 'fileformat' }
---         }
---     }
--- }
-
 -- }}}
 -- fugitive {{{
 
@@ -124,16 +108,6 @@ Mapper("n", "<space>gt", "<cmd>lua require('telescope.builtin').git_status{}<CR>
 Mapper("n", "<space>gd", "<cmd>lua require('telescope.builtin').git_status{}<CR>")
 
 -- }}}
--- gitsigns {{{
-
-require('gitsigns').setup()
-
--- }}}
--- dirvish {{{
--- Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
--- }}}
 -- formatter {{{
 
 require("format").setup({
@@ -142,8 +116,8 @@ require("format").setup({
     },
     -- This uses the local versions of these packages to work within a project.
     python = {
-            -- { cmd = {"black"} },
-            -- { cmd = {"isort", "--filter-files"} },
+            { cmd = {"black"} },
+            { cmd = {"isort", "--filter-files"} },
     },
     lua = {
             {
@@ -161,7 +135,10 @@ require("format").setup({
             end_pattern = "^```",
             target="current",
         }
-    }
+    },
+    typescript = {
+        {cmd = {"prettier"} },
+    },
 })
 
 nvim_create_augroups({

@@ -55,20 +55,23 @@ return require('packer').startup(function()
         'lewis6991/gitsigns.nvim',
         requires = {
             'nvim-lua/plenary.nvim'
-        }
+        },
+        config = "require('gitsigns').setup()",
     }
 
     -- Utilities for Vim
     -- This provide tools for enhancing specific aspects of the vim experience,
     -- usually through an interface for a specific task.
-    use 'justinmk/vim-dirvish'
-    -- use 'itchyny/lightline.vim'  -- Status line
+    use {'justinmk/vim-dirvish', config=[[
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+    ]]}
     use 'tpope/vim-fugitive'
     use 'wincent/corpus'
     use 'tpope/vim-unimpaired'
     use 'datwaft/bubbly.nvim'
     use {'steelsojka/pears.nvim', config="require('pears').setup()"}
-    -- use {'windwp/nvim-autopairs', config = "require('nvim-autopairs').setup()" }
+    -- use {'sunjon/shade.nvim', config="require('shade').setup()"}
 
     -- Fuzzy finder
     use {'nvim-telescope/telescope.nvim',
@@ -81,18 +84,4 @@ return require('packer').startup(function()
         cmd = {"Telsescope symbols"},
     }
 
-    use {"nvim-telescope/telescope-fzf-writer.nvim", requires={'nvim-lua/telescope.nvim'}}
-
-
-    extensions = {
-        fzf_writer = {
-            minimum_grep_characters = 2,
-            minimum_files_characters = 2,
-
-            -- Disabled by default.
-            -- Will probably slow down some aspects of the sorter, but can make color highlights.
-            -- I will work on this more later.
-            use_highlighter = true,
-        }
-    }
 end)
