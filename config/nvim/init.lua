@@ -84,7 +84,7 @@ vim.bo.expandtab = true
 vim.o.pyxversion = 3
 
 --- Backups
-vim.o.undofile = true
+vim.bo.undofile = true
 
 --- Spelling
 vim.o.spelllang = "en_au"
