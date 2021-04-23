@@ -1,9 +1,21 @@
-path = ["/home/malcolm/.cargo/bin", "/home/malcolm/.miniconda/condabin", "/usr/share/Modules/bin", "/usr/lib64/ccache", "/home/malcolm/.local/bin", "/home/malcolm/bin", "/home/malcolm/dotfiles/bin", "/home/malcolm/.cargo/bin", "/usr/local/bin", "/usr/local/bin", "/usr/local/sbin", "/usr/bin", "/usr/sbin", "/home/malcolm/.dotnet/tools"]
+path = [
+    "/home/malcolm/.cargo/bin",
+    "/home/malcolm/.miniconda/condabin",
+    "/home/malcolm/.local/bin",
+    "/home/malcolm/bin",
+    "/home/malcolm/dotfiles/bin",
+    "/home/malcolm/.cargo/bin",
+    "/usr/local/bin",
+    "/usr/local/sbin",
+    "/usr/bin",
+    "/usr/sbin",
+]
 pivot_mode = "auto"
 prompt = "__zoxide_hook; starship prompt"
 startup = [
     "alias c = { clear }",
     "alias ls = exa",
+    "alias g = git",
     "source ~/.config/nu/zoxide.nu",
     ]
 skip_welcome_message = true
@@ -12,7 +24,6 @@ skip_welcome_message = true
 edit_mode = "vi"
 bell_style = "none"
 completion_type = "fuzzy"
-
 
 [env]
 COLORTERM = "truecolor"
