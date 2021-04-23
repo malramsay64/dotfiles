@@ -71,6 +71,6 @@ windows:
   - wiki:
       root: ~/Projects/radreport.wiki
       panes:
-        - direnv exec . nvim .
+        - nvim .
   - monitor:
       panes: btm
