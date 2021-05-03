@@ -13,6 +13,7 @@ local custom_attach = function(client)
     vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     completion.on_attach(client)
     lsp_status.on_attach(client)
+
     -- On write automatically format buffer
     if client.resolved_capabilities.document_formatting then
         vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
@@ -94,7 +95,8 @@ nvim_lsp.sumneko_lua.setup({
 })
 
 nvim_lsp.vimls.setup({
-    on_attach=custom_attach
+    on_attach=custom_attach,
+    capabilities = lsp_status.capabilities,
 })
 
 nvim_lsp.rust_analyzer.setup({
@@ -130,13 +132,16 @@ nvim_lsp.pyls.setup({
 --     on_attach=custom_attach
 
 -- })
+
 nvim_lsp.angularls.setup({
-    on_attach=custom_attach
+    on_attach=custom_attach,
+    capabilities = lsp_status.capabilities,
 })
 nvim_lsp.r_language_server.setup({on_attach=custom_attach})
 nvim_lsp.clangd.setup({
     on_attach=custom_attach,
     filetypes={ "c", "cpp", "objc", "objcpp", "cuda" },
+    capabilities = lsp_status.capabilities,
 })
 nvim_lsp.html.setup({on_attach=custom_attach})
 
@@ -148,4 +153,3 @@ require('lsp_extensions').inlay_hints{
 }
 
 vim.cmd("autocmd BufEnter *.md lua require'completion'.on_attach()")
-
