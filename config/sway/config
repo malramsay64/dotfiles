@@ -39,7 +39,7 @@ set $menu wofi --show drun -i | xargs swaymsg exec -
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 # output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /usr/share/backgrounds/gnome/adwaita-night.jpg fill
+output * bg /usr/share/backgrounds/gnome/adwaita-night.png fill
 
 #
 # Example configuration:
