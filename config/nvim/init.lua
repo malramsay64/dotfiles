@@ -72,14 +72,20 @@ vim.o.shortmess="filnxtToOFc"
 
 --- Spaces and Tabs
 
--- number of spaces to use for autoindent (also >> and <<)
-vim.bo.shiftwidth = 4
--- number of spaces a tab character is represented as
-vim.bo.tabstop = 4
--- How a tab is handled in editing
-vim.bo.softtabstop = 4
--- use spaces in place of tabs
-vim.bo.expandtab = true
+-- This doesn't seem to be set using vim.bo, so using the vim commands to set
+-- these values.
+vim.cmd("set shiftwidth=4")
+vim.cmd("set tabstop=4")
+vim.cmd("set expandtab")
+vim.cmd("set softtabstop=4")
+-- -- number of spaces to use for autoindent (also >> and <<)
+-- vim.bo.shiftwidth = 4
+-- -- number of spaces a tab character is represented as
+-- vim.bo.tabstop = 4
+-- -- How a tab is handled in editing
+-- vim.bo.softtabstop = 4
+-- -- use spaces in place of tabs
+-- vim.bo.expandtab = true
 -- Only use python3
 vim.o.pyxversion = 3
 
@@ -127,11 +133,11 @@ Command("Reload", "luafile $MYVIMRC")
 -- Terminal Confiugartion
 
 nvim_create_augroups({
-        terminal = {
-            {"TermOpen", "*", "setlocal nonumber norelativenumber"},
-            {"TermOpen", "*", "startinsert"},
-        }
-    })
+    terminal = {
+        {"TermOpen", "*", "setlocal nonumber norelativenumber"},
+        {"TermOpen", "*", "startinsert"},
+    }
+})
 
 require('plugin_config')
 require('treesitter_config')
