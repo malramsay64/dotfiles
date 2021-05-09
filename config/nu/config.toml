@@ -16,6 +16,7 @@ startup = [
     "alias c = { clear }",
     "alias ls = exa",
     "alias g = git",
+    "zoxide init nushell --hook prompt | save ~/.config/nu/zoxide.nu",
     "source ~/.config/nu/zoxide.nu",
     ]
 skip_welcome_message = true
@@ -34,12 +35,12 @@ DOTFILES = "/home/malcolm/dotfiles"
 EDITOR = "nvim"
 FZF_CTRL_T_COMMAND = "rg --files --no-ignore --hidden --follow -g \"!{.git,node_modules}/*\" 2> /dev/null"
 FZF_DEFAULT_COMMAND = "rg --files --no-ignore --hidden --follow -g \"!{.git,node_modules}/*\" 2> /dev/null"
-MANPAGER = "nvim +'set ft:man' -"
+MANPAGER = "nvim +Man!"
 NNN_BMS = "d:~/Documents;D:~/Downloads/;p:~/Projects;P:~/Documents/Programming"
 NNN_USE_EDITOR = "1"
-SSH_AUTH_SOCK = "/home/malcolm/.ssh/ssh-agent-sock"
 VISUAL = "nvim"
 XDG_CACHE_HOME = "/home/malcolm/.cache"
 XDG_CONFIG_HOME = "/home/malcolm/.config"
 XDG_DATA_DIRS = "/home/malcolm/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share"
 XDG_DATA_HOME = "/home/malcolm/.local/share"
+SSH_AUTH_SOCK = "/home/malcolm/.gnupg/S.gpg-agent.ssh"

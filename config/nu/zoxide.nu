@@ -1,5 +1,16 @@
 # =============================================================================
 #
+# Utility functions for zoxide.
+#
+
+# Default prompt for Nushell.
+# Taken from: <https://github.com/nushell/nushell/blob/main/docs/sample_config/config.toml>
+def __zoxide_prompt [] {
+    build-string $(ansi gb) $(pwd) $(ansi reset) '(' $(ansi cb) $(do -i { git rev-parse --abbrev-ref HEAD } | str trim) $(ansi reset) ')' $(ansi yb) $(date format '%m/%d/%Y %I:%M:%S%.3f %p') $(ansi reset) '> '
+}
+
+# =============================================================================
+#
 # Hook configuration for zoxide.
 #
 
@@ -53,14 +64,13 @@ alias zi = __zoxide_zi ''
 
 # =============================================================================
 #
-# To initialize zoxide with Nushell:
-#
-# Initialize zoxide's Nushell script:
+# To initialize zoxide, first create a Nushell script:
 #
 #   zoxide init nushell --hook prompt | save ~/.zoxide.nu
 #
-# Then, in your Nushell configuration file:
-# - Prepend `__zoxide_hook;` to the `prompt` variable.
-# - Add the following lines to the `startup` variable:
-#   - `zoxide init nushell --hook prompt | save ~/.zoxide.nu`
-#   - `source ~/.zoxide.nu`
+# Add this to your configuration (usually ~/.config/nu/config.toml):
+#
+#   prompt = "__zoxide_hook;__zoxide_prompt"
+#   startup = ["zoxide init nushell --hook prompt | save ~/.zoxide.nu", "source ~/.zoxide.nu"]
+#
+# You can replace __zoxide_prompt with a custom prompt.
