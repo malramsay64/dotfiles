@@ -101,9 +101,8 @@ nvim_lsp.vimls.setup({
 
 nvim_lsp.rust_analyzer.setup({
     on_attach=custom_attach,
-    capabilities = lsp_status.capabilities
+    capabilities = lsp_status.capabilities,
 })
-
 nvim_lsp.pyls.setup({
     enable = true,
     on_attach=custom_attach,
@@ -128,6 +127,12 @@ nvim_lsp.pyls.setup({
     },
     capabilities = lsp_status.capabilities,
 })
+
+nvim_lsp.pyright.setup({
+    on_attach=custom_attach,
+    capabilities = lsp_status.capabilities,
+})
+
 -- nvim_lsp.denols.setup({
 --     on_attach=custom_attach
 
@@ -136,6 +141,10 @@ nvim_lsp.pyls.setup({
 nvim_lsp.angularls.setup({
     on_attach=custom_attach,
     capabilities = lsp_status.capabilities,
+})
+nvim_lsp.tsserver.setup({
+    on_attach=custom_attach,
+    capabilities=lsp_status.capabilities,
 })
 nvim_lsp.r_language_server.setup({on_attach=custom_attach})
 nvim_lsp.clangd.setup({
@@ -152,4 +161,4 @@ require('lsp_extensions').inlay_hints{
         only_current_line = false
 }
 
-vim.cmd("autocmd BufEnter *.md lua require'completion'.on_attach()")
+vim.cmd("autocmd BufEnter *.md lua require('completion').on_attach()")
