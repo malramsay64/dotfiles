@@ -62,16 +62,35 @@ return require('packer').startup(function()
     -- Utilities for Vim
     -- This provide tools for enhancing specific aspects of the vim experience,
     -- usually through an interface for a specific task.
-    use {'justinmk/vim-dirvish', config=[[
+    use {'justinmk/vim-dirvish', config=function()
         vim.g.loaded_netrw = 1
         vim.g.loaded_netrwPlugin = 1
-    ]]}
+    end}
+
     use 'tpope/vim-fugitive'
     use 'wincent/corpus'
     use 'tpope/vim-unimpaired'
     use 'datwaft/bubbly.nvim'
     use {'steelsojka/pears.nvim', config="require('pears').setup()"}
-    -- use {'sunjon/shade.nvim', config="require('shade').setup()"}
+    use {'sunjon/shade.nvim', config="require('shade').setup()"}
+    use {'simrat39/symbols-outline.nvim', config=function()
+        vim.g.symbols_outline = {
+            highlight_hovered_item = true,
+            show_guides = true,
+            auto_preview = false, -- experimental
+            position = 'right',
+            keymaps = {
+                close = "<Esc>",
+                goto_location = "<Cr>",
+                focus_location = "o",
+                hover_symbol = "<C-space>",
+                rename_symbol = "r",
+                code_actions = "a",
+            },
+            lsp_blacklist = {},
+        }
+    end
+    }
 
     -- Fuzzy finder
     use {'nvim-telescope/telescope.nvim',
