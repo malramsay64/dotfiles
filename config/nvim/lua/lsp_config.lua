@@ -128,10 +128,10 @@ nvim_lsp.pyls.setup({
     capabilities = lsp_status.capabilities,
 })
 
-nvim_lsp.pyright.setup({
-    on_attach=custom_attach,
-    capabilities = lsp_status.capabilities,
-})
+-- nvim_lsp.pyright.setup({
+--     on_attach=custom_attach,
+--     capabilities = lsp_status.capabilities,
+-- })
 
 -- nvim_lsp.denols.setup({
 --     on_attach=custom_attach
