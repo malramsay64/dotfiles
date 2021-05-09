@@ -17,3 +17,8 @@ abbr ravp "rsync -av --progress"
 abbr isntall install
 abbr juptyer jupyter
 abbr serach search
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval $HOME/.miniconda/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
