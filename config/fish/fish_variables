@@ -18,12 +18,6 @@ SETUVAR _fish_abbr_ls:exa
 SETUVAR _fish_abbr_mux:tmuxinator
 SETUVAR _fish_abbr_ravp:rsync\x20\x2dav\x20\x2d\x2dprogress
 SETUVAR _fish_abbr_serach:search
-SETUVAR _fish_abbr_za:zoxide\x20add
-SETUVAR _fish_abbr_zi:z\x20\x2di
-SETUVAR _fish_abbr_zq:zoxide\x20query
-SETUVAR _fish_abbr_zqi:zoxide\x20query\x20\x2di
-SETUVAR _fish_abbr_zr:zoxide\x20remove
-SETUVAR _fish_abbr_zri:zoxide\x20remove\x20\x2di
 SETUVAR fish_color_autosuggestion:969896
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:b294bb
