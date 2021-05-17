@@ -87,7 +87,7 @@ return require('packer').startup(function()
                 rename_symbol = "r",
                 code_actions = "a",
             },
-            lsp_blacklist = {},
+            lsp_blacklist = {"pyls"},
         }
     end
     }
