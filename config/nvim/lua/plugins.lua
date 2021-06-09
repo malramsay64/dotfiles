@@ -40,6 +40,11 @@ return require('packer').startup(function()
     use 'lukas-reineke/format.nvim'
     use 'tjdevries/nlua.nvim'
 
+    use {'lewis6991/spellsitter.nvim', config=function()
+        require('spellsitter').setup()
+    end
+    }
+
     -- Enhancing Vim
     -- A collection of plugins for enhancing the general behaviour of vim/neovim.
     -- These are specifically general plugins that work across the board.
