@@ -104,8 +104,12 @@ return require('packer').startup(function()
 
     use {'nvim-telescope/telescope-symbols.nvim',
         requires = {'nvim-lua/telescope.nvim'},
-        opt = true,
-        cmd = {"Telsescope symbols"},
     }
+    use {'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make',
+        config=function()
+         require('telescope').load_extension('fzf')
+     end
+     }
 
 end)
