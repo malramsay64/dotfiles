@@ -1,37 +1,3 @@
--- Corpus {{{
-
-CorpusDirectories = {
-    ["~/Documents/notes/personal"] = {
-        autocommit = false,
-        autoreference = 1,
-        autotitle = 1,
-        base = "./",
-        transform = "local"
-    },
-    ["~/Documents/notes/PhD"] = {
-        autocommit = false,
-        autoreference = 1,
-        autotitle = 1,
-        base = "./",
-        transform = "local"
-    },
-    ["~/Documents/Work/Intersect/notes"] = {
-        autocommit = false,
-        autoreference = 1,
-        autotitle = 1,
-        base = "./",
-        transform = "local"
-    },
-    ["~/Projects/personal_site/content/post"] = {
-        autocommit = false,
-        autoreference = 0,
-        autotitle = 0,
-        base = "post/",
-        transform = "web"
-    },
-}
-
--- }}}
 -- UltiSnips {{{
 
 vim.g.UltiSnipsExpandTrigger = "<c-k>"
@@ -39,7 +5,7 @@ vim.g.UltiSnipsSnippetDirectories = {"UltiSnips", "~/.config/.nvim/UltiSnips"}
 vim.g.ultisnips_python_style = "google"
 
 -- }}}
--- lightline {{{
+-- Statusline {{{
 
 vim.g.bubbly_statusline = {
   'mode',
@@ -81,12 +47,16 @@ vim.g.completion_chain_complete_list = {
     default={
         {complete_items={"lsp", "snippet"}},
         {complete_items={"path"}, triggered_only={"/"}},
+        {mode: '<c-p>'},
+        {mode: '<c-n>'},
     },
 }
 
 vim.g.completion_trigger_keyword_length = 2
 vim.g.completion_enable_auto_paren = 1
 vim.g.completion_enable_snippet = "UltiSnips"
+vim.g.completion_trigger_on_delete = 1
+vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
 
 -- }}}
 -- telescope {{{

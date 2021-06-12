@@ -1,6 +1,7 @@
 local nvim_lsp = require('lspconfig')
 local completion = require('completion')
 local lsp_status = require('lsp-status')
+local lsp_extensions = require('lsp_extensions')
 
 require("nvim_utils")
 
@@ -13,6 +14,7 @@ local custom_attach = function(client)
     vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     completion.on_attach(client)
     lsp_status.on_attach(client)
+    lsp_extensions.inlay_hints({ enabled = {"TypeHint", "ChainingHint", "ParameterHint"} })
 
     -- On write automatically format buffer
     if client.resolved_capabilities.document_formatting then
@@ -27,6 +29,7 @@ local custom_attach = function(client)
     end
 
     vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
+
     BufMapper("n", "<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>")
     BufMapper('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
     BufMapper('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
@@ -44,9 +47,9 @@ local custom_attach = function(client)
     BufMapper('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
     BufMapper('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 
-    BufMapper('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-    BufMapper('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-    BufMapper('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
+    -- BufMapper('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
+    -- BufMapper('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
+    -- BufMapper('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
 
     BufMapper('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
     BufMapper('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
@@ -54,27 +57,7 @@ local custom_attach = function(client)
     BufMapper('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
 end
 
-local system_name
-if vim.fn.has("mac") == 1 then
-  system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-  system_name = "Linux"
-elseif vim.fn.has('win32') == 1 then
-  system_name = "Windows"
-else
-  print("Unsupported system for sumneko")
-end
-
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = vim.fn.stdpath('cache')..'/nlua/sumneko_lua/lua-language-server'
-local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
-
 nvim_lsp.sumneko_lua.setup({
-    cmd = {
-        sumneko_binary,
-        "-E",
-        sumneko_root_path .. "/main.lua"
-    },
     on_attach=custom_attach,
     settings = {
         Lua = {
@@ -154,11 +137,4 @@ nvim_lsp.clangd.setup({
 })
 nvim_lsp.html.setup({on_attach=custom_attach})
 
-require('lsp_extensions').inlay_hints{
-        highlight = "Comment",
-        prefix = " > ",
-        aligned = true,
-        only_current_line = false
-}
-
-vim.cmd("autocmd BufEnter *.md lua require('completion').on_attach()")
+vim.cmd("autocmd BufEnter * lua require('completion').on_attach()")

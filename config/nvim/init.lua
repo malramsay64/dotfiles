@@ -67,7 +67,7 @@ vim.o.joinspaces = false
 --- Completion and Menu Options
 vim.o.wildmenu = true
 vim.o.wildmode = "longest:full,full"
-vim.o.completeopt="menu,menuone,noinsert,noselect"
+vim.o.completeopt="menuone,noinsert,noselect"
 vim.o.shortmess="filnxtToOFc"
 
 --- Spaces and Tabs
