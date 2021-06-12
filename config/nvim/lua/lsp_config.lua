@@ -44,6 +44,7 @@ local custom_attach = function(client)
     BufMapper("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
     BufMapper("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
+    BufMapper('n', '<space>ld', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
     BufMapper('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
     BufMapper('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
 
@@ -87,29 +88,30 @@ nvim_lsp.rust_analyzer.setup({
     on_attach=custom_attach,
     capabilities = lsp_status.capabilities,
 })
-nvim_lsp.pyls.setup({
-    enable = true,
-    on_attach=custom_attach,
-    settings = {
-        pyls = {
-            configurationSources = {"flake8", "isort"},
-            plugins = {
-                pydocstyle = {enabled = true},
-                pycodestyle = {enabled = true},
-                flake8 = {enabled = true},
-                pyls_black = {enabled = true},
-                pyls_isort = {enabled = true},
-                pyls_mypy = {
-                    enabled = true,
-                    live_mode = true,
-                },
-                jedi_completion = {fuzzy = true},
-                yapf = {enabled = false}
-            }
-        }
-    },
-    capabilities = lsp_status.capabilities,
-})
+-- nvim_lsp.pyls.setup({
+--     enable = true,
+--     on_attach=custom_attach,
+--     settings = {
+--         pyls = {
+--             configurationSources = {"flake8", "isort"},
+--             plugins = {
+--                 pydocstyle = {enabled = true},
+--                 pycodestyle = {enabled = true},
+--                 flake8 = {enabled = true},
+--                 pyls_black = {enabled = true},
+--                 pyls_isort = {enabled = true},
+--                 pyls_mypy = {
+--                     enabled = true,
+--                     live_mode = true,
+--                 },
+--                 jedi_completion = {fuzzy = true},
+--                 yapf = {enabled = false}
+
+--             }
+--         }
+--     },
+--     capabilities = lsp_status.capabilities,
+-- })
 
 nvim_lsp.pyright.setup({
     on_attach=custom_attach,
