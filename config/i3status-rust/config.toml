@@ -38,7 +38,7 @@ interval = 1
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mug}/{MTg} GB"
+format_mem = "{mem_used;G}/{mem_total;G} GB"
 
 [[block]]
 block = "disk_space"
