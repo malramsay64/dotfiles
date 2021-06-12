@@ -139,7 +139,6 @@ nvim_create_augroups({
     }
 })
 
-require('plugin_config')
 require('treesitter_config')
 require('lsp_config')
 

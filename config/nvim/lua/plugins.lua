@@ -7,6 +7,8 @@ end
 -- Only required if you have packer in your `opt` pack
 vim.cmd("packadd packer.nvim")
 
+local plugin_config = require("plugin_config")
+
 return require('packer').startup(function()
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
@@ -20,7 +22,10 @@ return require('packer').startup(function()
     -- Colourscheme and Themeing Plugins
     --
     use 'sainnhe/edge'
-    use 'datwaft/bubbly.nvim'
+    use {
+        'datwaft/bubbly.nvim',
+        config=plugin_config.bubbly
+    }
     use 'lukas-reineke/indent-blankline.nvim'
     use {
         'sunjon/shade.nvim',
@@ -42,12 +47,7 @@ return require('packer').startup(function()
     -- Installing language servers
     use {
         'kabouzeid/nvim-lspinstall',
-        run = function()
-            for lang in {"python", "typescript", "lua", "yaml", "vim"} do
-                require'lspinstall'.install_server(lang)
-            end
-        end
-
+        run=":lua require('plugin_config').lsp_install()<CR>"
     }
 
     use 'nvim-lua/completion-nvim'
@@ -63,26 +63,8 @@ return require('packer').startup(function()
     }
     use {
         'simrat39/symbols-outline.nvim',
-        config=function()
-            vim.g.symbols_outline = {
-                highlight_hovered_item = true,
-                show_guides = true,
-                auto_preview = false, -- experimental
-                position = 'right',
-                keymaps = {
-                    close = "<Esc>",
-                    goto_location = "<Cr>",
-                    focus_location = "o",
-                    hover_symbol = "<C-space>",
-                    rename_symbol = "r",
-                    code_actions = "a",
-                },
-                lsp_blacklist = {"pyls"},
-            }
-        end
+        config=plugin_config.outline,
     }
-
-
 
     -- support snippets
     use {'honza/vim-snippets', requires='SirVer/ultisnips'}
@@ -136,7 +118,10 @@ return require('packer').startup(function()
         end
     }
 
-    use 'tpope/vim-fugitive'
+    use {
+        'tpope/vim-fugitive',
+        config=plugin_config.fugitive,
+    }
 
     --
     -- Fuzzy finder
@@ -144,6 +129,7 @@ return require('packer').startup(function()
     use {
         'nvim-telescope/telescope.nvim',
         requires = {"nvim-lua/plenary.nvim", "nvim-lua/popup.nvim"},
+        config = plugin_config.telescope,
     }
     -- This provides a telescope picker to insert unicode symbols and glyphs
     use {

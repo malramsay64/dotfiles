@@ -58,7 +58,8 @@ local custom_attach = function(client)
 end
 
 nvim_lsp.sumneko_lua.setup({
-    on_attach=custom_attach,
+  -- cmd={sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+  on_attach=custom_attach,
     settings = {
         Lua = {
             runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
@@ -104,7 +105,6 @@ nvim_lsp.pyls.setup({
                 },
                 jedi_completion = {fuzzy = true},
                 yapf = {enabled = false}
-
             }
         }
     },
