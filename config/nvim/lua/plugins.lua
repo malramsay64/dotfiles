@@ -123,6 +123,16 @@ return require('packer').startup(function()
         config=plugin_config.fugitive,
     }
 
+    use {'akinsho/nvim-toggleterm.lua', config=function()
+        require('toggleterm').setup({
+            open_mapping=[[<space>o]],
+            -- No terminal mappings in insert mode
+            insert_mappings=false,
+            shell="/usr/bin/fish",
+        })
+    end
+    }
+
     --
     -- Fuzzy finder
     --
