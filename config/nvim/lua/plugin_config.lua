@@ -12,30 +12,30 @@ end
 
 config.bubbly = function()
     vim.g.bubbly_statusline = {
-      'mode',
-      'truncate',
-      'branch',
-      'signify',
-      'path',
-      'divisor',
-      'lsp_status.diagnostics',
-      'filetype',
-      'progress',
+        'mode',
+        'truncate',
+        'branch',
+        'signify',
+        'path',
+        'divisor',
+        'lsp_status.diagnostics',
+        'filetype',
+        'progress',
     }
 
     vim.g.bubbly_palette = {
-          background = "#34343c",
-          foreground = "#c5cdd9",
-          black = "#3e4249",
-          red = "#ec7279",
-          green = "#a0c980",
-          yellow = "#deb974",
-          blue = "#6cb6eb",
-          purple = "#d38aea",
-          cyan = "#5dbbc1",
-          white = "#c5cdd9",
-          lightgrey = "#57595e",
-          darkgrey = "#404247",
+        background = "#34343c",
+        foreground = "#c5cdd9",
+        black = "#3e4249",
+        red = "#ec7279",
+        green = "#a0c980",
+        yellow = "#deb974",
+        blue = "#6cb6eb",
+        purple = "#d38aea",
+        cyan = "#5dbbc1",
+        white = "#c5cdd9",
+        lightgrey = "#57595e",
+        darkgrey = "#404247",
     }
 end
 
@@ -50,7 +50,6 @@ end
 -- }}}
 -- Completion {{{
 
-
 config.completion = function()
     vim.g.completion_chain_complete_list = {
         default={
@@ -61,7 +60,7 @@ config.completion = function()
         },
     }
 
-    vim.g.completion_trigger_keyword_length = 2
+    vim.g.completion_trigger_keyword_length = 1
     vim.g.completion_enable_auto_paren = 1
     vim.g.completion_enable_snippet = "UltiSnips"
     vim.g.completion_trigger_on_delete = 1
@@ -99,11 +98,11 @@ config.formatter = function()
         },
         -- This uses the local versions of these packages to work within a project.
         python = {
-                { cmd = {"black"} },
-                { cmd = {"isort", "--filter-files"} },
+            { cmd = {"black"} },
+            { cmd = {"isort", "--filter-files"} },
         },
         lua = {
-                {
+            {
                 cmd = {
                     function(file)
                         return string.format("luafmt -l %s -w replace %s", vim.bo.textwidth, file)
@@ -120,16 +119,24 @@ config.formatter = function()
             }
         },
         typescript = {
-            {cmd = {"prettier"} },
+            {cmd = {"prettier --write ."}},
+        },
+        html = {
+            {cmd = {"prettier --write ."}},
+        },
+        css = {
+            {cmd = {"prettier --write ."}},
         },
     })
 
     nvim_create_augroups({
-         formatting = {
-             {"BufWritePost", "*", "FormatWrite"}
-         }
-     })
- end
+        formatting = {
+            {"BufWritePost", "*", "FormatWrite"}
+        }
+    })
+
+end
+
 
 -- }}}
 -- LSP {{{
