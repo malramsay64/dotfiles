@@ -139,6 +139,13 @@ nvim_create_augroups({
     }
 })
 
+-- Configure nvim to automatically realign windows on resize
+nvim_create_augroups({
+    resize = {
+        {"VimResized", "*", "wincmd ="},
+    }
+})
+
 require('treesitter_config')
 require('lsp_config')
 
