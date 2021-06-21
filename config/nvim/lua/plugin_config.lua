@@ -119,13 +119,13 @@ config.formatter = function()
             }
         },
         typescript = {
-            {cmd = {"prettier --write ."}},
+            {cmd = {"prettier --write "}},
         },
         html = {
-            {cmd = {"prettier --write ."}},
+            {cmd = {"prettier --write "}},
         },
         css = {
-            {cmd = {"prettier --write ."}},
+            {cmd = {"prettier --write "}},
         },
     })
 
