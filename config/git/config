@@ -54,5 +54,7 @@
 	ff = only
 [gpg]
 	program = gpg
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+[init]
+	defaultBranch = main
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
