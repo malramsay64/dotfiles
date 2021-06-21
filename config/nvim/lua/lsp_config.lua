@@ -5,6 +5,11 @@ local lsp_extensions = require('lsp_extensions')
 
 require("nvim_utils")
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.window = capabilities.window or {}
+capabilities.window.workDoneProgress = true
+
 -- Register the process handler
 lsp_status.register_progress()
 
@@ -76,17 +81,17 @@ nvim_lsp.sumneko_lua.setup({
             },
         },
     },
-    capabilities = lsp_status.capabilities,
+    capabilities=capabilities,
 })
 
 nvim_lsp.vimls.setup({
     on_attach=custom_attach,
-    capabilities = lsp_status.capabilities,
+    capabilities=capabilities,
 })
 
 nvim_lsp.rust_analyzer.setup({
     on_attach=custom_attach,
-    capabilities = lsp_status.capabilities,
+    capabilities=capabilities,
 })
 -- nvim_lsp.pyls.setup({
 --     enable = true,
@@ -110,12 +115,12 @@ nvim_lsp.rust_analyzer.setup({
 --             }
 --         }
 --     },
---     capabilities = lsp_status.capabilities,
+--     capabilities=capabilities,
 -- })
 
 nvim_lsp.pyright.setup({
     on_attach=custom_attach,
-    capabilities = lsp_status.capabilities,
+    capabilities=capabilities,
 })
 
 -- nvim_lsp.denols.setup({
@@ -125,17 +130,17 @@ nvim_lsp.pyright.setup({
 
 nvim_lsp.angularls.setup({
     on_attach=custom_attach,
-    capabilities = lsp_status.capabilities,
+    capabilities=capabilities,
 })
 nvim_lsp.tsserver.setup({
     on_attach=custom_attach,
-    capabilities=lsp_status.capabilities,
+    capabilities=capabilities,
 })
 nvim_lsp.r_language_server.setup({on_attach=custom_attach})
 nvim_lsp.clangd.setup({
     on_attach=custom_attach,
     filetypes={ "c", "cpp", "objc", "objcpp", "cuda" },
-    capabilities = lsp_status.capabilities,
+    capabilities=capabilities,
 })
 nvim_lsp.html.setup({on_attach=custom_attach})
 

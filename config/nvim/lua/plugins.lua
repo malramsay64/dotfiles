@@ -1,17 +1,24 @@
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local plugin_config = require("plugin_config")
+local execute = vim.api.nvim_command
+
+local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.cmd('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  vim.api.nvim_command('!git clone https://github.com/wbthomason/packer.nvim '.. install_path)
 end
 
--- Only required if you have packer in your `opt` pack
-vim.cmd("packadd packer.nvim")
+vim.api.nvim_exec([[
+  augroup Packer
+    autocmd!
+    autocmd BufWritePost plugins.lua,plugin_config.lua PackerCompile
+  augroup end
+]], false)
 
-local plugin_config = require("plugin_config")
 
+local use = require('packer').use
 return require('packer').startup(function()
     -- Packer can manage itself as an optional plugin
-    use {'wbthomason/packer.nvim', opt = true}
+    use {'wbthomason/packer.nvim'}
 
     -- Utility Plugins
     -- Plugins that form dependencies for the main functionality I am looking for
@@ -26,13 +33,14 @@ return require('packer').startup(function()
         'datwaft/bubbly.nvim',
         config=plugin_config.bubbly
     }
-    use 'lukas-reineke/indent-blankline.nvim'
-    use {
-        'sunjon/shade.nvim',
-        config=function() require('shade').setup() end
-    }
+    -- use {
+    --     'sunjon/shade.nvim',
+    --     config=function() require('shade').setup() end
+    -- }
     -- This needs a nerd-font patched font, which I am not currently using
     -- use 'kyazdani42/nvim-web-devicons'
+
+    use { 'lukas-reineke/indent-blankline.nvim', branch="lua" }
 
     --
     -- Language and Completion Plugins
@@ -47,10 +55,13 @@ return require('packer').startup(function()
     -- Installing language servers
     use {
         'kabouzeid/nvim-lspinstall',
-        run=":lua require('plugin_config').lsp_install()<CR>"
+        -- run=":lua require('plugin_config').lsp_install()<CR>"
     }
 
-    use 'nvim-lua/completion-nvim'
+    use {
+        'nvim-lua/completion-nvim',
+        config=plugin_config.completion,
+    }
 
     use {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"}
     use {
@@ -67,14 +78,26 @@ return require('packer').startup(function()
     }
 
     -- support snippets
-    use {'honza/vim-snippets', requires='SirVer/ultisnips'}
+    -- use {
+    --     'norcalli/snippets.nvim',
+    --     requires='rafamadriz/friendly-snippets',
+    --     config=function() require("snippets").use_suggested_mappings() end
+    -- }
+    use {
+        'honza/vim-snippets',
+        requires='SirVer/ultisnips',
+        config=plugin_config.snippets,
+    }
 
     --- Additional support for running formatters
-    use 'lukas-reineke/format.nvim'
+    use {
+        'lukas-reineke/format.nvim',
+        config=plugin_config.formatter,
+    }
 
     use {
         'lewis6991/spellsitter.nvim',
-        config=function() require('spellsitter').setup() end,
+        config=function() require('spellsitter').setup({hl="error"}) end,
     }
 
     -- Enhancing Vim
