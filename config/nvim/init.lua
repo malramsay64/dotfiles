@@ -8,92 +8,108 @@ vim.g.username = "Malcolm Ramsay"
 vim.g.mapleader = " "
 
 -- Always use UTF-8 as the file encoding
-vim.o.fileencoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
 -- no terminal bells
-vim.o.belloff = "all"
+vim.opt.belloff = "all"
 -- Always use the sh shell to evaluate commands. This ensures that the various
 -- commands are always as fast as possible.
-vim.o.shell = "/bin/sh"
+vim.opt.shell = "/bin/sh"
 
 --- Visual Options
 
 -- set the title of the terminal window
-vim.o.title = true
+vim.opt.title = true
 -- always have a 1 character sign column
-vim.wo.signcolumn = "yes:1"
+vim.opt.signcolumn = "yes:1"
 -- Use relative line numbers
-vim.wo.relativenumber = true
+vim.opt.relativenumber = true
 -- except for the current line
-vim.wo.number = true
+vim.opt.number = true
 -- Only redraw the window when we need to
-vim.o.lazyredraw = true
+vim.opt.lazyredraw = true
 -- new widows go to the right of the current one
-vim.o.splitright = true
+vim.opt.splitright = true
 -- Use 24 bit rgb colours in the TUI
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 -- Show whitespace characters
-vim.o.list = true
+vim.opt.list = true
 --- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
 --- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
 --- BULLET (U+2022, UTF-8: E2 80 A2)
-vim.o.listchars = "tab:▶‒,nbsp:␣,extends:»,precedes:«,trail:•"
+vim.opt.listchars = {
+    tab='▶‒',
+    nbsp='␣',
+    extends='»',
+    precedes='«',
+    trail='•',
+}
 -- Always have 5 lines above or below the cursor
-vim.o.scrolloff=5
+vim.opt.scrolloff=5
 
 --- Search Options
 
+-- Incremental live completion
+vim.opt.inccommand = "nosplit"
 -- search as characters are entered
-vim.o.incsearch = true
+vim.opt.incsearch = true
 -- highlight search matches
-vim.o.hlsearch = true
+vim.opt.hlsearch = true
 -- ignore case when searching
-vim.o.ignorecase = true
+vim.opt.ignorecase = true
 -- override ignore case when uppercase
-vim.o.smartcase = true
+vim.opt.smartcase = true
 -- Use regular expression magic
-vim.o.magic = true
+vim.opt.magic = true
 -- Use ripgrep to search within files
-vim.o.grepprg = [[rg --vimgrep --smart-case --no-heading --block-buffered]]
+vim.opt.grepprg = [[rg --vimgrep --smart-case --no-heading --block-buffered]]
 
 -- allow an unwritten buffer to be hidden
-vim.o.hidden = true
+vim.opt.hidden = true
 -- Prevent commands running in local files
-vim.o.secure = true
+vim.opt.secure = true
 
 --- Joining lines and newlines
-vim.o.formatoptions = "jcroqln"
-vim.o.joinspaces = false
+vim.opt.formatoptions = {
+    t=false, -- Auto wrap text using textwidth
+    c=true, -- Auto wrap comments using textwidth, inserting comment leader automatically
+    r=true, -- Insert comment leader after hitting <enter> in insert mode
+    o=false, -- Insert comment leader after hitting 'o' or 'O' in Normal mode
+    q=true, -- Allow formatting of commetns with gq
+    n=true, -- Recognise numbered lists in formatting
+    j=true, -- Remove comment leader when joining lines
+    l=true, -- Long lines are not broken in insert mode
+}
+vim.opt.joinspaces = false
+-- Wrapping lines will indent at same level as start of line
+vim.opt.breakindent = true
 
 --- Completion and Menu Options
-vim.o.wildmenu = true
-vim.o.wildmode = "longest:full,full"
-vim.o.completeopt="menuone,noinsert,noselect"
-vim.o.shortmess="filnxtToOFc"
+vim.opt.wildmenu = true
+vim.opt.wildmode = {"longest:full", "full"}
+vim.opt.completeopt={"menuone", "noinsert", "noselect"}
+vim.opt.shortmess:append("c")
 
 --- Spaces and Tabs
 
 -- This doesn't seem to be set using vim.bo, so using the vim commands to set
 -- these values.
-vim.cmd("set shiftwidth=4")
-vim.cmd("set tabstop=4")
-vim.cmd("set expandtab")
-vim.cmd("set softtabstop=4")
+local spaces = 4
 -- -- number of spaces to use for autoindent (also >> and <<)
--- vim.bo.shiftwidth = 4
+vim.opt.shiftwidth = spaces
 -- -- number of spaces a tab character is represented as
--- vim.bo.tabstop = 4
+vim.opt.tabstop = spaces
 -- -- How a tab is handled in editing
--- vim.bo.softtabstop = 4
+vim.opt.softtabstop = spaces
 -- -- use spaces in place of tabs
--- vim.bo.expandtab = true
+vim.opt.expandtab = true
 -- Only use python3
-vim.o.pyxversion = 3
+vim.opt.pyxversion = 3
 
 --- Backups
-vim.bo.undofile = true
+vim.opt.undofile = true
 
 --- Spelling
-vim.o.spelllang = "en_au"
+vim.opt.spelllang = "en_au"
 
 vim.g.python3_host_prog = "/usr/bin/python3"
 
