@@ -39,7 +39,7 @@ return require('packer').startup(function()
     -- This needs a nerd-font patched font, which I am not currently using
     -- use 'kyazdani42/nvim-web-devicons'
 
-    use { 'lukas-reineke/indent-blankline.nvim', branch="lua" }
+    use { 'lukas-reineke/indent-blankline.nvim' }
 
     --
     -- Language and Completion Plugins
