@@ -63,85 +63,44 @@ local custom_attach = function(client)
     BufMapper('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>')
 end
 
-nvim_lsp.sumneko_lua.setup({
-  -- cmd={sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-  on_attach=custom_attach,
-    settings = {
-        Lua = {
-            runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
-            completion = { keywordSnippet = "Disable", },
-            diagnostics = { enable = true, globals = {
-                "vim", "describe", "it", "before_each", "after_each", "use" },
-            },
-            workspace = {
-                library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                },
-            },
-        },
+-- Configure lua language server for neovim development
+local lua_settings = {
+  Lua = {
+    runtime = {
+      -- LuaJIT in the case of Neovim
+      version = 'LuaJIT',
+      path = vim.split(package.path, ';'),
     },
-    capabilities=capabilities,
-})
+    diagnostics = {
+      -- Get the language server to recognize the `vim` global
+      globals = {'vim'},
+    },
+    workspace = {
+      -- Make the server aware of Neovim runtime files
+      library = {
+        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+      },
+    },
+  }
+}
 
-nvim_lsp.vimls.setup({
-    on_attach=custom_attach,
-    capabilities=capabilities,
-})
+lsp_install.setup() -- important
 
-nvim_lsp.rust_analyzer.setup({
-    on_attach=custom_attach,
-    capabilities=capabilities,
-})
--- nvim_lsp.pyls.setup({
---     enable = true,
---     on_attach=custom_attach,
---     settings = {
---         pyls = {
---             configurationSources = {"flake8", "isort"},
---             plugins = {
---                 pydocstyle = {enabled = true},
---                 pycodestyle = {enabled = true},
---                 flake8 = {enabled = true},
---                 pyls_black = {enabled = true},
---                 pyls_isort = {enabled = true},
---                 pyls_mypy = {
---                     enabled = true,
---                     live_mode = true,
---                 },
---                 jedi_completion = {fuzzy = true},
---                 yapf = {enabled = false}
+local servers = lsp_install.installed_servers()
+for _, server in pairs(servers) do
+    local config = {
+        capabilities=capabilities,
+        on_attach=on_attach,
+    }
+    if server == "lua" then
+        config.settings = lua_settings
+    end
+    if server == "cland" then
+        config.filetypes={ "c", "cpp", "objc", "objcpp", "cuda" }
+    end
 
---             }
---         }
---     },
---     capabilities=capabilities,
--- })
+    nvim_lsp[server].setup(config)
+end
 
-nvim_lsp.pyright.setup({
-    on_attach=custom_attach,
-    capabilities=capabilities,
-})
-
--- nvim_lsp.denols.setup({
---     on_attach=custom_attach
-
--- })
-
-nvim_lsp.angularls.setup({
-    on_attach=custom_attach,
-    capabilities=capabilities,
-})
-nvim_lsp.tsserver.setup({
-    on_attach=custom_attach,
-    capabilities=capabilities,
-})
-nvim_lsp.r_language_server.setup({on_attach=custom_attach})
-nvim_lsp.clangd.setup({
-    on_attach=custom_attach,
-    filetypes={ "c", "cpp", "objc", "objcpp", "cuda" },
-    capabilities=capabilities,
-})
-nvim_lsp.html.setup({on_attach=custom_attach})
-
-vim.cmd("autocmd BufEnter * lua require('completion').on_attach()")
+-- vim.cmd("autocmd BufEnter * lua require('completion').on_attach()")

@@ -166,4 +166,14 @@ config.outline = function()
         lsp_blacklist = {"pyls"},
     }
 end
+ 
+config.install_lsp_servers = function()
+    local language_servers = {"angular", "bash", "cmake", "cpp", "css", "dockerfile", "html", "json", "latex", "lua", "python", "rust", "tailwindcss", "typescript", "yaml"}
+    for _, server in pairs(language_servers) do
+        require('lspinstall').install_server(server)
+    end
+end
+
+-- vim.cmd("autocmd BufEnter * lua require('completion').on_attach()")
+
 return config
