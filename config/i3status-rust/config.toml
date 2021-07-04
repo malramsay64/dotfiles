@@ -1,9 +1,12 @@
 [theme]
-name = "slick"
+name = "plain"
 [theme.overrides]
 idle_bg = "#00000000"
+idle_fg = "#ffffff"
 info_bg = "#00000000"
+info_fg = "#ffffff"
 good_bg = "#00000000"
+good_fg = "#ffffff"
 
 warning_bg = "#00000000"
 warning_fg = "#f7be00"
@@ -13,7 +16,7 @@ critical_fg = "#ffb1c0"
 
 separator_bg = "#00000000"
 alternating_tint_bg = "#00000000"
-separator = " "
+separator = " | "
 
 [icons]
 name = "awesome"
@@ -32,8 +35,22 @@ interval = 2
 format = "{running}/{total}"
 
 [[block]]
+block = "networkmanager"
+# on_click = "alacritty -e nmtui"
+interface_name_exclude = ["br\\-[1-9a-f]{12}", "docker\\d+"]
+interface_name_include = []
+
+[[block]]
 block = "cpu"
 interval = 1
+
+[[block]]
+block = "temperature"
+collapsed = false
+interval = 10
+format = "{max}"
+chip = "*-isa-*"
+inputs = ["SYSTIN", "CPUTIN"]
 
 [[block]]
 block = "memory"
