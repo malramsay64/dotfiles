@@ -86,7 +86,7 @@ vim.opt.breakindent = true
 --- Completion and Menu Options
 vim.opt.wildmenu = true
 vim.opt.wildmode = {"longest:full", "full"}
-vim.opt.completeopt={"menuone", "noinsert", "noselect"}
+vim.opt.completeopt={"menuone", "noselect"}
 vim.opt.shortmess:append("c")
 
 --- Spaces and Tabs

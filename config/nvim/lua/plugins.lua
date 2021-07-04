@@ -1,5 +1,4 @@
 local plugin_config = require("plugin_config")
-local execute = vim.api.nvim_command
 
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
@@ -60,8 +59,12 @@ return require('packer').startup(function()
         end
     }
 
+    -- use {
+    --     'nvim-lua/completion-nvim',
+    --     config=plugin_config.completion,
+    -- }
     use {
-        'nvim-lua/completion-nvim',
+        "hrsh7th/nvim-compe",
         config=plugin_config.completion,
     }
 
@@ -80,16 +83,16 @@ return require('packer').startup(function()
     }
 
     -- support snippets
-    -- use {
-    --     'norcalli/snippets.nvim',
-    --     requires='rafamadriz/friendly-snippets',
-    --     config=function() require("snippets").use_suggested_mappings() end
-    -- }
     use {
-        'honza/vim-snippets',
-        requires='SirVer/ultisnips',
-        config=plugin_config.snippets,
+        'norcalli/snippets.nvim',
+        requires='rafamadriz/friendly-snippets',
+        config=function() require("snippets").use_suggested_mappings() end
     }
+    -- use {
+    --     'honza/vim-snippets',
+    --     requires='SirVer/ultisnips',
+    --     config=plugin_config.snippets,
+    -- }
 
     --- Additional support for running formatters
     use {
@@ -111,10 +114,20 @@ return require('packer').startup(function()
     -- Repeat plugin commands
     use 'tpope/vim-repeat'
 
-    use {
-        'steelsojka/pears.nvim',
-        config=function() require('pears').setup() end
-    }
+    -- use {
+    --     'steelsojka/pears.nvim',
+    --     config=function() require('pears').setup(function(conf)
+    --         conf.on_enter(function(pears_handle)
+    --             if vim.fn.pumvisible() == 1 and vim.fn.complete_info().selected ~= -1 then
+    --                 return vim.fn["compe#confirm"]("<CR>")
+    --             else
+    --                 pears_handle()
+    --             end
+    --         end)
+    --     end
+    --     )
+    --     end
+    -- }
 
     -- Align symbols within vim
     use {

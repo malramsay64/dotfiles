@@ -1,12 +1,21 @@
 local nvim_lsp = require('lspconfig')
-local completion = require('completion')
 local lsp_status = require('lsp-status')
 local lsp_extensions = require('lsp_extensions')
+local lsp_install = require('lspinstall')
 
 require("nvim_utils")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- These are capabilities for completion
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+-- This is for lsp status
 capabilities.window = capabilities.window or {}
 capabilities.window.workDoneProgress = true
 
@@ -17,7 +26,6 @@ lsp_status.register_progress()
 -- This is all the functionality associated with the langauge server protocol.
 local custom_attach = function(client)
     vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-    completion.on_attach(client)
     lsp_status.on_attach(client)
     lsp_extensions.inlay_hints({ enabled = {"TypeHint", "ChainingHint", "ParameterHint"} })
 
