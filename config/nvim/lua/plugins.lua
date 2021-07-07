@@ -63,6 +63,9 @@ return require('packer').startup(function()
         "hrsh7th/nvim-compe",
         config=plugin_config.completion,
     }
+    use {
+        "ray-x/lsp_signature.nvim",
+    }
 
     use {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"}
     use {

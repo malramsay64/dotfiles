@@ -2,6 +2,7 @@ local nvim_lsp = require('lspconfig')
 local lsp_status = require('lsp-status')
 local lsp_extensions = require('lsp_extensions')
 local lsp_install = require('lspinstall')
+local lsp_signature = require('lsp_signature')
 
 require("nvim_utils")
 
@@ -27,6 +28,7 @@ lsp_status.register_progress()
 local custom_attach = function(client)
     vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     lsp_status.on_attach(client)
+    lsp_signature.on_attach(client)
     lsp_extensions.inlay_hints({ enabled = {"TypeHint", "ChainingHint", "ParameterHint"} })
 
     -- On write automatically format buffer
