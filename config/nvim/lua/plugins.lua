@@ -59,10 +59,6 @@ return require('packer').startup(function()
         end
     }
 
-    -- use {
-    --     'nvim-lua/completion-nvim',
-    --     config=plugin_config.completion,
-    -- }
     use {
         "hrsh7th/nvim-compe",
         config=plugin_config.completion,
@@ -82,17 +78,12 @@ return require('packer').startup(function()
         config=plugin_config.outline,
     }
 
-    -- support snippets
+    --- support snippets
     use {
         'norcalli/snippets.nvim',
         requires='rafamadriz/friendly-snippets',
         config=function() require("snippets").use_suggested_mappings() end
     }
-    -- use {
-    --     'honza/vim-snippets',
-    --     requires='SirVer/ultisnips',
-    --     config=plugin_config.snippets,
-    -- }
 
     --- Additional support for running formatters
     use {
