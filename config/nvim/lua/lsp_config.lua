@@ -99,7 +99,7 @@ local servers = lsp_install.installed_servers()
 for _, server in pairs(servers) do
     local config = {
         capabilities=capabilities,
-        on_attach=on_attach,
+        on_attach=custom_attach,
     }
     if server == "lua" then
         config.settings = lua_settings
