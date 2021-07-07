@@ -55,7 +55,7 @@ return require('packer').startup(function()
     use {
         'kabouzeid/nvim-lspinstall',
         config=function()
-            vim.cmd[[command InstallLspServers execute lua require("plugin_config").install_lsp_servers()]]
+            vim.cmd[[command! InstallLspServers execute 'lua require("plugin_config").install_lsp_servers()']]
         end
     }
 
