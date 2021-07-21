@@ -117,6 +117,12 @@ vim.g.python3_host_prog = "/usr/bin/python3"
 vim.g.edge_style = 'aura'
 vim.g.edge_enable_italic = 1
 
+-- Folding
+
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldlevel = 20
+
 -- Command to remove highlights
 Mapper("n", "<space>h", ":nohlsearch<CR>")
 
