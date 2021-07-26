@@ -51,28 +51,11 @@ end
 -- Completion {{{
 
 config.completion = function()
-    vim.g.completion_chain_complete_list = {
-        default={
-            {complete_items={"lsp", "snippet"}},
-            {complete_items={"path"}, triggered_only={"/"}},
-            {mode='<c-p>'},
-            {mode='<c-n>'},
-        },
-    }
-
-    vim.g.completion_trigger_keyword_length = 1
-    vim.g.completion_enable_auto_paren = 1
-    vim.g.completion_enable_snippet = "UltiSnips"
-    vim.g.completion_trigger_on_delete = 1
-    vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy', 'all'}
-end
-
-config.completion = function()
     require('compe').setup ({
         enabled = true;
         autocomplete = true;
         debug = false;
-        min_length = 1;
+        min_length = 2;
         preselect = 'enable';
         throttle_time = 80;
         source_timeout = 200;
@@ -106,10 +89,6 @@ config.completion = function()
     vim.cmd([[inoremap <silent><expr> <C-e>     compe#close('<C-e>')]])
     vim.cmd([[inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })]])
     vim.cmd([[inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })]])
-    -- vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr = true})
-    -- vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", {expr = true})
-    -- vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-    -- vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 end
 
 -- }}}
