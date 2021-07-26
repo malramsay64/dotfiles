@@ -75,13 +75,13 @@ config.completion = function()
 
         source = {
             path = true;
-            buffer = true;
-            calc = true;
+            buffer = false;
+            calc = false;
             nvim_lsp = true;
             nvim_lua = true;
             vsnip = false;
             ultisnips = false;
-            luasnip = false;
+            luasnip = true;
         };
     })
     vim.cmd([[inoremap <silent><expr> <C-Space> compe#complete()]])
