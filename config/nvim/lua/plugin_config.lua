@@ -172,7 +172,7 @@ config.lsp_install = function()
 end
 
 -- }}}
---
+-- Code Outline {{{
 config.outline = function()
     vim.g.symbols_outline = {
         highlight_hovered_item = true,
@@ -190,6 +190,9 @@ config.outline = function()
         lsp_blacklist = {"pyls"},
     }
 end
+
+--}}}
+--- LSP Installation {{{
  
 config.install_lsp_servers = function()
     local language_servers = {"angular", "bash", "cmake", "cpp", "css", "dockerfile", "html", "json", "latex", "lua", "python", "rust", "tailwindcss", "typescript", "yaml"}
@@ -197,6 +200,29 @@ config.install_lsp_servers = function()
         require('lspinstall').install_server(server)
     end
 end
+
+
+--}}}
+--- Autoclose Pairs {{{
+
+config.pears = function()
+    require('pears').setup(
+        function(conf)
+            conf.pair("<", {filetypes = {"typescript"}})
+            conf.on_enter(
+                function(pears_handle)
+                    if vim.fn.pumvisible() == 1 and vim.fn.complete_info().selected ~= -1 then
+                        return vim.fn["compe#confirm"]("<CR>")
+                    else
+                        pears_handle()
+                    end
+                end
+            )
+        end
+    )
+end
+
+-- }}}
 
 -- vim.cmd("autocmd BufEnter * lua require('completion').on_attach()")
 
