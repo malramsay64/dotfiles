@@ -72,6 +72,7 @@ return require('packer').startup(function()
         run=":TSUpdate",
         branch="0.5-compat"
     }
+    use {'nvim-treesitter/playground'}
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
         requires="nvim-treesitter/nvim-treesitter",
