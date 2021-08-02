@@ -136,9 +136,9 @@ Mapper("i", "JK", "<esc>")
 Mapper("n", "]t", ":tabNext<CR>")
 Mapper("n", "[t", ":tabPrev<CR>")
 
--- TODO -> these mappings don't appear to work, replace with lua command?
-Mapper("n", "<C-s>", ":call spelling#fix_previous()<CR>")
-Mapper("i", "<C-s>", "<C-g>u<C-o>:call spelling#fix_previous()<CR>")
+-- Spelling
+Mapper("n", "<C-s>", "<Cmd>call spelling#fix_previous()<CR>")
+Mapper("i", "<C-s>", "<C-o><Cmd>call spelling#fix_previous()<CR>")
 
 -- Working in the terminal
 Mapper("t", "<C-h>", [[<C-\><C-N><C-w>h]])

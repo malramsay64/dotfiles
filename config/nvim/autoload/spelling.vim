@@ -5,8 +5,8 @@ function spelling#fix_previous()
     let l:cur_col = col("$") - col(".")
     " Save undo state
     normal! <C-g>u
-    " Correct spelling error
-    normal! [s1z=
+    " Correct spelling error. We allow for these commands to be overwritten
+    normal [s1z=
     " create another undo state
     normal! <C-g>u
     " Return to position relative to end of line
