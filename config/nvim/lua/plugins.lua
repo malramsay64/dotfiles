@@ -67,14 +67,15 @@ return require('packer').startup(function()
         "ray-x/lsp_signature.nvim",
     }
 
-    use {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"}
     use {
-        'nvim-treesitter/completion-treesitter',
-        requires="nvim-treesitter/nvim-treesitter"
+        'nvim-treesitter/nvim-treesitter',
+        run=":TSUpdate",
+        branch="0.5-compat"
     }
     use {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        requires="nvim-treesitter/nvim-treesitter"
+        requires="nvim-treesitter/nvim-treesitter",
+        branch="0.5-compat"
     }
     use {
         'simrat39/symbols-outline.nvim',
