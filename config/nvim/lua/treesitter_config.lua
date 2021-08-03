@@ -1,6 +1,22 @@
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup({
     -- one of "all", "language", or a list of languages
-    ensure_installed = {"rust", "python", "lua", "toml", "yaml", "html", "typescript", "javascript", "cpp", "bash", "julia", "json", "css", "scss", "fish"},
+    ensure_installed = {
+        "rust",
+        "python",
+        "lua",
+        "toml",
+        "yaml",
+        "html",
+        "typescript",
+        "javascript",
+        "cpp",
+        "bash",
+        "julia",
+        "json",
+        "css",
+        "scss",
+        "fish",
+    },
     highlight = {
         -- false will disable the whole extension
         enable = true,
@@ -20,8 +36,8 @@ require('nvim-treesitter.configs').setup {
                 ["ic"] = "@class.inner",
                 ["a,"] = "@parameter.outer",
                 ["i,"] = "@parameter.inner",
-            }
-        }
+            },
+        },
     },
     swap = {
         enable = true,
@@ -51,4 +67,4 @@ require('nvim-treesitter.configs').setup {
             ["[]"] = "@class.outer",
         },
     },
-}
+})

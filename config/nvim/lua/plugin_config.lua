@@ -1,26 +1,18 @@
 local config = {}
--- UltiSnips {{{
 
-config.snippets = function()
-    vim.g.UltiSnipsExpandTrigger = "<c-k>"
-    vim.g.UltiSnipsSnippetDirectories = {"UltiSnips", "~/.config/.nvim/UltiSnips"}
-    vim.g.ultisnips_python_style = "google"
-end
-
--- }}}
 -- Statusline {{{
 
 config.bubbly = function()
     vim.g.bubbly_statusline = {
-        'mode',
-        'truncate',
-        'branch',
-        'signify',
-        'path',
-        'divisor',
-        'lsp_status.diagnostics',
-        'filetype',
-        'progress',
+        "mode",
+        "truncate",
+        "branch",
+        "signify",
+        "path",
+        "divisor",
+        "lsp_status.diagnostics",
+        "filetype",
+        "progress",
     }
 
     vim.g.bubbly_palette = {
@@ -51,19 +43,19 @@ end
 -- Completion {{{
 
 config.completion = function()
-    require('compe').setup ({
-        enabled = true;
-        autocomplete = true;
-        debug = false;
-        min_length = 2;
-        preselect = 'enable';
-        throttle_time = 80;
-        source_timeout = 200;
-        resolve_timeout = 800;
-        incomplete_delay = 400;
-        max_abbr_width = 100;
-        max_kind_width = 100;
-        max_menu_width = 100;
+    require("compe").setup({
+        enabled = true,
+        autocomplete = true,
+        debug = false,
+        min_length = 2,
+        preselect = "enable",
+        throttle_time = 80,
+        source_timeout = 200,
+        resolve_timeout = 800,
+        incomplete_delay = 400,
+        max_abbr_width = 100,
+        max_kind_width = 100,
+        max_menu_width = 100,
         documentation = {
             border = "none", -- the border option is the same as `|help nvim_open_win|`
             winhighlight = "CompeDocumentation", -- highlight group used for the documentation window
@@ -71,18 +63,18 @@ config.completion = function()
             min_width = 40,
             max_height = math.floor(vim.o.lines * 0.3),
             min_height = 1,
-        };
+        },
 
         source = {
-            path = true;
-            buffer = false;
-            calc = false;
-            nvim_lsp = true;
-            nvim_lua = true;
-            vsnip = false;
-            ultisnips = false;
-            luasnip = true;
-        };
+            path = true,
+            buffer = false,
+            calc = false,
+            nvim_lsp = true,
+            nvim_lua = true,
+            vsnip = false,
+            ultisnips = false,
+            luasnip = true,
+        },
     })
     vim.cmd([[inoremap <silent><expr> <C-Space> compe#complete()]])
     vim.cmd([[inoremap <silent><expr> <CR>      compe#confirm('<CR>')]])
@@ -98,14 +90,26 @@ config.telescope = function()
     Mapper("n", "<space>p", "<cmd>lua require('telescope.builtin').git_files{}<CR>")
     Mapper("n", "<space>f", "<cmd>lua require('telescope.builtin').find_files{}<CR>")
     Mapper("n", "<space>b", "<cmd>lua require('telescope.builtin').buffers{}<CR>")
-    Mapper("n", "<space>gr", "<cmd>lua require('telescope.builtin').lsp_references{}<CR>")
-    Mapper("n", "<space>en", "<cmd>lua require('telescope.builtin').git_files{cwd = '~/dotfiles'}<CR>")
+    Mapper(
+        "n",
+        "<space>gr",
+        "<cmd>lua require('telescope.builtin').lsp_references{}<CR>"
+    )
+    Mapper(
+        "n",
+        "<space>en",
+        "<cmd>lua require('telescope.builtin').git_files{cwd = '~/dotfiles'}<CR>"
+    )
     Mapper("n", "<space>gg", "<cmd>lua require('telescope.builtin').live_grep{}<CR>")
     Mapper("n", "<space>tc", "<cmd>lua require('telescope.builtin').commands{}<CR>")
     Mapper("n", "<space>tr", "<cmd>lua require('telescope.builtin').registers{}<CR>")
     Mapper("n", "<space>ta", "<cmd>lua require('telescope.builtin').autocommands{}<CR>")
     Mapper("n", "<space>tk", "<cmd>lua require('telescope.builtin').keymaps{}<CR>")
-    Mapper("n", "<space>tl", "<cmd>lua require('telescope.builtin').lsp_code_actions{}<CR>")
+    Mapper(
+        "n",
+        "<space>tl",
+        "<cmd>lua require('telescope.builtin').lsp_code_actions{}<CR>"
+    )
 
     Mapper("n", "<space>gb", "<cmd>lua require('telescope.builtin').git_branches{}<CR>")
     Mapper("n", "<space>gt", "<cmd>lua require('telescope.builtin').git_status{}<CR>")
@@ -118,56 +122,48 @@ end
 config.formatter = function()
     require("format").setup({
         ["*"] = {
-            {cmd = {"sed -i 's/[ \t]*$//'"}} -- remove trailing whitespace
+            { cmd = { "sed -i 's/[ \t]*$//'" } }, -- remove trailing whitespace
         },
         -- This uses the local versions of these packages to work within a project.
         python = {
-            { cmd = {"black"} },
-            { cmd = {"isort", "--filter-files"} },
-        },
-        lua = {
-            {
-                cmd = {
-                    function(file)
-                        return string.format("luafmt -l %s -w replace %s", vim.bo.textwidth, file)
-                    end
-                }
-            }
+            { cmd = { "black" } },
+            { cmd = { "isort", "--filter-files" } },
         },
         markdown = {
             {
-                cmd = {"black"},
+                cmd = { "black" },
                 start_pattern = "^```python",
                 end_pattern = "^```",
-                target="current",
-            }
+                target = "current",
+            },
         },
         typescript = {
-            {cmd = {"prettier --write "}},
+            { cmd = { "prettier --write " } },
         },
         html = {
-            {cmd = {"prettier --write "}},
+            { cmd = { "prettier --write " } },
         },
         css = {
-            {cmd = {"prettier --write "}},
+            { cmd = { "prettier --write " } },
+        },
+        lua = {
+            {cmd = "stylua"},
         },
     })
 
     nvim_create_augroups({
         formatting = {
-            {"BufWritePost", "*", "FormatWrite"}
-        }
+            { "BufWritePost", "*", "FormatWrite" },
+        },
     })
-
 end
-
 
 -- }}}
 -- LSP {{{
 
 config.lsp_install = function()
-    for lang in {"python", "typescript", "lua", "yaml", "vim"} do
-        require'lspinstall'.install_server(lang)
+    for lang in { "python", "typescript", "lua", "yaml", "vim" } do
+        require("lspinstall").install_server(lang)
     end
 end
 
@@ -178,7 +174,7 @@ config.outline = function()
         highlight_hovered_item = true,
         show_guides = true,
         auto_preview = false, -- experimental
-        position = 'right',
+        position = "right",
         keymaps = {
             close = "<Esc>",
             goto_location = "<Cr>",
@@ -187,39 +183,49 @@ config.outline = function()
             rename_symbol = "r",
             code_actions = "a",
         },
-        lsp_blacklist = {"pyls"},
     }
 end
 
 --}}}
 --- LSP Installation {{{
- 
+
 config.install_lsp_servers = function()
-    local language_servers = {"angular", "bash", "cmake", "cpp", "css", "dockerfile", "html", "json", "latex", "lua", "python", "rust", "tailwindcss", "typescript", "yaml"}
+    local language_servers = {
+        "angular",
+        "bash",
+        "cmake",
+        "cpp",
+        "css",
+        "dockerfile",
+        "html",
+        "json",
+        "latex",
+        "lua",
+        "python",
+        "rust",
+        "tailwindcss",
+        "typescript",
+        "yaml",
+    }
     for _, server in pairs(language_servers) do
-        require('lspinstall').install_server(server)
+        require("lspinstall").install_server(server)
     end
 end
-
 
 --}}}
 --- Autoclose Pairs {{{
 
 config.pears = function()
-    require('pears').setup(
-        function(conf)
-            conf.pair("<", {filetypes = {"typescript"}})
-            conf.on_enter(
-                function(pears_handle)
-                    if vim.fn.pumvisible() == 1 and vim.fn.complete_info().selected ~= -1 then
-                        return vim.fn["compe#confirm"]("<CR>")
-                    else
-                        pears_handle()
-                    end
-                end
-            )
-        end
-    )
+    require("pears").setup(function(conf)
+        conf.pair("<", { filetypes = { "typescript" } })
+        conf.on_enter(function(pears_handle)
+            if vim.fn.pumvisible() == 1 and vim.fn.complete_info().selected ~= -1 then
+                return vim.fn["compe#confirm"]("<CR>")
+            else
+                pears_handle()
+            end
+        end)
+    end)
 end
 
 -- }}}

@@ -1,5 +1,5 @@
-require('nvim_utils')
-require('plugins')
+require("nvim_utils")
+require("plugins")
 
 vim.g.email = "m@malramsay.com"
 vim.g.username = "Malcolm Ramsay"
@@ -37,14 +37,14 @@ vim.opt.list = true
 --- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
 --- BULLET (U+2022, UTF-8: E2 80 A2)
 vim.opt.listchars = {
-    tab='▶‒',
-    nbsp='␣',
-    extends='»',
-    precedes='«',
-    trail='•',
+    tab = "▶‒",
+    nbsp = "␣",
+    extends = "»",
+    precedes = "«",
+    trail = "•",
 }
 -- Always have 5 lines above or below the cursor
-vim.opt.scrolloff=5
+vim.opt.scrolloff = 5
 
 --- Search Options
 
@@ -70,14 +70,14 @@ vim.opt.secure = true
 
 --- Joining lines and newlines
 vim.opt.formatoptions = {
-    t=false, -- Auto wrap text using textwidth
-    c=true, -- Auto wrap comments using textwidth, inserting comment leader automatically
-    r=true, -- Insert comment leader after hitting <enter> in insert mode
-    o=false, -- Insert comment leader after hitting 'o' or 'O' in Normal mode
-    q=true, -- Allow formatting of commetns with gq
-    n=true, -- Recognise numbered lists in formatting
-    j=true, -- Remove comment leader when joining lines
-    l=true, -- Long lines are not broken in insert mode
+    t = false, -- Auto wrap text using textwidth
+    c = true, -- Auto wrap comments using textwidth, inserting comment leader automatically
+    r = true, -- Insert comment leader after hitting <enter> in insert mode
+    o = false, -- Insert comment leader after hitting 'o' or 'O' in Normal mode
+    q = true, -- Allow formatting of commetns with gq
+    n = true, -- Recognise numbered lists in formatting
+    j = true, -- Remove comment leader when joining lines
+    l = true, -- Long lines are not broken in insert mode
 }
 vim.opt.joinspaces = false
 -- Wrapping lines will indent at same level as start of line
@@ -85,8 +85,8 @@ vim.opt.breakindent = true
 
 --- Completion and Menu Options
 vim.opt.wildmenu = true
-vim.opt.wildmode = {"longest:full", "full"}
-vim.opt.completeopt={"menuone", "noselect"}
+vim.opt.wildmode = { "longest:full", "full" }
+vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 
 --- Spaces and Tabs
@@ -114,13 +114,13 @@ vim.opt.spelllang = "en_au"
 vim.g.python3_host_prog = "/usr/bin/python3"
 
 -- Configuration of colourscheme
-vim.g.edge_style = 'aura'
+vim.g.edge_style = "aura"
 vim.g.edge_enable_italic = 1
 
 -- Folding
 
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 20
 
 -- Command to remove highlights
@@ -156,20 +156,20 @@ Command("Reload", "luafile $MYVIMRC")
 
 nvim_create_augroups({
     terminal = {
-        {"TermOpen", "*", "setlocal nonumber norelativenumber"},
-        {"TermOpen", "*", "startinsert"},
-    }
+        { "TermOpen", "*", "setlocal nonumber norelativenumber" },
+        { "TermOpen", "*", "startinsert" },
+    },
 })
 
 -- Configure nvim to automatically realign windows on resize
 nvim_create_augroups({
     resize = {
-        {"VimResized", "*", "wincmd ="},
-    }
+        { "VimResized", "*", "wincmd =" },
+    },
 })
 
-require('treesitter_config')
-require('lsp_config')
+require("treesitter_config")
+require("lsp_config")
 
 --- Set colourscheme
 vim.cmd("colorscheme edge")

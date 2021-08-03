@@ -4,7 +4,7 @@
 -- or 'v' for visual mode.
 -- @param key str The key code that will be used in the mapping
 function BufMapper(mode, key, result)
-    vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(0, mode, key, result, { noremap = true, silent = true })
 end
 
 --- Utility to simplify the mapping of global bindings
@@ -13,7 +13,7 @@ end
 -- or 'v' for visual mode.
 -- @param key str The key code that will be used in the mapping
 function Mapper(mode, key, result)
-    vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
+    vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
 end
 
 function Command(name, code)
@@ -25,12 +25,12 @@ end
 --- definitions that are used within it.
 function nvim_create_augroups(definitions)
     for group_name, definition in pairs(definitions) do
-        vim.api.nvim_command('augroup '..group_name)
-        vim.api.nvim_command('autocmd!')
+        vim.api.nvim_command("augroup " .. group_name)
+        vim.api.nvim_command("autocmd!")
         for _, def in ipairs(definition) do
-            local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
+            local command = table.concat(vim.tbl_flatten({ "autocmd", def }), " ")
             vim.api.nvim_command(command)
         end
-        vim.api.nvim_command('augroup END')
+        vim.api.nvim_command("augroup END")
     end
 end
