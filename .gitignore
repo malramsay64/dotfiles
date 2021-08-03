@@ -1,6 +1,7 @@
 # Plug managed directory
 config/nvim/plugged
 config/nvim/autoload/plug.vim
+config/nvim/plugin/packer_compiled.lua
 
 # Ignoring most spell files
 config/nvim/spell
