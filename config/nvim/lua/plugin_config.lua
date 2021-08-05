@@ -10,7 +10,7 @@ config.bubbly = function()
         "signify",
         "path",
         "divisor",
-        "lsp_status.diagnostics",
+        "builtinlsp.diagnostic_count",
         "filetype",
         "progress",
     }
@@ -147,7 +147,7 @@ config.formatter = function()
             { cmd = { "prettier --write " } },
         },
         lua = {
-            {cmd = "stylua"},
+            {cmd = {"stylua" }},
         },
     })
 

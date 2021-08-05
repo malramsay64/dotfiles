@@ -45,7 +45,15 @@ return require("packer").startup(function()
     -- This needs a nerd-font patched font, which I am not currently using
     -- use 'kyazdani42/nvim-web-devicons'
 
-    use({ "lukas-reineke/indent-blankline.nvim" })
+    use({
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup({
+                buftype_exclue = { "terminal", "help" },
+                show_trailing_blankline_indent = false,
+            })
+        end,
+    })
 
     --
     -- Language and Completion Plugins
@@ -56,7 +64,6 @@ return require("packer").startup(function()
 
     use("neovim/nvim-lspconfig")
     use("nvim-lua/lsp_extensions.nvim")
-    use("nvim-lua/lsp-status.nvim")
     -- Installing language servers
     use({
         "kabouzeid/nvim-lspinstall",
@@ -71,9 +78,7 @@ return require("packer").startup(function()
         "hrsh7th/nvim-compe",
         config = plugin_config.completion,
     })
-    use({
-        "ray-x/lsp_signature.nvim",
-    })
+    use({ "ray-x/lsp_signature.nvim" })
 
     use({
         "nvim-treesitter/nvim-treesitter",
@@ -134,15 +139,6 @@ return require("packer").startup(function()
         cmd = { "EasyAlign" },
     })
 
-    -- Create signs for modified values
-    use({
-        "lewis6991/gitsigns.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("gitsigns").setup()
-        end,
-    })
-
     --
     -- Utilities for Vim
     --
@@ -159,6 +155,15 @@ return require("packer").startup(function()
     use({
         "tpope/vim-fugitive",
         config = plugin_config.fugitive,
+    })
+
+    -- Create signs for modified lines within a git repository
+    use({
+        "lewis6991/gitsigns.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require("gitsigns").setup()
+        end,
     })
 
     use({
@@ -186,6 +191,7 @@ return require("packer").startup(function()
         "nvim-telescope/telescope-symbols.nvim",
         requires = { "nvim-lua/telescope.nvim" },
     })
+    -- This provides additional speedups in the fuzzy finding by using a native c library
     use({
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "make",
