@@ -7,8 +7,9 @@ direnv hook fish | source
 
 zoxide init fish | source
 
-if test -z (pgrep ssh-agent)
-  eval (ssh-agent -c)
+
+if test -z (pgrep ssh-agent | string collect)
+  ssh-agent -c | source > /dev/null
   set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
   set -Ux SSH_AGENT_PID $SSH_AGENT_PID
   set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
