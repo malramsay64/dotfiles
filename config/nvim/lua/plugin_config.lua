@@ -229,6 +229,14 @@ config.pears = function()
 end
 
 -- }}}
+-- Snippets
+
+config.snippets = function()
+    Mapper("i", "<C-k>", "<cmd>lua require('luasnip').jump(1)<CR>")
+    Mapper("i", "<C-j>", "<cmd>lua require('luasnip').jump(-1)<CR>")
+    Mapper("s", "<C-k>", "<cmd>lua require('luasnip').jump(1)<CR>")
+    Mapper("s", "<C-j>", "<cmd>lua require('luasnip').jump(-1)<CR>")
+end
 
 -- vim.cmd("autocmd BufEnter * lua require('completion').on_attach()")
 

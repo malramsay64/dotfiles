@@ -78,6 +78,9 @@ return require("packer").startup(function()
         "hrsh7th/nvim-compe",
         config = plugin_config.completion,
     })
+    --- support snippets in completion
+    use({ 'L3MON4D3/LuaSnip', config=plugin_config.snippets})
+
     use({ "ray-x/lsp_signature.nvim" })
 
     use({
@@ -94,15 +97,6 @@ return require("packer").startup(function()
     use({
         "simrat39/symbols-outline.nvim",
         config = plugin_config.outline,
-    })
-
-    --- support snippets
-    use({
-        "norcalli/snippets.nvim",
-        requires = "rafamadriz/friendly-snippets",
-        config = function()
-            require("snippets").use_suggested_mappings()
-        end,
     })
 
     --- Additional support for running formatters
