@@ -75,11 +75,14 @@ return require("packer").startup(function()
     })
 
     use({
-        "hrsh7th/nvim-compe",
+        "hrsh7th/nvim-cmp",
         config = plugin_config.completion,
     })
     --- support snippets in completion
-    use({ 'L3MON4D3/LuaSnip', config=plugin_config.snippets})
+    use({ "L3MON4D3/LuaSnip", config = plugin_config.snippets })
+    use({ "hrsh7th/cmp-nvim-lsp" })
+    use({ "hrsh7th/cmp-buffer" })
+    use({ "saadparwaiz1/cmp_luasnip" })
 
     use({ "ray-x/lsp_signature.nvim" })
 

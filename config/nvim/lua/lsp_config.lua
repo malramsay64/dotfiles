@@ -7,14 +7,8 @@ require("nvim_utils")
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 -- These are capabilities for completion
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits",
-    },
-}
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
 --- Function defining how we attach to a language server
 -- This is all the functionality associated with the langauge server protocol.
 local custom_attach = function(client)

@@ -43,44 +43,26 @@ end
 -- Completion {{{
 
 config.completion = function()
-    require("compe").setup({
-        enabled = true,
-        autocomplete = true,
-        debug = false,
-        min_length = 2,
-        preselect = "enable",
-        throttle_time = 80,
-        source_timeout = 200,
-        resolve_timeout = 800,
-        incomplete_delay = 400,
-        max_abbr_width = 100,
-        max_kind_width = 100,
-        max_menu_width = 100,
-        documentation = {
-            border = "none", -- the border option is the same as `|help nvim_open_win|`
-            winhighlight = "CompeDocumentation", -- highlight group used for the documentation window
-            max_width = 120,
-            min_width = 40,
-            max_height = math.floor(vim.o.lines * 0.3),
-            min_height = 1,
+    local cmp = require("cmp")
+    cmp.setup({
+        snippet = {
+            expand = function(args)
+                require('luasnip').lsp_expand(args.body)
+            end,
         },
-
-        source = {
-            path = true,
-            buffer = false,
-            calc = false,
-            nvim_lsp = true,
-            nvim_lua = true,
-            vsnip = false,
-            ultisnips = false,
-            luasnip = true,
+        mapping = {
+            ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.close(),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        },
+        sources = {
+            { name = 'nvim_lsp' },
+            { name = 'luasnip' },
+            { name = 'buffer' },
         },
     })
-    vim.cmd([[inoremap <silent><expr> <C-Space> compe#complete()]])
-    vim.cmd([[inoremap <silent><expr> <CR>      compe#confirm('<CR>')]])
-    vim.cmd([[inoremap <silent><expr> <C-e>     compe#close('<C-e>')]])
-    vim.cmd([[inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })]])
-    vim.cmd([[inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })]])
 end
 
 -- }}}
@@ -237,7 +219,5 @@ config.snippets = function()
     Mapper("s", "<C-k>", "<cmd>lua require('luasnip').jump(1)<CR>")
     Mapper("s", "<C-j>", "<cmd>lua require('luasnip').jump(-1)<CR>")
 end
-
--- vim.cmd("autocmd BufEnter * lua require('completion').on_attach()")
 
 return config
