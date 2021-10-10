@@ -97,8 +97,8 @@ for _, server in pairs(servers) do
     if server == "lua" then
         config.settings = lua_settings
     end
-    if server == "cland" then
-        config.filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
+    if server == "cpp" then
+        table.insert(config.filetypes, "cuda")
     end
 
     nvim_lsp[server].setup(config)
