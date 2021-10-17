@@ -61,18 +61,17 @@ return require("packer").startup(function()
     -- These are either plugins for parsing the language and colouring or
     -- alternatively for finding completions. This covers all aspects of the
     -- completions, including support for snippets.
+    use({
+        "nathom/filetype.nvim",
+        config = function()
+            vim.g.did_load_filetypes = 1
+        end,
+    })
 
     use("neovim/nvim-lspconfig")
     use("nvim-lua/lsp_extensions.nvim")
     -- Installing language servers
-    use({
-        "kabouzeid/nvim-lspinstall",
-        config = function()
-            vim.cmd(
-                [[command! InstallLspServers execute 'lua require("plugin_config").install_lsp_servers()']]
-            )
-        end,
-    })
+    use("williamboman/nvim-lsp-installer")
 
     use({
         "hrsh7th/nvim-cmp",

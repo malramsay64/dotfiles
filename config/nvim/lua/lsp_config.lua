@@ -1,6 +1,4 @@
-local nvim_lsp = require("lspconfig")
 local lsp_extensions = require("lsp_extensions")
-local lsp_install = require("lspinstall")
 local lsp_signature = require("lsp_signature")
 
 require("nvim_utils")
@@ -86,20 +84,25 @@ local lua_settings = {
     },
 }
 
-lsp_install.setup() -- important
+local lsp_installer = require("nvim-lsp-installer")
 
-local servers = lsp_install.installed_servers()
-for _, server in pairs(servers) do
-    local config = {
-        capabilities = capabilities,
+lsp_installer.on_server_ready(function(server)
+    local opts = {
         on_attach = custom_attach,
     }
-    if server == "lua" then
-        config.settings = lua_settings
+
+    if server.name == "lua" then
+        opts.settings = lua_settings
     end
-    if server == "cpp" then
-        table.insert(config.filetypes, "cuda")
+    if server.name == "cpp" then
+        opts.filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
     end
 
-    nvim_lsp[server].setup(config)
-end
+    -- (optional) Customize the options passed to the server
+    -- if server.name == "tsserver" then
+    --     opts.root_dir = function() ... end
+    -- end
+
+    server:setup(opts)
+    vim.cmd([[ do User LspAttachBuffers ]])
+end)
