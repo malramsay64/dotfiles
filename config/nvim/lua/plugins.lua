@@ -30,9 +30,13 @@ return require("packer").startup(function()
 	-- Colourscheme and Themeing Plugins
 	--
 	use("sainnhe/edge")
+	-- use({
+	-- 	"datwaft/bubbly.nvim",
+	-- 	config = plugin_config.bubbly,
+	-- })
 	use({
-		"datwaft/bubbly.nvim",
-		config = plugin_config.bubbly,
+		"nvim-lualine/lualine.nvim",
+		config = plugin_config.lualine,
 	})
 	-- This needs a nerd-font patched font, which I am not currently using
 	-- use 'kyazdani42/nvim-web-devicons'
