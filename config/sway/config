@@ -32,7 +32,8 @@ set $gap_outer_default 0
 set $resize_len 50px
 
 # Your preferred application launcher
-# Note: it's recommended that you pass the final command to sway
+# Note: it's recommended that you pass the final command to sway so that the
+# resulting window will open in the same workspace the command was run on.
 set $menu wofi --show drun -i | xargs swaymsg exec -
 
 ### Output configuration
@@ -47,7 +48,7 @@ output * bg /usr/share/backgrounds/gnome/adwaita-night.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output DP-1 resolution 2560x1440 position 2560,0
+# output DP-1 resolution 2560x1440 position 2560,0
 
 ### Idle configuration
 #
@@ -86,12 +87,12 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 #
-  input "1133:16489:Logitech_MX_Master_2S" {
-      natural_scroll enabled
-  }
-  input "1133:4123:Logitech_M705" {
-    natural_scroll enabled
-  }
+input "1133:16489:Logitech_MX_Master_2S" {
+  natural_scroll enabled
+}
+input "1133:4123:Logitech_M705" {
+natural_scroll enabled
+}
 
 ### Key bindings
 #
@@ -101,22 +102,19 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     bindsym $mod+Return exec $term
 
     # kill focused window
-    bindsym $mod+q kill
+    bindsym $mod+Shift+q kill
 
     # start your launcher
     bindsym $mod+d exec $menu
 
     # start browser
-    bindsym $mod+Shift+w exec $browser
+    bindsym $mod+w exec $browser
 
     # start file browser
     bindsym $mod+n exec $term -e $files
 
     # Select emoji
-    bindsym $mod+Shift+grave exec ~/dotfiles/bin/dmenuunicode
-
-    # Select Passwords
-    bindsym $mod+grave exec ~/dotfiles/bin/passmenu
+    bindsym $mod+grave exec ~/dotfiles/bin/dmenuunicode
 
     ### Reload configuration
     bindsym $mod+Shift+r reload
@@ -132,7 +130,6 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
     bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
     bindsym XF86AudioMute exec amixer -q set Master toggle
-
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -179,8 +176,8 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     set $ws6 6
     set $ws7 7
     set $ws8 8
-    set $ws9 9📎
-    set $ws10 10
+    set $ws9 9ASG
+    set $ws10 10SAPN
 
     # set $ws2 1
     # set $ws3 2
@@ -228,13 +225,19 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     exec --no-startup-id "swaymsg 'workspace $ws3; exec firefox'"
 
     # Workspace 4: Email
-    exec --no-startup-id "swaymsg 'workspace $ws4; exec geary'"
 
     # Workspace 5: Spotify
     exec --no-startup-id "swaymsg 'workspace $ws5; exec flatpak run com.spotify.Client'"
     # Spotify doesn't work with assign because of some implementation details
     # See this issue for more details https://github.com/swaywm/sway/issues/3793
     for_window [class="Spotify"] move container to workspace $ws5
+
+    # Workspace 9: ASG
+
+    # Workspace 10: SAPN
+    exec --no-startup-id "swaymsg 'workspace $ws3; exec firefox'"
+    exec --no-startup-id "swaymsg 'workspace $ws3; exec flatpak run com.microsoft.Teams'"
+
 
 # Layout stuff:
 #
@@ -245,9 +248,9 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     bindsym $mod+v splith
 
     # Switch the current container between different layout styles
-    # bindsym $mod+s layout stacking
-    # bindsym $mod+w layout tabbed
-    # bindsym $mod+e layout toggle split
+    bindsym $mod+s layout stacking
+    bindsym $mod+t layout tabbed
+    bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -264,9 +267,9 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 
     # Configure gaps
     gaps inner $gap_inner_default
-    bindsym $mod+t gaps inner current set $gap_inner_default
-    bindsym $mod+s gaps inner current plus 5
-    bindsym $mod+Shift+s gaps inner current minus 5
+    # bindsym $mod+g gaps inner current set $gap_inner_default
+    # bindsym $mod+s gaps inner current plus 5
+    # bindsym $mod+Shift+s gaps inner current minus 5
 
     # Window border
     default_border pixel 2
@@ -281,7 +284,8 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
     for_window [window_type="menu"]                         floating enable
     for_window [app_id="org.gnome.NautilusPreviewer"]       floating enable
     for_window [app_id="nm-connection-editor"]              floating enable
-    for_window [app_id="pavucontrol"]              floating enable
+    for_window [app_id="pavucontrol"]                       floating enable
+    for_window [title="Picture-in-Picture"]                 floating enable
 #
 # Scratchpad:
 #
@@ -336,7 +340,7 @@ bindsym $mod+Shift+o resize grow width $resize_len
 bar {
     strip_workspace_name no
     strip_workspace_numbers yes
-    font IosevkaTerm 15
+    font Iosevka 14
 
     position top
 
@@ -354,5 +358,4 @@ bar {
 }
 
 # Local sway configuration
-# include @sysconfdir@/sway/config.d/*
 include /etc/sway/config.d/*
