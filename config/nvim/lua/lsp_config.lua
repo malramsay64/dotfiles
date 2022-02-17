@@ -49,8 +49,8 @@ local custom_attach = function(client)
 	BufMapper("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
 	BufMapper("n", "<space>ld", "<cmd>lua vim.diagnostic.open_float()<CR>")
-	BufMapper("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
-	BufMapper("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+	BufMapper("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+	BufMapper("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 	BufMapper("n", "<space>q", "<cmd>lua vim.diagnostic.setqflist()<CR>")
 end
 
@@ -83,7 +83,7 @@ lsp_installer.on_server_ready(function(server)
 		on_attach = custom_attach,
 	}
 
-	if server.name == "lua" then
+	if server.name == "sumneko_lua" then
 		opts.settings = lua_settings
 	end
 	if server.name == "cpp" then

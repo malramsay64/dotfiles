@@ -12,19 +12,19 @@ config.lualine = function()
 				{ "mode", separator = { left = "" }, right_padding = 2 },
 			},
 			lualine_b = { "filename", "branch" },
-			lualine_c = {},
+			lualine_c = { "b:gitsigns_status" },
 			lualine_x = {
 				{
 					"diagnostics",
 					sections = { "error", "warn", "info", "hint" },
 					sources = { "nvim_lsp", "nvim_diagnostic" },
-					diagnostics_color = {
-						-- Same values as the general color option can be used here.
-						error = "DiagnosticError", -- Changes diagnostics' error color.
-						warn = "DiagnosticWarn", -- Changes diagnostics' warn color.
-						info = "DiagnosticInfo", -- Changes diagnostics' info color.
-						hint = "DiagnosticHint", -- Changes diagnostics' hint color.
-					},
+					-- diagnostics_color = {
+					--     -- Same values as the general color option can be used here.
+					--     error = "DiagnosticError", -- Changes diagnostics' error color.
+					--     warn = "DiagnosticWarn", -- Changes diagnostics' warn color.
+					--     info = "DiagnosticInfo", -- Changes diagnostics' info color.
+					--     hint = "DiagnosticHint", -- Changes diagnostics' hint color.
+					-- },
 					symbols = { error = "E", warn = "W", info = "I", hint = "H" },
 				},
 			},
@@ -87,6 +87,40 @@ config.fugitive = function()
 end
 
 -- }}}
+-- Gitsigns {{{
+require("gitsigns").setup({
+	on_attach = function(bufnr)
+		local function map(mode, lhs, rhs, opts)
+			opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
+			vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+		end
+
+		-- Navigation
+		map("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
+		map("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
+
+		-- Actions
+		map("n", "<leader>hs", ":Gitsigns stage_hunk<CR>")
+		map("v", "<leader>hs", ":Gitsigns stage_hunk<CR>")
+		map("n", "<leader>hr", ":Gitsigns reset_hunk<CR>")
+		map("v", "<leader>hr", ":Gitsigns reset_hunk<CR>")
+		map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>")
+		map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>")
+		map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>")
+		map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>")
+		map("n", "<leader>hb", '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
+		map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<CR>")
+		map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>")
+		map("n", "<leader>hD", '<cmd>lua require"gitsigns".diffthis("~")<CR>')
+		map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>")
+
+		-- Text object
+		map("o", "ih", ":<C-U>Gitsigns select_hunk<CR>")
+		map("x", "ih", ":<C-U>Gitsigns select_hunk<CR>")
+	end,
+})
+
+-- }}}
 -- Completion {{{
 
 config.completion = function()
@@ -102,7 +136,7 @@ config.completion = function()
 			["<C-f>"] = cmp.mapping.scroll_docs(4),
 			["<C-Space>"] = cmp.mapping.complete(),
 			["<C-e>"] = cmp.mapping.close(),
-			["<CR>"] = cmp.mapping.confirm({ select = true }),
+			["<CR>"] = cmp.mapping.confirm({ select = false }),
 		},
 		sources = {
 			{ name = "nvim_lsp" },
@@ -176,15 +210,6 @@ config.formatter = function()
 end
 
 -- }}}
--- LSP {{{
-
-config.lsp_install = function()
-	for lang in { "python", "typescript", "lua", "yaml", "vim" } do
-		require("lspinstall").install_server(lang)
-	end
-end
-
--- }}}
 -- Code Outline {{{
 config.outline = function()
 	vim.g.symbols_outline = {
@@ -201,32 +226,6 @@ config.outline = function()
 			code_actions = "a",
 		},
 	}
-end
-
---}}}
---- LSP Installation {{{
-
-config.install_lsp_servers = function()
-	local language_servers = {
-		"angular",
-		"bash",
-		"cmake",
-		"cpp",
-		"css",
-		"dockerfile",
-		"html",
-		"json",
-		"latex",
-		"lua",
-		"python",
-		"rust",
-		"tailwindcss",
-		"typescript",
-		"yaml",
-	}
-	for _, server in pairs(language_servers) do
-		require("lspinstall").install_server(server)
-	end
 end
 
 --}}}
@@ -253,6 +252,45 @@ config.snippets = function()
 	Mapper("i", "<C-j>", "<cmd>lua require('luasnip').jump(-1)<CR>")
 	Mapper("s", "<C-k>", "<cmd>lua require('luasnip').jump(1)<CR>")
 	Mapper("s", "<C-j>", "<cmd>lua require('luasnip').jump(-1)<CR>")
+
+	local ls = require("luasnip")
+	table.insert(ls.snippets.all, ls.snippet("date", require("luasnip.extras").partial(os.date, "%Y-%m-%d")))
 end
+
+-- }}}
+
+-- Vimwiki {{{
+
+config.vimwiki = function()
+	local base_path = "~/Documents/notes/"
+
+	local base_config = {
+		diary_rel_path = "diary/",
+		auto_export = 0,
+		auto_toc = 1,
+		syntax = "markdown",
+		ext = ".md",
+		nested_syntaxes = { python = "python", sh = "sh" },
+	}
+
+	local personal_wiki = vim.deepcopy(base_config)
+	personal_wiki.path = base_path .. "personal"
+
+	local asg_wiki = vim.deepcopy(base_config)
+	asg_wiki.path = base_path .. "ASG"
+
+	local sapn_wiki = vim.deepcopy(base_config)
+	sapn_wiki.path = base_path .. "SAPN"
+
+	vim.g.vimwiki_folding = "syntax"
+	vim.g.vimwiki_global_ext = 0
+	vim.g.vimwiki_list = { asg_wiki, sapn_wiki, personal_wiki }
+	vim.g.vimwiki_key_mappings = { headers = 0 }
+
+	Mapper("n", "<space>wj", ":VimwikiDiaryPrevDay<CR>")
+	Mapper("n", "<space>wk", ":VimwikiDiaryNextDay<CR>")
+end
+
+-- }}}
 
 return config
