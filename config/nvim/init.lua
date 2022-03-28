@@ -37,11 +37,11 @@ vim.opt.list = true
 --- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
 --- BULLET (U+2022, UTF-8: E2 80 A2)
 vim.opt.listchars = {
-    tab = "▶‒",
-    nbsp = "␣",
-    extends = "»",
-    precedes = "«",
-    trail = "•",
+	tab = "▶‒",
+	nbsp = "␣",
+	extends = "»",
+	precedes = "«",
+	trail = "•",
 }
 -- Always have 5 lines above or below the cursor
 vim.opt.scrolloff = 5
@@ -70,14 +70,14 @@ vim.opt.secure = true
 
 --- Joining lines and newlines
 vim.opt.formatoptions = {
-    t = false, -- Auto wrap text using textwidth
-    c = true, -- Auto wrap comments using textwidth, inserting comment leader automatically
-    r = true, -- Insert comment leader after hitting <enter> in insert mode
-    o = false, -- Insert comment leader after hitting 'o' or 'O' in Normal mode
-    q = true, -- Allow formatting of commetns with gq
-    n = true, -- Recognise numbered lists in formatting
-    j = true, -- Remove comment leader when joining lines
-    l = true, -- Long lines are not broken in insert mode
+	t = false, -- Auto wrap text using textwidth
+	c = true, -- Auto wrap comments using textwidth, inserting comment leader automatically
+	r = true, -- Insert comment leader after hitting <enter> in insert mode
+	o = false, -- Insert comment leader after hitting 'o' or 'O' in Normal mode
+	q = true, -- Allow formatting of commetns with gq
+	n = true, -- Recognise numbered lists in formatting
+	j = true, -- Remove comment leader when joining lines
+	l = true, -- Long lines are not broken in insert mode
 }
 vim.opt.joinspaces = false
 -- Wrapping lines will indent at same level as start of line
@@ -155,17 +155,17 @@ Command("Reload", "luafile $MYVIMRC")
 -- Terminal Confiugartion
 
 nvim_create_augroups({
-    terminal = {
-        { "TermOpen", "*", "setlocal nonumber norelativenumber" },
-        { "TermOpen", "*", "startinsert" },
-    },
+	terminal = {
+		{ "TermOpen", "*", "setlocal nonumber norelativenumber" },
+		{ "TermOpen", "*", "startinsert" },
+	},
 })
 
 -- Configure nvim to automatically realign windows on resize
 nvim_create_augroups({
-    resize = {
-        { "VimResized", "*", "wincmd =" },
-    },
+	resize = {
+		{ "VimResized", "*", "wincmd =" },
+	},
 })
 
 require("treesitter_config")

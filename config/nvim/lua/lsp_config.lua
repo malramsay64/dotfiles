@@ -1,5 +1,10 @@
 local lsp_extensions = require("lsp_extensions")
 local lsp_signature = require("lsp_signature")
+local lsp_format = require("lsp-format")
+
+lsp_format.setup({
+    yaml = {tab_width = 2}
+})
 
 require("nvim_utils")
 
@@ -12,17 +17,13 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 local custom_attach = function(client)
 	vim.api.nvim_buf_set_option(0, "omnifunc", "v:lua.vim.lsp.omnifunc")
 	lsp_signature.on_attach(client)
+    lsp_format.on_attach(client)
 
 	lsp_extensions.inlay_hints({
 		aligned = true,
 		enabled = { "TypeHint", "ChainingHint", "ParameterHint" },
 		prefix = "» ",
 	})
-
-	-- On write automatically format buffer
-	if client.resolved_capabilities.document_formatting then
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
-	end
 
 	-- Set some keybinds conditional on server capabilities
 	if client.resolved_capabilities.document_formatting then
@@ -83,6 +84,9 @@ lsp_installer.on_server_ready(function(server)
 		on_attach = custom_attach,
 	}
 
+    if server.name == "zk" then
+        return
+    end
 	if server.name == "sumneko_lua" then
 		opts.settings = lua_settings
 	end

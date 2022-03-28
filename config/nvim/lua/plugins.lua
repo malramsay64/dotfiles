@@ -30,10 +30,7 @@ return require("packer").startup(function()
 	-- Colourscheme and Themeing Plugins
 	--
 	use("sainnhe/edge")
-	-- use({
-	-- 	"datwaft/bubbly.nvim",
-	-- 	config = plugin_config.bubbly,
-	-- })
+
 	use({
 		"nvim-lualine/lualine.nvim",
 		config = plugin_config.lualine,
@@ -75,7 +72,7 @@ return require("packer").startup(function()
 		config = plugin_config.completion,
 	})
 	--- support snippets in completion
-	use({ "L3MON4D3/LuaSnip", config = plugin_config.snippets })
+	use({ "L3MON4D3/LuaSnip", requires={"rafamadriz/friendly-snippets"}, config = plugin_config.snippets })
 	use({ "hrsh7th/cmp-nvim-lsp" })
 	use({ "hrsh7th/cmp-buffer" })
 	use({ "saadparwaiz1/cmp_luasnip" })
@@ -97,10 +94,7 @@ return require("packer").startup(function()
 	})
 
 	--- Additional support for running formatters
-	use({
-		"lukas-reineke/format.nvim",
-		config = plugin_config.formatter,
-	})
+	use("lukas-reineke/lsp-format.nvim")
 
 	use({
 		"lewis6991/spellsitter.nvim",
@@ -172,6 +166,8 @@ return require("packer").startup(function()
 		"vimwiki/vimwiki",
 		config = plugin_config.vimwiki,
 	})
+
+	use({"mickael-menu/zk-nvim", config=plugin_config.zk})
 
 	--
 	-- Fuzzy finder
