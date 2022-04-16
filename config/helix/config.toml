@@ -8,7 +8,7 @@ insert = "bar"
 normal = "block"
 select = "underline"
 
-[lsp]
+[editor.lsp]
 display-messages = true
 
 # [keys.insert]
