@@ -1,0 +1,2 @@
+# We don't want to include the nushell history within the repository
+history.txt
