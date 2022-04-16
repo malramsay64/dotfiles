@@ -48,3 +48,12 @@ let-env NU_LIB_DIRS = [
 let-env NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
+
+let-env PATH = [
+    $env.PATH,
+    ("/usr/local/bin" | path expand),
+    ("~/go/bin" | path expand),
+    ("~/.cargo/bin" | path expand)
+]
+
+let-env ZK_NOTEBOOK_DIR = ("~/Documents/notes" | path expand)
