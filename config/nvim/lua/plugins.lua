@@ -3,45 +3,28 @@ local plugin_config = require("plugin_config")
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.api.nvim_command("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 end
 
-vim.api.nvim_exec(
-	[[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost plugins.lua,plugin_config.lua PackerCompile
-  augroup end
-]],
-	false
-)
+local packer_group = vim.api.nvim_create_augroup("Packer", {clear = true})
+vim.api.nvim_create_autocmd("BufWritePost", {command = "source <afile> | PackerCompile", group = packer_group, pattern='plugins.lua'})
 
-local use = require("packer").use
-return require("packer").startup(function()
+return require("packer").startup(function(use)
 	-- Packer can manage itself as an optional plugin
-	use({ "wbthomason/packer.nvim" })
+	use("wbthomason/packer.nvim")
 
-	-- Utility Plugins
-	-- Plugins that form dependencies for the main functionality I am looking for
-	use("nvim-lua/popup.nvim")
-	use("nvim-lua/plenary.nvim")
-
-	--
 	-- Colourscheme and Themeing Plugins
-	--
 	use("sainnhe/edge")
 
 	use({
 		"nvim-lualine/lualine.nvim",
 		config = plugin_config.lualine,
 	})
-	-- This needs a nerd-font patched font, which I am not currently using
-	-- use 'kyazdani42/nvim-web-devicons'
-
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("indent_blankline").setup({
+                filetype_exclude = { "help", "packer" },
 				buftype_exclue = { "terminal", "help" },
 				show_trailing_blankline_indent = false,
 			})
@@ -65,20 +48,17 @@ return require("packer").startup(function()
 	use("nvim-lua/lsp_extensions.nvim")
 	-- Installing language servers
 	use("williamboman/nvim-lsp-installer")
-	-- use("alexaandru/nvim-lspupdate")
 
 	use({
 		"hrsh7th/nvim-cmp",
 		config = plugin_config.completion,
 	})
-	--- support snippets in completion
-	use({ "L3MON4D3/LuaSnip", requires={"rafamadriz/friendly-snippets"}, config = plugin_config.snippets })
 	use({ "hrsh7th/cmp-nvim-lsp" })
 	use({ "hrsh7th/cmp-buffer" })
+    use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
+	--- support snippets in completion
 	use({ "saadparwaiz1/cmp_luasnip" })
-
-	-- use({ "ray-x/lsp_signature.nvim" })
-    use({"hrsh7th/cmp-nvim-lsp-signature-help"})
+	use({ "L3MON4D3/LuaSnip", requires={"rafamadriz/friendly-snippets"}, config = plugin_config.snippets })
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -154,6 +134,7 @@ return require("packer").startup(function()
 
 	use({
 		"akinsho/nvim-toggleterm.lua",
+        branch='main',
 		config = function()
 			require("toggleterm").setup({
 				open_mapping = [[<space>o]],
