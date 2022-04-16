@@ -1,5 +1,4 @@
 local lsp_extensions = require("lsp_extensions")
-local lsp_signature = require("lsp_signature")
 local lsp_format = require("lsp-format")
 
 lsp_format.setup({
@@ -16,7 +15,6 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 -- This is all the functionality associated with the langauge server protocol.
 local custom_attach = function(client)
 	vim.api.nvim_buf_set_option(0, "omnifunc", "v:lua.vim.lsp.omnifunc")
-	lsp_signature.on_attach(client)
     lsp_format.on_attach(client)
 
 	lsp_extensions.inlay_hints({

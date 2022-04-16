@@ -77,7 +77,8 @@ return require("packer").startup(function()
 	use({ "hrsh7th/cmp-buffer" })
 	use({ "saadparwaiz1/cmp_luasnip" })
 
-	use({ "ray-x/lsp_signature.nvim" })
+	-- use({ "ray-x/lsp_signature.nvim" })
+    use({"hrsh7th/cmp-nvim-lsp-signature-help"})
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -168,6 +169,13 @@ return require("packer").startup(function()
 	})
 
 	use({"mickael-menu/zk-nvim", config=plugin_config.zk})
+
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup({})
+        end
+    }
 
 	--
 	-- Fuzzy finder

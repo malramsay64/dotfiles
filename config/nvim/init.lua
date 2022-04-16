@@ -15,6 +15,8 @@ vim.opt.belloff = "all"
 -- commands are always as fast as possible.
 vim.opt.shell = "/bin/sh"
 
+vim.opt.timeoutlen = 200
+
 --- Visual Options
 
 -- set the title of the terminal window

@@ -142,6 +142,7 @@ config.completion = function()
             { name = "nvim_lsp" },
             { name = "luasnip" },
             { name = "buffer" },
+            { name = 'nvim_lsp_signature_help' },
         },
     })
 end
@@ -294,7 +295,8 @@ config.zk = function()
         },
     })
     Mapper("n", "zi", "<cmd>ZkIndex<CR>")
-    Mapper("n", "zn", "<cmd>ZkNew<CR>")
+    Mapper("n", "zn", "<cmd>ZkNew { title = vim.fn.input('Title: ')}<CR>")
+    Mapper("n", "zm", "<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'meeting'}<CR>")
     Mapper("n", "<space>z", "<cmd>ZkNotes<CR>")
     Mapper("n", "zl", "<cmd>ZkLinks<CR>")
     Mapper("n", "zt", "<cmd>ZkTags<CR>")
