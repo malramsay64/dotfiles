@@ -91,7 +91,7 @@ input "1133:16489:Logitech_MX_Master_2S" {
   natural_scroll enabled
 }
 input "1133:4123:Logitech_M705" {
-natural_scroll enabled
+  natural_scroll enabled
 }
 
 ### Key bindings
@@ -105,7 +105,7 @@ natural_scroll enabled
     bindsym $mod+Shift+q kill
 
     # start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+space exec $menu
 
     # start browser
     bindsym $mod+w exec $browser
@@ -255,11 +255,11 @@ natural_scroll enabled
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    # Toggle a window from the tiling area to the floating area
+    bindsym $mod+Shift+m floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    bindsym $mod+m focus mode_toggle
 
     # move focus to the parent container
     bindsym $mod+a focus parent
@@ -359,3 +359,5 @@ bar {
 
 # Local sway configuration
 include /etc/sway/config.d/*
+
+# vim: filetype=config
