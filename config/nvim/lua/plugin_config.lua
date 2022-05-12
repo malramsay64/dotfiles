@@ -49,76 +49,54 @@ config.lualine = function()
     })
 end
 
-config.bubbly = function()
-    vim.g.bubbly_statusline = {
-        "mode",
-        "truncate",
-        "branch",
-        "signify",
-        "path",
-        "divisor",
-        "builtinlsp.diagnostics",
-        "filetype",
-        "progress",
-    }
-
-    vim.g.bubbly_palette = {
-        background = "#34343c",
-        foreground = "#c5cdd9",
-        black = "#3e4249",
-        red = "#ec7279",
-        green = "#a0c980",
-        yellow = "#deb974",
-        blue = "#6cb6eb",
-        purple = "#d38aea",
-        cyan = "#5dbbc1",
-        white = "#c5cdd9",
-        lightgrey = "#57595e",
-        darkgrey = "#404247",
-    }
-end
-
 -- }}}
 -- fugitive {{{
 
 config.fugitive = function()
     -- Open a fugitve window in a vertical split on the right hand side of the window
-    Mapper("n", "<space>gs", ":vertical rightbelow Git<CR>")
+    vim.keymap.set("n", "<space>gs", ":vertical rightbelow Git<CR>")
 end
 
 -- }}}
 -- Gitsigns {{{
-require("gitsigns").setup({
-    on_attach = function(bufnr)
-        local function map(mode, lhs, rhs, opts)
-            opts = vim.tbl_extend("force", { noremap = true, silent = true }, opts or {})
-            vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
-        end
 
-        -- Navigation
-        map("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
-        map("n", "[c", "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
+config.gitsigns = function()
+    require("gitsigns").setup({
+        on_attach = function(bufnr)
+            local gs = package.loaded.gitsigns
 
-        -- Actions
-        map("n", "<leader>hs", ":Gitsigns stage_hunk<CR>")
-        map("v", "<leader>hs", ":Gitsigns stage_hunk<CR>")
-        map("n", "<leader>hr", ":Gitsigns reset_hunk<CR>")
-        map("v", "<leader>hr", ":Gitsigns reset_hunk<CR>")
-        map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>")
-        map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>")
-        map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>")
-        map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>")
-        map("n", "<leader>hb", '<cmd>lua require"gitsigns".blame_line{full=true}<CR>')
-        map("n", "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<CR>")
-        map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>")
-        map("n", "<leader>hD", '<cmd>lua require"gitsigns".diffthis("~")<CR>')
-        map("n", "<leader>td", "<cmd>Gitsigns toggle_deleted<CR>")
+            -- Navigation
+            vim.keymap.set("n", "]c", function()
+                if vim.wo.diff then return ']c' end
+                vim.schedule(function() gs.next_hunk() end)
+                return '<Ignore>'
+            end, { buffer = bufnr, expr = true })
 
-        -- Text object
-        map("o", "ih", ":<C-U>Gitsigns select_hunk<CR>")
-        map("x", "ih", ":<C-U>Gitsigns select_hunk<CR>")
-    end,
-})
+            vim.keymap.set("n", "[c", function()
+                if vim.wo.diff then return '[c' end
+                vim.schedule(function() gs.next_hunk() end)
+                return '<Ignore>'
+            end, { expr = true })
+
+            local opts = { buffer = bufnr }
+            -- Actions
+            vim.keymap.set({ "n", "v" }, "<leader>hs", ":Gitsigns stage_hunk<CR>", opts)
+            vim.keymap.set({ "n", "v" }, "<leader>hr", ":Gitsigns reset_hunk<CR>", opts)
+            vim.keymap.set("n", "<leader>hS", gs.stage_buffer, opts)
+            vim.keymap.set("n", "<leader>hu", gs.undo_stage_hunk, opts)
+            vim.keymap.set("n", "<leader>hR", gs.reset_buffer, opts)
+            vim.keymap.set("n", "<leader>hp", gs.preview_hunk, opts)
+            vim.keymap.set("n", "<leader>hb", function() gs.blame_line({ full = true }) end, opts)
+            vim.keymap.set("n", "<leader>tb", gs.toggle_current_line_blame, opts)
+            vim.keymap.set("n", "<leader>hd", gs.diff_this, opts)
+            vim.keymap.set("n", "<leader>hD", function() gs.diffthis("~") end, opts)
+            vim.keymap.set("n", "<leader>td", gs.toggle_deleted, opts)
+
+            -- Text object
+            vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", opts)
+        end,
+    })
+end
 
 -- }}}
 -- Completion {{{
@@ -134,9 +112,11 @@ config.completion = function()
         mapping = {
             ["<C-d>"] = cmp.mapping.scroll_docs(-4),
             ["<C-f>"] = cmp.mapping.scroll_docs(4),
+            ["<C-n>"] = cmp.mapping.select_next_item(),
+            ["<C-p>"] = cmp.mapping.select_prev_item(),
             ["<C-Space>"] = cmp.mapping.complete(),
             ["<C-e>"] = cmp.mapping.close(),
-            ["<CR>"] = cmp.mapping.confirm({ select = false }),
+            ["<CR>"] = cmp.mapping.confirm({ select = true }),
         },
         sources = {
             { name = "nvim_lsp" },
@@ -151,35 +131,22 @@ end
 -- telescope {{{
 
 config.telescope = function()
-    Mapper("n", "<space>p", "<cmd>lua require('telescope.builtin').git_files{}<CR>")
-    Mapper("n", "<space>f", "<cmd>lua require('telescope.builtin').find_files{}<CR>")
-    Mapper("n", "<space>b", "<cmd>lua require('telescope.builtin').buffers{}<CR>")
-    Mapper("n", "<space>gr", "<cmd>lua require('telescope.builtin').lsp_references{}<CR>")
-    Mapper("n", "<space>en", "<cmd>lua require('telescope.builtin').git_files{cwd = '~/dotfiles'}<CR>")
-    Mapper("n", "<space>gg", "<cmd>lua require('telescope.builtin').live_grep{}<CR>")
-    Mapper("n", "<space>tc", "<cmd>lua require('telescope.builtin').commands{}<CR>")
-    Mapper("n", "<space>tr", "<cmd>lua require('telescope.builtin').registers{}<CR>")
-    Mapper("n", "<space>ta", "<cmd>lua require('telescope.builtin').autocommands{}<CR>")
-    Mapper("n", "<space>tk", "<cmd>lua require('telescope.builtin').keymaps{}<CR>")
-    Mapper("n", "<space>tl", "<cmd>lua require('telescope.builtin').lsp_code_actions{}<CR>")
+    local telescope_builtin = require("telescope.builtin")
 
-    Mapper("n", "<space>gb", "<cmd>lua require('telescope.builtin').git_branches{}<CR>")
-    Mapper("n", "<space>gt", "<cmd>lua require('telescope.builtin').git_status{}<CR>")
-    Mapper("n", "<space>gd", "<cmd>lua require('telescope.builtin').git_status{}<CR>")
-end
+    vim.keymap.set("n", "<space>p", telescope_builtin.git_files)
+    vim.keymap.set("n", "<space>f", telescope_builtin.find_files)
+    vim.keymap.set("n", "<space>b", telescope_builtin.buffers)
+    vim.keymap.set("n", "<space>gr", telescope_builtin.lsp_references)
+    vim.keymap.set("n", "<space>en", function() telescope_builtin.git_files({ cwd = "~/dotfiles" }) end)
+    vim.keymap.set("n", "<space>gg", telescope_builtin.live_grep)
+    vim.keymap.set("n", "<space>tc", telescope_builtin.commands)
+    vim.keymap.set("n", "<space>tr", telescope_builtin.registers)
+    vim.keymap.set("n", "<space>ta", telescope_builtin.autocommands)
+    vim.keymap.set("n", "<space>tk", telescope_builtin.keymaps)
 
--- }}}
--- formatter {{{
-
-config.formatter = function()
-    require("lsp-format").setup({
-    })
-
-    nvim_create_augroups({
-        formatting = {
-            { "BufWritePost", "*", "FormatWrite" },
-        },
-    })
+    vim.keymap.set("n", "<space>gb", telescope_builtin.git_branches)
+    vim.keymap.set("n", "<space>gt", telescope_builtin.git_status)
+    vim.keymap.set("n", "<space>gd", telescope_builtin.git_status)
 end
 
 -- }}}
@@ -202,33 +169,18 @@ config.outline = function()
 end
 
 --}}}
---- Autoclose Pairs {{{
-
-config.pears = function()
-    require("pears").setup(function(conf)
-        conf.pair("<", { filetypes = { "typescript" } })
-        conf.on_enter(function(pears_handle)
-            if vim.fn.pumvisible() == 1 and vim.fn.complete_info().selected ~= -1 then
-                return vim.fn["compe#confirm"]("<CR>")
-            else
-            pears_handle()
-            end
-        end)
-    end)
-end
-
--- }}}
 -- Snippets
 
 config.snippets = function()
-    Mapper("i", "<C-k>", "<cmd>lua require('luasnip').jump(1)<CR>")
-    Mapper("i", "<C-j>", "<cmd>lua require('luasnip').jump(-1)<CR>")
-    Mapper("s", "<C-k>", "<cmd>lua require('luasnip').jump(1)<CR>")
-    Mapper("s", "<C-j>", "<cmd>lua require('luasnip').jump(-1)<CR>")
-
     require('luasnip.loaders.from_vscode').lazy_load()
-
     local ls = require('luasnip')
+
+    local jump_next = function() ls.jump(1) end
+    local jump_prev = function() ls.jump(-1) end
+
+    vim.keymap.set({ "i", "s" }, "<C-k>", jump_next)
+    vim.keymap.set({ "i", "s" }, "<C-j>", jump_prev)
+
     ls.add_snippets("all", {
         ls.snippet("date", require("luasnip.extras").partial(os.date, "%Y-%m-%d"))
     })
@@ -264,8 +216,8 @@ config.vimwiki = function()
     vim.g.vimwiki_list = { asg_wiki, sapn_wiki, personal_wiki }
     vim.g.vimwiki_key_mappings = { headers = 0 }
 
-    Mapper("n", "<space>wj", ":VimwikiDiaryPrevDay<CR>")
-    Mapper("n", "<space>wk", ":VimwikiDiaryNextDay<CR>")
+    vim.keymap.set("n", "<space>wj", ":VimwikiDiaryPrevDay<CR>")
+    vim.keymap.set("n", "<space>wk", ":VimwikiDiaryNextDay<CR>")
 end
 
 -- }}}
@@ -274,11 +226,11 @@ end
 
 config.zk = function()
     require("zk").setup({
-    -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-    -- it's recommended to use "telescope" or "fzf"
-    picker = "telescope",
+        -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+        -- it's recommended to use "telescope" or "fzf"
+        picker = "telescope",
 
-    lsp = {
+        lsp = {
             -- `config` is passed to `vim.lsp.start_client(config)`
             config = {
                 cmd = { "zk", "lsp" },
@@ -294,12 +246,12 @@ config.zk = function()
             },
         },
     })
-    Mapper("n", "zi", "<cmd>ZkIndex<CR>")
-    Mapper("n", "zn", "<cmd>ZkNew { title = vim.fn.input('Title: ')}<CR>")
-    Mapper("n", "zm", "<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'meeting'}<CR>")
-    Mapper("n", "<space>z", "<cmd>ZkNotes<CR>")
-    Mapper("n", "zl", "<cmd>ZkLinks<CR>")
-    Mapper("n", "zt", "<cmd>ZkTags<CR>")
+    vim.keymap.set("n", "zi", "<cmd>ZkIndex<CR>")
+    vim.keymap.set("n", "zn", "<cmd>ZkNew { title = vim.fn.input('Title: ')}<CR>")
+    vim.keymap.set("n", "zm", "<cmd>ZkNew { title = vim.fn.input('Title: '), group = 'meeting'}<CR>")
+    vim.keymap.set("n", "<space>z", "<cmd>ZkNotes<CR>")
+    vim.keymap.set("n", "zl", "<cmd>ZkLinks<CR>")
+    vim.keymap.set("n", "zt", "<cmd>ZkTags<CR>")
 end
 
 -- }}}

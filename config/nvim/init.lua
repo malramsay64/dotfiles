@@ -1,4 +1,3 @@
-require("nvim_utils")
 require("plugins")
 
 vim.g.email = "m@malramsay.com"
@@ -39,11 +38,11 @@ vim.opt.list = true
 --- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
 --- BULLET (U+2022, UTF-8: E2 80 A2)
 vim.opt.listchars = {
-	tab = "▶‒",
-	nbsp = "␣",
-	extends = "»",
-	precedes = "«",
-	trail = "•",
+    tab = "▶‒",
+    nbsp = "␣",
+    extends = "»",
+    precedes = "«",
+    trail = "•",
 }
 -- Always have 5 lines above or below the cursor
 vim.opt.scrolloff = 5
@@ -72,14 +71,14 @@ vim.opt.secure = true
 
 --- Joining lines and newlines
 vim.opt.formatoptions = {
-	t = false, -- Auto wrap text using textwidth
-	c = true, -- Auto wrap comments using textwidth, inserting comment leader automatically
-	r = true, -- Insert comment leader after hitting <enter> in insert mode
-	o = false, -- Insert comment leader after hitting 'o' or 'O' in Normal mode
-	q = true, -- Allow formatting of commetns with gq
-	n = true, -- Recognise numbered lists in formatting
-	j = true, -- Remove comment leader when joining lines
-	l = true, -- Long lines are not broken in insert mode
+    t = false, -- Auto wrap text using textwidth
+    c = true, -- Auto wrap comments using textwidth, inserting comment leader automatically
+    r = true, -- Insert comment leader after hitting <enter> in insert mode
+    o = false, -- Insert comment leader after hitting 'o' or 'O' in Normal mode
+    q = true, -- Allow formatting of commetns with gq
+    n = true, -- Recognise numbered lists in formatting
+    j = true, -- Remove comment leader when joining lines
+    l = true, -- Long lines are not broken in insert mode
 }
 vim.opt.joinspaces = false
 -- Wrapping lines will indent at same level as start of line
@@ -126,49 +125,42 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 20
 
 -- Command to remove highlights
-Mapper("n", "<space>h", ":nohlsearch<CR>")
+vim.keymap.set("n", "<space>h", ":nohlsearch<CR>")
 
 -- Use jk for escape, along with common mispellings
-Mapper("i", "jk", "<esc>")
-Mapper("i", "Jk", "<esc>")
-Mapper("i", "jK", "<esc>")
-Mapper("i", "JK", "<esc>")
+vim.keymap.set("i", "jk", "<esc>")
+vim.keymap.set("i", "Jk", "<esc>")
+vim.keymap.set("i", "jK", "<esc>")
+vim.keymap.set("i", "JK", "<esc>")
 
 -- Easier command for working with tabs
-Mapper("n", "]t", ":tabNext<CR>")
-Mapper("n", "[t", ":tabPrev<CR>")
+vim.keymap.set("n", "]t", ":tabNext<CR>")
+vim.keymap.set("n", "[t", ":tabPrev<CR>")
 
 -- Spelling
-Mapper("n", "<C-s>", "<Cmd>call spelling#fix_previous()<CR>")
-Mapper("i", "<C-s>", "<C-o><Cmd>call spelling#fix_previous()<CR>")
+vim.keymap.set({ "n", "i" }, "<C-s>", "<Cmd>call spelling#fix_previous()<CR>")
 
 -- Working in the terminal
-Mapper("t", "<C-h>", [[<C-\><C-N><C-w>h]])
-Mapper("t", "<C-j>", [[<C-\><C-N><C-w>j]])
-Mapper("t", "<C-k>", [[<C-\><C-N><C-w>k]])
-Mapper("t", "<C-l>", [[<C-\><C-N><C-w>l]])
+vim.keymap.set("t", "<C-h>", [[<C-\><C-N><C-w>h]])
+vim.keymap.set("t", "<C-j>", [[<C-\><C-N><C-w>j]])
+vim.keymap.set("t", "<C-k>", [[<C-\><C-N><C-w>k]])
+vim.keymap.set("t", "<C-l>", [[<C-\><C-N><C-w>l]])
 
 -- Remove all trailing whitespace
-Mapper("n", "<space>zz", [[:%s/\s\+$//e<CR>]])
+vim.keymap.set("n", "<space>zz", [[:%s/\s\+$//e<CR>:nohlsearch<CR>]], { silent = true })
 
 -- Commands
-Command("Reload", "luafile $MYVIMRC")
+vim.api.nvim_create_user_command("Reload", "luafile $MYVIMRC", {})
 
 -- Terminal Confiugartion
 
-nvim_create_augroups({
-	terminal = {
-		{ "TermOpen", "*", "setlocal nonumber norelativenumber" },
-		{ "TermOpen", "*", "startinsert" },
-	},
-})
+local group_terminal = vim.api.nvim_create_augroup("terminal", { clear = true })
+vim.api.nvim_create_autocmd("TermOpen", { pattern = "*", callback = "setlocal nonumber norelativenumber", group = group_terminal })
+vim.api.nvim_create_autocmd("TermOpen", { pattern = "*", callback = "startinsert", group = group_terminal })
 
 -- Configure nvim to automatically realign windows on resize
-nvim_create_augroups({
-	resize = {
-		{ "VimResized", "*", "wincmd =" },
-	},
-})
+local group_resize = vim.api.nvim_create_augroup("resize", {clear = true})
+vim.api.nvim_create_autocmd("VimResized", {pattern = "*", callback = "wincmd =", group=group_resize})
 
 require("treesitter_config")
 require("lsp_config")
