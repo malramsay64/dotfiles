@@ -1,9 +1,0 @@
-snippet cmake "CMAKE Simple template" b
-CMAKE_MINIMUM_REQUIRED(VERSION ${1:2.8})
-
-SET(CMAKE_CXX_STANDARD ${3:11})
-
-project($2)
-FILE(GLOB SOURCES ${4:"src/*.cpp"})
-add_executable($5 ${SOURCES})
-endsnippet
