@@ -159,8 +159,8 @@ vim.api.nvim_create_autocmd("TermOpen", { pattern = "*", callback = "setlocal no
 vim.api.nvim_create_autocmd("TermOpen", { pattern = "*", callback = "startinsert", group = group_terminal })
 
 -- Configure nvim to automatically realign windows on resize
-local group_resize = vim.api.nvim_create_augroup("resize", {clear = true})
-vim.api.nvim_create_autocmd("VimResized", {pattern = "*", callback = "wincmd =", group=group_resize})
+local group_resize = vim.api.nvim_create_augroup("resize", { clear = true })
+vim.api.nvim_create_autocmd("VimResized", { pattern = "*", callback = ":wincmd =<CR>", group = group_resize })
 
 require("treesitter_config")
 require("lsp_config")

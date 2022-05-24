@@ -90,9 +90,9 @@ config.gitsigns = function()
             vim.keymap.set("n", "<leader>tb", gs.toggle_current_line_blame, opts)
             vim.keymap.set("n", "<leader>hd", gs.diff_this, opts)
             vim.keymap.set("n", "<leader>hD", function() gs.diffthis("~") end, opts)
-            vim.keymap.set("n", "<leader>td", gs.toggle_deleted, opts)
+            -- vim.keymap.set("n", "<leader>td", gs.toggle_deleted, opts)
 
-            -- Text object
+            -- -- Text object
             vim.keymap.set({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", opts)
         end,
     })
