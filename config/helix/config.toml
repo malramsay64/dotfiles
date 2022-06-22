@@ -3,6 +3,12 @@ theme = "onedark"
 [editor]
 line-number = "relative"
 
+[editor.whitespace.render]
+space = "none"
+newline = "all"
+tab = "all"
+
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -11,5 +17,6 @@ select = "underline"
 [editor.lsp]
 display-messages = true
 
-# [keys.insert]
-# j = {k = "normal_mode"}
+[keys.insert]
+j = {k = "normal_mode"}
+
