@@ -87,9 +87,9 @@ config.gitsigns = function()
             vim.keymap.set("n", "<leader>hR", gs.reset_buffer, opts)
             vim.keymap.set("n", "<leader>hp", gs.preview_hunk, opts)
             vim.keymap.set("n", "<leader>hb", function() gs.blame_line({ full = true }) end, opts)
-            vim.keymap.set("n", "<leader>tb", gs.toggle_current_line_blame, opts)
-            vim.keymap.set("n", "<leader>hd", gs.diff_this, opts)
-            vim.keymap.set("n", "<leader>hD", function() gs.diffthis("~") end, opts)
+            -- vim.keymap.set("n", "<leader>tb", gs.toggle_current_line_blame, opts)
+            -- vim.keymap.set("n", "<leader>hd", gs.diff_this, opts)
+            -- vim.keymap.set("n", "<leader>hD", function() gs.diffthis("~") end, opts)
             -- vim.keymap.set("n", "<leader>td", gs.toggle_deleted, opts)
 
             -- -- Text object
@@ -116,7 +116,7 @@ config.completion = function()
             ["<C-p>"] = cmp.mapping.select_prev_item(),
             ["<C-Space>"] = cmp.mapping.complete(),
             ["<C-e>"] = cmp.mapping.close(),
-            ["<CR>"] = cmp.mapping.confirm({ select = true }),
+            ["<CR>"] = cmp.mapping.confirm({ select = false }),
         },
         sources = {
             { name = "nvim_lsp" },
