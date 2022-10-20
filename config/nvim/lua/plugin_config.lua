@@ -1,6 +1,7 @@
-local config = {}
+-- We use the M to denote the module
+local M = {}
 
-config.lualine = function()
+M.lualine = function()
     require("lualine").setup({
         options = {
             -- U+2502 Box drawings light vertical
@@ -52,7 +53,7 @@ end
 -- }}}
 -- fugitive {{{
 
-config.fugitive = function()
+M.fugitive = function()
     -- Open a fugitve window in a vertical split on the right hand side of the window
     vim.keymap.set("n", "<space>gs", ":vertical rightbelow Git<CR>")
 end
@@ -60,7 +61,7 @@ end
 -- }}}
 -- Gitsigns {{{
 
-config.gitsigns = function()
+M.gitsigns = function()
     require("gitsigns").setup({
         on_attach = function(bufnr)
             local gs = package.loaded.gitsigns
@@ -101,7 +102,7 @@ end
 -- }}}
 -- Completion {{{
 
-config.completion = function()
+M.completion = function()
     local cmp = require("cmp")
     cmp.setup({
         snippet = {
@@ -130,19 +131,20 @@ end
 -- }}}
 -- telescope {{{
 
-config.telescope = function()
+M.telescope = function()
     local telescope_builtin = require("telescope.builtin")
 
-    vim.keymap.set("n", "<space>p", telescope_builtin.git_files)
-    vim.keymap.set("n", "<space>f", telescope_builtin.find_files)
-    vim.keymap.set("n", "<space>b", telescope_builtin.buffers)
-    vim.keymap.set("n", "<space>gr", telescope_builtin.lsp_references)
-    vim.keymap.set("n", "<space>en", function() telescope_builtin.git_files({ cwd = "~/dotfiles" }) end)
-    vim.keymap.set("n", "<space>gg", telescope_builtin.live_grep)
-    vim.keymap.set("n", "<space>tc", telescope_builtin.commands)
-    vim.keymap.set("n", "<space>tr", telescope_builtin.registers)
-    vim.keymap.set("n", "<space>ta", telescope_builtin.autocommands)
-    vim.keymap.set("n", "<space>tk", telescope_builtin.keymaps)
+    vim.keymap.set("n", "<space>p", telescope_builtin.git_files, { desc = "[p] Find files in the git repository" })
+    vim.keymap.set("n", "<space>f", telescope_builtin.find_files, { desc = "[f] Find [f]iles in the current directory" })
+    vim.keymap.set("n", "<space>b", telescope_builtin.buffers, { desc = "[b] Find existing [b]uffers" })
+    vim.keymap.set("n", "<space>sr", telescope_builtin.lsp_references)
+    vim.keymap.set("n", "<space>sd", function() telescope_builtin.git_files({ cwd = "~/dotfiles" }) end,
+        { desc = "[S]earch [D]otfiles directory" })
+    vim.keymap.set("n", "<space>sg", telescope_builtin.live_grep, { desc = "[S]earch by [G]rep" })
+    vim.keymap.set("n", "<space>sc", telescope_builtin.commands, { desc = "[S]earch vim [C]ommands" })
+    vim.keymap.set("n", "<space>sr", telescope_builtin.registers, { desc = "[S]earch vim [R]egisters" })
+    vim.keymap.set("n", "<space>sa", telescope_builtin.autocommands, { desc = "[S]earch vim [A]utocommands" })
+    vim.keymap.set("n", "<space>sk", telescope_builtin.keymaps, { desc = "[S]earch vim [K]eymaps" })
 
     vim.keymap.set("n", "<space>gb", telescope_builtin.git_branches)
     vim.keymap.set("n", "<space>gt", telescope_builtin.git_status)
@@ -151,7 +153,7 @@ end
 
 -- }}}
 -- Code Outline {{{
-config.outline = function()
+M.outline = function()
     vim.g.symbols_outline = {
         highlight_hovered_item = true,
         show_guides = true,
@@ -171,7 +173,7 @@ end
 --}}}
 -- Snippets
 
-config.snippets = function()
+M.snippets = function()
     require('luasnip.loaders.from_vscode').lazy_load()
     local ls = require('luasnip')
 
@@ -190,7 +192,7 @@ end
 
 -- Vimwiki {{{
 
-config.vimwiki = function()
+M.vimwiki = function()
     local base_path = "~/Documents/notes/"
 
     local base_config = {
@@ -224,7 +226,7 @@ end
 --
 -- zk {{{
 
-config.zk = function()
+M.zk = function()
     require("zk").setup({
         -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
         -- it's recommended to use "telescope" or "fzf"
@@ -256,4 +258,4 @@ end
 
 -- }}}
 
-return config
+return M

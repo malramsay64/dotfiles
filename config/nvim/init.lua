@@ -95,8 +95,6 @@ vim.opt.shortmess:append("c")
 
 --- Spaces and Tabs
 
--- This doesn't seem to be set using vim.bo, so using the vim commands to set
--- these values.
 local spaces = 4
 -- -- number of spaces to use for autoindent (also >> and <<)
 vim.opt.shiftwidth = spaces
@@ -114,11 +112,14 @@ vim.opt.undofile = true
 
 --- Spelling
 vim.opt.spelllang = "en_au"
+vim.g.spell = true
 
 vim.g.python3_host_prog = "/usr/bin/python3"
 
 -- Configuration of colourscheme
 vim.g.edge_style = "aura"
+vim.g.edge_better_performance = 1
+vim.opt.background = "dark"
 vim.g.edge_enable_italic = 1
 
 -- Folding
@@ -128,20 +129,21 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 20
 
 -- Command to remove highlights
-vim.keymap.set("n", "<space>h", ":nohlsearch<CR>")
+vim.keymap.set("n", "<space>h", ":nohlsearch<CR>", { desc = "Remove all [H]ighlights after performing search." })
 
--- Use jk for escape, along with common mispellings
+-- Use jk for escape, along with common misspellings
 vim.keymap.set("i", "jk", "<esc>")
 vim.keymap.set("i", "Jk", "<esc>")
 vim.keymap.set("i", "jK", "<esc>")
 vim.keymap.set("i", "JK", "<esc>")
 
 -- Easier command for working with tabs
-vim.keymap.set("n", "]t", ":tabNext<CR>")
-vim.keymap.set("n", "[t", ":tabPrev<CR>")
+vim.keymap.set("n", "]t", ":tabNext<CR>", { desc = "Move to the next [T]ab" })
+vim.keymap.set("n", "[t", ":tabPrev<CR>", { desc = "Move to the previous [T]ab" })
 
 -- Spelling
-vim.keymap.set({ "n", "i" }, "<C-s>", "<Cmd>call spelling#fix_previous()<CR>")
+vim.keymap.set({ "n", "i" }, "<C-s>", "<Cmd>call spelling#fix_previous()<CR>",
+    { desc = "Replace the previous misspelt word with the first suggestion." })
 
 -- Working in the terminal
 vim.keymap.set("t", "<C-h>", [[<C-\><C-N><C-w>h]])
@@ -150,23 +152,80 @@ vim.keymap.set("t", "<C-k>", [[<C-\><C-N><C-w>k]])
 vim.keymap.set("t", "<C-l>", [[<C-\><C-N><C-w>l]])
 
 -- Remove all trailing whitespace
-vim.keymap.set("n", "<space>zz", [[:%s/\s\+$//e<CR>:nohlsearch<CR>]], { silent = true })
+vim.keymap.set("n", "<space>zz", [[:%s/\s\+$//e<CR>:nohlsearch<CR>]],
+    { silent = true, desc = "Remove all trailing whitespace" })
 
 -- Commands
 vim.api.nvim_create_user_command("Reload", "luafile $MYVIMRC", {})
 
--- Terminal Confiugartion
+vim.keymap.set("n", "<space>m", ":MindOpenMain<CR>", { desc = "Open [M]ind organisational tree" })
+
+-- Terminal Configuration
 
 local group_terminal = vim.api.nvim_create_augroup("terminal", { clear = true })
-vim.api.nvim_create_autocmd("TermOpen", { pattern = "*", callback = "setlocal nonumber norelativenumber", group = group_terminal })
+vim.api.nvim_create_autocmd("TermOpen",
+    { pattern = "*", callback = "setlocal nonumber norelativenumber", group = group_terminal })
 vim.api.nvim_create_autocmd("TermOpen", { pattern = "*", callback = "startinsert", group = group_terminal })
 
 -- Configure nvim to automatically realign windows on resize
 local group_resize = vim.api.nvim_create_augroup("resize", { clear = true })
 vim.api.nvim_create_autocmd("VimResized", { pattern = "*", callback = ":wincmd =<CR>", group = group_resize })
 
-require("treesitter_config")
-require("lsp_config")
+require("nvim-treesitter.configs").setup({
+    -- one of "all", "language", or a list of languages
+    ensure_installed = "all",
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+        -- false will disable the whole extension
+        enable = true,
+    },
+    indent = {
+        -- There are currently issues with the indentation
+        enable = true,
+    },
+    textobjects = {
+        select = {
+            enable = true,
+            keymaps = {
+                -- You can use the capture groups defined in textobjects.scm
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["ac"] = "@class.outer",
+                ["ic"] = "@class.inner",
+                ["a,"] = "@parameter.outer",
+                ["i,"] = "@parameter.inner",
+            },
+        },
+    },
+    swap = {
+        enable = true,
+        swap_next = {
+            [">,"] = "@parameter.inner",
+        },
+        swap_previous = {
+            ["<,"] = "@parameter.inner",
+        },
+    },
+    move = {
+        enable = true,
+        goto_next_start = {
+            ["]m"] = "@function.outer",
+            ["]]"] = "@class.outer",
+        },
+        goto_next_end = {
+            ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
+        },
+        goto_previous_start = {
+            ["[m"] = "@function.outer",
+            ["[["] = "@class.outer",
+        },
+        goto_previous_end = {
+            ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
+        },
+    },
+})
 
---- Set colourscheme
-vim.cmd("colorscheme edge")
+require("lsp_config")

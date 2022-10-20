@@ -1,20 +1,35 @@
 local plugin_config = require("plugin_config")
 
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local is_bootstrap = false
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    is_bootstrap = true
     vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+    vim.cmd [[packadd packer.nvim]]
 end
 
 local packer_group = vim.api.nvim_create_augroup("Packer", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", { command = "source <afile> | PackerCompile", group = packer_group, pattern = 'plugins.lua' })
+vim.api.nvim_create_autocmd("BufWritePost", {
+    command = "source <afile> | PackerCompile",
+    group = packer_group,
+    pattern = 'plugins.lua'
+})
 
 return require("packer").startup(function(use)
+
     -- Packer can manage itself as an optional plugin
     use("wbthomason/packer.nvim")
 
     -- Colourscheme and Themeing Plugins
-    use("sainnhe/edge")
+    use({
+        "sainnhe/edge",
+        config = function()
+            vim.g.edge_style = "aura"
+            vim.g.edge_better_performance = 1
+            vim.cmd("colorscheme edge")
+        end
+    })
 
     use({
         "nvim-lualine/lualine.nvim",
@@ -24,8 +39,9 @@ return require("packer").startup(function(use)
         "lukas-reineke/indent-blankline.nvim",
         config = function()
             require("indent_blankline").setup({
-                filetype_exclude = { "help", "packer" },
-                buftype_exclue = { "terminal", "help" },
+                char = '┊',
+                -- filetype_exclude = { "help", "packer" },
+                -- buftype_exclue = { "terminal", "help" },
                 show_trailing_blankline_indent = false,
             })
         end,
@@ -34,31 +50,24 @@ return require("packer").startup(function(use)
     --
     -- Language and Completion Plugins
     --
-    -- These are either plugins for parsing the language and colouring or
-    -- alternatively for finding completions. This covers all aspects of the
-    -- completions, including support for snippets.
-    use({
-        "nathom/filetype.nvim",
-        config = function()
-            vim.g.did_load_filetypes = 1
-        end,
-    })
-
     use("neovim/nvim-lspconfig")
-    use("nvim-lua/lsp_extensions.nvim")
-    -- Installing language servers
-    use("williamboman/nvim-lsp-installer")
+    -- Manage external editor tooling i.e LSP servers
+    use 'williamboman/mason.nvim'
+    -- Automatically install language servers to stdpath
+    use 'williamboman/mason-lspconfig.nvim'
 
     use({
         "hrsh7th/nvim-cmp",
+        requires = { "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-nvim-lsp-signature-help" },
         config = plugin_config.completion,
     })
-    use({ "hrsh7th/cmp-nvim-lsp" })
-    use({ "hrsh7th/cmp-buffer" })
-    use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
+
     --- support snippets in completion
-    use({ "saadparwaiz1/cmp_luasnip" })
-    use({ "L3MON4D3/LuaSnip", requires = { "rafamadriz/friendly-snippets" }, config = plugin_config.snippets })
+    use({
+        "L3MON4D3/LuaSnip",
+        requires = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" },
+        config = plugin_config.snippets
+    })
 
     use({
         "nvim-treesitter/nvim-treesitter",
@@ -74,39 +83,20 @@ return require("packer").startup(function(use)
         config = plugin_config.outline,
     })
 
-    --- Additional support for running formatters
-    use({
-        "lukas-reineke/lsp-format.nvim",
-        config = function() require('lsp-format').setup({
-                yaml = { tab_width = 2 }
-            })
-        end
-    })
-
-    use({
-        "lewis6991/spellsitter.nvim",
-        config = function()
-            require("spellsitter").setup({ captures = { "comment", "string" } })
-        end,
-    })
-
     -- Enhancing Vim
     -- A collection of plugins for enhancing the general behaviour of vim/neovim.
     -- These are specifically general plugins that work across the board.
     use("tpope/vim-surround")
     use("tpope/vim-commentary")
     use("tpope/vim-unimpaired")
+    -- Detect tabstop and shiftwidth automatically
+    use 'tpope/vim-sleuth'
     -- Repeat plugin commands
     use("tpope/vim-repeat")
 
     use({
-        "steelsojka/pears.nvim",
-        config = function()
-            require("pears").setup(function(conf)
-                conf.pair("<", { filetypes = { "typescript" } })
-                conf.expand_on_enter(false)
-            end)
-        end
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup({}) end
     })
 
     -- Align symbols within vim
@@ -157,8 +147,26 @@ return require("packer").startup(function(use)
         "vimwiki/vimwiki",
         config = plugin_config.vimwiki,
     })
-
-    -- use({ "mickael-menu/zk-nvim", config = plugin_config.zk })
+    use({
+        'malramsay64/mind.nvim',
+        -- branch = 'v2.2',
+        requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('mind').setup({
+                persistence = {
+                    -- path where the global mind tree is stored
+                    state_path = "~/Documents/mind_notes/mind.json",
+                    -- directory where to create global data files
+                    data_dir = "~/Documents/mind_notes/data"
+                },
+                ui = {
+                    width = 40,
+                    -- Black Leftwards Equilateral Arrowhead U+2B9C
+                    select_marker = "⮜",
+                }
+            })
+        end
+    })
 
     use {
         "folke/which-key.nvim",
@@ -172,6 +180,7 @@ return require("packer").startup(function(use)
     --
     use({
         "nvim-telescope/telescope.nvim",
+        branch = '0.1.x',
         requires = { "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" },
         config = plugin_config.telescope,
     })
@@ -184,8 +193,9 @@ return require("packer").startup(function(use)
     use({
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "make",
+        cond = vim.fn.executable "make" == 1,
         config = function()
             require("telescope").load_extension("fzf")
-        end,
+        end
     })
 end)

@@ -1,9 +1,7 @@
 local lsp_extensions = require("lsp_extensions")
 local lsp_format = require("lsp-format")
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
--- These are capabilities for completion
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 --- Function defining how we attach to a language server
 -- This is all the functionality associated with the langauge server protocol.
@@ -44,50 +42,44 @@ local custom_attach = function(client, bufnr)
     vim.keymap.set("n", "<space>q", vim.diagnostic.setqflist, opts)
 end
 
--- Configure lua language server for neovim development
-local lua_settings = {
-    Lua = {
-        runtime = {
-            -- LuaJIT in the case of Neovim
-            version = "LuaJIT",
-            path = vim.split(package.path, ";"),
-        },
-        diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = { "vim" },
-        },
-        workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = {
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'sumneko_lua' }
+require("mason").setup()
+
+require('mason-lspconfig').setup({
+    ensure_installed = servers,
+})
+
+for _, lsp in ipairs(servers) do
+    require('lspconfig')[lsp].setup({
+        on_attach = custom_attach,
+        capabilities = capabilities,
+    })
+end
+
+-- Example custom configuration for lua
+--
+-- Make runtime files discoverable to the server
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+require('lspconfig').sumneko_lua.setup {
+    on_attach = custom_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT)
+                version = 'LuaJIT',
+                -- Setup your lua path
+                path = runtime_path,
             },
+            diagnostics = {
+                globals = { 'vim' },
+            },
+            workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = { enable = false, },
         },
     },
 }
-
-local lsp_installer = require("nvim-lsp-installer")
-
-lsp_installer.on_server_ready(function(server)
-    local opts = {
-        on_attach = custom_attach,
-    }
-
-    if server.name == "zk" then
-        return
-    end
-    if server.name == "sumneko_lua" then
-        opts.settings = lua_settings
-    end
-    if server.name == "cpp" then
-        opts.filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
-    end
-
-    -- (optional) Customize the options passed to the server
-    -- if server.name == "tsserver" then
-    --     opts.root_dir = function() ... end
-    -- end
-
-    server:setup(opts)
-    vim.cmd([[ do User LspAttachBuffers ]])
-end)
