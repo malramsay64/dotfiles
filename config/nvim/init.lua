@@ -47,6 +47,9 @@ vim.opt.listchars = {
 -- Always have 5 lines above or below the cursor
 vim.opt.scrolloff = 5
 
+-- Use a single statusline for all windows
+vim.opt.laststatus = 3
+
 --- Search Options
 
 -- Incremental live completion
