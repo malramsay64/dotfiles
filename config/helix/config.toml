@@ -8,6 +8,8 @@ space = "none"
 newline = "all"
 tab = "all"
 
+[editor.indent-guides]
+render = true
 
 [editor.cursor-shape]
 insert = "bar"
