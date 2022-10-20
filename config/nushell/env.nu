@@ -10,7 +10,7 @@ def create_right_prompt [] {
 
 # Use nushell functions to define your right and left prompt
 # let-env PROMPT_COMMAND = { create_left_prompt }
-let-env PROMPT_COMMAND =  { starship prompt --cmd-duration $env.CMD_DURATION_MS | str trim }
+let-env PROMPT_COMMAND =  { /usr/bin/starship prompt --cmd-duration $env.CMD_DURATION_MS | str trim }
 let-env PROMPT_COMMAND_RIGHT = { create_right_prompt }
 
 # The prompt indicators are environmental variables that represent
@@ -35,6 +35,8 @@ let-env ENV_CONVERSIONS = {
   }
 }
 
+let-env EDITOR = "hx"
+
 # Directories to search for scripts when calling source or use
 #
 # By default, <nushell-config-dir>/scripts is added
@@ -52,8 +54,8 @@ let-env NU_PLUGIN_DIRS = [
 let-env PATH = [
     $env.PATH,
     ("/usr/local/bin" | path expand),
+    ("~/.local/bin" | path expand),
     ("~/go/bin" | path expand),
     ("~/.cargo/bin" | path expand)
+    ("~/.miniconda/bin" | path expand)
 ]
-
-let-env ZK_NOTEBOOK_DIR = ("~/Documents/notes" | path expand)

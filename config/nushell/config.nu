@@ -64,13 +64,20 @@ let-env config = {
   footer_mode: "25" # always, never, number_of_rows, auto
   quick_completions: true  # set this to false to prevent auto-selecting completions when only one remains
   partial_completions: true  # set this to false to prevent partial filling of the prompt
-  animate_prompt: false # redraw the prompt every second
+  completion_algorithm: "fuzzy"
   float_precision: 2
   use_ansi_coloring: true
   filesize_format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
-  edit_mode: emacs # emacs, vi
-  max_history_size: 10000 # Session has to be reloaded for this to take effect
+  edit_mode: vi # emacs, vi
+  max_history_size: 100000 # Session has to be reloaded for this to take effect
   sync_history_on_enter: true # Enable to share the history between multiple sessions, else you have to close the session to persist history to file
+  history_file_format: "sqlite" # "sqlite" or "plaintext"
+  shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
+  disable_table_indexes: false # set to true to remove the index column from tables
+  cd_with_abbreviations: false # set to true to allow you to do things like cd s/o/f and nushell expand it to cd some/other/folder
+  case_sensitive_completions: false # set to true to enable case-sensitive completions
+  enable_external_completion: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up my be very slow
+  max_external_completion_results: 100 # setting it lower can improve completion performance at the cost of omitting some options  cd_with
   menus: [
       # Configuration for default nushell menus
       # Note the lack of souce parameter
@@ -261,4 +268,5 @@ let-env config = {
 
 source ~/.config/nushell/completions.nu
 source ~/.config/nushell/zoxide.nu
-source ~/.config/nushell/ssh-agent.nu
+
+use completions *
