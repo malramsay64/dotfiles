@@ -1,5 +1,5 @@
 [theme]
-name = "plain"
+theme = "plain"
 [theme.overrides]
 idle_bg = "#00000000"
 idle_fg = "#ffffff"
@@ -19,53 +19,54 @@ alternating_tint_bg = "#00000000"
 separator = " | "
 
 [icons]
-name = "awesome"
+icons = "awesome5"
 [icons.overrides]
 music = " "
 
 [[block]]
 block = "music"
 player = "spotify"
-buttons = ["play", "next"]
-marquee = false
+# buttons = ["play", "next"]
+# marquee = false
+
+# [[block]]
+# block = "docker"
+# interval = 2
+# format = "{running}/{total}"
 
 [[block]]
-block = "docker"
-interval = 2
-format = "{running}/{total}"
-
-[[block]]
-block = "networkmanager"
+block = "net"
+format = " $icon {$signal_strength $ssid $frequency|Wired connection} via $device "
 # on_click = "alacritty -e nmtui"
-interface_name_exclude = ["br\\-[1-9a-f]{12}", "docker\\d+"]
-interface_name_include = []
+# interface_name_exclude = ["br\\-[1-9a-f]{12}", "docker\\d+"]
+# interface_name_include = []
 
 [[block]]
 block = "cpu"
 interval = 1
+format = " $utilization.eng(u:%,w:3) $frequency.eng(w:3)"
 
 [[block]]
 block = "temperature"
-collapsed = false
 interval = 10
-format = "{max}"
+format = "$max.eng(w:2)"
 chip = "*-isa-*"
 inputs = ["SYSTIN", "CPUTIN"]
 
 [[block]]
 block = "memory"
-display_type = "memory"
-format_mem = "{mem_used;G}/{mem_total;G} GB"
+format = "$icon $mem_used.eng(w:2,p:G)/$mem_total.eng(w:2,p:G) GB"
 
 [[block]]
 block = "disk_space"
 path = "/"
-format = "{icon} {used}/{total}"
-alert_absolute = true
-unit = "GB"
+format = " $icon $available.eng(w:4,p:G) / $total.eng(w:4,p:G) "
+alert_unit = "GB"
 
 [[block]]
 block = "sound"
+natural_mapping = true
+# driver = "alsa"
 
 [[block]]
 block = "time"
