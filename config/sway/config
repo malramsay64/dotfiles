@@ -7,7 +7,7 @@
 ### Variables
 #
 # Logo key. Use Mod1 for Alt, Mod4 for Super.
-set $mod Mod1
+set $mod Mod4
 
 # Home row direction keys, like vim
 set $left h
@@ -40,7 +40,7 @@ set $menu wofi --show drun -i | xargs swaymsg exec -
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 # output * bg @datadir@/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /usr/share/backgrounds/gnome/adwaita-night.png fill
+output * bg /usr/share/backgrounds/gnome/adwaita-d.webp fill
 
 #
 # Example configuration:
@@ -90,6 +90,9 @@ for_window [app_id="firefox"] inhibit_idle fullscreen
 input "1133:16489:Logitech_MX_Master_2S" {
   natural_scroll enabled
 }
+input "257:257:Logitech_USB_Receiver_Mouse" {
+    natural_scroll enabled
+}
 input "1133:4123:Logitech_M705" {
   natural_scroll enabled
 }
@@ -105,7 +108,7 @@ input "1133:4123:Logitech_M705" {
     bindsym $mod+Shift+q kill
 
     # start your launcher
-    bindsym $mod+space exec $menu
+    bindsym $mod+d exec $menu
 
     # start browser
     bindsym $mod+w exec $browser
@@ -127,9 +130,9 @@ input "1133:4123:Logitech_M705" {
     bindsym XF86AudioPause exec playerctl pause
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPrev exec playerctl previous
-    bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
-    bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
-    bindsym XF86AudioMute exec amixer -q set Master toggle
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+    bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -176,8 +179,8 @@ input "1133:4123:Logitech_M705" {
     set $ws6 6
     set $ws7 7
     set $ws8 8
-    set $ws9 9ASG
-    set $ws10 10SAPN
+    set $ws9 9
+    set $ws10 10
 
     # set $ws2 1
     # set $ws3 2
@@ -231,13 +234,6 @@ input "1133:4123:Logitech_M705" {
     # Spotify doesn't work with assign because of some implementation details
     # See this issue for more details https://github.com/swaywm/sway/issues/3793
     for_window [class="Spotify"] move container to workspace $ws5
-
-    # Workspace 9: ASG
-
-    # Workspace 10: SAPN
-    exec --no-startup-id "swaymsg 'workspace $ws3; exec firefox'"
-    exec --no-startup-id "swaymsg 'workspace $ws3; exec flatpak run com.microsoft.Teams'"
-
 
 # Layout stuff:
 #

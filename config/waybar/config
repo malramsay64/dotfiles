@@ -1,12 +1,13 @@
 {
-    "layer": "top", // Waybar at top layer
-        // "position": "bottom", // Waybar position (top|bottom|left|right)
-        "height": 30, // Waybar height (to be removed for auto height) */
-        // "width": 2560, // Waybar width
+    // Waybar at top layer
+    "layer": "top", 
+        // Waybar position (top|bottom|left|right)
+        "position": "bottom", 
         // Choose the order of the modules
         "modules-left": ["sway/workspaces", "sway/mode"],
         /* "modules-center": ["sway/window"], */
-        "modules-right": ["custom/media", "pulseaudio", "network", "cpu", "temperature", "memory", "tray", "clock"],
+        "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "temperature", "memory", "tray", "clock"],
+
         // Modules configuration
         "sway/workspaces": {
             "disable-scroll": true,
@@ -74,7 +75,7 @@
             "format-alt": "{:%Y-%m-%d}"
         },
         "cpu": {
-            "format": "  {usage}%",
+            "format": "  {usage:3}%",
             "tooltip": true
         },
         "memory": {
@@ -86,7 +87,7 @@
         },
         "temperature": {
             // "thermal-zone": 2,
-            // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+            "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
             "critical-threshold": 80,
             // "format-critical": "{icon} {temperatureC}°C",
             "format": "{icon} {temperatureC}°C",
@@ -131,7 +132,7 @@
             "format-bluetooth": "{icon} {volume}%  {format_source}",
             "format-bluetooth-muted": "🔇 {icon} {format_source}",
             "format-muted": "🔇 {format_source}",
-            "format-source": "  {volume}%",
+            "format-source": "🎙 {volume}%",
             "format-source-muted": "",
             "format-icons": {
                 "headphone": "",

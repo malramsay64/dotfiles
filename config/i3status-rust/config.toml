@@ -19,9 +19,10 @@ alternating_tint_bg = "#00000000"
 separator = " | "
 
 [icons]
-icons = "awesome5"
+icons = "awesome4"
 [icons.overrides]
 music = " "
+
 
 [[block]]
 block = "music"
@@ -44,12 +45,12 @@ format = " $icon {$signal_strength $ssid $frequency|Wired connection} via $devic
 [[block]]
 block = "cpu"
 interval = 1
-format = " $utilization.eng(u:%,w:3) $frequency.eng(w:3)"
+format = " $utilization.eng(u:%,w:3) $frequency.eng(w:3) "
 
 [[block]]
 block = "temperature"
 interval = 10
-format = "$max.eng(w:2)"
+format = " $icon $max.eng(w:2) "
 chip = "*-isa-*"
 inputs = ["SYSTIN", "CPUTIN"]
 
@@ -66,9 +67,11 @@ alert_unit = "GB"
 [[block]]
 block = "sound"
 natural_mapping = true
-# driver = "alsa"
+format = " $icon $output_name{ $volume|}"
+[block.mappings]
+"alsa_output.pci-0000_2a_00.1.hdmi-stereo-extra1" = "Monitor"
 
 [[block]]
 block = "time"
 interval = 60
-format = " %a %Y-%m-%d %R"
+format = " $icon $timestamp.datetime(f:'%a %Y-%m-%d %R', l:en_AU) "
