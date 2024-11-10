@@ -1,0 +1,7 @@
+import = [
+  "~/.config/alacritty/one_dark.toml"
+]
+
+[font]
+normal = {family = "Iosevka Term"}
+size = 14
